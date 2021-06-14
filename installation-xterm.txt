@@ -1,0 +1,18 @@
+Download font from:
+https://fonts.google.com/specimen/Roboto+Mono
+
+Install font in the system:
+cd /usr/share/fonts
+sudo mkdir googlefonts
+cd googlefonts
+sudo unzip -d . ~/Downloads/Roboto_Mono.zip
+sudo chmod -R --reference=/usr/share/fonts/opentype /usr/share/fonts/googlefonts
+sudo fc-cache -fv
+
+Make a link to config:
+ln -s ~/.config/myconfig/.Xresources ~/.Xresources
+
+Update current config:
+xrdb -merge ./.Xresources
+
+Make xterm default in the system.

@@ -1,0 +1,5 @@
+xterm*faceName:	RobotoMono
+xterm*faceSize: 12
+xterm*renderfont: true
+xterm*background: #282C34
+xterm.foreground: #DCDFE4

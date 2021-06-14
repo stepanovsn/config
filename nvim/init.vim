@@ -35,7 +35,7 @@ set smartindent
 " Invisible characters
 :set listchars=tab:>·,space:·,trail:~
 :set list
-hi ExtraWhitespace ctermfg=88
+hi ExtraWhitespace ctermfg=9
 match ExtraWhitespace /\s\+$/
 
 " Ruler
@@ -180,15 +180,15 @@ hi Operator ctermfg=75
 hi Keyword ctermfg=75
 hi Exception ctermfg=75
 
-hi Identifier ctermfg=1
+hi Identifier ctermfg=89
 hi Function ctermfg=222
 
-hi Special ctermfg=magenta
-hi SpecialChar ctermfg=magenta
-hi Tag ctermfg=magenta
-hi Delimiter ctermfg=magenta
-hi SpecialComment ctermfg=magenta
-hi Debug ctermfg=magenta
+hi Special ctermfg=99
+hi SpecialChar ctermfg=99
+hi Tag ctermfg=99
+hi Delimiter ctermfg=99
+hi SpecialComment ctermfg=99
+hi Debug ctermfg=99
 
 " Keymap: Split motion
 nnoremap <C-J> <C-W><C-J>

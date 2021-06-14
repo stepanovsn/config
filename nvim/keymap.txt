@@ -1,0 +1,180 @@
+============= Motions =============
+
+<C-d>           - Go down half screen
+<C-u>           - Go up half screen
+b               - Go to start of previous word (capital to ignore brackets and etc)
+w               - Go to start of next word (capital to ignore brackets and etc)
+e               - Go to end of current word (capital to ignore brackets and etc)
+gg              - Go to start of file
+<Number>gg      - Go to Nth line
+G               - Go to end of file
+H               - Go to TOP of page
+M               - Go to MIDDLE of page
+L               - Go to BOTTOM of page
+0               - Jump to start of the line
+^               - Jump to first character
+$               - Jump to end of the line
+zz              - Center cursor
+
+============= Windows and tabs =============
+
+<C-J>           = Move to lower window
+<C-K>           = Move to upper window
+<C-L>           = Move to right window
+<C-H>           = Move to left window
+:only           - Close other windows
+
+<Number>gt      - Move to Nth tab
+<F2>            = Create and go to new tab
+<F3>            = Close tab
+<F4>            = Call :q
+:ls             - List buffers
+:b<Number>      - Open Nth buffer
+:bd             - Close current buffer
+:bufdo ..       - Apply command to all buffers
+
+============= Navigation =============
+
+<C-o>       - Go back in jump list
+<C-i>       - Go forward in jump list
+
+gd          - Go to definition
+<C-]>       - Go to definition (ctags)
+<C-t>       - Go back to initial point (ctags)
+g]          - List all tags (ctags
+tn          = Go to next definition (ctags)
+tp          = Go to previous definition (ctags)
+
+mA          - Set mark A
+`A          - Go to mark A
+'A          - Go to line of mark A
+<Leader>ml  = List marks from A to Z
+<Leader>mc  = Clear marks from A to Z
+
+============= Basic editing =============
+
+u               - Undo last change
+<C-r>           - Redo last change
+.               - Repeat last change under cursor
+r               - Change symbol under cursor
+x               - Remove symbol under cursor
+a               - Append text after cursor position
+A               - Append text at end of line
+i               - Insert text before the cursor
+I               - Insert text and start of the line
+O               - Open line(s) above cursor
+o               - Open line(s) below cursor
+
+V               - Start visual mode for lines
+d               - Delete(cut) selection
+y               - Copy selection
+с               - Replace selected block in insert mode
+p               - Insert after cursor
+P               - Insert before cursor
+
+:reg            - List registers
+“Xy             - Yank text into X register (from a to z)
+:pu X           - Paste X register
+“Xp             - Paste X register (0 is always last yanked text)
+
+============= Rich editing =============
+
+<Leader>cc          - Comment lines
+<Leader>cu          - Uncomment lines
+<Leader>c<Space>    - Toggle commenting based on first line
+<Leader>ci          - Invert commenting of every line individually
+<Leader>cs          - Comment in a beautiful way
+
+u                   - Set lower case to selected text
+U                   - Set upper case
+~                   - Invert case
+
+> or <              - Indent selected text or current line
+=                   - Autoindent selected lines
+
+============= Global =============
+
+<C-p>           - Go to previous command(after typing colon)
+<C-n>           - Go to next command (after typing colon)
+
+<F9>            = Toggle search highlighting
+<Leader>p       = Toggle paste mode
+
+============= Search and replace =============
+
+/                   - Search forward
+?                   - Search backward
+n                   - Go to next result
+N                   - Go to previous result
+<Leader>sc          = Replace word under cursor or selected string(clean)
+<Leader>sr          = Replace word under cursor or selected string(old word pre typed)
+<Leader>fg          = Grep text selected in visual mode
+<Leader>fl          = Search text selected in visual mode locally
+
+<F5>                = Ripgrep
+<F6>                = FZF
+:Rge pattern        = Ripgrep with regex
+
+============= Nerdtree =============
+
+<C-n>       = Open/close nerdtree
+A           - Maximize/minimize nerdtree
+o           - Open
+go          - Preview open
+s           - Split
+gs          - Preview split
+t           - Open in new tab
+T           - Open in new tab silently
+R           - Refresh root dir
+<Leader>n   = Reveal current buffer in nerdtree
+
+u           - Move tree root up a dir
+U           - Move tree root up a dir but leave old root open
+p           - Go to parent
+P           - Go to root
+K           - Go to first sibling
+J           - Go to last sibling
+<C-k>       - Go to previous sibling
+<C-j>       - Go to next sibling
+C           - Change tree root to the selected dir
+CD          - Change tree root to CWD
+cd          - Change the CWD to the selected dir
+
+============= Diff (nvim -d file1.txt file2.txt - to start nvim in diff mode) =============
+
+:diffs file.txt     - Open file in diff mode
+:difft              - Add buffer to diff
+:diffo              - Disable diff (add ! to apply to all windows on tab)
+:dif                - Update diff
+do                  - Same as :diffget
+dp                  - Same as :diffput
+[c                  - Jump to previous change
+]c                  - Jump to next change
+
+zo                  - Open folding
+zc                  - Close folding
+
+============= Git =============
+
+<Leader>gl      = Git log
+<Leader>gs      = Git status
+<Leader>gc      = Compare with commit or branch
+<Leader>gd      = Compare current buffer with revision
+:Gwrite!        - Write version to index
+
+dd              - (in GStatus) Open comparison
+-               - (in GStatus) Toggle file in/out of index
+X               - (in GStatus) Discard changes on file
+
+:diffg //2      - (in confilcts) Get target branch version
+:diffg //3      - (in confilcts) Get merge branch version
+
+============= File formatting =============
+
+<Leader>eu          = Reread as unix format
+<Leader>ed          = Reread as dos format
+
+<Leader>tt          = Switch the whole file to tabs
+<Leader>ts          = Switch the whole file to whitespaces
+
+:set syntax=cpp     - Force cpp highlight syntax

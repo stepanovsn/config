@@ -1,0 +1,5 @@
+Install packages:
+sudo apt install git fzf ripgrep neovim
+
+Install and build ctags:
+https://github.com/universal-ctags/ctags

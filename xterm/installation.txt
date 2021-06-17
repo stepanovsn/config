@@ -10,9 +10,9 @@ sudo chmod -R --reference=/usr/share/fonts/opentype /usr/share/fonts/googlefonts
 sudo fc-cache -fv
 
 Make a link to config:
-ln -s ~/.config/myconfig/.Xresources ~/.Xresources
+ln -s ~/.config/myconfig/xterm/.Xresources ~/.Xresources
 
 Update current config:
-xrdb -merge ./.Xresources
+xrdb -merge ~/.Xresources
 
 Make xterm default in the system.

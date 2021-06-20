@@ -180,7 +180,7 @@ hi Operator ctermfg=75
 hi Keyword ctermfg=75
 hi Exception ctermfg=75
 
-hi Identifier ctermfg=89
+hi Identifier ctermfg=96
 hi Function ctermfg=222
 
 hi Special ctermfg=99

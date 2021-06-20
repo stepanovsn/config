@@ -1,0 +1,5 @@
+Add at the end of .bashrc:
+source ~/.config/myconfig/bash/bashrc_post.sh
+
+Add at the end of root .bashrc:
+source /home/reg/.config/myconfig/bash/bashrc_root_post.sh

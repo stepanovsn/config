@@ -1,0 +1,35 @@
+============= Commands =============
+
+Create session: tmux new -s name
+List sessions: tmux ls
+Attach to session: tmux attach -t name
+Kill session: tmux kill-session -t name
+Rename session: tmux rename-session -t old new
+
+============= Common =============
+
+prefix s            - Choose session
+prefix w            - Choose window
+prefix d            - Detach
+prefix k            = Kill session
+
+============= Windows =============
+
+prefix c            - Create window
+prefix 1            - Switch to window #1
+prefix n            - Switch to next window
+prefix p            - Switch to previous window
+prefix ,            - Rename window
+prefix &            = Kill window
+
+============= Panes =============
+
+prefix h                    = Split horizontally
+prefix v                    = Split vertically
+prefix <arrow key>          - Go to <arrow> pane
+Alt+<arrow key>             = Go to <arrow> pane
+prefix ;                    - Toggle between the current and previous pane
+prefix z                    - Make pane full screen
+prefix C-<arrow key>        - Resize pane
+prefix x                    = Kill pane
+prefix {                    - Swap with previous pane

@@ -226,8 +226,9 @@ nnoremap <Leader>ts :execute 'set expandtab \| %retab!'<CR>
 " Keymap: Search
 nnoremap <F5> :Rg 
 nnoremap <F6> :FZF -e<CR>
-vnoremap <Leader>fg :<c-u>call Rg(GetVisualSelection())<cr>
-vnoremap <Leader>fl :<c-u>call SearchLocal(GetVisualSelection())<cr>
+nnoremap <Leader>f :Rg <C-r><C-w><CR>
+vnoremap <Leader>f :<<C-u>>call Rg(GetVisualSelection())<CR>
+vnoremap <Leader>l :<<C-u>>call SearchLocal(GetVisualSelection())<CR>
 
 " Keymap: Git
 nnoremap <Leader>gl :Glog -30 -- 

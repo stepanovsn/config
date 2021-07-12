@@ -106,10 +106,11 @@ U                   - Set upper case
 ?                   - Search backward
 n                   - Go to next result
 N                   - Go to previous result
+<Leader>f           = Grep text globally(Normal and Visual mode)
+*                   - Search text locally(Normal mode)
+<Leader>l           = Search text locally(Visual mode)
 <Leader>sc          = Replace word under cursor or selected string(clean)
 <Leader>sr          = Replace word under cursor or selected string(old word pre typed)
-<Leader>fg          = Grep text selected in visual mode
-<Leader>fl          = Search text selected in visual mode locally
 
 <F5>                = Ripgrep
 <F6>                = FZF

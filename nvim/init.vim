@@ -220,15 +220,19 @@ nnoremap <F3> :tabclose<CR>
 nnoremap <F4> :q<CR>
 
 " Keymap: Spaces
-nnoremap <Leader>tt :execute 'set noexpandtab \| %retab!'<CR>
-nnoremap <Leader>ts :execute 'set expandtab \| %retab!'<CR>
+noremap <Leader>tr :retab!<CR>
+noremap <Leader>tt :execute 'set noexpandtab'<CR>
+noremap <Leader>ts :execute 'set expandtab'<CR>
+noremap <Leader>t2 :execute 'set tabstop=2 \| set shiftwidth=2'<CR>
+noremap <Leader>t4 :execute 'set tabstop=4 \| set shiftwidth=4'<CR>
+noremap <Leader>t8 :execute 'set tabstop=8 \| set shiftwidth=8'<CR>
 
 " Keymap: Search
 nnoremap <F5> :Rg 
 nnoremap <F6> :FZF -e<CR>
 nnoremap <Leader>f :Rg <C-r><C-w><CR>
-vnoremap <Leader>f :<<C-u>>call Rg(GetVisualSelection())<CR>
-vnoremap <Leader>l :<<C-u>>call SearchLocal(GetVisualSelection())<CR>
+vnoremap <Leader>f :<C-u>call Rg(GetVisualSelection())<CR>
+vnoremap <Leader>l :<C-u>call SearchLocal(GetVisualSelection())<CR>
 
 " Keymap: Git
 nnoremap <Leader>gl :Glog -30 -- 

@@ -177,5 +177,9 @@ X               - (in GStatus) Discard changes on file
 
 <Leader>tt          = Switch the whole file to tabs
 <Leader>ts          = Switch the whole file to whitespaces
+<Leader>tr          = Retab
+<Leader>t2          = Set tab width to 2
+<Leader>t4          = Set tab width to 4
+<Leader>t8          = Set tab width to 8
 
 :set syntax=cpp     - Force cpp highlight syntax

@@ -107,15 +107,19 @@ let g:airline_mode_map={
 
 " Airline: Initialization
 function! AirlineInit()
-    let g:airline_section_x=airline#section#create([])
-    let g:airline_section_y=airline#section#create(['%{bufnr("%")} | ', 'ffenc', ' | %{line("$")} '])
-    let g:airline_section_z=airline#section#create(['%{col(".")}'])
+    let g:airline_section_x=airline#section#create(['%{GetTabsOrSpacesString()} | ', 'ffenc', ' '])
+    let g:airline_section_y=airline#section#create([' %{line("$")} '])
+    let g:airline_section_z=airline#section#create([' %{col(".")} '])
 
     hi airline_tab cterm=none ctermfg=239 ctermbg=234
     hi airline_tabsel cterm=none ctermfg=110 ctermbg=234
     hi airline_tabmod cterm=none ctermfg=110 ctermbg=234
 endfunction
 autocmd User AirlineAfterInit call AirlineInit()
+
+function! GetTabsOrSpacesString()
+    return &expandtab? 'tabs' : 'spaces'
+endfunction
 
 " NERDTree: Settings
 let g:NERDTreeMinimalUI=1

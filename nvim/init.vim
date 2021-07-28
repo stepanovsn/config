@@ -239,8 +239,8 @@ vnoremap <Leader>f :<C-u>call Rg(GetVisualSelection())<CR>
 vnoremap <Leader>l :<C-u>call SearchLocal(GetVisualSelection())<CR>
 
 " Keymap: Git
-nnoremap <Leader>gl :Glog -30 -- 
-nnoremap <Leader>gs :execute 'tabnew \| Gstatus'<CR>
+nnoremap <Leader>gl :Gclog -30 -- 
+nnoremap <Leader>gs :execute 'tabnew \| Git'<CR>
 nnoremap <Leader>gc :Git difftool --name-only 
 nnoremap <Leader>gd :Gvdiff 
 

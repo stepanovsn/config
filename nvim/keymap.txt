@@ -188,3 +188,6 @@ X               - (in GStatus) Discard changes on file
 <Leader>t8          = Set tab width to 8
 
 :set syntax=cpp     - Force cpp highlight syntax
+
+<Leader>xx          = Show file in hex
+<Leader>xr          = Switch back to normal

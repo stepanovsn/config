@@ -229,6 +229,10 @@ nnoremap <F2> :tabnew<CR>
 nnoremap <F3> :tabclose<CR>
 nnoremap <F4> :q<CR>
 
+" Keymap: Hexdump
+nnoremap <Leader>xx :%!xxd -g 2 -c 8 <CR> \| :set ft=xxd<CR>
+nnoremap <Leader>xr :%!xxd -g 2 -c 8 -r<CR> \| :filetype detect<CR>
+
 " Keymap: Spaces
 noremap <Leader>tr :retab!<CR>
 noremap <Leader>tt :execute 'set noexpandtab'<CR>

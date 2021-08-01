@@ -172,8 +172,13 @@ X               - (in GStatus) Discard changes on file
 
 ============= File formatting =============
 
-<Leader>eu          = Reread as unix format
-<Leader>ed          = Reread as dos format
+<Leader>ru          = Reread as unix format
+<Leader>rd          = Reread as dos format
+<Leader>rm          = Reread as mac format
+<Leader>rcu         = Change file format to unix
+<Leader>rcd         = Change file format to dos
+<Leader>rcm         = Change file format to mac
+<Leader>rx          = Remove all ^M in file
 
 <Leader>tt          = Switch the whole file to tabs
 <Leader>ts          = Switch the whole file to whitespaces

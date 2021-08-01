@@ -11,6 +11,7 @@ call plug#end()
 set ignorecase
 set smartcase
 set timeoutlen=3000
+set ffs=unix,dos,mac
 
 " Cursor
 au VimEnter * set guicursor=a:block-blinkon1
@@ -215,8 +216,13 @@ vnoremap <Leader>sc :<c-u>call SubstituteClean(GetVisualSelection())<CR>
 vnoremap <Leader>sr :<c-u>call SubstituteReplace(GetVisualSelection())<CR>
 
 " Keymap: File format
-nnoremap <Leader>eu :execute 'e ++ff=unix'<CR>
-nnoremap <Leader>ed :execute 'e ++ff=dos'<CR>
+nnoremap <Leader>ru :execute 'e ++ff=unix'<CR>
+nnoremap <Leader>rd :execute 'e ++ff=dos'<CR>
+nnoremap <Leader>rm :execute 'e ++ff=mac'<CR>
+nnoremap <Leader>rcu :execute 'setlocal ff=unix'<CR>
+nnoremap <Leader>rcd :execute 'setlocal ff=dos'<CR>
+nnoremap <Leader>rcm :execute 'setlocal ff=mac'<CR>
+nnoremap <Leader>rx :%s/\r//g<CR>
 
 " Keymap: Tabs
 nnoremap <F2> :tabnew<CR>

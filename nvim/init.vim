@@ -253,6 +253,7 @@ nnoremap <Leader>gl :Gclog -30 --
 nnoremap <Leader>gs :execute 'tabnew \| Git'<CR>
 nnoremap <Leader>gc :Git difftool --name-only 
 nnoremap <Leader>gd :Gvdiff 
+autocmd FileType git setlocal foldmethod=syntax
 
 " Keymap: Marks
 nnoremap <Leader>ml :marks ABCDEFGHIJKLMNOPQRSTUVWXYZ<CR>

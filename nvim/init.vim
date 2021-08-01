@@ -108,7 +108,7 @@ let g:airline_mode_map={
 
 " Airline: Initialization
 function! AirlineInit()
-    let g:airline_section_x=airline#section#create(['%{GetTabsOrSpacesString()} | ', 'ffenc', ' '])
+    let g:airline_section_x=airline#section#create(['%{GetTabsOrSpacesString()} | ', 'filetype', 'ffenc', ' '])
     let g:airline_section_y=airline#section#create([' %{line("$")} '])
     let g:airline_section_z=airline#section#create([' %{col(".")} '])
 

@@ -119,7 +119,7 @@ endfunction
 autocmd User AirlineAfterInit call AirlineInit()
 
 function! GetTabsOrSpacesString()
-    return &expandtab? 'tabs' : 'spaces'
+    return &expandtab? 'spaces' : 'tabs'
 endfunction
 
 " NERDTree: Settings

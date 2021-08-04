@@ -27,7 +27,7 @@ set number
 
 " Tabs
 set tabstop=4
-set shiftwidth=4
+set shiftwidth=0
 set smarttab
 set expandtab
 set autoindent
@@ -119,7 +119,7 @@ endfunction
 autocmd User AirlineAfterInit call AirlineInit()
 
 function! GetTabsOrSpacesString()
-    return &expandtab? 'spaces' : 'tabs'
+    return (&expandtab? 'space' : 'tab') . ", " . &tabstop
 endfunction
 
 " NERDTree: Settings
@@ -235,11 +235,11 @@ nnoremap <Leader>xr :%!xxd -g 2 -c 8 -r<CR> \| :filetype detect<CR>
 
 " Keymap: Spaces
 noremap <Leader>tr :retab!<CR>
-noremap <Leader>tt :execute 'set noexpandtab'<CR>
-noremap <Leader>ts :execute 'set expandtab'<CR>
-noremap <Leader>t2 :execute 'set tabstop=2 \| set shiftwidth=2'<CR>
-noremap <Leader>t4 :execute 'set tabstop=4 \| set shiftwidth=4'<CR>
-noremap <Leader>t8 :execute 'set tabstop=8 \| set shiftwidth=8'<CR>
+noremap <Leader>tt :set noexpandtab<CR>
+noremap <Leader>ts :set expandtab<CR>
+noremap <Leader>t2 :set tabstop=2<CR>
+noremap <Leader>t4 :set tabstop=4<CR>
+noremap <Leader>t8 :set tabstop=8<CR>
 
 " Keymap: Search
 nnoremap <F5> :Rg 

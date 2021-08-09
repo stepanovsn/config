@@ -65,7 +65,7 @@ hi Whitespace ctermfg=238
 set tags=./tags,tags;$HOME
 
 " Grep
-set grepprg=rg\ --vimgrep\ --hidden\ --smart-case\ --no-ignore-dot
+set grepprg=rg\ --vimgrep\ --hidden\ --smart-case\ --no-ignore
 command! -nargs=+ Rg call Rg(<f-args>)
 command! -nargs=+ Rge call Rge(<f-args>)
 

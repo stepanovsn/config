@@ -20,3 +20,4 @@ xterm*color12: rgb:2c/7b/f2
 xterm*color13: rgb:b8/38/eb
 xterm*color14: rgb:2c/ca/db
 xterm*color15: rgb:e8/e8/e8
+xterm*metaSendsEscape: true

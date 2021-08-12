@@ -33,6 +33,9 @@ zz              - Center cursor
 :bd             - Close current buffer
 :bufdo ..       - Apply command to all buffers
 
+<C-w>v          \
+:vs             - Split vertically
+
 ============= Navigation =============
 
 <C-o>       - Go back in jump list

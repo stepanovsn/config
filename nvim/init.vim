@@ -5,7 +5,7 @@ call plug#begin('~/.local/share/nvim/site/plugged')
     Plug 'tpope/vim-fugitive'
     Plug 'bfrg/vim-cpp-modern'
     Plug 'scrooloose/nerdcommenter'
-    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+    Plug '~/.fzf'
 call plug#end()
 
 set ignorecase

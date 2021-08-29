@@ -1,12 +1,5 @@
-Install packages:
-sudo apt install git ripgrep neovim
-
 Install and build ctags:
 https://github.com/universal-ctags/ctags
 
 Make a link to config:
 ln -s ~/.config/myconfig/nvim/ ~/.config/nvim
-
-Install fzf:
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-~/.fzf/install

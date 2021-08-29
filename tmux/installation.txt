@@ -1,5 +1,2 @@
-Install packages:
-sudo apt install tmux
-
 Make a link to config:
 ln -s ~/.config/myconfig/tmux/.tmux.conf ~/.tmux.conf

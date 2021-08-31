@@ -6,5 +6,6 @@ export LS_COLORS='rs=0:di=34:ln=36:mh=00:pi=35:so=35:do=35:bd=35:cd=35:or=1;30:m
 export EDITOR=nvim
 
 # aliases
+alias ncdu='ncdu -r'
 alias r.du='du -ah --max-depth=1 | sort -h'
 alias r.fzf='fzf -e --print0 | ifne xargs -0 -p'

@@ -19,3 +19,6 @@ unrar e name.rar dest_dir
 
 fzf:
 For autocompletion use: some_command **<Tab>
+
+mmv:
+Rename multiple files extensions: mmv '*.cpp' '#1.c'

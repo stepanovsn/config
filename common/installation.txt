@@ -1,5 +1,5 @@
 Install packages:
-sudo apt install tar zip unzip rar unrar git ripgrep neovim tmux moreutils
+sudo apt install tar zip unzip rar unrar git ripgrep neovim tmux moreutils mmv
 
 Install fzf:
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf

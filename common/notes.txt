@@ -1,21 +1,21 @@
 ============= Archives =============
 
-Tar:
+tar:
 tar cvzf name.tar.gz src_dir
 tar tvzf name.tar.gz
 tar xvzf name.tar.gz -C dest_dir
 
-Zip:
+zip:
 zip name.zip -r src_dir
 unzip -l name.zip
 unzip name.zip -d dest_dir
 
-Rar:
+rar:
 rar a -r name.rar src_dir
 unrar l
 unrar e name.rar dest_dir
 
 ============= Other =============
 
-Fzf:
+fzf:
 For autocompletion use: some_command **<Tab>

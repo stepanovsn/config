@@ -2,6 +2,10 @@
 
 <C-d>           - Go down half screen
 <C-u>           - Go up half screen
+<C-e>           - Move screen one line down
+<C-y>           - Move screen one line up
+{               - Jump paragraph back
+}               - Jump paragraph forward
 b               - Go to start of previous word (capital to ignore brackets and etc)
 w               - Go to start of next word (capital to ignore brackets and etc)
 e               - Go to end of current word (capital to ignore brackets and etc)

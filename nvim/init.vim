@@ -65,7 +65,7 @@ hi Whitespace ctermfg=238
 set tags=./tags,tags;$HOME
 
 " Grep
-set grepprg=rg\ --vimgrep\ --hidden\ --smart-case\ --no-ignore
+set grepprg=rg\ --vimgrep
 command! -nargs=+ Rg call Rg(<f-args>)
 command! -nargs=+ Rge call Rge(<f-args>)
 
@@ -243,7 +243,7 @@ noremap <Leader>t8 :set tabstop=8<CR>
 
 " Keymap: Search
 nnoremap <F5> :Rg 
-nnoremap <F6> :FZF -e<CR>
+nnoremap <F6> :FZF<CR>
 nnoremap <Leader>f :Rg <C-r><C-w><CR>
 vnoremap <Leader>f :<C-u>call Rg(GetVisualSelection())<CR>
 vnoremap <Leader>l :<C-u>call SearchLocal(GetVisualSelection())<CR>
@@ -270,7 +270,7 @@ nnoremap <Leader>vf :execute 'set nu \| set rnu \| set list'<CR>
 " Functions
 function! Rg(...)
     let searchString = join(a:000, ' ')
-    let files = split(system(&grepprg . ' -F -l "' . searchString . '"'))
+    let files = split(system(&grepprg . ' -F -l "' . searchString . '"'), '\n')
     call setqflist([], ' ', {'lines': files, 'efm': '%f'})
     copen
     let @/ = searchString

@@ -1,0 +1,2 @@
+Make a link to config:
+ln -s ~/.config/myconfig/rg/.rgrc ~/.rgrc

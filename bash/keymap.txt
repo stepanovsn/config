@@ -40,3 +40,5 @@ Alt-T       - Swap current and previous word
 Ctrl-_              - Undo lasy key press. Repeatable
 
 Ctrl-x, Ctrl-e      - Edit current command in $EDITOR
+
+Ctrl-Alt-e          - Expand alias

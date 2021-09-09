@@ -24,8 +24,8 @@ prefix &            = Kill window
 
 ============= Panes =============
 
-prefix h                    = Split horizontally
-prefix v                    = Split vertically
+prefix %                    - Split horizontally
+prefix "                    - Split vertically
 prefix <arrow key>          - Go to <arrow> pane
 Alt+<arrow key>             = Go to <arrow> pane
 prefix ;                    - Toggle between the current and previous pane

@@ -101,6 +101,13 @@ U                   - Set upper case
 
 ============= Global =============
 
+Q               - Switch to Ex mode
+
+:<C-f>
+q:              - Open command line history
+q/              - Open / history
+q?              - Open ? history
+
 <C-p>           - Go to previous command(after typing colon)
 <C-n>           - Go to next command (after typing colon)
 

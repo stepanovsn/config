@@ -22,3 +22,8 @@ For autocompletion use: some_command **<Tab>
 
 mmv:
 Rename multiple files extensions: mmv '*.cpp' '#1.c'
+
+chmod:
+Categories: u - user, g - group, o - other.
+For recursive use: -R
+Grant all rights to all users: chmod ugo+rwx filename.txt

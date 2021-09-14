@@ -67,6 +67,7 @@ set tags=./tags,tags;$HOME
 " Grep
 set grepprg=rg\ --vimgrep
 command! -nargs=+ Rg call Rg(<f-args>)
+command! -nargs=+ Rgl call Rgl(<f-args>)
 command! -nargs=+ Rge call Rge(<f-args>)
 
 " Airline: Statusline settings
@@ -243,7 +244,9 @@ noremap <Leader>t8 :set tabstop=8<CR>
 
 " Keymap: Search
 nnoremap <F5> :Rg 
-nnoremap <F6> :FZF<CR>
+nnoremap <F6> :Rgl 
+nnoremap <F7> :Rge 
+nnoremap <F8> :FZF<CR>
 nnoremap <Leader>f :Rg <C-r><C-w><CR>
 vnoremap <Leader>f :<C-u>call Rg(GetVisualSelection())<CR>
 vnoremap <Leader>l :<C-u>call SearchLocal(GetVisualSelection())<CR>
@@ -270,16 +273,32 @@ nnoremap <Leader>vf :execute 'set nu \| set rnu \| set list'<CR>
 " Functions
 function! Rg(...)
     let searchString = join(a:000, ' ')
-    let files = split(system(&grepprg . ' -F -l "' . searchString . '"'), '\n')
+    let files = split(system(&grepprg . " -F -l '" . searchString . "'"), '\n')
     call setqflist([], ' ', {'lines': files, 'efm': '%f'})
     copen
-    let @/ = searchString
+    let @/ = EscapeVimRegexp(searchString)
+endfunction
+
+function! Rgl(...)
+    let searchString = join(a:000, ' ')
+    let lines = split(system(&grepprg . " -F '" . searchString . "'"), '\n')
+    call setqflist([], ' ', {'lines': lines})
+    copen
 endfunction
 
 function! Rge(...)
     let searchString = join(a:000, ' ')
-    execute 'silent grep! "' . searchString . '"'
+    let lines = split(system(&grepprg . " '" . searchString . "'"), '\n')
+    call setqflist([], ' ', {'lines': lines})
     copen
+endfunction
+
+function! SearchLocal(string)
+    call feedkeys("/" . EscapeVimRegexp(a:string) . "\<CR>")
+endfunction
+
+function! EscapeVimRegexp(str)
+  return escape(a:str, '^$.*~/\[]')
 endfunction
 
 function! GetVisualSelection()
@@ -297,8 +316,4 @@ endfunction
 
 function! SubstituteReplace(string)
     call feedkeys(":%s/" . a:string . "/" . a:string . "/gc\<Left>\<Left>\<Left>")
-endfunction
-
-function! SearchLocal(string)
-    call feedkeys("/" . a:string . "\<CR>")
 endfunction

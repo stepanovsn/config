@@ -131,8 +131,10 @@ N                   - Go to previous result
 <Leader>sc          = Replace word under cursor or selected string(clean)
 <Leader>sr          = Replace word under cursor or selected string(old word pre typed)
 
-<F5>                = Ripgrep
-<F6>                = FZF
+<F5>                = Ripgrep (files only)
+<F6>                = Ripgrep (every match)
+<F7>                = Ripgrep (every match, regexp)
+<F8>                = FZF
 :Rge pattern        = Ripgrep with regex
 
 ============= Nerdtree =============

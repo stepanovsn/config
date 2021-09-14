@@ -5,6 +5,7 @@ List sessions: tmux ls
 Attach to session: tmux attach -t name
 Kill session: tmux kill-session -t name
 Rename session: tmux rename-session -t old new
+Change pwd of the session: attach-session -t . -c /path/to/new/directory
 
 ============= Common =============
 

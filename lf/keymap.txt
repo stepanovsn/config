@@ -1,0 +1,51 @@
+============= Motions =============
+
+gh          - Go to ~
+j           - Down
+k           - Up
+<C-u>       - Up half screen
+<C-d>       - Down half screen
+h           - Move to parent directory
+l           - Open directory
+gg          - Go to first line
+G           - Go to last line
+
+============= Selection =============
+
+<Space>     - Toggle file/directory selection
+v           - Invert selection in current dir
+u           - Clear all selections
+
+============= Manipulating files =============
+
+y           - Copy current file or selection
+d           - Cut current file or selection
+p           - Paste copied/cut to current directory
+c           - Clear copied or cut files
+r           - Rename
+x           = Delete
+
+============= Commands =============
+
+:           - Run build-in or custom command
+$           - Run shell command
+%           - Run shell command and pipe IO to statline
+e           - Launch an editor
+i           - Launch a pager(usually "less")
+
+:extract    = Extract archive
+
+============= Marks =============
+
+m           - Create mark for current directory
+'           - Go to mark (Also, could go back by using "'" as a mark name)
+
+============= Search =============
+
+/           - Search
+n           - Search next
+N           - Search prev
+
+============= Other =============
+
+<C-r>       - Reload

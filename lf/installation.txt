@@ -1,0 +1,12 @@
+Download the latest release from:
+https://github.com/gokcehan/lf/releases
+
+Put the binary in /usr/bin/
+
+Make a link to the config directory:
+ln -s ~/.config/myconfig/lf ~/.config/lf
+
+Make sure preview.sh is executable
+
+Latest script for custom exit command(in lfcd.sh) can be found at:
+https://raw.githubusercontent.com/gokcehan/lf/master/etc/lfcd.sh

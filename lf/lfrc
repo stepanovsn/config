@@ -1,0 +1,55 @@
+# Main settings
+set hidden on
+set relativenumber on
+set incsearch on
+set ignorecase on
+set smartcase on
+set wrapscan on
+set tabstop 4
+
+set preview true
+set previewer /home/reg/.config/myconfig/lf/preview.sh
+
+map x delete
+
+# Commands
+cmd delete ${{
+    set -f
+    if [ -z "$fx" ]; then
+        return;
+    fi
+
+    fcount=$(echo "$fx" | wc -l)
+    if [ "$fcount" -lt 10 ]; then
+        printf "$fx\n"
+    else
+        printf "$fx\n" | less
+    fi
+    printf "delete %d files? " $fcount
+
+    read ans
+    if [ -n "$ans" ] && [ "$ans" = "yes" ]; then
+        rm -rf $fx
+    fi
+}}
+
+cmd extract ${{
+    set -f
+    case $f in
+        *.tar.bz|*.tar.bz2|*.tbz|*.tbz2) tar xjvf $f;;
+        *.tar.gz|*.tgz) tar xzvf $f;;
+        *.tar.xz|*.txz) tar xJvf $f;;
+        *.tar) tar xvf $f;;
+        *.zip) unzip $f;;
+        *.rar) unrar x $f;;
+        *.7z) 7z x $f;;
+    esac
+}}
+
+# Remove some defaults
+map w
+map f
+map F
+map ;
+map ,
+cmd open

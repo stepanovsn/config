@@ -30,6 +30,7 @@ x           = Delete
 :           - Run build-in or custom command
 $           - Run shell command
 %           - Run shell command and pipe IO to statline
+w           - Launch shell
 e           - Launch an editor
 i           - Launch a pager(usually "less")
 

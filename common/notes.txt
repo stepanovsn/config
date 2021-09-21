@@ -27,3 +27,8 @@ chmod:
 Categories: u - user, g - group, o - other.
 For recursive use: -R
 Grant all rights to all users: chmod ugo+rwx filename.txt
+
+chown:
+Change ownership: chown user file.txt
+Change ownership and group: chown user:user file.txt
+Change ownership(recursively): chown -R user dir/

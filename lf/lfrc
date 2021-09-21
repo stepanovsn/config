@@ -8,7 +8,7 @@ set wrapscan on
 set tabstop 4
 
 set preview true
-set previewer /home/reg/.config/myconfig/lf/preview.sh
+set previewer ~/.config/lf/preview.sh
 
 map x delete
 
@@ -47,7 +47,6 @@ cmd extract ${{
 }}
 
 # Remove some defaults
-map w
 map f
 map F
 map ;

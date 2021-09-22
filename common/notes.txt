@@ -15,7 +15,27 @@ rar a -r name.rar src_dir
 unrar l
 unrar e name.rar dest_dir
 
+============= System info =============
+
+Various system info:
+lsblk -f
+lscpu
+lspci -v
+lsusb -v
+
+Collect all system info:
+inxi -Fx
+lshw -short
+hwinfo --short
+
+Get system info from BIOS:
+dmidecode
+
 ============= Other =============
+
+stat:
+Info about file status: stat filename.txt
+Info about file system status: stat -f filename.txt
 
 fzf:
 For autocompletion use: some_command **<Tab>

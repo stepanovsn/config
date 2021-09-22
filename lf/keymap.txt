@@ -47,6 +47,10 @@ m           - Create mark for current directory
 n           - Search next
 N           - Search prev
 
+f           - Find
+;           - Find next
+,           - Find prev
+
 ============= Other =============
 
 <C-r>       - Reload

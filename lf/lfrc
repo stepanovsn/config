@@ -1,11 +1,11 @@
 # Main settings
 set hidden on
-set relativenumber on
 set incsearch on
 set ignorecase on
 set smartcase on
 set wrapscan on
 set tabstop 4
+set findlen 2
 
 set preview true
 set previewer ~/.config/lf/preview.sh
@@ -47,8 +47,4 @@ cmd extract ${{
 }}
 
 # Remove some defaults
-map f
-map F
-map ;
-map ,
 cmd open

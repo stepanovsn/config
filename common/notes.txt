@@ -52,3 +52,6 @@ chown:
 Change ownership: chown user file.txt
 Change ownership and group: chown user:user file.txt
 Change ownership(recursively): chown -R user dir/
+
+Determine file type:
+file filename

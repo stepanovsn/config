@@ -63,3 +63,6 @@ Change ownership(recursively): chown -R user dir/
 
 Count all lines in directory:
 find ./ -type f | xargs wc -l | awk '{sum+=$1} END {print sum}'
+
+Determine file type:
+file filename

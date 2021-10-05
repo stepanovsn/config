@@ -1,0 +1,106 @@
+============= Main preprocess/compile/link options =============
+
+-D[name]                        Define [name] as a macro with definition 1
+-D[name]=[definition]           Define [name] as a macro with [definition]
+
+-include [file]                 Process [file] as if it was included at the first line of the primary source file
+-I [path]                       Add path to includes
+
+-l[library]                     Search the [library] when linking
+-L[path]                        Add path to the list of directories to be searched for -l
+
+============= Optimizations =============
+
+-O0                             Disable most optimizations (default)
+-Og                             Optimize debugging experience
+
+-O
+-O1                             Optimize
+-O2                             Optimize more
+-O3                             Optimize even more
+-Ofast                          Optimize with all -O3 optimizations and some additional (disregarding strict standards compliance)
+
+-Os                             Optimize for size (enables most of -O2 optimizations)
+
+============= Warnings =============
+
+-Wall                           Enable all warnings
+-Wextra                         Enable some extra warnings (not turned on by Wall)
+-Werror                         Treat warnings as errors
+
+-Wshadow                        Warn whenever a local variable or type declaration shadows another variable, parameter, class member, etc.
+-Wunused-parameter              Warn whenever a function parameter is unused aside from its declaration
+-Wduplicated-branches           Warn when an if-else has identical branches
+-Wundef                         Warn if an undefined identifier is evaluated in an #if directive. Such identifiers are replaced with zero
+-Wunused-macros                 Warn about macros defined in the main file that are unused
+-Wpadded                        Warn if padding is included in a structure
+
+-Wconversion                    Warn for implicit conversions that may alter a value
+-Warith-conversion              Warn about implicit conversions from arithmetic operations (even when conversion cannot change the values)
+-Wsign-conversion               Warn if making unsafe, implicit conversions between signed and unsigned types
+-Wdouble-promotion              Warn when float value is implicitly promoted to double
+
+============= C++ only options =============
+
+-fchar8_t
+-fno-char8_t                    Enable support for char8_t as adopted for C++20
+-fcoroutines                    Enable support for the C++ coroutines extension
+-fmodules-ts
+-fno-modules-ts                 Enable support for C++20 modules
+-frtti
+-fno-rtti                       Enable/disable RTTI
+
+============= Controlling the output =============
+
+-c                              Compile or assemble source files, but do not link (the output is *.o)
+-S                              Compile, but do not assemble (the output is *.s)
+-E                              Preprocess and send to stdout
+-o [filename]                   Place the primary output in [filename]
+-save-temps                     Save intermediate results
+-g                              Add debugging information
+
+============= Other =============
+
+-std=[value]                    Set language standard to [value]
+
+-fexceptions                    Enable exception handling
+-fverbose-asm                   Put extra commentary information in the generated assembly code
+-fPIC                           Generate position-independent code
+-fPIE                           Same as -fPIC, but generated PIC can be only linked into executables
+
+-v                              Print the commands executed to run the stages of compilation
+-###                            Like -v, but commands are not executed and arguments are quoted
+
+-pthread                        Define additional macros required for using the POSIX threads library
+-M                              Output make rule describing the dependencies of the main source file
+-MM                             Line -M, but without system and included headers
+-s                              Remove all symbol table and relocation information from the executable
+
+-Wp,[option]                    Pass [option] to preprocessor
+-Wa,[option]                    Pass [option] to assembler
+-Wl,[option]                    Pass [option] to linker
+
+============= File extensions =============
+
+file.h                          C, C++ header file to be turned into a precompiled header
+file.c                          C source code that must be preprocessed.
+file.i                          C source code that should not be preprocessed.
+file.hh
+file.H
+file.hp
+file.hxx
+file.hpp
+file.HPP
+file.h++
+file.tcc                        C++ header file to be turned into a precompiled header
+file.cc
+file.cp
+file.cxx
+file.cpp
+file.CPP
+file.c++
+file.C                          C++ source code that must be preprocessed
+file.ii                         C++ source code that should not be preprocessed.
+file.s                          Assembler code.
+file.S
+file.sx                         Assembler code that must be preprocessed

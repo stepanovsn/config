@@ -31,6 +31,11 @@ hwinfo --short
 Get system info from BIOS:
 dmidecode
 
+============= Network =============
+
+Get list of files on FTP server('/' at the end is required):
+curl -l ftp://yourftpserver/dir/ --user username:password
+
 ============= Other =============
 
 stat:
@@ -39,6 +44,9 @@ Info about file system status: stat -f filename.txt
 
 fzf:
 For autocompletion use: some_command **<Tab>
+
+find:
+Exclude dir from search: find -name "*pattern*" -not -path "./exclude-directory/*"
 
 mmv:
 Rename multiple files extensions: mmv '*.cpp' '#1.c'
@@ -52,3 +60,6 @@ chown:
 Change ownership: chown user file.txt
 Change ownership and group: chown user:user file.txt
 Change ownership(recursively): chown -R user dir/
+
+Count all lines in directory:
+find ./ -type f | xargs wc -l | awk '{sum+=$1} END {print sum}'

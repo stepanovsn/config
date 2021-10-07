@@ -13,5 +13,5 @@ case "$1" in
     *.html|*.xml) w3m -dump "$1";;
     *.pem|*.crt|*.cer) openssl x509 -in "$1" -noout -text -certopt no_pubkey,no_sigdump;;
     *.deb) dpkg-deb -I "$1";;
-    *) highlight -O ansi "$1";;
+    *) highlight -O ansi --force "$1";;
 esac

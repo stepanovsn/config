@@ -12,6 +12,7 @@ set ignorecase
 set smartcase
 set timeoutlen=3000
 set ffs=unix,dos,mac
+syntax enable
 
 " Cursor
 au VimEnter * set guicursor=a:block-blinkon1
@@ -195,6 +196,11 @@ hi Tag ctermfg=99
 hi Delimiter ctermfg=99
 hi SpecialComment ctermfg=99
 hi Debug ctermfg=99
+
+" Vimnote colors
+hi VimnoteHeaderSep ctermfg=240
+hi VimnoteHeaderName ctermfg=173
+hi VimnoteEntry ctermfg=74
 
 " Keymap: Split motion
 nnoremap <C-J> <C-W><C-J>

@@ -201,6 +201,7 @@ hi Debug ctermfg=99
 hi VimnoteHeaderSep ctermfg=240
 hi VimnoteHeaderName ctermfg=173
 hi VimnoteEntry ctermfg=74
+hi VimnoteSubheader ctermfg=140
 
 " Keymap: Split motion
 nnoremap <C-J> <C-W><C-J>

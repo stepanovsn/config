@@ -11,6 +11,7 @@ export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
 export LESS=' -R '
 
 # aliases
+alias ll='ls -lah'
 alias ncdu='ncdu -r'
 alias r.du='du -ah --max-depth=1 | sort -h'
 alias r.fzf='fzf -e --print0 | ifne xargs -0 -p'

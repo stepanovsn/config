@@ -1,11 +1,20 @@
 " Install required plugins
 call plug#begin('~/.local/share/nvim/site/plugged')
+
+    " Improvements
     Plug 'https://github.com/regular8/vim-airline.git'
-    Plug 'https://github.com/regular8/nerdtree.git'
+    Plug 'jlanzarotta/bufexplorer'
+
+    " Helpful
     Plug 'tpope/vim-fugitive'
     Plug 'bfrg/vim-cpp-modern'
     Plug 'scrooloose/nerdcommenter'
+
+    " Filesystem
     Plug '~/.fzf'
+    Plug 'ptzz/lf.vim'
+    Plug 'voldikss/vim-floaterm'
+
 call plug#end()
 
 set ignorecase
@@ -71,6 +80,17 @@ command! -nargs=+ Rg call Rg(<f-args>)
 command! -nargs=+ Rgl call Rgl(<f-args>)
 command! -nargs=+ Rge call Rge(<f-args>)
 
+" BufExplorer
+let g:bufExplorerDisableDefaultKeyMapping = 1
+let g:bufExplorerDefaultHelp = 0
+
+" Lf
+let g:floaterm_height = 0.7
+let g:floaterm_width = 0.9
+let g:lf_replace_netrw = 1
+let g:lf_map_keys = 0
+hi FloatermBorder ctermfg=244
+
 " Airline: Statusline settings
 let g:airline_theme='regular'
 let g:airline#extensions#wordcount#enabled=0
@@ -123,31 +143,6 @@ autocmd User AirlineAfterInit call AirlineInit()
 function! GetTabsOrSpacesString()
     return (&expandtab? 'space' : 'tab') . ", " . &tabstop
 endfunction
-
-" NERDTree: Settings
-let g:NERDTreeMinimalUI=1
-let g:NERDTreeWinSize=50
-let g:NERDTreeShowHidden=1
-let g:NERDTreeCascadeSingleChildDir=0
-let g:NERDTreeDirArrowExpandable=' '
-let g:NERDTreeDirArrowCollapsible=' '
-let g:NERDTreeStatusline="%{getcwd()}"
-let g:NERDTreeQuitOnOpen=0
-let g:NERDTreeShowBookmarks=1
-"au VimEnter * NERDTree
-
-" NERDTree: Colors
-hi NERDTreeDir ctermfg=72
-hi NERDTreeUp ctermfg=72
-hi NERDTreeCWD ctermfg=72
-hi NERDTreeLinkFile ctermfg=75
-hi NERDTreeLinkDir ctermfg=75
-hi NERDTreeLinkTarget ctermfg=254
-hi NERDTreeBookmark cterm=none ctermfg=245
-hi NERDTreeBookmarkName cterm=none ctermfg=14
-hi NERDTreeExecFile cterm=none ctermfg=254
-hi NERDTreeIgnore ctermfg=245
-hi NERDTreeDirSlash ctermfg=72
 
 " Vim-cpp-modern: Settings
 let g:cpp_member_highlight = 1
@@ -208,10 +203,6 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
-
-" Keymap: Nerdtree
-nnoremap <C-n> :NERDTreeToggle<CR>
-nnoremap <Leader>n :NERDTreeFind<CR>
 
 " Keymap: Tag navigation
 nnoremap tp :tp<CR>
@@ -276,6 +267,13 @@ set pastetoggle=<Leader>p
 " Keymap: Minimal mode
 nnoremap <Leader>vm :execute 'set nonu \| set nornu \| set nolist'<CR>
 nnoremap <Leader>vf :execute 'set nu \| set rnu \| set list'<CR>
+
+" Keymap: Other
+nnoremap <C-w>n :vnew<CR>
+nnoremap <C-b> :ToggleBufExplorer<CR>
+nnoremap <C-n> :LfWorkingDirectory<CR>
+nnoremap <C-m> :Lf<CR>
+nnoremap <Leader>n :Lfcd<CR>
 
 " Functions
 function! Rg(...)

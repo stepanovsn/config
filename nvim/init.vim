@@ -244,7 +244,7 @@ noremap <Leader>t8 :set tabstop=8<CR>
 nnoremap <F5> :Rg 
 nnoremap <F6> :Rgl 
 nnoremap <F7> :Rge 
-nnoremap <F8> :FZF<CR>
+nnoremap <C-p> :FZF<CR>
 nnoremap <Leader>f :Rg <C-r><C-w><CR>
 vnoremap <Leader>f :<C-u>call Rg(GetVisualSelection())<CR>
 vnoremap <Leader>l :<C-u>call SearchLocal(GetVisualSelection())<CR>
@@ -273,7 +273,7 @@ nnoremap <C-b> :LfWorkingDirectory<CR>
 nnoremap <Leader>n :Lfcd<CR>
 
 " Keymap: Other
-nnoremap <C-p> :ToggleBufExplorer<CR>
+nnoremap <F8> :ToggleBufExplorer<CR>
 nnoremap <F10> :pwd<CR>
 
 " Functions

@@ -1,41 +1,33 @@
-" Install required plugins
+" Plugins
 call plug#begin('~/.local/share/nvim/site/plugged')
-
-    " Improvements
-    Plug 'https://github.com/regular8/vim-airline.git'
+    Plug 'https://github.com/stepanovsn/vim-airline.git'
     Plug 'jlanzarotta/bufexplorer'
-
-    " Helpful
-    Plug 'tpope/vim-fugitive'
-    Plug 'bfrg/vim-cpp-modern'
-    Plug 'scrooloose/nerdcommenter'
-
-    " Filesystem
     Plug '~/.fzf'
     Plug 'ptzz/lf.vim'
     Plug 'voldikss/vim-floaterm'
-
+    Plug 'tpope/vim-fugitive'
+    Plug 'bfrg/vim-cpp-modern'
+    Plug 'scrooloose/nerdcommenter'
 call plug#end()
 
+" Settings: Main
+syntax enable
+au VimEnter * set guicursor=a:block-blinkon1
+set ffs=unix,dos,mac
+set timeoutlen=3000
 set ignorecase
 set smartcase
-set timeoutlen=3000
-set ffs=unix,dos,mac
-syntax enable
 
-" Cursor
-au VimEnter * set guicursor=a:block-blinkon1
-
-" Diff
+" Settings: Diff
 set diffopt=filler,context:18
 set diffopt+=vertical
 
-" Line numbers
+" Settings: Line numbers
 set numberwidth=6
 set relativenumber
 set number
 
-" Tabs
+" Settings: Tabs
 set tabstop=4
 set shiftwidth=0
 set smarttab
@@ -43,64 +35,48 @@ set expandtab
 set autoindent
 set smartindent
 
-" Invisible characters
+" Settings: Invisible characters
 :set listchars=tab:>·,space:·,trail:~
 :set list
-hi ExtraWhitespace ctermfg=9
 match ExtraWhitespace /\s\+$/
+hi ExtraWhitespace ctermfg=9
 
-" Ruler
+" Settings: Ruler
 set colorcolumn=120
 hi ColorColumn ctermbg=236
 
-" Colors
-hi VertSplit ctermfg=237 ctermbg=237
-hi StatusLine ctermfg=237 ctermbg=237
-hi StatusLineNC ctermfg=237 ctermbg=237
-hi LineNr ctermfg=245
-hi CursorLineNr ctermbg=237 ctermfg=110
-hi Normal ctermbg=235 ctermfg=254
-hi EndOfBuffer ctermfg=235
-hi CursorLine cterm=none ctermbg=237
-hi DiffAdd ctermbg=236
-hi DiffDelete ctermbg=234 ctermfg=234
-hi DiffChange ctermbg=236
-hi DiffText ctermbg=23
-hi FoldColumn cterm=none ctermbg=239 ctermfg=14
-hi Folded cterm=none ctermbg=239 ctermfg=14
-hi Search ctermbg=11 ctermfg=232
-hi Whitespace ctermfg=238
+" Settings: Other
+autocmd FileType git setlocal foldmethod=syntax
 
-" Ctags
+" Utils: Ctags
 set tags=./tags,tags;$HOME
 
-" Grep
+" Utils: Grep
 set grepprg=rg\ --vimgrep
 command! -nargs=+ Rg call Rg(<f-args>)
 command! -nargs=+ Rgl call Rgl(<f-args>)
 command! -nargs=+ Rge call Rge(<f-args>)
 
-" BufExplorer
+" Utils: BufExplorer
 let g:bufExplorerDisableDefaultKeyMapping = 1
 let g:bufExplorerDefaultHelp = 0
 
-" Lf
+" Utils: Lf
 let g:floaterm_height = 0.7
 let g:floaterm_width = 0.9
 let g:lf_replace_netrw = 1
 let g:lf_map_keys = 0
 hi FloatermBorder ctermfg=244
 
-" Airline: Statusline settings
+" Utils: Airline
 let g:airline_theme='regular'
 let g:airline#extensions#wordcount#enabled=0
 let g:airline#extensions#whitespace#checks=[]
 
-" Ariline: Tabline settings
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#tabline#show_splits=0
 let g:airline#extensions#tabline#show_buffers=0
-let g:airline#extensions#tabline#show_tab_count=2
+let g:airline#extensions#tabline#show_tab_count=0
 let g:airline#extensions#tabline#tab_nr_type=1
 let g:airline#extensions#tabline#left_sep=''
 let g:airline#extensions#tabline#left_alt_sep=''
@@ -108,7 +84,6 @@ let g:airline#extensions#tabline#tabs_label=''
 let g:airline#extensions#tabline#show_close_button=0
 let g:airline#extensions#tabline#fnamemod=':t'
 
-" Airline: Modemap
 let g:airline_mode_map={
     \ '__'     : '-',
     \ 'c'      : 'COMMAND',
@@ -128,7 +103,6 @@ let g:airline_mode_map={
     \ 'V'      : 'VISUAL',
     \ }
 
-" Airline: Initialization
 function! AirlineInit()
     let g:airline_section_x=airline#section#create(['%{GetTabsOrSpacesString()} | ', 'filetype', 'ffenc', ' '])
     let g:airline_section_y=airline#section#create([' %{line("$")} '])
@@ -144,17 +118,35 @@ function! GetTabsOrSpacesString()
     return (&expandtab? 'space' : 'tab') . ", " . &tabstop
 endfunction
 
-" Vim-cpp-modern: Settings
+" Utils: vim-cpp-modern
 let g:cpp_member_highlight = 1
 let g:cpp_no_function_highlight = 0
 let g:cpp_attributes_highlight = 0
 
-" Nerdcommenter: Settings
+" Utils: Nerdcommenter
 let g:NERDCustomDelimiters={
     \ 'c': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' }
     \ }
 
-" Code colors
+" Colors: main
+hi VertSplit ctermfg=237 ctermbg=237
+hi StatusLine ctermfg=237 ctermbg=237
+hi StatusLineNC ctermfg=237 ctermbg=237
+hi LineNr ctermfg=245
+hi CursorLineNr ctermbg=237 ctermfg=110
+hi Normal ctermbg=235 ctermfg=254
+hi EndOfBuffer ctermfg=235
+hi CursorLine cterm=none ctermbg=237
+hi DiffAdd ctermbg=236
+hi DiffDelete ctermbg=234 ctermfg=234
+hi DiffChange ctermbg=236
+hi DiffText ctermbg=23
+hi FoldColumn cterm=none ctermbg=239 ctermfg=14
+hi Folded cterm=none ctermbg=239 ctermfg=14
+hi Search ctermbg=11 ctermfg=232
+hi Whitespace ctermfg=238
+
+" Colors: code
 hi Comment ctermfg=71
 
 hi PreProc ctermfg=247
@@ -192,7 +184,7 @@ hi Delimiter ctermfg=99
 hi SpecialComment ctermfg=99
 hi Debug ctermfg=99
 
-" Vimnote colors
+" Colors: vimnote
 hi VimnoteHeaderSep ctermfg=240
 hi VimnoteHeaderName ctermfg=173
 hi VimnoteEntry ctermfg=74
@@ -223,10 +215,11 @@ nnoremap <Leader>rcd :execute 'setlocal ff=dos'<CR>
 nnoremap <Leader>rcm :execute 'setlocal ff=mac'<CR>
 nnoremap <Leader>rx :%s/\r//g<CR>
 
-" Keymap: Tabs
+" Keymap: Tabs and windows
 nnoremap <F2> :tabnew<CR>
 nnoremap <F3> :tabclose<CR>
 nnoremap <F4> :q<CR>
+nnoremap <C-w>n :vnew<CR>
 
 " Keymap: Hexdump
 nnoremap <Leader>xx :%!xxd -g 2 -c 8 <CR> \| :set ft=xxd<CR>
@@ -254,7 +247,6 @@ nnoremap <Leader>gl :Gclog -30 --
 nnoremap <Leader>gs :execute 'tabnew \| Git'<CR>
 nnoremap <Leader>gc :Git difftool --name-only 
 nnoremap <Leader>gd :Gvdiff 
-autocmd FileType git setlocal foldmethod=syntax
 
 " Keymap: Marks
 nnoremap <Leader>ml :marks ABCDEFGHIJKLMNOPQRSTUVWXYZ<CR>
@@ -268,12 +260,13 @@ set pastetoggle=<Leader>p
 nnoremap <Leader>vm :execute 'set nonu \| set nornu \| set nolist'<CR>
 nnoremap <Leader>vf :execute 'set nu \| set rnu \| set list'<CR>
 
-" Keymap: Other
-nnoremap <C-w>n :vnew<CR>
-nnoremap <C-b> :ToggleBufExplorer<CR>
+" Keymap: Lf
 nnoremap <C-n> :LfWorkingDirectory<CR>
 nnoremap <C-m> :Lf<CR>
 nnoremap <Leader>n :Lfcd<CR>
+
+" Keymap: Other
+nnoremap <C-b> :ToggleBufExplorer<CR>
 
 " Functions
 function! Rg(...)

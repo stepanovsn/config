@@ -38,8 +38,8 @@ set smartindent
 " Settings: Invisible characters
 :set listchars=tab:>·,space:·,trail:~
 :set list
-match ExtraWhitespace /\s\+$/
 hi ExtraWhitespace ctermfg=9
+match ExtraWhitespace /\s\+$/
 
 " Settings: Ruler
 set colorcolumn=120

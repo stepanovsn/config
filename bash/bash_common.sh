@@ -52,7 +52,7 @@ if [ -f "$LFCD" ]; then
 fi
 
 # bindings
-bind '"\C-o":"lfcd\C-m"'
+bind '"\C-n":"lfcd\C-m"'
 bind '"\C-p":"fzf\C-m"'
-bind '"\C-n":"nvim\C-m"'
-bind '"\C-j":" | nvim -"'
+bind '"\C-j":"nvim\C-m"'
+bind '"\C-h":" | nvim -"'

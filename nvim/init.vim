@@ -103,7 +103,14 @@ let g:airline_mode_map={
     \ 'V'      : 'VISUAL',
     \ }
 
+let g:airline#extensions#default#section_truncate_width = {
+    \ 'x': 90,
+    \ 'y': 40,
+    \ 'z': 75,
+    \ }
+
 function! AirlineInit()
+    let g:airline_section_b=airline#section#create([''])
     let g:airline_section_x=airline#section#create(['%{GetTabsOrSpacesString()} | ', 'filetype', 'ffenc', ' '])
     let g:airline_section_y=airline#section#create([' %{line("$")} '])
     let g:airline_section_z=airline#section#create([' %{col(".")} '])
@@ -261,12 +268,13 @@ nnoremap <Leader>vm :execute 'set nonu \| set nornu \| set nolist'<CR>
 nnoremap <Leader>vf :execute 'set nu \| set rnu \| set list'<CR>
 
 " Keymap: Lf
-nnoremap <C-n> :LfWorkingDirectory<CR>
-nnoremap <C-m> :Lf<CR>
+nnoremap <C-n> :Lf<CR>
+nnoremap <C-b> :LfWorkingDirectory<CR>
 nnoremap <Leader>n :Lfcd<CR>
 
 " Keymap: Other
-nnoremap <C-b> :ToggleBufExplorer<CR>
+nnoremap <C-p> :ToggleBufExplorer<CR>
+nnoremap <F10> :pwd<CR>
 
 " Functions
 function! Rg(...)

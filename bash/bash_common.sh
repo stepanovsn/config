@@ -54,4 +54,5 @@ fi
 # bindings
 bind '"\C-o":"lfcd\C-m"'
 bind '"\C-p":"fzf\C-m"'
-bind '"\C-n":" | nvim -"'
+bind '"\C-n":"nvim\C-m"'
+bind '"\C-j":" | nvim -"'

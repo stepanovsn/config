@@ -11,12 +11,14 @@ call plug#begin('~/.local/share/nvim/site/plugged')
 call plug#end()
 
 " Settings: Main
+set termguicolors
 syntax enable
-au VimEnter * set guicursor=a:block-blinkon1
 set ffs=unix,dos,mac
 set timeoutlen=3000
 set ignorecase
 set smartcase
+set guicursor=a:block-blinkon1
+set guicursor+=i:ver100-blinkon1
 
 " Settings: Diff
 set diffopt=filler,context:18
@@ -38,12 +40,12 @@ set smartindent
 " Settings: Invisible characters
 :set listchars=tab:>·,space:·,trail:~
 :set list
-hi ExtraWhitespace ctermfg=9
+hi ExtraWhitespace guifg=#ff0000 ctermfg=9
 match ExtraWhitespace /\s\+$/
 
 " Settings: Ruler
 set colorcolumn=120
-hi ColorColumn ctermbg=236
+hi ColorColumn guibg=#303845 ctermbg=236
 
 " Settings: Other
 autocmd FileType git setlocal foldmethod=syntax
@@ -66,12 +68,13 @@ let g:floaterm_height = 0.7
 let g:floaterm_width = 0.9
 let g:lf_replace_netrw = 1
 let g:lf_map_keys = 0
-hi FloatermBorder ctermfg=244
+hi FloatermBorder guifg=#808080 ctermfg=244
 
 " Utils: Airline
 let g:airline_theme='regular'
 let g:airline#extensions#wordcount#enabled=0
 let g:airline#extensions#whitespace#checks=[]
+let g:airline_inactive_collapse=1
 
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#tabline#show_splits=0
@@ -90,7 +93,7 @@ let g:airline_mode_map={
     \ 'i'      : 'INSERT',
     \ 'ic'     : 'INSERT',
     \ 'ix'     : 'INSERT',
-    \ 'n'      : 'N',
+    \ 'n'      : 'NORMAL',
     \ 'multi'  : 'MULTI',
     \ 'ni'     : 'NORMAL',
     \ 'no'     : 'NORMAL',
@@ -115,9 +118,9 @@ function! AirlineInit()
     let g:airline_section_y=airline#section#create([' %{line("$")} '])
     let g:airline_section_z=airline#section#create([' %{col(".")} '])
 
-    hi airline_tab cterm=none ctermfg=239 ctermbg=234
-    hi airline_tabsel cterm=none ctermfg=110 ctermbg=234
-    hi airline_tabmod cterm=none ctermfg=110 ctermbg=234
+    hi airline_tab guifg=#a0a6b0 guibg=#343d4d cterm=none ctermfg=239 ctermbg=234
+    hi airline_tabsel guifg=#a0a6b0 guibg=#232830 cterm=none ctermfg=110 ctermbg=234
+    hi airline_tabmod guifg=#eceff4 guibg=#2d5e91 cterm=none ctermfg=110 ctermbg=234
 endfunction
 autocmd User AirlineAfterInit call AirlineInit()
 
@@ -136,66 +139,88 @@ let g:NERDCustomDelimiters={
     \ }
 
 " Colors: main
-hi VertSplit ctermfg=237 ctermbg=237
-hi StatusLine ctermfg=237 ctermbg=237
-hi StatusLineNC ctermfg=237 ctermbg=237
-hi LineNr ctermfg=245
-hi CursorLineNr ctermbg=237 ctermfg=110
-hi Normal ctermbg=235 ctermfg=254
-hi EndOfBuffer ctermfg=235
-hi CursorLine cterm=none ctermbg=237
-hi DiffAdd ctermbg=236
-hi DiffDelete ctermbg=234 ctermfg=234
-hi DiffChange ctermbg=236
-hi DiffText ctermbg=23
-hi FoldColumn cterm=none ctermbg=239 ctermfg=14
-hi Folded cterm=none ctermbg=239 ctermfg=14
-hi Search ctermbg=11 ctermfg=232
-hi Whitespace ctermfg=238
+hi VertSplit guifg=#343d4d guibg=#343d4d ctermfg=237 ctermbg=237
+hi StatusLine guifg=#343d4d guibg=#343d4d ctermfg=237 ctermbg=237
+hi StatusLineNC guifg=#343d4d guibg=#343d4d ctermfg=237 ctermbg=237
+hi LineNr guifg=#4c566a ctermfg=245
+hi CursorLineNr guifg=#d8dee9 guibg=#343d4d ctermbg=237 ctermfg=110
+hi Normal guifg=#e5e9f0 guibg=#282e38 ctermbg=235 ctermfg=254
+hi EndOfBuffer guifg=#282e38 ctermfg=235
+hi DiffAdd guibg=#343d4d ctermbg=236
+hi DiffDelete guifg=#232830 guibg=#232830 ctermbg=234 ctermfg=234
+hi DiffChange guibg=#343d4d ctermbg=236
+hi DiffText guibg=#235959 ctermbg=23
+hi FoldColumn guifg=#15ebeb guibg=#39465c cterm=none ctermbg=239 ctermfg=14
+hi Folded guifg=#15ebeb guibg=#435573 cterm=none ctermbg=239 ctermfg=14
+hi Search guifg=#2e3440 guibg=#e0c896 ctermbg=11 ctermfg=232
+hi IncSearch guifg=#bf616a guibg=#2e3440 ctermbg=11 ctermfg=232
+hi Whitespace guifg=#434c5e ctermfg=238
+hi Visual guibg=#434c5e
+hi MatchParen guifg=#d41515 guibg=#282e38
 
 " Colors: code
-hi Comment ctermfg=71
+hi Comment guifg=#4aa881 ctermfg=71
 
-hi PreProc ctermfg=247
-hi Define ctermfg=247
-hi Macro ctermfg=247
-hi Include ctermfg=247
+hi PreProc guifg=#7c8aa3 ctermfg=247
+hi Define guifg=#7c8aa3 ctermfg=247
+hi Macro guifg=#7c8aa3 ctermfg=247
+hi Include guifg=#7c8aa3 ctermfg=247
 
-hi Type ctermfg=75
-hi StorageClass ctermfg=75
-hi Structure ctermfg=75
-hi Typedef ctermfg=75
+hi Type guifg=#5fafff ctermfg=75
+hi StorageClass guifg=#5fafff ctermfg=75
+hi Structure guifg=#5fafff ctermfg=75
+hi Typedef guifg=#5fafff ctermfg=75
 
-hi Constant ctermfg=247
-hi String ctermfg=173
-hi Character ctermfg=173
-hi Number ctermfg=117
-hi Boolean ctermfg=117
-hi Float ctermfg=117
+hi Constant guifg=#7c8aa3 ctermfg=247
+hi String guifg=#cf8e6d ctermfg=173
+hi Character guifg=#d08770 ctermfg=173
+hi Number guifg=#87d7ff ctermfg=117
+hi Boolean guifg=#87d7ff  ctermfg=117
+hi Float guifg=#87d7ff  ctermfg=117
 
-hi Statement ctermfg=75
-hi Conditional ctermfg=75
-hi Repeat ctermfg=75
-hi Label ctermfg=75
-hi Operator ctermfg=75
-hi Keyword ctermfg=75
-hi Exception ctermfg=75
+hi Statement guifg=#5fafff ctermfg=75
+hi Conditional guifg=#5fafff ctermfg=75
+hi Repeat guifg=#5fafff ctermfg=75
+hi Label guifg=#5fafff ctermfg=75
+hi Operator guifg=#5fafff ctermfg=75
+hi Keyword guifg=#5fafff ctermfg=75
+hi Exception guifg=#5fafff ctermfg=75
 
-hi Identifier ctermfg=96
-hi Function ctermfg=222
+hi Identifier guifg=#bd5b5b ctermfg=96
+hi Function guifg=#ebcb8b ctermfg=222
 
-hi Special ctermfg=99
-hi SpecialChar ctermfg=99
-hi Tag ctermfg=99
-hi Delimiter ctermfg=99
-hi SpecialComment ctermfg=99
-hi Debug ctermfg=99
+hi Special guifg=#875fff ctermfg=99
+hi SpecialChar guifg=#875fff ctermfg=99
+hi Tag guifg=#875fff ctermfg=99
+hi Delimiter guifg=#875fff ctermfg=99
+hi SpecialComment guifg=#875fff ctermfg=99
+hi Debug guifg=#875fff ctermfg=99
 
 " Colors: vimnote
-hi VimnoteHeaderSep ctermfg=240
-hi VimnoteHeaderName ctermfg=173
-hi VimnoteEntry ctermfg=74
-hi VimnoteSubheader ctermfg=140
+hi VimnoteHeaderSep guifg=#4c566a ctermfg=240
+hi VimnoteHeaderName guifg=#cf8e6d ctermfg=173
+hi VimnoteEntry guifg=#5fafff ctermfg=74
+hi VimnoteSubheader guifg=#af87d7 ctermfg=140
+
+" Colors: 16
+if has('termguicolors') && &termguicolors
+    let g:terminal_color_0 = '#000000'
+    let g:terminal_color_1 = '#c02727'
+    let g:terminal_color_2 = '#1fb33d'
+    let g:terminal_color_3 = '#c9c331'
+    let g:terminal_color_4 = '#3579de'
+    let g:terminal_color_5 = '#a031c9'
+    let g:terminal_color_6 = '#2ebece'
+    let g:terminal_color_7 = '#e8e8e8'
+    let g:terminal_color_8 = '#727272'
+    let g:terminal_color_9 = '#c71d1d'
+    let g:terminal_color_10 = '#20cb31'
+    let g:terminal_color_11 = '#eee615'
+    let g:terminal_color_12 = '#2c7bf2'
+    let g:terminal_color_13 = '#b838eb'
+    let g:terminal_color_14 = '#2ccadb'
+    let g:terminal_color_15 = '#e8e8e8'
+endif
 
 " Keymap: Split motion
 nnoremap <C-J> <C-W><C-J>

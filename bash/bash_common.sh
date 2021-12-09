@@ -17,7 +17,7 @@ alias r.du='du -ah --max-depth=1 | sort -h'
 alias r.fzf='fzf -e --print0 | ifne xargs -0 -p'
 
 # functions
-ddiff () {
+r.ddiff () {
     if [ "$#" -ne 2 ]; then
         echo "ddiff error: provide 2 arguments"
         return;
@@ -28,7 +28,7 @@ ddiff () {
     nvim -d -O /tmp/ddiff1.txt -O /tmp/ddiff2.txt
 }
 
-ddiffh () {
+r.ddiffh () {
     if [ "$#" -ne 2 ]; then
         echo "ddiffh error: provide 2 arguments"
         return;
@@ -43,6 +43,10 @@ ddiffh () {
     find "${DIRNAME2}" -type f -exec md5sum {} + |\
         awk -v cutlen="$((${#DIRNAME2}+36))" '{printf "%s: %s\n", $1, substr($0, cutlen)}' | sort -k 2 > /tmp/ddiffh2.txt
     nvim -d -O /tmp/ddiffh1.txt -O /tmp/ddiffh2.txt
+}
+
+r.testcolor() {
+    printf "\x1b[38;2;255;100;0mTRUECOLOR\x1b[0m\n"
 }
 
 # set up lf

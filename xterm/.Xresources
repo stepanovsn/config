@@ -1,9 +1,14 @@
 xterm*termName: xterm-256color
 xterm*faceName: RobotoMono
 xterm*faceSize: 12
+xterm*font: fixed
+xterm*boldFont: fixed
+xterm*allowBoldFonts: false
+XTerm*boldMode: false
 xterm*renderfont: true
-xterm*background: rgb:26/26/26
-xterm*foreground: rgb:e4/e4/e4
+xterm*cursorColor: rgb:6a/eb/92
+xterm*background: rgb:28/2e/38
+xterm*foreground: rgb:e5/e9/f0
 xterm*color0: rgb:00/00/00
 xterm*color1: rgb:c0/27/27
 xterm*color2: rgb:1f/b3/3d

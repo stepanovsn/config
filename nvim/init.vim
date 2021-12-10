@@ -66,7 +66,6 @@ let g:bufExplorerDefaultHelp = 0
 " Utils: Lf
 let g:floaterm_height = 0.7
 let g:floaterm_width = 0.9
-let g:lf_replace_netrw = 1
 let g:lf_map_keys = 0
 hi FloatermBorder guifg=#808080 ctermfg=244
 
@@ -237,6 +236,10 @@ nnoremap <Leader>sc :%s/\<<C-r><C-w>\>//gc<Left><Left><Left>
 nnoremap <Leader>sr :%s/\<<C-r><C-w>\>/<C-r><C-w>/gc<Left><Left><Left>
 vnoremap <Leader>sc :<c-u>call SubstituteClean(GetVisualSelection())<CR>
 vnoremap <Leader>sr :<c-u>call SubstituteReplace(GetVisualSelection())<CR>
+vnoremap <Leader>sbc :<c-u>call SubstituteCleanInScope("bufdo", GetVisualSelection())<CR>
+vnoremap <Leader>sbr :<c-u>call SubstituteReplaceInScope("bufdo", GetVisualSelection())<CR>
+vnoremap <Leader>sac :<c-u>call SubstituteCleanInScope("argdo", GetVisualSelection())<CR>
+vnoremap <Leader>sar :<c-u>call SubstituteReplaceInScope("argdo", GetVisualSelection())<CR>
 
 " Keymap: File format
 nnoremap <Leader>ru :execute 'e ++ff=unix'<CR>
@@ -342,9 +345,29 @@ function! GetVisualSelection()
 endfunction
 
 function! SubstituteClean(string)
-    call feedkeys(":%s/" . a:string . "//gc\<Left>\<Left>\<Left>")
+    call feedkeys(":%s/" . a:string . "//gc")
+    call FeedLeftKey(3)
 endfunction
 
 function! SubstituteReplace(string)
-    call feedkeys(":%s/" . a:string . "/" . a:string . "/gc\<Left>\<Left>\<Left>")
+    call feedkeys(":%s/" . a:string . "/" . a:string . "/gc")
+    call FeedLeftKey(3)
+endfunction
+
+function! SubstituteCleanInScope(scope, string)
+    call feedkeys(":" . a:scope . " %s/" . a:string . "//ge | update")
+    call FeedLeftKey(12)
+endfunction
+
+function! SubstituteReplaceInScope(scope, string)
+    call feedkeys(":" . a:scope . " %s/" . a:string . "/" . a:string . "/ge | update")
+    call FeedLeftKey(12)
+endfunction
+
+function! FeedLeftKey(count)
+    let c = 0
+    while c < a:count
+        call feedkeys("\<Left>")
+        let c += 1
+    endwhile
 endfunction

@@ -196,7 +196,7 @@ hi SpecialComment guifg=#875fff ctermfg=99
 hi Debug guifg=#875fff ctermfg=99
 
 " Colors: vimnote
-hi VimnoteHeaderSep guifg=#4c566a ctermfg=240
+hi VimnoteHeaderSep guifg=#626f8a ctermfg=240
 hi VimnoteHeaderName guifg=#cf8e6d ctermfg=173
 hi VimnoteEntry guifg=#5fafff ctermfg=74
 hi VimnoteSubheader guifg=#af87d7 ctermfg=140

@@ -303,6 +303,7 @@ nnoremap <Leader>n :Lfcd<CR>
 " Keymap: Other
 nnoremap <F8> :ToggleBufExplorer<CR>
 nnoremap <F10> :pwd<CR>
+nnoremap <Leader>u :mod<CR>
 
 " Functions
 function! Rg(...)

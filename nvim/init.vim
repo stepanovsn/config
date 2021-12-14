@@ -120,6 +120,7 @@ function! AirlineInit()
     hi airline_tab guifg=#a0a6b0 guibg=#343d4d cterm=none ctermfg=239 ctermbg=234
     hi airline_tabsel guifg=#a0a6b0 guibg=#232830 cterm=none ctermfg=110 ctermbg=234
     hi airline_tabmod guifg=#eceff4 guibg=#2d5e91 cterm=none ctermfg=110 ctermbg=234
+    hi airline_tablabel guifg=#ced4de guibg=#343d4d cterm=none ctermfg=110 ctermbg=234
 endfunction
 autocmd User AirlineAfterInit call AirlineInit()
 

@@ -297,9 +297,11 @@ nnoremap <Leader>vm :execute 'set nonu \| set nornu \| set nolist'<CR>
 nnoremap <Leader>vf :execute 'set nu \| set rnu \| set list'<CR>
 
 " Keymap: Lf
+command! LfcdCurrentFile call OpenLfIn("%", 'cd')
 nnoremap <C-n> :Lf<CR>
 nnoremap <C-b> :LfWorkingDirectory<CR>
-nnoremap <Leader>n :Lfcd<CR>
+nnoremap <Leader>n :LfcdCurrentFile<CR>
+nnoremap <Leader>b :Lfcd<CR>
 
 " Keymap: Other
 nnoremap <F8> :ToggleBufExplorer<CR>

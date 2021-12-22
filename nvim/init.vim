@@ -349,22 +349,22 @@ function! GetVisualSelection()
 endfunction
 
 function! SubstituteClean(string)
-    call feedkeys(":%s/" . a:string . "//gc")
+    call feedkeys(":%s/" . EscapeVimRegexp(a:string) . "//gc")
     call FeedLeftKey(3)
 endfunction
 
 function! SubstituteReplace(string)
-    call feedkeys(":%s/" . a:string . "/" . a:string . "/gc")
+    call feedkeys(":%s/" . EscapeVimRegexp(a:string) . "/" . a:string . "/gc")
     call FeedLeftKey(3)
 endfunction
 
 function! SubstituteCleanInScope(scope, string)
-    call feedkeys(":" . a:scope . " %s/" . a:string . "//ge | update")
+    call feedkeys(":" . a:scope . " %s/" . EscapeVimRegexp(a:string) . "//ge | update")
     call FeedLeftKey(12)
 endfunction
 
 function! SubstituteReplaceInScope(scope, string)
-    call feedkeys(":" . a:scope . " %s/" . a:string . "/" . a:string . "/ge | update")
+    call feedkeys(":" . a:scope . " %s/" . EscapeVimRegexp(a:string) . "/" . a:string . "/ge | update")
     call FeedLeftKey(12)
 endfunction
 

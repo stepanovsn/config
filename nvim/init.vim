@@ -1,6 +1,6 @@
 " Plugins
 call plug#begin('~/.local/share/nvim/site/plugged')
-    Plug 'https://github.com/stepanovsn/vim-airline.git'
+    Plug 'git@github.com:stepanovsn/vim-airline.git'
     Plug 'jlanzarotta/bufexplorer'
     Plug '~/.fzf'
     Plug 'ptzz/lf.vim'
@@ -28,6 +28,8 @@ set diffopt+=vertical
 set numberwidth=6
 set relativenumber
 set number
+set cursorline
+set cursorlineopt=number
 
 " Settings: Tabs
 set tabstop=4
@@ -74,6 +76,7 @@ let g:airline_theme='regular'
 let g:airline#extensions#wordcount#enabled=0
 let g:airline#extensions#whitespace#checks=[]
 let g:airline_inactive_collapse=1
+let g:airline#extensions#searchcount#enabled = 0
 
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#tabline#show_splits=0
@@ -156,7 +159,7 @@ hi Search guifg=#2e3440 guibg=#e0c896 ctermbg=11 ctermfg=232
 hi IncSearch guifg=#bf616a guibg=#2e3440 ctermbg=11 ctermfg=232
 hi Whitespace guifg=#434c5e ctermfg=238
 hi Visual guibg=#434c5e
-hi MatchParen guifg=#d41515 guibg=#282e38
+hi MatchParen none
 
 " Colors: code
 hi Comment guifg=#4aa881 ctermfg=71
@@ -195,6 +198,9 @@ hi Tag guifg=#875fff ctermfg=99
 hi Delimiter guifg=#875fff ctermfg=99
 hi SpecialComment guifg=#875fff ctermfg=99
 hi Debug guifg=#875fff ctermfg=99
+
+hi Error guifg=#e5e9f0 guibg=#994e4e
+hi Todo guifg=#4aa881 ctermfg=71 guibg=#343d4d
 
 " Colors: vimnote
 hi VimnoteHeaderSep guifg=#626f8a ctermfg=240

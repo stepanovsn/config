@@ -1,0 +1,13 @@
+syn clear cBadContinuation
+syn clear cCommentError
+syn clear cCommentStartError
+syn clear cCurlyError
+syn clear cErrInBracket
+syn clear cErrInParen
+syn clear cError
+syn clear cOctalError
+syn clear cParenError
+syn clear cSpaceError
+syn clear cSpecialError
+syn clear cTodo
+syn clear cWrongComTail

@@ -313,6 +313,7 @@ nnoremap <Leader>b :Lfcd<CR>
 nnoremap <F8> :ToggleBufExplorer<CR>
 nnoremap <F10> :pwd<CR>
 nnoremap <Leader>u :mod<CR>
+nnoremap <Leader>ac :call ClangTidy()<CR><CR>
 
 " Functions
 function! Rg(...)
@@ -380,4 +381,26 @@ function! FeedLeftKey(count)
         call feedkeys("\<Left>")
         let c += 1
     endwhile
+endfunction
+
+function! ClangTidy()
+    let l:filename = expand('%')
+    if l:filename =~ '\.\(cpp\|c\)$'
+        let l:cmd = 'clang-tidy ' . l:filename
+        let l:output = split(system(l:cmd), '\n')
+        if (match(l:output, 'Error while trying to load a compilation database') >= 0)
+            echo 'No compilation database'
+        else
+            call filter(l:output, {idx, val -> match(val, '\d\+:\d\+: \w\+: ') >= 0})
+            if (len(l:output) == 0)
+                echo 'No issues'
+            else
+                cexpr l:output
+                copen
+                let w:quickfix_title = l:cmd
+            endif
+        endif
+    else
+        echo "Only for C/C++ source file"
+    endif
 endfunction

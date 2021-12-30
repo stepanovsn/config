@@ -207,6 +207,7 @@ hi VimnoteHeaderSep guifg=#626f8a ctermfg=240
 hi VimnoteHeaderName guifg=#cf8e6d ctermfg=173
 hi VimnoteEntry guifg=#5fafff ctermfg=74
 hi VimnoteSubheader guifg=#af87d7 ctermfg=140
+hi VimnoteFocus guifg=#5fafff ctermfg=74
 
 " Colors: 16
 if has('termguicolors') && &termguicolors
@@ -394,6 +395,7 @@ function! ClangTidy()
             call filter(l:output, {idx, val -> match(val, '\d\+:\d\+: \w\+: ') >= 0})
             if (len(l:output) == 0)
                 echo 'No issues'
+                cclose
             else
                 cexpr l:output
                 copen

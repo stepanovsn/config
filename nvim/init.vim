@@ -179,7 +179,7 @@ hi String guifg=#cf8e6d ctermfg=173
 hi Character guifg=#d08770 ctermfg=173
 hi Number guifg=#87d7ff ctermfg=117
 hi Boolean guifg=#87d7ff  ctermfg=117
-hi Float guifg=#87d7ff  ctermfg=117
+hi Float guifg=#87d7ff ctermfg=117
 
 hi Statement guifg=#5fafff ctermfg=75
 hi Conditional guifg=#5fafff ctermfg=75
@@ -203,11 +203,12 @@ hi Error guifg=#e5e9f0 guibg=#994e4e
 hi Todo guifg=#4aa881 ctermfg=71 guibg=#343d4d
 
 " Colors: vimnote
-hi VimnoteHeaderSep guifg=#626f8a ctermfg=240
-hi VimnoteHeaderName guifg=#cf8e6d ctermfg=173
-hi VimnoteEntry guifg=#5fafff ctermfg=74
-hi VimnoteSubheader guifg=#af87d7 ctermfg=140
+hi VimnoteHeader guifg=#cf8e6d ctermfg=173
+hi VimnoteSubheader guifg=#db79b9 ctermfg=74
 hi VimnoteFocus guifg=#5fafff ctermfg=74
+hi VimnoteDimmed guifg=#8697b5 ctermfg=117
+hi VimnoteUnfocus guifg=#4f5a73 ctermfg=240
+hi VimnoteHide guifg=#282e38 ctermfg=240
 
 " Colors: 16
 if has('termguicolors') && &termguicolors

@@ -1,6 +1,11 @@
-syntax match VimnoteHeaderSep /^======================= /
-syntax match VimnoteHeaderSep / =======================$/
-syntax match VimnoteHeaderName /\(^======================= \)\@<=.*\( =======================$\)\@=/
-syntax match VimnoteEntry /^.*\(    [-=] \)\@=/
-syntax match VimnoteSubheader /^\*\* .* \*\*$/
-syntax match VimnoteFocus /\(^\|\s\)`\w\+\(\ \w\+\)*`/
+syntax match VimnoteHeader /\(^======================= \)\@<=.*\( =======================$\)\@=/ " Main header
+syntax match VimnoteUnfocus /^======================= \(.* =======================$\)\@=/
+syntax match VimnoteUnfocus /\(^======================= .*\)\@<= =======================$/
+
+syntax match VimnoteSubheader /\(^=== \)\@<=.*/ contains=ALL " Secondary header
+syntax match VimnoteUnfocus /^=== /
+
+syntax match VimnoteFocus /\(`\)\@<=\(\w\|:\|_\|-\)\+\(\ \(\w\|:\|_\|-\)\+\)*\(`\)\@=/ " Focused word
+syntax match VimnoteDimmed /^.*\(    [-=] \)\@=/ " Options
+syntax match VimnoteDimmed /\_[^`]*[^`]\(`$\)\@=/ contains=ALL " Listing
+syntax match VimnoteHide /\(\_[^`]\)\@<=`\{1,2\}$/

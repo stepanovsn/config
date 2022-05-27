@@ -50,6 +50,15 @@ r.testcolor() {
     printf "\x1b[38;2;255;100;0mTRUECOLOR\x1b[0m\n"
 }
 
+r.view() {
+    if [ "$#" -ne 1 ]; then
+        echo "view error: provide 1 argument"
+        return;
+    fi
+
+    /bin/bash ~/.config/lf/preview.sh "$1"
+}
+
 r.reload_audio() {
     pulseaudio -k && sudo alsa force-reload
 }

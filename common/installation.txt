@@ -4,7 +4,7 @@ sudo apt install tar zip unzip rar unrar\
     ncdu net-tools termshark\
     highlight source-highlight mediainfo w3m\
     hwinfo minicom cmake\
-    clang-tidy
+    clang-tidy ncal
 sudo snap install nvim --classic
 
 Install fzf:

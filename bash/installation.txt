@@ -3,3 +3,5 @@ source ~/.config/myconfig/bash/bashrc_post.sh
 
 Add at the end of root .bashrc:
 source /home/reg/.config/myconfig/bash/bashrc_root_post.sh
+
+Make bashrc_common.sh and bashrc_root_post.sh owned by root.

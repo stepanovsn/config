@@ -3,21 +3,19 @@
 set -o ignoreeof
 umask 077
 
-# set up LS colors
-export LS_COLORS='rs=0:di=34:ln=36:mh=00:pi=35:so=35:do=35:bd=35:cd=35:or=1;30:mi=1;30:su=37:sg=37:ca=30;41:tw=34:ow=34:st=34:ex=33:fi=37:';
+# Set up environment variables
+ls_colors="rs=0:di=34:ln=36:mh=00:pi=35:so=35:do=35:bd=35:cd=35:or=1;\
+30:mi=1;30:su=37:sg=37:ca=30;41:tw=34:ow=34:st=34:ex=33:fi=37:";
+export LS_COLORS="$ls_colors"
 export EDITOR=nvim
 export FZF_DEFAULT_OPTS="-e"
-export RIPGREP_CONFIG_PATH=$HOME"/.rgrc"
-export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
-export LESS=' -R '
 
-# aliases
+# Aliases
 alias ll='ls -lah'
 alias ncdu='ncdu -r'
 alias r.du='du -ah --max-depth=1 | sort -h'
-alias r.fzf='fzf -e --print0 | ifne xargs -0 -p'
 
-# functions
+# Functions
 r.ddiff () {
     if [ "$#" -ne 2 ]; then
         echo "ddiff error: provide 2 arguments"
@@ -50,26 +48,27 @@ r.testcolor() {
     printf "\x1b[38;2;255;100;0mTRUECOLOR\x1b[0m\n"
 }
 
-r.view() {
-    if [ "$#" -ne 1 ]; then
-        echo "view error: provide 1 argument"
-        return;
-    fi
-
-    /bin/bash ~/.config/lf/preview.sh "$1"
-}
-
 r.reload_audio() {
     pulseaudio -k && sudo alsa force-reload
 }
 
-# set up lf
-LFCD=$HOME"/.config/lf/lfcd.sh"
-if [ -f "$LFCD" ]; then
-    source "$LFCD"
-fi
+# Set up lf: change working dir in shell to last dir in lf on exit.
+# Latest script can be found at: https://raw.githubusercontent.com/gokcehan/lf/master/etc/lfcd.sh
+lfcd () {
+    tmp="$(mktemp)"
+    lf -last-dir-path="$tmp" "$@"
+    if [ -f "$tmp" ]; then
+        dir="$(cat "$tmp")"
+        rm -f "$tmp"
+        if [ -d "$dir" ]; then
+            if [ "$dir" != "$(pwd)" ]; then
+                cd "$dir"
+            fi
+        fi
+    fi
+}
 
-# bindings
+# Bindings
 bind '"\C-n":"lfcd\C-m"'
 bind '"\C-p":"fzf\C-m"'
 bind '"\C-h":"nvim\C-m"'

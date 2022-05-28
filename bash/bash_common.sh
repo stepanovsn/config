@@ -74,19 +74,3 @@ bind '"\C-n":"lfcd\C-m"'
 bind '"\C-p":"fzf\C-m"'
 bind '"\C-h":"nvim\C-m"'
 bind '"\C-]":" | nvim -"'
-
-# launch tmux session
-# there should be main.sh in home directory
-if $(command -v tmux &> /dev/null) && ! [ -n "$TMUX" ]; then
-    if tmux ls &> /dev/null; then
-        tmux attach
-    else
-        cd ~/
-        FILE=./tmux_main.sh
-        if [ -f "$FILE" ]; then
-            ./tmux_main.sh
-        else
-            tmux new -s main
-        fi
-    fi
-fi

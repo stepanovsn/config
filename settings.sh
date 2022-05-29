@@ -22,3 +22,14 @@ else
     cCyan=''
     cWhite=''
 fi
+
+# Common functions
+force_link () {
+    if [ "$#" -ne 2 ]; then
+        printf "\t${cRed}force_link() incorrect arguments${cNone}\n"
+        exit 1
+    fi
+
+    rm -rf ${2}
+    ln -sfn ${1} ${2}
+}

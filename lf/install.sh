@@ -32,7 +32,7 @@ else
     printf "\tThe executable is placed into ${dest_dir}\n"
 fi
 
-ln -sfn $ROOT_DIR/lf $HOME/.config/lf
+force_link $ROOT_DIR/lf $HOME/.config/lf
 printf "\tConfig link made.\n"
 
 sudo chmod u+x $ROOT_DIR/lf/preview.sh

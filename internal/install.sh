@@ -16,4 +16,5 @@ do
     force_link $ROOT_DIR/internal/hook.sh $ROOT_DIR/.git/hooks/$hook
 done
 printf "\tGit hooks installed.\n"
+
 printf "\t${cGreen}Done.${cNone}\n\n"

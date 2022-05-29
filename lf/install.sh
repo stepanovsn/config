@@ -5,7 +5,7 @@ source $ROOT_DIR/settings.sh
 
 printf "${cYellow}Lf${cNone}\n"
 
-# Install git hooks
+# Download if required
 version=r27
 
 if $(command -v lf &> /dev/null) && [ $(lf --version) == $version ]; then
@@ -32,9 +32,11 @@ else
     printf "\tThe executable is placed into ${dest_dir}\n"
 fi
 
+# Make links
 force_link $ROOT_DIR/lf $HOME/.config/lf
 printf "\tConfig link made.\n"
 
+# Set rights
 sudo chmod u+x $ROOT_DIR/lf/preview.sh
 printf "\tpreview.sh rights set.\n"
 

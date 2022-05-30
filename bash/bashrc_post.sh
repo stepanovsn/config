@@ -23,7 +23,7 @@ r.view() {
 
 # Launch tmux session
 # There should be tmux_main.sh in home directory
-if $(command -v tmux &> /dev/null) && ! [ -n "$TMUX" ]; then
+if $(command -v tmux &> /dev/null) && ! [ -n "$TMUX" ] && [ -z "$(tmux lsc)" ]; then
     if tmux ls &> /dev/null; then
         tmux attach
     else

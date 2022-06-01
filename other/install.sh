@@ -9,6 +9,6 @@ printf "${cYellow}Other${cNone}\n"
 upgrade_packages "tar zip unzip rar unrar \
     moreutils ncdu net-tools hwinfo minicom \
     git cmake clang-tidy \
-    mmv termshark ncal"
+    mmv termshark ncal fzf"
 
 printf "\t${cGreen}Done.${cNone}\n\n"

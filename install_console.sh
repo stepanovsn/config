@@ -12,3 +12,4 @@ source $ROOT_DIR/lf/install.sh
 source $ROOT_DIR/htop/install.sh
 source $ROOT_DIR/rg/install.sh
 source $ROOT_DIR/tmux/install.sh
+source $ROOT_DIR/other/install.sh

@@ -62,5 +62,5 @@ upgrade_packages() {
         exit 1
     fi
 
-    printf "\tApt packages upgraded: ${1}\n"
+    printf "\tApt packages upgraded.\n"
 }

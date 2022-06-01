@@ -1,8 +1,7 @@
 Install packages:
 sudo apt install tar zip unzip rar unrar\
-    git ripgrep tmux moreutils mmv\
+    git moreutils mmv\
     ncdu net-tools termshark\
-    highlight source-highlight mediainfo w3m\
     hwinfo minicom cmake\
     clang-tidy ncal
 sudo snap install nvim --classic

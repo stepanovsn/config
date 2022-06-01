@@ -6,6 +6,9 @@ ROOT_DIR=$(minimize_path "${ROOT_DIR}")
 
 printf "${cYellow}Rg${cNone}\n"
 
+# Upgrade apt packages
+upgrade_packages "ripgrep"
+
 # Make links
 force_link $ROOT_DIR/rg/.rgrc $HOME/.rgrc
 printf "\tConfig link made.\n"

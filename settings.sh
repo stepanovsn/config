@@ -26,7 +26,7 @@ fi
 # Common functions
 force_link () {
     if [ "$#" -ne 2 ]; then
-        printf "\t${cRed}force_link() incorrect number of arguments${cNone}\n"
+        printf "\t${cRed}force_link() incorrect number of arguments${cNone}\n\n"
         exit 1
     fi
 
@@ -36,7 +36,7 @@ force_link () {
 
 minimize_path () {
     if [ "$#" -ne 1 ]; then
-        printf "\t${cRed}minimize_path() incorrect number of arguments${cNone}\n"
+        printf "\t${cRed}minimize_path() incorrect number of arguments${cNone}\n\n"
         exit 1
     fi
 
@@ -48,4 +48,19 @@ minimize_path () {
         -e ':e' -e 's|//|/|g' -e 't e' \
         -e ':f' -e '/^.\{2,\}$/ s|/$||g' -e 't f' \
         <<< ${1})
+}
+
+upgrade_packages() {
+    if [ "$#" -ne 1 ]; then
+        printf "\t${cRed}upgrade_packages() incorrect number of arguments${cNone}\n\n"
+        exit 1
+    fi
+
+    sudo apt upgrade -y ${1} &> /dev/null
+    if [ $? != 0 ]; then
+        printf "\tFailed to upgrade apt packages: ${1}\n\t${cRed}Failed.${cNone}\n\n"
+        exit 1
+    fi
+
+    printf "\tApt packages upgraded: ${1}\n"
 }

@@ -6,6 +6,9 @@ ROOT_DIR=$(minimize_path "${ROOT_DIR}")
 
 printf "${cYellow}Tmux${cNone}\n"
 
+# Upgrade apt packages
+upgrade_packages "tmux"
+
 # Make links
 force_link $ROOT_DIR/tmux/.tmux.conf $HOME/.tmux.conf
 printf "\tConfig link made.\n"

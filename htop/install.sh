@@ -6,6 +6,9 @@ ROOT_DIR=$(minimize_path "${ROOT_DIR}")
 
 printf "${cYellow}Htop${cNone}\n"
 
+# Upgrade apt packages
+upgrade_packages "htop"
+
 # Make links
 force_link $ROOT_DIR/htop $HOME/.config/htop
 printf "\tConfig link made.\n"

@@ -33,6 +33,9 @@ else
     printf "\tThe executable is placed into ${dest_dir}\n"
 fi
 
+# Upgrade apt packages
+upgrade_packages "highlight source-highlight mediainfo w3m"
+
 # Make links
 force_link $ROOT_DIR/lf $HOME/.config/lf
 printf "\tConfig link made.\n"

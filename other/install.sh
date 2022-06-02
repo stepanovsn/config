@@ -6,6 +6,9 @@ ROOT_DIR=$(minimize_path "${ROOT_DIR}")
 
 printf "${cYellow}Other${cNone}\n"
 
+sudo apt update &> /dev/null
+printf "\tApt indices updated.\n"
+
 step_upgrade_apt_packages tar zip unzip rar unrar \
     moreutils ncdu net-tools hwinfo minicom \
     git cmake clang-tidy \

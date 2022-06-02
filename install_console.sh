@@ -8,6 +8,7 @@ ROOT_DIR=$(minimize_path "${ROOT_DIR}")
 printf "\n"
 
 source $ROOT_DIR/internal/install.sh
+source $ROOT_DIR/bash/install.sh
 source $ROOT_DIR/other/install.sh
 source $ROOT_DIR/lf/install.sh
 source $ROOT_DIR/htop/install.sh

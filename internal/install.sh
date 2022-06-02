@@ -18,4 +18,21 @@ do
 done
 printf "\tGit hooks installed.\n"
 
+secure_files=(
+    "bash/bashrc_common.sh"
+    "bash/bashrc_root_post.sh")
+for secure_file in "${secure_files[@]}"
+do
+    if ! sudo chown root:root $ROOT_DIR/$secure_file &> /dev/null; then
+        printf "\tCan't change $secure_file ownership.\n\t${cRed}Failed.${cNone}\n\n"
+        exit 1
+    fi
+
+    if ! sudo chmod go+r $ROOT_DIR/$secure_file ; then
+        printf "\tCan't change $secure_file mod.\n\t${cRed}Failed.${cNone}\n\n"
+        exit 1
+    fi
+done
+printf "\tCorrect rights are set to config files.\n"
+
 printf "\t${cGreen}Done.${cNone}\n\n"

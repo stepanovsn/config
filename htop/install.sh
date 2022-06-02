@@ -7,10 +7,10 @@ ROOT_DIR=$(minimize_path "${ROOT_DIR}")
 printf "${cYellow}Htop${cNone}\n"
 
 # Upgrade apt packages
-upgrade_packages "htop"
+step_upgrade_apt_packages htop
 
 # Make links
-force_link $ROOT_DIR/htop $HOME/.config/htop
+step_force_link $ROOT_DIR/htop $HOME/.config/htop
 printf "\tConfig link made.\n"
 
 printf "\t${cGreen}Done.${cNone}\n\n"

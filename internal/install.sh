@@ -14,7 +14,7 @@ git_hooks=(
     "post-rebase")
 for hook in "${git_hooks[@]}"
 do
-    force_link $ROOT_DIR/internal/hook.sh $ROOT_DIR/.git/hooks/$hook
+    step_force_link $ROOT_DIR/internal/hook.sh $ROOT_DIR/.git/hooks/$hook
 done
 printf "\tGit hooks installed.\n"
 

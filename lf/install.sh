@@ -34,10 +34,10 @@ else
 fi
 
 # Upgrade apt packages
-upgrade_packages "highlight source-highlight mediainfo w3m"
+step_upgrade_apt_packages highlight source-highlight mediainfo w3m
 
 # Make links
-force_link $ROOT_DIR/lf $HOME/.config/lf
+step_force_link $ROOT_DIR/lf $HOME/.config/lf
 printf "\tConfig link made.\n"
 
 # Set rights

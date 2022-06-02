@@ -24,16 +24,6 @@ else
 fi
 
 # Common functions
-force_link () {
-    if [ "$#" -ne 2 ]; then
-        printf "\t${cRed}force_link() incorrect number of arguments${cNone}\n\n"
-        exit 1
-    fi
-
-    rm -rf ${2}
-    ln -sfn ${1} ${2}
-}
-
 minimize_path () {
     if [ "$#" -ne 1 ]; then
         printf "\t${cRed}minimize_path() incorrect number of arguments${cNone}\n\n"
@@ -50,17 +40,36 @@ minimize_path () {
         <<< ${1})
 }
 
-upgrade_packages() {
-    if [ "$#" -ne 1 ]; then
-        printf "\t${cRed}upgrade_packages() incorrect number of arguments${cNone}\n\n"
+# Common steps
+step_force_link () {
+    if [ "$#" -ne 2 ]; then
+        printf "\t${cRed}step_force_link() incorrect number of arguments${cNone}\n\n"
         exit 1
     fi
 
-    sudo apt upgrade -y ${1} &> /dev/null
+    rm -rf ${2}
+    ln -sfn ${1} ${2}
+}
+
+step_upgrade_apt_packages() {
+    sudo apt upgrade -y $@ &> /dev/null
     if [ $? != 0 ]; then
         printf "\tFailed to upgrade apt packages: ${1}\n\t${cRed}Failed.${cNone}\n\n"
         exit 1
     fi
 
     printf "\tApt packages upgraded.\n"
+}
+
+step_install_snaps() {
+    for package in "$@"
+    do
+        sudo snap install $package &> /dev/null
+        if [ $? != 0 ]; then
+            printf "\tFailed to install snap: $package\n\t${cRed}Failed.${cNone}\n\n"
+            exit 1
+        fi
+    done
+
+    printf "\tSnaps installed.\n"
 }

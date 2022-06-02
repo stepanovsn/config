@@ -1,7 +1,0 @@
-Install and build ctags:
-https://github.com/universal-ctags/ctags
-
-Make a link to config:
-ln -s ~/.config/myconfig/nvim/ ~/.config/nvim
-
-sudo snap install nvim --classic

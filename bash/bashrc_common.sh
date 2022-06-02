@@ -73,3 +73,6 @@ bind '"\C-n":"lfcd\C-m"'
 bind '"\C-p":"fzf\C-m"'
 bind '"\C-h":"nvim\C-m"'
 bind '"\C-]":" | nvim -"'
+
+# Add fzf key-bindings
+source "$HOME/.local/share/nvim/site/plugged/fzf/shell/key-bindings.bash" &> /dev/null

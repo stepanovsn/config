@@ -2,7 +2,6 @@
 call plug#begin('~/.local/share/nvim/site/plugged')
     Plug 'git@github.com:stepanovsn/vim-airline.git'
     Plug 'jlanzarotta/bufexplorer'
-    Plug '~/.fzf'
     Plug 'ptzz/lf.vim'
     Plug 'voldikss/vim-floaterm'
     Plug 'tpope/vim-fugitive'

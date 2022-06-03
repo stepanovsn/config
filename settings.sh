@@ -78,15 +78,25 @@ step_upgrade_apt_packages() {
 }
 
 step_install_snaps() {
-    for package in "$@"
+    count=0
+    failed_snaps=""
+    for snap in "$@"
     do
-        sudo snap install $package &> /dev/null
+        sudo snap install $snap &> /dev/null
         if [ $? != 0 ]; then
-            step_failed "Failed to install snap: $package"
+            failed_snaps+=" $snap"
+        else
+            count=$((count + 1))
         fi
     done
 
-    step_print "Snaps installed."
+    if [ $count != 0 ]; then
+        step_print "$count snaps installed."
+    fi
+
+    if [[ $failed_snaps ]]; then
+        step_warn "Skipped snaps:$failed_snaps"
+    fi
 }
 
 # Common functions

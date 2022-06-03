@@ -36,3 +36,6 @@ if $(command -v tmux &> /dev/null) && ! [ -n "$TMUX" ] && [ -z "$(tmux lsc)" ]; 
         fi
     fi
 fi
+
+# Add fzf key-bindings
+source "$HOME/.local/share/nvim/site/plugged/fzf/shell/key-bindings.bash" &> /dev/null

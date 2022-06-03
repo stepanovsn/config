@@ -4,7 +4,7 @@ ROOT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]:-$0}";)" &> /dev/null && pwd 2
 source $ROOT_DIR/settings.sh
 ROOT_DIR=$(minimize_path "${ROOT_DIR}")
 
-printf "${cYellow}Internal${cNone}\n"
+step_title "Internal"
 
 # Install git hooks
 git_hooks=(
@@ -16,23 +16,22 @@ for hook in "${git_hooks[@]}"
 do
     step_force_link $ROOT_DIR/internal/hook.sh $ROOT_DIR/.git/hooks/$hook
 done
-printf "\tGit hooks installed.\n"
+step_print "Git hooks installed."
 
+# Set up secure files
 secure_files=(
     "bash/bashrc_common.sh"
     "bash/bashrc_root_post.sh")
 for secure_file in "${secure_files[@]}"
 do
     if ! sudo chown root:root $ROOT_DIR/$secure_file &> /dev/null; then
-        printf "\tCan't change $secure_file ownership.\n\t${cRed}Failed.${cNone}\n\n"
-        exit 1
+        step_failed "Can't change $secure_file ownership."
     fi
 
     if ! sudo chmod go+r $ROOT_DIR/$secure_file ; then
-        printf "\tCan't change $secure_file mod.\n\t${cRed}Failed.${cNone}\n\n"
-        exit 1
+        step_failed "Can't change $secure_file mod."
     fi
 done
-printf "\tCorrect rights are set to config files.\n"
+step_print "Correct rights are set to config files."
 
-printf "\t${cGreen}Done.${cNone}\n\n"
+step_done

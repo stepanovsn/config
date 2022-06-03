@@ -5,13 +5,11 @@ source $ROOT_DIR/settings.sh
 ROOT_DIR=$(minimize_path "${ROOT_DIR}")
 
 # Check that repository is clean
-printf "${cYellow}Pre-check${cNone}\n"
-
+step_title "Pre-check"
 if [[ "$(git status --porcelain)" ]]; then
-    printf "\tThe config repo is not clean.\n\t${cRed}Failed.${cNone}\n\n"
-    exit 1
+    step_failed "The config repo is not clean."
 fi
-printf "\t${cGreen}Done.${cNone}\n\n"
+step_done
 
 # Run tasks
 source $ROOT_DIR/internal/install.sh

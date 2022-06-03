@@ -4,14 +4,14 @@ ROOT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]:-$0}";)" &> /dev/null && pwd 2
 source $ROOT_DIR/settings.sh
 ROOT_DIR=$(minimize_path "${ROOT_DIR}")
 
-printf "${cYellow}Other${cNone}\n"
+step_title "Other"
 
+# Update apt indices
 sudo apt update &> /dev/null
-printf "\tApt indices updated.\n"
+step_print "Apt indices updated."
 
 step_upgrade_apt_packages tar zip unzip rar unrar \
     moreutils ncdu net-tools hwinfo minicom \
     git cmake clang-tidy \
-    mmv termshark ncal fzf
-
-printf "\t${cGreen}Done.${cNone}\n\n"
+    mmv termshark fzf
+step_done

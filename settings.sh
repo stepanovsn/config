@@ -56,12 +56,25 @@ step_force_link () {
 }
 
 step_upgrade_apt_packages() {
-    sudo apt upgrade -y $@ &> /dev/null
-    if [ $? != 0 ]; then
-        step_failed "Failed to upgrade apt packages: ${@}"
+    count=0
+    failed_packages=""
+    for package in "$@"
+    do
+        sudo apt upgrade -y $package &> /dev/null
+        if [ $? != 0 ]; then
+            failed_packages+=" $package"
+        else
+            count=$((count + 1))
+        fi
+    done
+
+    if [ $count != 0 ]; then
+        step_print "$count apt packages upgraded."
     fi
 
-    step_print "Apt packages upgraded."
+    if [[ $failed_packages ]]; then
+        step_warn "Skipped apt packages:$failed_packages"
+    fi
 }
 
 step_install_snaps() {

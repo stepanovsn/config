@@ -55,6 +55,14 @@ step_force_link () {
     ln -sfn ${1} ${2}
 }
 
+step_make_hard_link () {
+    if [ "$#" -ne 2 ]; then
+        step_failed "step_make_hard_link() incorrect number of arguments."
+    fi
+
+    ln -fn ${1} ${2}
+}
+
 step_upgrade_apt() {
     count=0
     failed_packages=""

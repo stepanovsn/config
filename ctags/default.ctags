@@ -1,0 +1,3 @@
+-R
+--languages=C,C++
+--exclude=.git

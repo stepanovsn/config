@@ -1,6 +1,6 @@
 " Plugins
 call plug#begin('~/.local/share/nvim/site/plugged')
-    Plug 'git@github.com:stepanovsn/vim-airline.git'
+    Plug 'https://github.com/stepanovsn/vim-airline.git'
     Plug 'jlanzarotta/bufexplorer'
     Plug 'ptzz/lf.vim'
     Plug 'voldikss/vim-floaterm'

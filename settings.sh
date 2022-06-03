@@ -54,7 +54,7 @@ step_force_link () {
 step_upgrade_apt_packages() {
     sudo apt upgrade -y $@ &> /dev/null
     if [ $? != 0 ]; then
-        printf "\tFailed to upgrade apt packages: ${1}\n\t${cRed}Failed.${cNone}\n\n"
+        printf "\tFailed to upgrade apt packages: ${@}\n\t${cRed}Failed.${cNone}\n\n"
         exit 1
     fi
 

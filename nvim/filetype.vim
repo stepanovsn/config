@@ -4,4 +4,5 @@ endif
 
 augroup filetypedetect
     au! BufRead,BufNewFile *.vimnote  setfiletype vimnote
+    au! BufRead,BufNewFile *.psl  setfiletype kaspersky-psl
 augroup END

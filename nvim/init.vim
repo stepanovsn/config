@@ -51,6 +51,7 @@ hi ColorColumn guibg=#303845 ctermbg=236
 
 " Settings: Other
 autocmd FileType git setlocal foldmethod=syntax
+autocmd BufEnter * :syntax sync minlines=50
 
 " Utils: Ctags
 set tags=./tags,tags;$HOME

@@ -55,7 +55,7 @@ step_force_link () {
     ln -sfn ${1} ${2}
 }
 
-step_upgrade_apt_packages() {
+step_upgrade_apt() {
     count=0
     failed_packages=""
     for package in "$@"
@@ -77,7 +77,7 @@ step_upgrade_apt_packages() {
     fi
 }
 
-step_install_snaps() {
+step_install_snap() {
     count=0
     failed_snaps=""
     for snap in "$@"

@@ -29,7 +29,7 @@ else
     step_print "The executable is placed into ${dest_dir}"
 fi
 
-step_upgrade_apt_packages highlight source-highlight mediainfo w3m
+step_upgrade_apt highlight source-highlight mediainfo w3m
 step_force_link $ROOT_DIR/lf $HOME/.config/lf
 step_print "Config link made."
 

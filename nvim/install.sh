@@ -5,7 +5,7 @@ source $ROOT_DIR/settings.sh
 ROOT_DIR=$(minimize_path "${ROOT_DIR}")
 
 step_title "Nvim"
-step_install_snaps "nvim --classic" universal-ctags
+step_install_snap "nvim --classic" universal-ctags
 
 # Install nvim plugins
 if ! nvim --headless +PlugUpgrade +PlugUpdate +qa &> /dev/null; then

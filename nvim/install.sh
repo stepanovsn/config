@@ -13,6 +13,6 @@ if ! nvim --headless +PlugUpgrade +PlugUpdate +qa &> /dev/null; then
 fi
 step_print "Nvim plugins updated."
 
-step_force_link $ROOT_DIR/nvim $HOME/.config/nvim
+step_soft_link $ROOT_DIR/nvim $HOME/.config/nvim
 step_print "Config link made."
 step_done

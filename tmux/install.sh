@@ -6,6 +6,6 @@ ROOT_DIR=$(minimize_path "${ROOT_DIR}")
 
 step_title "Tmux"
 step_upgrade_apt tmux
-step_force_link $ROOT_DIR/tmux/.tmux.conf $HOME/.tmux.conf
+step_soft_link $ROOT_DIR/tmux/.tmux.conf $HOME/.tmux.conf
 step_print "Config link made."
 step_done

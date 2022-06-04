@@ -6,6 +6,6 @@ ROOT_DIR=$(minimize_path "${ROOT_DIR}")
 
 step_title "Rg"
 step_upgrade_apt ripgrep
-step_force_link $ROOT_DIR/rg/.rgrc $HOME/.rgrc
+step_soft_link $ROOT_DIR/rg/.rgrc $HOME/.rgrc
 step_print "Config link made."
 step_done

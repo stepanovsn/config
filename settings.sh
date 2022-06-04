@@ -46,18 +46,18 @@ step_done () {
 }
 
 # Other steps
-step_force_link () {
+step_soft_link () {
     if [ "$#" -ne 2 ]; then
-        step_failed "step_force_link() incorrect number of arguments."
+        step_failed "step_soft_link() incorrect number of arguments."
     fi
 
     rm -rf ${2}
     ln -sfn ${1} ${2}
 }
 
-step_make_hard_link () {
+step_hard_link () {
     if [ "$#" -ne 2 ]; then
-        step_failed "step_make_hard_link() incorrect number of arguments."
+        step_failed "step_hard_link() incorrect number of arguments."
     fi
 
     ln -fn ${1} ${2}

@@ -7,6 +7,5 @@ syntax match VimnoteUnfocus /^=== /
 
 syntax match VimnoteFocus /`[^`]\+\(\s[^`]\+\)*`/ " Focused word
 syntax match VimnoteDimmed /^.*\(    [-=] \)\@=/ " Options
-syntax match VimnoteDimmed /\_[^`]*[^`]\(`$\)\@=/ contains=ALL " Listing
-syntax match VimnoteHide /\(\_[^`]\)\@<=`\{1,2\}$/
+syntax region VimnoteDimmed matchgroup=VimnoteHide start=/\([^`]\|^\)\@<=``$/ end=/\([^`]\)\@<=`$/
 syntax match VimnoteUnfocus /[┌┐└┘─│┬┴├┤┼]/

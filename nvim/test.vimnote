@@ -1,0 +1,27 @@
+======================= Header =======================
+
+Just a regular line.
+
+`Focused word` at the beginning of the line.
+
+Focused word at the end of the `line`
+
+=== Subheader
+
+Some code listed:``
+listing`
+
+End of the subheader block.
+
+=== Subheader with listing``
+Listing start
+Listing end`
+
+More
+multiline
+text.
+
+abc         - first option
+def         - second option with listing and `focused` word``
+                listing`
+ghi         - third option

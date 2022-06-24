@@ -13,6 +13,7 @@ export FZF_DEFAULT_OPTS="-e"
 # Aliases
 alias ll='ls -lah'
 alias ncdu='ncdu -r'
+alias od='od -A x -t xz'
 alias r.du='du -ah --max-depth=1 | sort -h'
 
 # Functions

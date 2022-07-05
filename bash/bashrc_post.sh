@@ -21,6 +21,14 @@ r.view() {
     /bin/bash ~/.config/lf/preview.sh "$1"
 }
 
+r.gdb() {
+    local id="$(tmux split-window -p 60 -hPF "#D" "tail -f /dev/null")"
+    tmux last-pane
+    local tty="$(tmux display-message -p -t "$id" '#{pane_tty}')"
+    gdb -ex "dashboard -output $tty" "$@"
+    tmux kill-pane -t "$id"
+}
+
 # Launch tmux session
 # There should be tmux_main.sh in home directory
 if $(command -v tmux &> /dev/null) && ! [ -n "$TMUX" ] && [ -z "$(tmux lsc)" ]; then

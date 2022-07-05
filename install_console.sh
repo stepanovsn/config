@@ -7,7 +7,7 @@ ROOT_DIR=$(minimize_path "${ROOT_DIR}")
 # Check that repository is clean
 step_title "Pre-check"
 if [[ "$(git status --porcelain)" ]]; then
-    step_failed "The config repo is not clean."
+    step_warn "The config repo is not clean."
 fi
 step_done
 
@@ -19,5 +19,7 @@ source $ROOT_DIR/lf/install.sh
 source $ROOT_DIR/htop/install.sh
 source $ROOT_DIR/rg/install.sh
 source $ROOT_DIR/tmux/install.sh
+source $ROOT_DIR/python/install.sh
 source $ROOT_DIR/nvim/install.sh
 source $ROOT_DIR/ctags/install.sh
+source $ROOT_DIR/gdb/install.sh

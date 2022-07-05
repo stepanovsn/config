@@ -1,0 +1,24 @@
+# Dashboard config
+dashboard -layout !assembly breakpoints !expressions !history !memory !registers source !stack !threads variables
+
+dashboard -style syntax_highlighting ''
+dashboard -style max_value_length 200
+
+dashboard source -style height 15
+dashboard source -style highlight-line 1
+dashboard source -style path 1
+
+dashboard variables -style align 1
+dashboard variables -style arguments 1
+dashboard variables -style compact 0
+dashboard variables -style locals 1
+dashboard variables -style sort 1
+
+# Functions for breakpoints
+define bs
+save breakpoints ~/.gdb_breakpoints
+end
+
+define bl
+source ~/.gdb_breakpoints
+end

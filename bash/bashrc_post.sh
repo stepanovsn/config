@@ -9,7 +9,7 @@ export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
 export LESS=' -R '
 
 # Set up PS colors
-export PS1='${debian_chroot:+($debian_chroot)}\[\033[32m\]\u@\h\[\033[00m\]\[\033[1;30m\]:\[\033[00m\]\[\033[34m\]\w\[\033[00m\]\[\033[1;30m\]\$\[\033[00m\] '
+export PS1="${debian_chroot:+($debian_chroot)}${cGreen}\u@\h${cNone}${cGrey}:${cNone}${cBlue}\w${cNone}${cGrey}\$${cNone} "
 
 # Functions
 r.view() {

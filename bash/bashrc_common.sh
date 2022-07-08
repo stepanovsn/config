@@ -3,6 +3,31 @@
 set -o ignoreeof
 umask 077
 
+# Colors
+if [ -t 1 ]; then
+    cNone='\e[0m'
+    cBlack='\e[0;30m'
+    cGrey='\e[1;30m'
+    cRed='\e[0;31m'
+    cGreen='\e[0;32m'
+    cYellow='\e[0;33m'
+    cBlue='\e[0;34m'
+    cPurple='\e[0;35m'
+    cCyan='\e[0;36m'
+    cWhite='\e[0;37m'
+else
+    cNone=''
+    cBlack=''
+    cGrey=''
+    cRed=''
+    cGreen=''
+    cYellow=''
+    cBlue=''
+    cPurple=''
+    cCyan=''
+    cWhite=''
+fi
+
 # Set up environment variables
 ls_colors="rs=0:di=34:ln=36:mh=00:pi=35:so=35:do=35:bd=35:cd=35:or=1;\
 30:mi=1;30:su=37:sg=37:ca=30;41:tw=34:ow=34:st=34:ex=33:fi=37:";
@@ -13,8 +38,7 @@ export FZF_DEFAULT_OPTS="-e"
 # Aliases
 alias ll='ls -lah'
 alias ncdu='ncdu -r'
-alias od='od -A x -t xz'
-alias r.du='du -ah --max-depth=1 | sort -h'
+alias od='od -A x -t xcz'
 
 # Functions
 r.ddiff () {

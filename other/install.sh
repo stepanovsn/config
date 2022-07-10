@@ -13,5 +13,5 @@ step_print "Apt indices updated."
 step_upgrade_apt tar zip unzip rar unrar \
     moreutils ncdu net-tools hwinfo minicom \
     git cmake clang-tidy \
-    mmv termshark fzf ncal
+    mmv termshark fzf ncal alsa-utils
 step_done

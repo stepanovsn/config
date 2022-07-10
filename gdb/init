@@ -2,7 +2,7 @@
 dashboard -layout !assembly breakpoints !expressions !history !memory !registers source !stack !threads variables
 
 dashboard -style syntax_highlighting ''
-dashboard -style max_value_length 200
+dashboard -style max_value_length 80
 
 dashboard source -style height 15
 dashboard source -style highlight-line 1

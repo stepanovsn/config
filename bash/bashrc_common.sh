@@ -39,6 +39,7 @@ export FZF_DEFAULT_OPTS="-e"
 alias ll='ls -lah'
 alias ncdu='ncdu -r'
 alias od='od -A x -t xcz'
+alias nmcli='nmcli -p -c yes'
 
 # Functions
 r.ddiff () {

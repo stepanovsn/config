@@ -107,6 +107,44 @@ step_install_snap() {
     fi
 }
 
+step_check_repo () {
+    step_title "Pre-check"
+    if [[ "$(git status --porcelain)" ]]; then
+        step_warn "The config repo is not clean."
+    else
+        step_done
+    fi
+}
+
+step_get_components () {
+    SELECTED_COMPONENTS=()
+    if [ "$#" -ne 0 ]; then
+        local selected
+        for selected in "$@"
+        do
+            SELECTED_COMPONENTS+=($selected)
+        done
+    else
+        SELECTED_COMPONENTS=("${ALL_COMPONENTS[@]}")
+    fi
+}
+
+step_install_components () {
+    local component
+    for component in "$@"
+    do
+        local component_name=${component^}
+        step_title "${component_name//_/ }"
+
+        local install_script="${ROOT_DIR}/${component}/install.sh"
+        if [ -f ${install_script} ]; then
+            source ${install_script}
+        else
+            step_warn "Install script not found"
+        fi
+    done
+}
+
 # Common functions
 minimize_path () {
     if [ "$#" -ne 1 ]; then

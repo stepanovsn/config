@@ -1,0 +1,4 @@
+#!/bin/sh
+if [ -f "${HOME}/resources/wallpaper.jpg" ]; then
+    feh --no-fehbg --bg-tile "${HOME}/resources/wallpaper.jpg"
+fi

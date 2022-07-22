@@ -1,3 +1,5 @@
+*customization:	-color
+
 xterm*termName: xterm-256color
 xterm*faceName: RobotoMono
 xterm*faceSize: 12
@@ -26,3 +28,8 @@ xterm*color13: rgb:b8/38/eb
 xterm*color14: rgb:2c/ca/db
 xterm*color15: rgb:e8/e8/e8
 xterm*metaSendsEscape: true
+
+Xft.antialias:	1
+Xft.hintstyle:	hintlight
+Xft.rgba:	none
+Xft.dpi:	96

@@ -23,7 +23,7 @@ else
     cWhite=''
 fi
 
-# Main steps
+# Print steps
 step_title () {
     printf "${cCyan}$@${cNone}\n"
 }
@@ -64,8 +64,9 @@ step_hard_link () {
 }
 
 step_upgrade_apt() {
-    count=0
-    failed_packages=""
+    local count=0
+    local failed_packages=""
+    local package
     for package in "$@"
     do
         sudo apt upgrade -y $package &> /dev/null
@@ -88,6 +89,7 @@ step_upgrade_apt() {
 step_install_snap() {
     count=0
     failed_snaps=""
+    local snap
     for snap in "$@"
     do
         sudo snap install $snap &> /dev/null

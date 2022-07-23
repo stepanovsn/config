@@ -7,7 +7,7 @@ function install_bash() {
         step_failed "$bashrc not found."
     fi
 
-    local text_to_add="source $ROOT_DIR/bash/bashrc_post.sh"
+    local text_to_add="source ${ROOT_DIR}/bash/bashrc_post.sh"
     if grep -xq "${text_to_add}" $bashrc; then
         step_print "$bashrc is already updated."
     else
@@ -21,7 +21,7 @@ function install_bash() {
         step_failed "$bashrc not found."
     fi
 
-    local text_to_add="source $ROOT_DIR/bash/bashrc_root_post.sh"
+    local text_to_add="source ${ROOT_DIR}/bash/bashrc_root_post.sh"
     if sudo grep -xq "${text_to_add}" $bashrc; then
         step_print "$bashrc is already updated."
     else

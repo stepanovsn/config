@@ -7,7 +7,8 @@ ROOT_DIR=$(minimize_path "${ROOT_DIR}")
 ALL_COMPONENTS=(
     "awesome"
     "feh"
-    "other_gui")
+    "other_gui"
+    "resources")
 
 step_check_repo
 step_get_components "$@"

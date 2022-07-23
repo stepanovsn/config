@@ -30,7 +30,10 @@ theme.taglist_bg_focus = "#404c61"
 -- Tasklist settings
 theme.tasklist_fg_focus = "#d8dde6"
 theme.tasklist_bg_focus = "#404c61"
+theme.tasklist_fg_normal = "#d8dde6"
+theme.tasklist_bg_normal = "#00000000"
 theme.tasklist_fg_minimize = "#757a82"
+theme.tasklist_bg_minimize = "#00000000"
 
 -- Menu settings
 theme.menu_font = "Roboto 14"

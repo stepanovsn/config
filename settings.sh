@@ -86,6 +86,29 @@ step_upgrade_apt() {
     fi
 }
 
+step_upgrade_pacman() {
+    local count=0
+    local failed_packages=""
+    local package
+    for package in "$@"
+    do
+        sudo pacman -S --noconfirm $package &> /dev/null
+        if [ $? != 0 ]; then
+            failed_packages+=" $package"
+        else
+            count=$((count + 1))
+        fi
+    done
+
+    if [ $count != 0 ]; then
+        step_print "$count pacman packages upgraded."
+    fi
+
+    if [[ $failed_packages ]]; then
+        step_warn "Skipped pacman packages:$failed_packages"
+    fi
+}
+
 step_install_snap() {
     count=0
     failed_snaps=""
@@ -111,6 +134,11 @@ step_install_snap() {
 
 step_check_repo () {
     step_title "Pre-check"
+
+    if ! distr_arch && ! distr_ubuntu; then
+        step_failed "DISTR not set. Run 'export DISTR=\"ARCH\"' (or other distro)."
+    fi
+
     if [[ "$(git status --porcelain)" ]]; then
         step_warn "The config repo is not clean."
     else
@@ -161,4 +189,18 @@ minimize_path () {
         -e ':e' -e 's|//|/|g' -e 't e' \
         -e ':f' -e '/^.\{2,\}$/ s|/$||g' -e 't f' \
         <<< ${1})
+}
+
+distr_arch() {
+    if [ "${DISTR}" == "ARCH" ]; then
+        return 0
+    fi
+    return 1
+}
+
+distr_ubuntu() {
+    if [ "${DISTR}" == "UBUNTU" ]; then
+        return 0
+    fi
+    return 1
 }

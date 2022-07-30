@@ -12,7 +12,6 @@ ALL_COMPONENTS=(
     "htop"
     "rg"
     "tmux"
-    "python"
     "nvim"
     "ctags"
     "gdb")

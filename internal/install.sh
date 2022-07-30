@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Install git hooks
-function install_internal() {
+install_internal() {
     local git_hooks=(
         "post-checkout"
         "post-commit"

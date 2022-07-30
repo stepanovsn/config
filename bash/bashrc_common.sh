@@ -97,5 +97,5 @@ lfcd () {
 # Bindings
 bind '"\C-n":"lfcd\C-m"'
 bind '"\C-p":"fzf\C-m"'
-bind '"\C-h":"nvim\C-m"'
+bind '"\C-j":"nvim\C-m"'
 bind '"\C-]":" | nvim -"'

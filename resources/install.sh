@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Install git hooks
-function install_resources() {
+install_resources() {
     local resources_dir="${HOME}/resources"
     if [ ! -d ${resources_dir} ]; then
         mkdir ${resources_dir}

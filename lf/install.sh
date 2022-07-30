@@ -1,6 +1,6 @@
 #!/bin/bash
 
-function install_lf() {
+install_lf() {
     # Download required version
     local version=r27
     if $(command -v lf &> /dev/null) && [ $(lf --version) == $version ]; then
@@ -24,7 +24,12 @@ function install_lf() {
         step_print "The executable is placed into ${dest_dir}"
     fi
 
-    step_upgrade_apt highlight source-highlight mediainfo w3m
+    if distr_arch; then
+        step_upgrade_pacman highlight source-highlight mediainfo w3m
+    else
+        step_upgrade_apt highlight source-highlight mediainfo w3m
+    fi
+
     step_soft_link $ROOT_DIR/lf $HOME/.config/lf
     step_print "Config link made."
 

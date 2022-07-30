@@ -1,7 +1,11 @@
 #!/bin/bash
 
-function install_ctags() {
-    step_install_snap universal-ctags
+install_ctags() {
+    if distr_arch; then
+        step_upgrade_pacman universal-ctags
+    else
+        step_install_snap universal-ctags
+    fi
 
     local ctags_dir=$HOME/.ctags.d
     rm -rf $ctags_dir && mkdir $ctags_dir

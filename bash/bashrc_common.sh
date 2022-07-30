@@ -36,6 +36,7 @@ export EDITOR=nvim
 export FZF_DEFAULT_OPTS="-e"
 
 # Aliases
+alias ls='ls --color=auto'
 alias ll='ls -lah'
 alias ncdu='ncdu -r'
 alias od='od -A x -t xcz'

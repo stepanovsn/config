@@ -16,6 +16,9 @@ install_other_gui() {
     fi
     step_print "Roboto Mono font installed."
 
+    step_soft_link $ROOT_DIR/other_gui/.xinitrc $HOME/.xinitrc
+    step_print ".xinitrc link made."
+
     step_soft_link $ROOT_DIR/other_gui/.xprofile $HOME/.xprofile
     step_print ".xprofile link made."
 

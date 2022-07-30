@@ -1,6 +1,6 @@
 #!/bin/bash
 
-picom -bcGC
+picom -b
 
 autorandr --change --force
 

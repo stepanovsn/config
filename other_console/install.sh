@@ -1,25 +1,41 @@
 #!/bin/bash
 
 install_other_console() {
+    local packages=(
+        "alsa-utils"
+        "clang-tidy"
+        "cmake"
+        "dosfstools"
+        "fzf"
+        "git"
+        "hwinfo"
+        "minicom"
+        "mmv"
+        "moreutils"
+        "mtools"
+        "ncal"
+        "ncdu"
+        "net-tools"
+        "python3"
+        "rar"
+        "tar"
+        "termshark"
+        "unrar"
+        "unzip"
+        "wget"
+        "zip")
+
     if distr_arch; then
         sudo pacman -Syy &> /dev/null
         step_print "Pacman databases updated."
 
-        step_upgrade_pacman tar zip unzip rar unrar \
-            moreutils ncdu net-tools hwinfo minicom \
-            git cmake clang-tidy \
-            mmv termshark fzf ncal alsa-utils \
-            dosfstools mtools wget python3
+        step_upgrade_pacman ${packages[@]}
 
     else
         sudo apt update &> /dev/null
         step_print "Apt indices updated."
 
-        step_upgrade_apt tar zip unzip rar unrar \
-            moreutils ncdu net-tools hwinfo minicom \
-            git cmake clang-tidy \
-            mmv termshark fzf ncal alsa-utils \
-            dosfstools mtools wget python3
+        step_upgrade_apt ${packages[@]}
     fi
 
     local git_config_updated=0

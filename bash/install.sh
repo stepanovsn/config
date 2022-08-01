@@ -57,6 +57,16 @@ install_bash() {
         fi
     fi
 
+    # Add default tmux session
+    local tmux_main="$HOME/tmux_main.sh"
+    if [ -f ${tmux_main} ]; then
+        step_print "$tmux_main already exists."
+    else
+        local tmux_main_default="$ROOT_DIR/bash/tmux_main.sh"
+        cp $tmux_main_default $tmux_main
+        step_print "Default $tmux_main created."
+    fi
+
     step_done
 }
 

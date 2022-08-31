@@ -5,6 +5,7 @@ source $ROOT_DIR/settings.sh
 ROOT_DIR=$(minimize_path "${ROOT_DIR}")
 
 ALL_COMPONENTS=(
+    "nvidia"
     "awesome"
     "feh"
     "other_gui"

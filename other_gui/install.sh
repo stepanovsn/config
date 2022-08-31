@@ -1,10 +1,16 @@
 #!/bin/bash
 
 install_other_gui() {
+    local packages=(
+        "autorandr"
+        "picom"
+        "xorg-xrandr"
+        "xterm")
+
     if distr_arch; then
-        step_upgrade_pacman autorandr picom xterm
+        step_upgrade_pacman ${packages[@]}
     else
-        step_upgrade_apt autorandr picom xterm
+        step_upgrade_apt ${packages[@]}
     fi
 
     local font_dir="/usr/share/fonts/googlefonts"

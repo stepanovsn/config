@@ -5,10 +5,12 @@ install_other_console() {
         "alsa-utils"
         "clang-tidy"
         "cmake"
+        "dmidecode"
         "dosfstools"
         "fzf"
         "git"
         "hwinfo"
+        "lshw"
         "minicom"
         "mmv"
         "moreutils"
@@ -22,6 +24,7 @@ install_other_console() {
         "termshark"
         "unrar"
         "unzip"
+        "upower"
         "wget"
         "zip")
 

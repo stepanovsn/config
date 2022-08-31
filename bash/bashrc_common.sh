@@ -79,6 +79,10 @@ r.reload_audio() {
     pulseaudio -k && sudo alsa force-reload
 }
 
+r.status_graphics() {
+    lspci -k | grep -A 2 -E "(VGA|3D)"
+}
+
 # Set up lf: change working dir in shell to last dir in lf on exit.
 # Latest script can be found at: https://raw.githubusercontent.com/gokcehan/lf/master/etc/lfcd.sh
 lfcd () {

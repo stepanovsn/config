@@ -136,7 +136,7 @@ step_check_repo () {
     step_title "Pre-check"
 
     if ! distr_arch && ! distr_ubuntu; then
-        step_failed "DISTR not set. Run 'export DISTR=\"ARCH\"' (or other distro)."
+        step_failed "DISTR not set. Run 'export DISTR=value'. Options are: ARCH, UBUNTU"
     fi
 
     if [[ "$(git status --porcelain)" ]]; then

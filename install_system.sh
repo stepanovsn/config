@@ -8,7 +8,7 @@ ALL_COMPONENTS=(
     "nvidia"
     "awesome"
     "feh"
-    "other_gui"
+    "other_system"
     "resources")
 
 step_check_repo

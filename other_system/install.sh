@@ -27,8 +27,15 @@ install_other_system() {
     step_soft_link $ROOT_DIR/other_system/.Xresources $HOME/.Xresources
     step_print "Config links made."
 
-    xrdb -merge ~/.Xresources
+    if ! xrdb -merge ~/.Xresources > /dev/null; then
+        step_failed "Failed to merge Xresources"
+    fi
     step_print "Xresources merged."
+
+    if ! sudo localectl --no-convert set-x11-keymap us,ru pc104 qwerty grp:alt_shift_toggle > /dev/null; then
+        step_failed "Failed to set keyboard layout"
+    fi
+    step_print "Keyboard layout set."
 
     step_done
 }

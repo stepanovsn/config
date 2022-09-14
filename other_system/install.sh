@@ -4,6 +4,9 @@ install_other_system() {
     local packages=(
         "autorandr"
         "picom"
+        "pulseaudio"
+        "pulseaudio-alsa"
+        "pulseaudio-jack"
         "xorg-xrandr"
         "xterm")
 

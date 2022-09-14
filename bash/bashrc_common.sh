@@ -60,14 +60,14 @@ r.ddiffh () {
         return;
     fi
 
-    local DIRNAME1=${1%%*(/)}
-    local DIRNAME2=${2%%*(/)}
+    local dirname1=${1%%*(/)}
+    local dirname2=${2%%*(/)}
     # In awk, cut the first 36 symbols of the line to get path without parent folder
     # 36 = 32(hash length) + 2(md5sum separator) + 1(because index from 1) + 1(extra for '/' symbol)
-    find "${DIRNAME1}" -type f -exec md5sum {} + |\
-        awk -v cutlen="$((${#DIRNAME1}+36))" '{printf "%s: %s\n", $1, substr($0, cutlen)}' | sort -k 2 > /tmp/ddiffh1.txt
-    find "${DIRNAME2}" -type f -exec md5sum {} + |\
-        awk -v cutlen="$((${#DIRNAME2}+36))" '{printf "%s: %s\n", $1, substr($0, cutlen)}' | sort -k 2 > /tmp/ddiffh2.txt
+    find "${dirname1}" -type f -exec md5sum {} + |\
+        awk -v cutlen="$((${#dirname1}+36))" '{printf "%s: %s\n", $1, substr($0, cutlen)}' | sort -k 2 > /tmp/ddiffh1.txt
+    find "${dirname2}" -type f -exec md5sum {} + |\
+        awk -v cutlen="$((${#dirname2}+36))" '{printf "%s: %s\n", $1, substr($0, cutlen)}' | sort -k 2 > /tmp/ddiffh2.txt
     nvim -d -O /tmp/ddiffh1.txt -O /tmp/ddiffh2.txt
 }
 
@@ -86,10 +86,10 @@ r.status_graphics() {
 # Set up lf: change working dir in shell to last dir in lf on exit.
 # Latest script can be found at: https://raw.githubusercontent.com/gokcehan/lf/master/etc/lfcd.sh
 lfcd () {
-    tmp="$(mktemp)"
+    local tmp="$(mktemp)"
     lf -last-dir-path="$tmp" "$@"
     if [ -f "$tmp" ]; then
-        dir="$(cat "$tmp")"
+        local dir="$(cat "$tmp")"
         rm -f "$tmp"
         if [ -d "$dir" ]; then
             if [ "$dir" != "$(pwd)" ]; then

@@ -31,14 +31,14 @@ r.gdb() {
 
 # Launch tmux session
 # There should be tmux_main.sh in home directory
-if $(command -v tmux &> /dev/null) && ! [ -n "$TMUX" ] && [ -z "$(tmux lsc)" ]; then
+if $(xhost >& /dev/null) && $(command -v tmux &> /dev/null) && ! [ -n "$TMUX" ] && [ -z "$(tmux lsc)" ]; then
     if tmux ls &> /dev/null; then
         tmux attach
     else
         cd ~/
-        FILE=./tmux_main.sh
+        FILE=$HOME/tmux_main.sh
         if [ -f "$FILE" ]; then
-            ./tmux_main.sh
+            $FILE
         else
             tmux new -s main
         fi

@@ -10,6 +10,7 @@ install_other_system() {
         "pulseaudio-jack"
         "xorg-xrandr"
         "telegram-desktop"
+        "firefox"
         "xterm")
 
     if distr_arch; then

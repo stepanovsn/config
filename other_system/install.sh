@@ -9,6 +9,7 @@ install_other_system() {
         "pulseaudio-alsa"
         "pulseaudio-jack"
         "xorg-xrandr"
+        "telegram-desktop"
         "xterm")
 
     if distr_arch; then

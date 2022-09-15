@@ -29,7 +29,7 @@ install_other_console() {
         "zip")
 
     if distro_arch; then
-        sudo pacman -Syy &> /dev/null
+        sudo pacman -Syu &> /dev/null
         step_print "Pacman databases updated."
 
         step_upgrade_pacman ${packages[@]}
@@ -43,12 +43,20 @@ install_other_console() {
 
     local git_config_updated=0
     if ! git config --global user.name &> /dev/null; then
-        git config --global user.name "Sergey Stepanov"
+        read -p "Enter git user.name [Sergey Stepanov]: " GIT_USERNAME
+        if [ -z ${GIT_USERNAME} ]; then
+            GIT_USERNAME="Sergey Stepanov"
+        fi
+        git config --global user.name "${GIT_USERNAME}"
         local git_config_updated=1
     fi
 
     if ! git config --global user.email &> /dev/null; then
-        git config --global user.email "inndie.md@gmail.com"
+        read -p "Enter git user.email [inndie.md@gmail.com]: " GIT_EMAIL
+        if [ -z ${GIT_EMAIL} ]; then
+            GIT_EMAIL="inndie.md@gmail.com"
+        fi
+        git config --global user.email "${GIT_EMAIL}"
         local git_config_updated=1
     fi
 

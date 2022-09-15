@@ -8,6 +8,7 @@ ALL_COMPONENTS=(
     "nvidia"
     "awesome"
     "feh"
+    "xbindkeys"
     "other_system"
     "resources")
 

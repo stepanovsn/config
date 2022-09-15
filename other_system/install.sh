@@ -2,6 +2,7 @@
 
 install_other_system() {
     local packages=(
+        "acpilight"
         "autorandr"
         "picom"
         "pulseaudio"
@@ -39,6 +40,9 @@ install_other_system() {
         step_failed "Failed to set keyboard layout"
     fi
     step_print "Keyboard layout set."
+
+    sudo cp $ROOT_DIR/other_system/90-backlight.rules /etc/udev/rules.d/
+    step_print "Udev rules copied."
 
     step_done
 }

@@ -10,6 +10,7 @@ REG_MACHINE_LIST=(
     "MI_NOTEBOOK_PRO_2019")
 ALL_COMPONENTS=(
     "nvidia"
+    "x"
     "awesome"
     "feh"
     "xbindkeys"

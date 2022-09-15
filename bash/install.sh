@@ -6,7 +6,7 @@ install_bash() {
     local bashrc_updated=0
     local bashrc=$HOME/.bashrc
     local bash_source_text="source ${ROOT_DIR}/bash/bashrc_post.sh"
-    local distr_text="export DISTR=\"${DISTR}\""
+    local distr_text="export REG_DISTR=\"${REG_DISTR}\""
 
     if [ ! -f $bashrc ]; then
         printf "#!/bin/bash\n" >> $bashrc

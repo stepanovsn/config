@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if distr_arch; then
+if distro_arch; then
     step_upgrade_pacman feh
 else
     step_upgrade_apt feh

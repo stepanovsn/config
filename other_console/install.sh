@@ -28,7 +28,7 @@ install_other_console() {
         "wget"
         "zip")
 
-    if distr_arch; then
+    if distro_arch; then
         sudo pacman -Syy &> /dev/null
         step_print "Pacman databases updated."
 

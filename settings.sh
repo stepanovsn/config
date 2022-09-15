@@ -33,7 +33,8 @@ step_print () {
 }
 
 step_failed () {
-    printf "\t${cRed}$@${cNone}\n"
+    printf "\t$@\n"
+    printf "\t${cRed}Failed.${cNone}\n"
     exit 1
 }
 
@@ -135,9 +136,31 @@ step_install_snap() {
 step_check_repo () {
     step_title "Pre-check"
 
-    if ! distr_arch && ! distr_ubuntu; then
-        step_failed "DISTR not set. Run 'export DISTR=value'. Options are: ARCH, UBUNTU"
+    if [ ${#REG_DISTRO_LIST[@]} -ne 0 ]; then
+        if [ -z "${REG_DISTRO}" ]; then
+            local error_message="Distro isn't set. Possible options are: ${REG_DISTRO_LIST[@]}"
+            step_failed "${error_message}"
+        fi
+
+        if [[ ! " ${REG_DISTRO_LIST[*]} " =~ " ${REG_DISTRO} " ]]; then
+            local error_message="Distro \"${REG_DISTRO}\" is incorrect. Possible options are: ${REG_DISTRO_LIST[@]}"
+            step_failed "${error_message}"
+        fi
     fi
+    step_print "Distro checked."
+
+    if [ ${#REG_MACHINE_LIST[@]} -ne 0 ]; then
+        if [ -z "${REG_MACHINE}" ]; then
+            local error_message="Machine isn't set. Possible options are: ${REG_MACHINE_LIST[@]}"
+            step_failed "${error_message}"
+        fi
+
+        if [[ ! " ${REG_MACHINE_LIST[*]} " =~ " ${REG_MACHINE} " ]]; then
+            local error_message="Machine \"${REG_MACHINE}\" is incorrect. Possible options are: ${REG_MACHINE_LIST[@]}"
+            step_failed "${error_message}"
+        fi
+    fi
+    step_print "Machine checked."
 
     if [[ "$(git status --porcelain)" ]]; then
         step_warn "The config repo is not clean."
@@ -191,15 +214,15 @@ minimize_path () {
         <<< ${1})
 }
 
-distr_arch() {
-    if [ "${DISTR}" == "ARCH" ]; then
+distro_arch() {
+    if [ "${REG_DISTRO}" == "ARCH" ]; then
         return 0
     fi
     return 1
 }
 
-distr_ubuntu() {
-    if [ "${DISTR}" == "UBUNTU" ]; then
+distro_ubuntu() {
+    if [ "${REG_DISTRO}" == "UBUNTU" ]; then
         return 0
     fi
     return 1

@@ -24,7 +24,7 @@ install_lf() {
         step_print "The executable is placed into ${dest_dir}"
     fi
 
-    if distr_arch; then
+    if distro_arch; then
         step_upgrade_pacman highlight source-highlight mediainfo w3m
     else
         step_upgrade_apt highlight source-highlight mediainfo w3m

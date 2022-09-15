@@ -13,7 +13,7 @@ install_other_system() {
         "firefox"
         "xterm")
 
-    if distr_arch; then
+    if distro_arch; then
         step_upgrade_pacman ${packages[@]}
     else
         step_upgrade_apt ${packages[@]}

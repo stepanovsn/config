@@ -1,7 +1,7 @@
 #!/bin/bash
 
 install_nvim() {
-    if distr_arch; then
+    if distro_arch; then
         step_upgrade_pacman neovim
     else
         step_install_snap "nvim --classic"

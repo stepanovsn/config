@@ -264,7 +264,11 @@ root.buttons(gears.table.join(
 globalkeys = gears.table.join(
     -- Open terminal
     awful.key({ modkey}, "Return", function () awful.spawn(terminal) end),
-    -- Reloas awesome
+    -- Open Firefox
+    awful.key({ modkey}, "F1", function () awful.spawn("firefox") end),
+    -- Open Telegram
+    awful.key({ modkey}, "F2", function () awful.spawn("telegram-desktop") end),
+    -- Reload awesome
     awful.key({ modkey, "Control" }, "r", awesome.restart),
     -- Quit awesome
     awful.key({ modkey, "Shift"   }, "q", awesome.quit),

@@ -3,6 +3,7 @@
 install_other_console() {
     local packages=(
         "alsa-utils"
+        "bash-completion"
         "clang-tidy"
         "cmake"
         "dmidecode"
@@ -18,6 +19,7 @@ install_other_console() {
         "ncal"
         "ncdu"
         "net-tools"
+        "openssh"
         "python3"
         "rar"
         "tar"

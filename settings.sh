@@ -110,6 +110,33 @@ step_upgrade_pacman() {
     fi
 }
 
+step_remove_pacman() {
+    local count=0
+    local failed_packages=""
+    local package
+    for package in "$@"
+    do
+        if ! pacman -Q $package &> /dev/null; then
+            continue
+        fi
+
+        sudo pacman -R --noconfirm $package &> /dev/null
+        if [ $? != 0 ]; then
+            failed_packages+=" $package"
+        else
+            count=$((count + 1))
+        fi
+    done
+
+    if [ $count != 0 ]; then
+        step_print "$count pacman packages removed."
+    fi
+
+    if [[ $failed_packages ]]; then
+        step_warn "Failed to remove pacman packages:$failed_packages"
+    fi
+}
+
 step_install_snap() {
     count=0
     failed_snaps=""
@@ -165,6 +192,7 @@ step_check_repo () {
     if [[ "$(git status --porcelain)" ]]; then
         step_warn "The config repo is not clean."
     else
+        step_print "The config repo is clean."
         step_done
     fi
 }

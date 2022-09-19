@@ -2,16 +2,17 @@
 
 install_x() {
     local packages=(
-        "acpilight"
         "autorandr"
+        "libxkbcommon"
         "picom"
+        "xorg"
+        "xorg-xinit"
         "xterm")
 
-    if distro_arch; then
-        step_upgrade_pacman ${packages[@]}
-    else
-        step_upgrade_apt ${packages[@]}
-    fi
+    step_remove_pacman acpilight
+    step_upgrade_pacman ${packages[@]}
+    step_remove_pacman xorg-xbacklight
+    step_upgrade_pacman acpilight
 
     local font_dir="/usr/share/fonts/googlefonts"
     sudo rm -rf ${font_dir} && sudo mkdir ${font_dir}
@@ -27,8 +28,8 @@ install_x() {
     step_soft_link $ROOT_DIR/x/.Xresources $HOME/.Xresources
     step_print "Config links made."
 
-    if ! xrdb -merge ~/.Xresources > /dev/null; then
-        step_failed "Failed to merge Xresources"
+    if $(xhost >& /dev/null) && ! xrdb -merge ~/.Xresources > /dev/null; then
+        step_warn "Failed to merge Xresources"
     fi
     step_print "Xresources merged."
 

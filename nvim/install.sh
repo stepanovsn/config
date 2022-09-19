@@ -12,7 +12,10 @@ install_nvim() {
     local vimplug_install="curl -fLo ${vimplug_file} --create-dirs \
         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
 
-    rm ${vimplug_file}
+    if [ -f ${vimplug_file} ]; then
+        rm ${vimplug_file}
+    fi
+
     if ! ${vimplug_install} &> /dev/null; then
         step_failed "Failed to download vimplug."
     fi

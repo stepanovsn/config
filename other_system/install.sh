@@ -2,11 +2,11 @@
 
 install_other_system() {
     local packages=(
+        "firefox"
         "pulseaudio"
         "pulseaudio-alsa"
         "pulseaudio-jack"
-        "telegram-desktop"
-        "firefox")
+        "telegram-desktop")
 
     if distro_arch; then
         step_upgrade_pacman ${packages[@]}

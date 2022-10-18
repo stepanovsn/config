@@ -83,6 +83,16 @@ r.status_graphics() {
     lspci -k | grep -A 2 -E "(VGA|3D)"
 }
 
+r.openvpn_connect() {
+    local openvpn_config="/etc/openvpn/client.conf"
+    if [ ! -f $openvpn_config ]; then
+        echo "Openvpn config file not found."
+
+    fi
+
+    sudo openvpn --config /etc/openvpn/client.conf
+}
+
 # Set up lf: change working dir in shell to last dir in lf on exit.
 # Latest script can be found at: https://raw.githubusercontent.com/gokcehan/lf/master/etc/lfcd.sh
 lfcd () {

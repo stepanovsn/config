@@ -11,6 +11,8 @@ if [ -t 1 ]; then
     cPurple='\e[0;35m'
     cCyan='\e[0;36m'
     cWhite='\e[0;37m'
+
+    eClearLine='\033[2K'
 else
     cNone=''
     cBlack=''
@@ -21,6 +23,8 @@ else
     cPurple=''
     cCyan=''
     cWhite=''
+
+    eClearLine=''
 fi
 
 # Print steps
@@ -30,6 +34,14 @@ step_title () {
 
 step_print () {
     printf "\t$@\n"
+}
+
+step_print_temporary () {
+    printf "${eClearLine}\r\t$@"
+}
+
+step_print_final () {
+    printf "${eClearLine}\r\t$@\n"
 }
 
 step_failed () {
@@ -75,15 +87,16 @@ step_upgrade_apt() {
             failed_packages+=" $package"
         else
             count=$((count + 1))
+            step_print_temporary "Apt packages upgraded: $count/$#"
         fi
     done
 
     if [ $count != 0 ]; then
-        step_print "$count apt packages upgraded."
+        step_print_final "Apt packages upgraded: $count"
     fi
 
     if [[ $failed_packages ]]; then
-        step_warn "Skipped apt packages:$failed_packages"
+        step_warn "Apt packages skipped:$failed_packages"
     fi
 }
 
@@ -98,15 +111,16 @@ step_upgrade_pacman() {
             failed_packages+=" $package"
         else
             count=$((count + 1))
+            step_print_temporary "Pacman packages upgraded: $count/$#"
         fi
     done
 
     if [ $count != 0 ]; then
-        step_print "$count pacman packages upgraded."
+        step_print_final "Pacman packages upgraded: $count"
     fi
 
     if [[ $failed_packages ]]; then
-        step_warn "Skipped pacman packages:$failed_packages"
+        step_warn "Pacman packages skipped:$failed_packages"
     fi
 }
 
@@ -125,11 +139,12 @@ step_remove_pacman() {
             failed_packages+=" $package"
         else
             count=$((count + 1))
+            step_print_temporary "Pacman packages removed: $count/$#"
         fi
     done
 
     if [ $count != 0 ]; then
-        step_print "$count pacman packages removed."
+        step_print_final "Pacman packages remove: $count"
     fi
 
     if [[ $failed_packages ]]; then
@@ -148,15 +163,16 @@ step_install_snap() {
             failed_snaps+=" $snap"
         else
             count=$((count + 1))
+            step_print_temporary "Snaps installed: $count/$#"
         fi
     done
 
     if [ $count != 0 ]; then
-        step_print "$count snaps installed."
+        step_print_final "Snaps installed: $count"
     fi
 
     if [[ $failed_snaps ]]; then
-        step_warn "Skipped snaps:$failed_snaps"
+        step_warn "Snaps skipped:$failed_snaps"
     fi
 }
 

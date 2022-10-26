@@ -31,7 +31,7 @@ install_other_console() {
         "zip")
 
     if distro_arch; then
-        sudo pacman -Syu &> /dev/null
+        sudo pacman -Syu --noconfirm &> /dev/null
         step_print "Pacman databases updated."
 
         step_upgrade_pacman ${packages[@]}

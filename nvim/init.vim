@@ -19,6 +19,7 @@ set ignorecase
 set smartcase
 set guicursor=a:block-blinkon1
 set guicursor+=i:ver100-blinkon1
+set mouse=
 
 " Settings: Diff
 set diffopt=filler,context:18

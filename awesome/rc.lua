@@ -46,6 +46,8 @@ do
 end
 -- }}}
 
+lockscreen = function() awful.util.spawn("slock") end
+
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(gears.filesystem.get_dir("config") .. "themes/regular/theme.lua")
@@ -93,8 +95,9 @@ myawesomemenu = {
    { "quit", function() awesome.quit() end },
 }
 
-mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-                                    { "open terminal", terminal }
+mymainmenu = awful.menu({ items = { { "Awesome", myawesomemenu, beautiful.awesome_icon },
+                                    { "Open terminal", terminal },
+                                    { "Lock", lockscreen }
                                   }
                         })
 
@@ -278,7 +281,7 @@ globalkeys = gears.table.join(
     -- Go to right tag
     awful.key({ modkey}, "l", awful.tag.viewnext),
     -- Go to previous tag
-    awful.key({ modkey}, "Escape", awful.tag.history.restore),
+    awful.key({ modkey}, "Escape", lockscreen),
 
     -- Focus next client
     awful.key({ modkey}, "j", function () awful.client.focus.byidx( 1) end),

@@ -6,6 +6,7 @@ install_other_system() {
         "pulseaudio"
         "pulseaudio-alsa"
         "pulseaudio-jack"
+        "slock"
         "telegram-desktop")
 
     if distro_arch; then

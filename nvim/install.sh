@@ -12,6 +12,8 @@ install_nvim() {
     local vimplug_install="curl -fLo ${vimplug_file} --create-dirs \
         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
 
+    pip3 install pynvim
+
     if [ -f ${vimplug_file} ]; then
         rm ${vimplug_file}
     fi

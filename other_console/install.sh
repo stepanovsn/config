@@ -21,6 +21,7 @@ install_other_console() {
         "net-tools"
         "openssh"
         "python3"
+        "python-pip"
         "rar"
         "tar"
         "termshark"

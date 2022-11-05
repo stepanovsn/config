@@ -290,7 +290,7 @@ vnoremap <Leader>l :<C-u>call SearchLocal(GetVisualSelection())<CR>
 
 " Keymap: Git
 nnoremap <Leader>gl :Gclog -30 -- 
-nnoremap <Leader>gs :execute 'tabnew \| Git'<CR>
+nnoremap <Leader>gs :<C-u>call OpenGitStatus()<CR>
 nnoremap <Leader>gc :Git difftool --name-only 
 nnoremap <Leader>gd :Gvdiff 
 
@@ -408,4 +408,14 @@ function! ClangTidy()
     else
         echo "Only for C/C++ source file"
     endif
+endfunction
+
+function! OpenGitStatus(...)
+    call system('git rev-parse --is-inside-work-tree')
+    if v:shell_error != 0
+        echo "Not inside work tree"
+        return
+    endif
+
+    tab G
 endfunction

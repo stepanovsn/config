@@ -41,6 +41,7 @@ alias ll='ls -lah'
 alias ncdu='ncdu -r'
 alias od='od -A x -t xcz'
 alias nmcli='nmcli -p -c yes'
+alias cal='cal -3m'
 
 # Functions
 r.ddiff () {

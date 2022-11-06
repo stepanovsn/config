@@ -47,3 +47,7 @@ fi
 
 # Add fzf key-bindings
 source "$HOME/.local/share/nvim/site/plugged/fzf/shell/key-bindings.bash" &> /dev/null
+
+if $(command -v awesome &> /dev/null) && ! $(pgrep awesome &> /dev/null) && [ "$(tty)" == "/dev/tty1" ]; then
+    startx
+fi

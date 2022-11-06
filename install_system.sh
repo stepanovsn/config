@@ -12,6 +12,7 @@ ALL_COMPONENTS=(
     "nvidia"
     "x"
     "awesome"
+    "picom"
     "feh"
     "xbindkeys"
     "other_system"

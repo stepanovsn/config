@@ -4,7 +4,6 @@ install_x() {
     local packages=(
         "autorandr"
         "libxkbcommon"
-        "picom"
         "xorg"
         "xorg-xinit"
         "xterm")

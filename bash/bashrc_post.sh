@@ -29,9 +29,13 @@ r.gdb() {
     tmux kill-pane -t "$id"
 }
 
+# Add fzf key-bindings
+source "$HOME/.local/share/nvim/site/plugged/fzf/shell/key-bindings.bash" &> /dev/null
+
 # Launch tmux session
-# There should be tmux_main.sh in home directory
-if $(xhost >& /dev/null) && $(command -v tmux &> /dev/null) && ! [ -n "$TMUX" ] && [ -z "$(tmux lsc)" ]; then
+if $(command -v awesome &> /dev/null) && ! $(pgrep awesome &> /dev/null) && [ "$(tty)" == "/dev/tty1" ]; then
+    startx
+elif $(command -v tmux &> /dev/null) && ! [ -n "$TMUX" ] && [ -z "$(tmux lsc)" ]; then
     if tmux ls &> /dev/null; then
         tmux attach
     else
@@ -43,11 +47,4 @@ if $(xhost >& /dev/null) && $(command -v tmux &> /dev/null) && ! [ -n "$TMUX" ] 
             tmux new -s main
         fi
     fi
-fi
-
-# Add fzf key-bindings
-source "$HOME/.local/share/nvim/site/plugged/fzf/shell/key-bindings.bash" &> /dev/null
-
-if $(command -v awesome &> /dev/null) && ! $(pgrep awesome &> /dev/null) && [ "$(tty)" == "/dev/tty1" ]; then
-    startx
 fi

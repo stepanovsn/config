@@ -48,9 +48,9 @@
     XF86MonBrightnessDown
 
 # Sound
-"amixer set Master 10%+"
+"amixer set Master 10%+ unmute"
     XF86AudioRaiseVolume
-"amixer set Master 10%-"
+"amixer set Master 10%- unmute"
     XF86AudioLowerVolume
 "amixer set Master toggle"
     XF86AudioMute

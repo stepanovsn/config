@@ -21,6 +21,8 @@ require("awful.hotkeys_popup.keys")
 -- xrandr to handle multiple monitors
 local xrandr = require("xrandr")
 
+require("volume")
+
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -229,6 +231,13 @@ awful.screen.connect_for_each_screen(function(s)
             {
                 {
                     widget = awful.widget.keyboardlayout()
+                },
+                right = 24,
+                widget = wibox.container.margin
+            },
+            {
+                {
+                    widget = volume_widget
                 },
                 right = 24,
                 widget = wibox.container.margin

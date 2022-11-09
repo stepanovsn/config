@@ -21,7 +21,52 @@ require("awful.hotkeys_popup.keys")
 -- xrandr to handle multiple monitors
 local xrandr = require("xrandr")
 
-require("volume")
+-- Volume widget
+function update_volume(widget)
+   local fd = io.popen("amixer sget Master")
+   local status = fd:read("*all")
+   fd:close()
+
+   local volume = string.format("% 3d", string.match(status, "(%d?%d?%d)%%"))
+   status = string.match(status, "%[(o[^%]]*)%]")
+   if string.find(status, "on", 1, true) then
+       volume = volume .. "%"
+   else
+       volume = "M"
+   end
+
+   widget:set_markup(volume)
+end
+
+volumewidget = wibox.widget.textbox()
+volumewidget.font = "Roboto 12"
+update_volume(volumewidget)
+
+volumetimer = timer({ timeout = 0.2 })
+volumetimer:connect_signal("timeout", function () update_volume(volumewidget) end)
+volumetimer:start()
+
+-- Battery widget
+function update_battery(widget)
+   local fd = io.popen("upower -i `upower -e | grep 'BAT'` | grep 'percentage' | awk '{print $NF}' | cut -d '%' -f 1")
+   local percent = tonumber(fd:read("*l"))
+   if percent < 20 then
+       widget:set_markup('<span color="#bd5b5b">' .. percent .. '%</span>')
+   elseif percent < 50 then
+       widget:set_markup('<span color="#ebcb8b">' .. percent .. '%</span>')
+   else
+       widget:set_markup(percent .. "%")
+   end
+   fd:close()
+end
+
+batterywidget = wibox.widget.textbox()
+batterywidget.font = "Roboto 12"
+update_battery(batterywidget)
+
+batterytimer = timer({ timeout = 0.2 })
+batterytimer:connect_signal("timeout", function () update_battery(batterywidget) end)
+batterytimer:start()
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -221,45 +266,55 @@ awful.screen.connect_for_each_screen(function(s)
         },
         s.mytasklist,
         {
-            --{
+            {
                 --{
-                    --widget = wibox.widget.systray()
+                    --{
+                        --widget = wibox.widget.systray()
+                    --},
+                    --right = 24,
+                    --widget = wibox.container.margin
                 --},
-                --right = 24,
-                --widget = wibox.container.margin
-            --},
-            {
                 {
-                    widget = awful.widget.keyboardlayout()
+                    {
+                        widget = batterywidget
+                    },
+                    right = 24,
+                    widget = wibox.container.margin
                 },
-                left = 48,
-                right = 24,
-                widget = wibox.container.margin
-            },
-            {
                 {
-                    widget = volume_widget
+                    {
+                        widget = volumewidget
+                    },
+                    right = 24,
+                    widget = wibox.container.margin
                 },
-                right = 24,
-                widget = wibox.container.margin
-            },
-            {
                 {
-                    format = "%b %e, %a",
-                    widget = wibox.widget.textclock()
+                    {
+                        widget = awful.widget.keyboardlayout()
+                    },
+                    right = 24,
+                    widget = wibox.container.margin
                 },
-                right = 24,
-                widget = wibox.container.margin
-            },
-            {
                 {
-                    format = "%R",
-                    widget = wibox.widget.textclock()
+                    {
+                        format = "%b %e, %a",
+                        widget = wibox.widget.textclock()
+                    },
+                    right = 24,
+                    widget = wibox.container.margin
                 },
-                right = 24,
-                widget = wibox.container.margin
+                {
+                    {
+                        format = "%R",
+                        widget = wibox.widget.textclock()
+                    },
+                    right = 24,
+                    widget = wibox.container.margin
+                },
+                layout = wibox.layout.fixed.horizontal,
             },
-            layout = wibox.layout.fixed.horizontal,
+            left = 48,
+            widget = wibox.container.margin
         },
     }
 end)

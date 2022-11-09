@@ -64,9 +64,28 @@ batterywidget = wibox.widget.textbox()
 batterywidget.font = "Roboto 12"
 update_battery(batterywidget)
 
-batterytimer = timer({ timeout = 0.2 })
+batterytimer = timer({ timeout = 5 })
 batterytimer:connect_signal("timeout", function () update_battery(batterywidget) end)
 batterytimer:start()
+
+-- Network widget
+function update_network(widget)
+   local fd = io.popen("nmcli -t -f STATE general")
+   if fd:read("*l") == "connected" then
+       widget:set_markup("con")
+   else
+       widget:set_markup("dis")
+   end
+   fd:close()
+end
+
+networkwidget = wibox.widget.textbox()
+networkwidget.font = "Roboto 12"
+update_network(networkwidget)
+
+networktimer = timer({ timeout = 1 })
+networktimer:connect_signal("timeout", function () update_network(networkwidget) end)
+networktimer:start()
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -284,6 +303,13 @@ awful.screen.connect_for_each_screen(function(s)
                 {
                     {
                         widget = volumewidget
+                    },
+                    right = 24,
+                    widget = wibox.container.margin
+                },
+                {
+                    {
+                        widget = networkwidget
                     },
                     right = 24,
                     widget = wibox.container.margin

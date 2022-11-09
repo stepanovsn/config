@@ -221,17 +221,18 @@ awful.screen.connect_for_each_screen(function(s)
         },
         s.mytasklist,
         {
-            {
-                {
-                    widget = wibox.widget.systray()
-                },
-                right = 24,
-                widget = wibox.container.margin
-            },
+            --{
+                --{
+                    --widget = wibox.widget.systray()
+                --},
+                --right = 24,
+                --widget = wibox.container.margin
+            --},
             {
                 {
                     widget = awful.widget.keyboardlayout()
                 },
+                left = 48,
                 right = 24,
                 widget = wibox.container.margin
             },

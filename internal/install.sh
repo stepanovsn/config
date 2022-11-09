@@ -2,17 +2,22 @@
 
 # Install git hooks
 install_internal() {
-    local git_hooks=(
-        "post-checkout"
-        "post-commit"
-        "post-merge"
-        "post-rebase")
-    local hook
-    for hook in "${git_hooks[@]}"
-    do
-        step_soft_link $ROOT_DIR/internal/hook.sh $ROOT_DIR/.git/hooks/$hook
-    done
-    step_print "Git hooks installed."
+    if [ -d "$ROOT_DIR/.git" ]; then
+        local git_hooks=(
+            "post-checkout"
+            "post-commit"
+            "post-merge"
+            "post-rebase")
+        local hook
+        for hook in "${git_hooks[@]}"
+        do
+            step_soft_link $ROOT_DIR/internal/hook.sh $ROOT_DIR/.git/hooks/$hook
+        done
+
+        step_print "Git hooks installed."
+    else
+        step_warn "Git hooks skipped - not a git repo."
+    fi
 
     # Set up secure files
     local secure_files=(

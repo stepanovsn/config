@@ -36,12 +36,14 @@ export EDITOR=nvim
 export FZF_DEFAULT_OPTS="-e"
 
 # Aliases
+alias sudo='sudo '
 alias ls='ls --color=auto'
 alias ll='ls -lah'
 alias ncdu='ncdu -r'
 alias od='od -A x -t xcz'
 alias nmcli='nmcli -p -c yes'
 alias cal='cal -3m'
+alias mount='mount -o fmask=011,dmask=000'
 
 # Functions
 r.ddiff () {

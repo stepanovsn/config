@@ -274,6 +274,7 @@ awful.screen.connect_for_each_screen(function(s)
             position = "top",
             screen = s,
             visible = true,
+            height = 32,
         })
 
     -- Add widgets to the wibox

@@ -9,6 +9,7 @@ install_other_console() {
         "dmidecode"
         "dosfstools"
         "fzf"
+        "gcc"
         "git"
         "hwinfo"
         "lshw"

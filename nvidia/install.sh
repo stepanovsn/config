@@ -1,6 +1,10 @@
 #!/bin/bash
 
 install_nvidia() {
+    if distro_arch; then
+        step_warn "Skipped because of some issues"
+    fi
+
     step_upgrade_pacman nvidia xorg-xrandr
 
     # Copy config

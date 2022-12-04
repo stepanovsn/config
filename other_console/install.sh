@@ -4,7 +4,6 @@ install_other_console() {
     local packages=(
         "alsa-utils"
         "bash-completion"
-        "clang-tidy"
         "cmake"
         "dmidecode"
         "dosfstools"
@@ -14,26 +13,26 @@ install_other_console() {
         "hwinfo"
         "lshw"
         "minicom"
-        "mmv"
         "moreutils"
         "mtools"
-        "ncal"
         "ncdu"
         "net-tools"
         "openssh"
         "python3"
         "python-pip"
-        "rar"
         "tar"
         "termshark"
         "unrar"
         "unzip"
         "upower"
         "wget"
-        "zip")
+        "zip"
+    )
 
     if distro_arch; then
-        packages+=("base-devel")
+        packages+=(
+            "base-devel"
+        )
 
         sudo pacman -Syu --noconfirm &> /dev/null
         step_print "Pacman databases updated."
@@ -43,6 +42,11 @@ install_other_console() {
         step_upgrade_aur snapd
         step_service_activate snapd
     else
+        packages+=(
+            "clang-tidy"
+            "rar"
+        )
+
         sudo apt update &> /dev/null
         step_print "Apt indices updated."
 

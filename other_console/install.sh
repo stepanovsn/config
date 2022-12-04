@@ -33,11 +33,15 @@ install_other_console() {
         "zip")
 
     if distro_arch; then
+        packages+=("base-devel")
+
         sudo pacman -Syu --noconfirm &> /dev/null
         step_print "Pacman databases updated."
 
         step_upgrade_pacman ${packages[@]}
 
+        step_upgrade_aur snapd
+        step_service_activate snapd
     else
         sudo apt update &> /dev/null
         step_print "Apt indices updated."

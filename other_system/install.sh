@@ -9,12 +9,8 @@ install_other_system() {
         "slock"
         "telegram-desktop")
 
-    if distro_arch; then
-        step_upgrade_pacman ${packages[@]}
-    else
-        step_upgrade_apt ${packages[@]}
-    fi
-
+    step_upgrade_pacman ${packages[@]}
+    step_install_snap stellarium-daily
     step_done
 }
 

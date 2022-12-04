@@ -76,6 +76,26 @@ step_hard_link () {
     ln -fn ${1} ${2}
 }
 
+step_service_activate () {
+    if [ "$#" -ne 1 ]; then
+        step_failed "step_service_activate() incorrect number of arguments."
+    fi
+
+    if ! sudo systemctl enable ${1}.service; then
+        step_failed "Systemd service \"${1}\" failed to enable."
+    fi
+
+    if ! sudo systemctl start ${1}.service; then
+        step_failed "Systemd service \"${1}\" failed to start."
+    fi
+
+    if ! systemctl is-active --quiet snapd; then
+        step_failed "Systemd service \"${1}\" failed to activate."
+    fi
+
+    step_print "Systemd service \"${1}\" activated."
+}
+
 step_upgrade_apt() {
     local count=0
     local failed_packages=""
@@ -152,7 +172,48 @@ step_remove_pacman() {
     fi
 }
 
+step_upgrade_aur() {
+    local count=0
+    local failed_packages=""
+    local package
+    for package in "$@"
+    do
+        local package_path=$HOME/.aur/$package
+        mkdir -p $package_path
+        cd $package_path
+        if [ -z "$(ls -A)" ]; then
+            if ! git clone https://aur.archlinux.org/${package}.git . &> /dev/null; then
+                failed_packages+=" $package"
+                continue
+            fi
+        elif ! git pull &> /dev/null; then
+            failed_packages+=" $package"
+            continue
+        fi
+
+        makepkg -si --noconfirm &> /dev/null
+        if [ $? != 0 ]; then
+            failed_packages+=" $package"
+        else
+            count=$((count + 1))
+            step_print_temporary "Aur packages upgraded: $count/$#"
+        fi
+    done
+
+    if [ $count != 0 ]; then
+        step_print_final "Aur packages upgraded: $count"
+    fi
+
+    if [[ $failed_packages ]]; then
+        step_warn "Aur packages skipped:$failed_packages"
+    fi
+}
+
 step_install_snap() {
+    if ! systemctl is-active --quiet snapd; then
+        step_failed "Snaps can't be installed. snapd is not running."
+    fi
+
     count=0
     failed_snaps=""
     local snap
@@ -173,6 +234,9 @@ step_install_snap() {
 
     if [[ $failed_snaps ]]; then
         step_warn "Snaps skipped:$failed_snaps"
+        return 1
+    else
+        return 0
     fi
 }
 

@@ -40,7 +40,15 @@ step_print () {
 
 step_print_temp () {
     if [ -t 1 ]; then
-        printf "${eClearLine}${eCarriageRet}\t${@}"
+        local limit=$(($(tput cols)-9))
+        if [ $limit -gt 2 ]; then
+            local message=${@}
+            if [ ${#message} -gt $limit ]; then
+                local message="${message:0:$((limit))-2}.."
+            fi
+
+            printf "${eClearLine}${eCarriageRet}\t${message}"
+        fi
     fi
 }
 

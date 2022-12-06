@@ -11,8 +11,6 @@ if [ -t 1 ]; then
     cPurple='\e[0;35m'
     cCyan='\e[0;36m'
     cWhite='\e[0;37m'
-
-    eClearLine='\033[2K'
 else
     cNone=''
     cBlack=''
@@ -23,9 +21,9 @@ else
     cPurple=''
     cCyan=''
     cWhite=''
-
-    eClearLine=''
 fi
+
+eClearLine='\033[2K'
 
 # Print steps
 step_title () {
@@ -45,8 +43,7 @@ step_print_final () {
 }
 
 step_failed () {
-    printf "\t$@\n"
-    printf "\t${cRed}Failed.${cNone}\n"
+    printf "\t${cRed}${@}${cNone}\n"
     exit 1
 }
 
@@ -64,16 +61,23 @@ step_soft_link () {
         step_failed "step_soft_link() incorrect number of arguments."
     fi
 
-    rm -rf ${2}
-    ln -sfn ${1} ${2}
+    if ! rm -rf ${2} &> /dev/null; then
+        step_failed "Failed to create soft link \"${1}\" -> \"${2}\""
+    fi
+
+    if ! ln -sfn ${1} ${2} &> /dev/null; then
+        step_failed "Failed to create soft link \"${1}\" -> \"${2}\""
+    fi
 }
 
 step_hard_link () {
     if [ "$#" -ne 2 ]; then
-        step_failed "step_hard_link() incorrect number of arguments."
+        step_failed "step_hard_link() incorrect number of arguments"
     fi
 
-    ln -fn ${1} ${2}
+    if ! ln -fn ${1} ${2} &> /dev/null; then
+        step_failed "Failed to create hard link \"${1}\" -> \"${2}\""
+    fi
 }
 
 step_service_activate () {
@@ -81,15 +85,15 @@ step_service_activate () {
         step_failed "step_service_activate() incorrect number of arguments."
     fi
 
-    if ! sudo systemctl enable ${1}.service; then
+    if ! sudo systemctl enable ${1}.service &> /dev/null; then
         step_failed "Systemd service \"${1}\" failed to enable."
     fi
 
-    if ! sudo systemctl start ${1}.service; then
+    if ! sudo systemctl start ${1}.service &> /dev/null; then
         step_failed "Systemd service \"${1}\" failed to start."
     fi
 
-    if ! systemctl is-active --quiet snapd; then
+    if ! systemctl is-active --quiet snapd &> /dev/null; then
         step_failed "Systemd service \"${1}\" failed to activate."
     fi
 
@@ -97,115 +101,85 @@ step_service_activate () {
 }
 
 step_upgrade_apt() {
-    local count=0
-    local failed_packages=""
-    local package
-    for package in "$@"
-    do
-        sudo apt upgrade -y $package &> /dev/null
-        if [ $? != 0 ]; then
-            failed_packages+=" $package"
-        else
-            count=$((count + 1))
-            step_print_temporary "Apt packages upgraded: $count/$#"
-        fi
-    done
-
-    if [ $count != 0 ]; then
-        step_print_final "Apt packages upgraded: $count"
+    if [ "$#" -eq 0 ]; then
+        step_failed "step_upgrade_apt() incorrect number of arguments."
     fi
 
-    if [[ $failed_packages ]]; then
-        step_warn "Apt packages skipped:$failed_packages"
+    local packages="${@}"
+    if ! sudo apt upgrade -y ${packages} &> /dev/null; then
+        step_failed "Failed to install apt packages: ${packages}"
     fi
+
+    step_print "Installed ${#} apt packages"
 }
 
 step_upgrade_pacman() {
-    local count=0
-    local failed_packages=""
-    local package
-    for package in "$@"
-    do
-        sudo pacman -S --noconfirm $package &> /dev/null
-        if [ $? != 0 ]; then
-            failed_packages+=" $package"
-        else
-            count=$((count + 1))
-            step_print_temporary "Pacman packages upgraded: $count/$#"
-        fi
-    done
-
-    if [ $count != 0 ]; then
-        step_print_final "Pacman packages upgraded: $count"
+    if [ "$#" -eq 0 ]; then
+        step_failed "step_upgrade_pacman() incorrect number of arguments."
     fi
 
-    if [[ $failed_packages ]]; then
-        step_warn "Pacman packages skipped:$failed_packages"
+    local packages="${@}"
+    if ! sudo pacman -S --noconfirm ${packages} &> /dev/null; then
+        step_failed "Failed to install pacman packages: ${packages}"
     fi
+
+    step_print "Installed ${#} pacman packages"
 }
 
 step_remove_pacman() {
-    local count=0
-    local failed_packages=""
-    local package
-    for package in "$@"
-    do
-        if ! pacman -Q $package &> /dev/null; then
-            continue
-        fi
-
-        sudo pacman -R --noconfirm $package &> /dev/null
-        if [ $? != 0 ]; then
-            failed_packages+=" $package"
-        else
-            count=$((count + 1))
-            step_print_temporary "Pacman packages removed: $count/$#"
-        fi
-    done
-
-    if [ $count != 0 ]; then
-        step_print_final "Pacman packages remove: $count"
+    if [ "$#" -eq 0 ]; then
+        step_failed "step_remove_pacman() incorrect number of arguments."
     fi
 
-    if [[ $failed_packages ]]; then
-        step_warn "Failed to remove pacman packages:$failed_packages"
+    local packages="${@}"
+    if ! sudo pacman -R --noconfirm ${packages} &> /dev/null; then
+        step_failed "Failed to remove pacman packages: ${packages}"
     fi
+
+    step_print "Removed ${#} pacman packages"
 }
 
 step_upgrade_aur() {
-    local count=0
-    local failed_packages=""
+    if [ "$#" -eq 0 ]; then
+        step_failed "step_upgrade_aur() incorrect number of arguments."
+    fi
+
+    local installed=0
+    local failed_package=""
     local package
     for package in "$@"
     do
         local package_path=$HOME/.aur/$package
-        mkdir -p $package_path
+        if ! mkdir -p $package_path &> /dev/null; then
+            failed_package=$package
+            break
+        fi
+
         cd $package_path
         if [ -z "$(ls -A)" ]; then
             if ! git clone https://aur.archlinux.org/${package}.git . &> /dev/null; then
-                failed_packages+=" $package"
-                continue
+                failed_package=$package
+                break
             fi
         elif ! git pull &> /dev/null; then
-            failed_packages+=" $package"
-            continue
+            failed_package=$package
+            break
         fi
 
-        makepkg -si --noconfirm &> /dev/null
-        if [ $? != 0 ]; then
-            failed_packages+=" $package"
+        if ! makepkg -si --noconfirm &> /dev/null; then
+            failed_package=$package
+            break
         else
-            count=$((count + 1))
-            step_print_temporary "Aur packages upgraded: $count/$#"
+            installed=$((installed + 1))
         fi
     done
 
-    if [ $count != 0 ]; then
-        step_print_final "Aur packages upgraded: $count"
+    if [ $installed != 0 ]; then
+        step_print "Aur packages upgraded: $installed"
     fi
 
-    if [[ $failed_packages ]]; then
-        step_warn "Aur packages skipped:$failed_packages"
+    if [[ $failed_package ]]; then
+        step_failed "Failed to install aur package: $failed_package"
     fi
 }
 
@@ -214,30 +188,12 @@ step_install_snap() {
         step_failed "Snaps can't be installed. snapd is not running."
     fi
 
-    count=0
-    failed_snaps=""
-    local snap
-    for snap in "$@"
-    do
-        sudo snap install $snap &> /dev/null
-        if [ $? != 0 ]; then
-            failed_snaps+=" $snap"
-        else
-            count=$((count + 1))
-            step_print_temporary "Snaps installed: $count/$#"
-        fi
-    done
-
-    if [ $count != 0 ]; then
-        step_print_final "Snaps installed: $count"
+    local snaps="${@}"
+    if ! sudo snap install ${snaps} &> /dev/null; then
+        step_failed "Failed to install snaps: ${snaps}"
     fi
 
-    if [[ $failed_snaps ]]; then
-        step_warn "Snaps skipped:$failed_snaps"
-        return 1
-    else
-        return 0
-    fi
+    step_print "Installed ${#} snaps"
 }
 
 step_check_repo () {
@@ -269,12 +225,16 @@ step_check_repo () {
     fi
     step_print "Machine checked."
 
-    if [[ "$(git status --porcelain)" ]]; then
-        step_warn "The config repo is not clean."
+    if [ -d "$ROOT_DIR/.git" ]; then
+        if [[ "$(git status --porcelain)" ]]; then
+            step_warn "The config repo is not clean."
+        else
+            step_print "The config repo is clean."
+        fi
     else
-        step_print "The config repo is clean."
-        step_done
+        step_warn "Repo state skipped - not a git repo."
     fi
+    step_done
 }
 
 step_get_components () {
@@ -301,7 +261,7 @@ step_install_components () {
         if [ -f ${install_script} ]; then
             source ${install_script}
         else
-            step_warn "Install script not found"
+            step_failed "Install script not found"
         fi
     done
 }

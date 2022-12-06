@@ -11,7 +11,8 @@ REG_MACHINE_LIST=()
 ALL_COMPONENTS=(
     "internal"
     "bash"
-    "other_console"
+    "git"
+    "base"
     "lf"
     "htop"
     "rg"

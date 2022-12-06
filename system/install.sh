@@ -1,7 +1,8 @@
 #!/bin/bash
 
-install_other_system() {
+install_system() {
     local packages=(
+        "alsa-utils"
         "firefox"
         "pulseaudio"
         "pulseaudio-alsa"
@@ -14,4 +15,4 @@ install_other_system() {
     step_done
 }
 
-install_other_system
+install_system

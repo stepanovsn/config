@@ -15,7 +15,7 @@ ALL_COMPONENTS=(
     "picom"
     "feh"
     "xbindkeys"
-    "other_system"
+    "system"
     "resources")
 
 step_check_repo

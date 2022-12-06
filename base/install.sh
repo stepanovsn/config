@@ -1,15 +1,13 @@
 #!/bin/bash
 
-install_other_console() {
+install_base() {
     local packages=(
-        "alsa-utils"
         "bash-completion"
         "cmake"
         "dmidecode"
         "dosfstools"
         "fzf"
         "gcc"
-        "git"
         "hwinfo"
         "lshw"
         "minicom"
@@ -18,6 +16,7 @@ install_other_console() {
         "ncdu"
         "net-tools"
         "openssh"
+        "openssl"
         "python3"
         "python-pip"
         "tar"
@@ -55,33 +54,7 @@ install_other_console() {
         step_upgrade_apt ${packages[@]}
     fi
 
-    # Updating .gitconfig
-    local git_config_updated=0
-    if ! git config --global user.name &> /dev/null; then
-        read -p "Enter git user.name [Sergey Stepanov]: " GIT_USERNAME
-        if [ -z ${GIT_USERNAME} ]; then
-            GIT_USERNAME="Sergey Stepanov"
-        fi
-        git config --global user.name "${GIT_USERNAME}"
-        local git_config_updated=1
-    fi
-
-    if ! git config --global user.email &> /dev/null; then
-        read -p "Enter git user.email [inndie.md@gmail.com]: " GIT_EMAIL
-        if [ -z ${GIT_EMAIL} ]; then
-            GIT_EMAIL="inndie.md@gmail.com"
-        fi
-        git config --global user.email "${GIT_EMAIL}"
-        local git_config_updated=1
-    fi
-
-    if [ ${git_config_updated} -eq 1 ]; then
-        step_print "Git config updated"
-    else
-        step_print "Git config is already updated"
-    fi
-
     step_done
 }
 
-install_other_console
+install_base

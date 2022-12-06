@@ -11,6 +11,9 @@ if [ -t 1 ]; then
     cPurple='\e[0;35m'
     cCyan='\e[0;36m'
     cWhite='\e[0;37m'
+
+    eClearLine='\033[2K'
+    eCarriageRet='\r'
 else
     cNone=''
     cBlack=''
@@ -21,44 +24,43 @@ else
     cPurple=''
     cCyan=''
     cWhite=''
-fi
 
-eClearLine='\033[2K'
+    eClearLine=''
+    eCarriageRet=''
+fi
 
 # Print steps
 step_title () {
-    printf "${cCyan}$@${cNone}\n"
+    printf "${eClearLine}${eCarriageRet}${cCyan}${@}${cNone}\n"
 }
 
 step_print () {
-    printf "\t$@\n"
+    printf "${eClearLine}${eCarriageRet}\t${@}\n"
 }
 
-step_print_temporary () {
-    printf "${eClearLine}\r\t$@"
-}
-
-step_print_final () {
-    printf "${eClearLine}\r\t$@\n"
+step_print_temp () {
+    if [ -t 1 ]; then
+        printf "${eClearLine}${eCarriageRet}\t${@}"
+    fi
 }
 
 step_failed () {
-    printf "\t${cRed}${@}${cNone}\n"
+    printf "${eClearLine}${eCarriageRet}\t${cRed}${@}${cNone}\n"
     exit 1
 }
 
 step_warn () {
-    printf "\t${cYellow}$@${cNone}\n"
+    printf "${eClearLine}${eCarriageRet}\t${cYellow}${@}${cNone}\n"
 }
 
 step_done () {
-    printf "\t${cGreen}Done.${cNone}\n"
+    printf "${eClearLine}${eCarriageRet}\t${cGreen}Done${cNone}\n"
 }
 
 # Other steps
 step_soft_link () {
     if [ "$#" -ne 2 ]; then
-        step_failed "step_soft_link() incorrect number of arguments."
+        step_failed "step_soft_link() incorrect number of arguments"
     fi
 
     if ! rm -rf ${2} &> /dev/null; then
@@ -82,54 +84,60 @@ step_hard_link () {
 
 step_service_activate () {
     if [ "$#" -ne 1 ]; then
-        step_failed "step_service_activate() incorrect number of arguments."
+        step_failed "step_service_activate() incorrect number of arguments"
     fi
 
     if ! sudo systemctl enable ${1}.service &> /dev/null; then
-        step_failed "Systemd service \"${1}\" failed to enable."
+        step_failed "Systemd service \"${1}\" failed to enable"
     fi
 
     if ! sudo systemctl start ${1}.service &> /dev/null; then
-        step_failed "Systemd service \"${1}\" failed to start."
+        step_failed "Systemd service \"${1}\" failed to start"
     fi
 
     if ! systemctl is-active --quiet snapd &> /dev/null; then
-        step_failed "Systemd service \"${1}\" failed to activate."
+        step_failed "Systemd service \"${1}\" failed to activate"
     fi
 
-    step_print "Systemd service \"${1}\" activated."
+    step_print "Systemd service \"${1}\" activated"
 }
 
 step_upgrade_apt() {
     if [ "$#" -eq 0 ]; then
-        step_failed "step_upgrade_apt() incorrect number of arguments."
+        step_failed "step_upgrade_apt() incorrect number of arguments"
     fi
+
+    step_print_temp "Upgrading ${#} apt packages.."
 
     local packages="${@}"
     if ! sudo apt upgrade -y ${packages} &> /dev/null; then
-        step_failed "Failed to install apt packages: ${packages}"
+        step_failed "Failed to upgrade apt packages: ${packages}"
     fi
 
-    step_print "Installed ${#} apt packages"
+    step_print "Upgraded ${#} apt packages"
 }
 
 step_upgrade_pacman() {
     if [ "$#" -eq 0 ]; then
-        step_failed "step_upgrade_pacman() incorrect number of arguments."
+        step_failed "step_upgrade_pacman() incorrect number of arguments"
     fi
+
+    step_print_temp "Upgrading ${#} pacman packages.."
 
     local packages="${@}"
     if ! sudo pacman -S --noconfirm ${packages} &> /dev/null; then
-        step_failed "Failed to install pacman packages: ${packages}"
+        step_failed "Failed to upgrade pacman packages: ${packages}"
     fi
 
-    step_print "Installed ${#} pacman packages"
+    step_print "Upgraded ${#} pacman packages"
 }
 
 step_remove_pacman() {
     if [ "$#" -eq 0 ]; then
-        step_failed "step_remove_pacman() incorrect number of arguments."
+        step_failed "step_remove_pacman() incorrect number of arguments"
     fi
+
+    step_print_temp "Removing ${#} pacman packages.."
 
     local packages="${@}"
     if ! sudo pacman -R --noconfirm ${packages} &> /dev/null; then
@@ -141,7 +149,7 @@ step_remove_pacman() {
 
 step_upgrade_aur() {
     if [ "$#" -eq 0 ]; then
-        step_failed "step_upgrade_aur() incorrect number of arguments."
+        step_failed "step_upgrade_aur() incorrect number of arguments"
     fi
 
     local installed=0
@@ -149,6 +157,8 @@ step_upgrade_aur() {
     local package
     for package in "$@"
     do
+        step_print_temp "Upgrading AUR package: $package"
+
         local package_path=$HOME/.aur/$package
         if ! mkdir -p $package_path &> /dev/null; then
             failed_package=$package
@@ -175,7 +185,7 @@ step_upgrade_aur() {
     done
 
     if [ $installed != 0 ]; then
-        step_print "Aur packages upgraded: $installed"
+        step_print "$installed aur packages upgraded"
     fi
 
     if [[ $failed_package ]]; then
@@ -185,8 +195,10 @@ step_upgrade_aur() {
 
 step_install_snap() {
     if ! systemctl is-active --quiet snapd; then
-        step_failed "Snaps can't be installed. snapd is not running."
+        step_failed "Snaps can't be installed. snapd is not running"
     fi
+
+    step_print_temp "Installing ${#} snaps.."
 
     local snaps="${@}"
     if ! sudo snap install ${snaps} &> /dev/null; then
@@ -210,7 +222,7 @@ step_check_repo () {
             step_failed "${error_message}"
         fi
     fi
-    step_print "Distro checked."
+    step_print "Distro checked"
 
     if [ ${#REG_MACHINE_LIST[@]} -ne 0 ]; then
         if [ -z "${REG_MACHINE}" ]; then
@@ -223,16 +235,16 @@ step_check_repo () {
             step_failed "${error_message}"
         fi
     fi
-    step_print "Machine checked."
+    step_print "Machine checked"
 
     if [ -d "$ROOT_DIR/.git" ]; then
         if [[ "$(git status --porcelain)" ]]; then
-            step_warn "The config repo is not clean."
+            step_warn "The config repo is not clean"
         else
-            step_print "The config repo is clean."
+            step_print "The config repo is clean"
         fi
     else
-        step_warn "Repo state skipped - not a git repo."
+        step_warn "Repo state skipped - not a git repo"
     fi
     step_done
 }
@@ -269,7 +281,7 @@ step_install_components () {
 # Common functions
 minimize_path () {
     if [ "$#" -ne 1 ]; then
-        step_failed "minimize_path() incorrect number of arguments."
+        step_failed "minimize_path() incorrect number of arguments"
     fi
 
     echo $(sed \

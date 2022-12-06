@@ -7,5 +7,5 @@ else
 fi
 
 step_soft_link $ROOT_DIR/feh/.fehbg $HOME/.fehbg
-step_print "Config link made."
+step_print "Config link made"
 step_done

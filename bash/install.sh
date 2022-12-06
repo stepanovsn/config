@@ -11,7 +11,7 @@ install_bash() {
 
     if [ ! -f $bashrc ]; then
         printf "#!/bin/bash\n" >> $bashrc
-        step_warn "$bashrc not found. Default one will be created."
+        step_warn "$bashrc not found. Default one will be created"
         local message_shown=1
     fi
 
@@ -34,9 +34,9 @@ install_bash() {
 
     if [ "${message_shown}" -eq 0 ]; then
         if [ "${bashrc_updated}" -eq 0 ]; then
-            step_print "$bashrc is already updated."
+            step_print "$bashrc is already updated"
         else
-            step_print "$bashrc updated."
+            step_print "$bashrc updated"
         fi
     fi
 
@@ -48,7 +48,7 @@ install_bash() {
 
     if [ -z $(sudo find /root -maxdepth 1 -name .bashrc) ]; then
         printf "#!/bin/bash\n" | sudo tee $bashrc > /dev/null
-        step_warn "$bashrc not found. Default one will be created."
+        step_warn "$bashrc not found. Default one will be created"
         local message_shown=1
     fi
 
@@ -59,20 +59,20 @@ install_bash() {
 
     if [ "${message_shown}" -eq 0 ]; then
         if [ "${bashrc_updated}" -eq 0 ]; then
-            step_print "$bashrc is already updated."
+            step_print "$bashrc is already updated"
         else
-            step_print "$bashrc updated."
+            step_print "$bashrc updated"
         fi
     fi
 
     # Add default tmux session
     local tmux_main="$HOME/tmux_main.sh"
     if [ -f ${tmux_main} ]; then
-        step_print "$tmux_main already exists."
+        step_print "$tmux_main already exists"
     else
         local tmux_main_default="$ROOT_DIR/bash/tmux_main.sh"
         cp $tmux_main_default $tmux_main
-        step_print "Default $tmux_main created."
+        step_print "Default $tmux_main created"
     fi
 
     step_done

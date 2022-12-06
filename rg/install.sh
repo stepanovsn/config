@@ -7,5 +7,5 @@ else
 fi
 
 step_soft_link $ROOT_DIR/rg/.rgrc $HOME/.rgrc
-step_print "Config link made."
+step_print "Config link made"
 step_done

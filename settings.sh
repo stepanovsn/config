@@ -82,6 +82,62 @@ step_hard_link () {
     fi
 }
 
+step_reset_dir () {
+    if [ "$#" -ne 1 ]; then
+        step_failed "step_reset_dir() incorrect number of arguments"
+    fi
+
+    if ! rm -rf ${1} &> /dev/null; then
+        step_failed "Failed to reset dir ${1}"
+    fi
+
+    if ! mkdir -p ${1} &> /dev/null; then
+        step_failed "Failed to reset dir ${1}"
+    fi
+}
+
+step_reset_dir_sudo () {
+    if [ "$#" -ne 1 ]; then
+        step_failed "step_reset_dir() incorrect number of arguments"
+    fi
+
+    if ! sudo rm -rf ${1} &> /dev/null; then
+        step_failed "Failed to reset dir ${1}"
+    fi
+
+    if ! sudo mkdir -p ${1} &> /dev/null; then
+        step_failed "Failed to reset dir ${1}"
+    fi
+}
+
+step_wget () {
+    if [ "$#" -ne 2 ]; then
+        step_failed "step_wget() incorrect number of arguments"
+    fi
+
+    step_print_temp "Downloading \"${1}\" to \"${2}\" .."
+
+    if ! wget -O ${2} ${1} &> /dev/null; then
+        step_failed "Failed to download: ${1}"
+    fi
+
+    step_print "Downloaded \"${1}\" to \"${2}\""
+}
+
+step_untar () {
+    if [ "$#" -ne 2 ]; then
+        step_failed "step_untar() incorrect number of arguments"
+    fi
+
+    step_print_temp "Unpacking \"${1}\" to \"${2}\" .."
+
+    if ! tar xvzf ${1} -C ${2} &> /dev/null; then
+        step_failed "Failed to untar: ${1}"
+    fi
+
+    step_print "Unpacked \"${1}\" to \"${2}\""
+}
+
 step_service_activate () {
     if [ "$#" -ne 1 ]; then
         step_failed "step_service_activate() incorrect number of arguments"

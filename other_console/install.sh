@@ -35,7 +35,7 @@ install_other_console() {
         )
 
         sudo pacman -Syu --noconfirm &> /dev/null
-        step_print "Pacman databases updated."
+        step_print "Pacman databases updated"
 
         step_upgrade_pacman ${packages[@]}
 
@@ -48,7 +48,7 @@ install_other_console() {
         )
 
         sudo apt update &> /dev/null
-        step_print "Apt indices updated."
+        step_print "Apt indices updated"
 
         step_upgrade_apt ${packages[@]}
     fi

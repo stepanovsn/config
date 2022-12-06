@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Install git hooks
 install_internal() {
+    # Install git hooks
     if [ -d "$ROOT_DIR/.git" ]; then
         local git_hooks=(
             "post-checkout"
@@ -13,8 +13,6 @@ install_internal() {
         do
             step_soft_link $ROOT_DIR/internal/hook.sh $ROOT_DIR/.git/hooks/$hook
         done
-
-        step_print "Git hooks installed"
     else
         step_warn "Git hooks skipped (not a git repo)"
     fi
@@ -35,6 +33,7 @@ install_internal() {
         fi
     done
     step_print "Correct rights are set to config files"
+
     step_done
 }
 

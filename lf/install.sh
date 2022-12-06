@@ -26,7 +26,6 @@ install_lf() {
     fi
 
     step_soft_link $ROOT_DIR/lf $HOME/.config/lf
-    step_print "Config link made"
 
     sudo chmod u+x $ROOT_DIR/lf/preview.sh
     step_print "preview.sh rights set"

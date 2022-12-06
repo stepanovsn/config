@@ -10,7 +10,6 @@ install_ctags() {
     local ctags_dir=$HOME/.ctags.d
     step_reset_dir $ctags_dir
     step_hard_link $ROOT_DIR/ctags/default.ctags $ctags_dir/default.ctags
-    step_print "Config link made"
     step_done
 }
 

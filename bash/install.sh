@@ -10,8 +10,8 @@ install_bash() {
     local machine_text="export REG_MACHINE=\"${REG_MACHINE}\""
 
     if [ ! -f $bashrc ]; then
-        printf "#!/bin/bash\n" >> $bashrc
         step_warn "$bashrc not found. Default one will be created"
+        printf "#!/bin/bash\n" >> $bashrc
         local message_shown=1
     fi
 
@@ -47,8 +47,8 @@ install_bash() {
     local bash_source_text="source ${ROOT_DIR}/bash/bashrc_root_post.sh"
 
     if [ -z $(sudo find /root -maxdepth 1 -name .bashrc) ]; then
-        printf "#!/bin/bash\n" | sudo tee $bashrc > /dev/null
         step_warn "$bashrc not found. Default one will be created"
+        printf "#!/bin/bash\n" | sudo tee $bashrc &> /dev/null
         local message_shown=1
     fi
 

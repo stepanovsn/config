@@ -78,6 +78,8 @@ step_soft_link () {
     if ! ln -sfn ${1} ${2} &> /dev/null; then
         step_failed "Failed to create soft link \"${1}\" -> \"${2}\""
     fi
+
+    step_print "Created soft link: \"${1}\" -> \"${2}\""
 }
 
 step_hard_link () {
@@ -88,6 +90,8 @@ step_hard_link () {
     if ! ln -fn ${1} ${2} &> /dev/null; then
         step_failed "Failed to create hard link \"${1}\" -> \"${2}\""
     fi
+
+    step_print "Created hard link: \"${1}\" -> \"${2}\""
 }
 
 step_reset_dir () {
@@ -303,12 +307,12 @@ step_check_repo () {
 
     if [ -d "$ROOT_DIR/.git" ]; then
         if [[ "$(git status --porcelain)" ]]; then
-            step_warn "The config repo is not clean"
+            step_warn "Repo check: not clean"
         else
-            step_print "The config repo is clean"
+            step_print "Repo check: clean"
         fi
     else
-        step_warn "Repo state skipped - not a git repo"
+        step_warn "Repo check: not a git repo"
     fi
     step_done
 }

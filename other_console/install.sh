@@ -34,8 +34,9 @@ install_other_console() {
             "base-devel"
         )
 
+        step_print_temp "Getting system updates.."
         sudo pacman -Syu --noconfirm &> /dev/null
-        step_print "Pacman databases updated"
+        step_print "System updated"
 
         step_upgrade_pacman ${packages[@]}
 
@@ -47,12 +48,14 @@ install_other_console() {
             "rar"
         )
 
+        step_print_temp "Updating apt indices.."
         sudo apt update &> /dev/null
         step_print "Apt indices updated"
 
         step_upgrade_apt ${packages[@]}
     fi
 
+    # Updating .gitconfig
     local git_config_updated=0
     if ! git config --global user.name &> /dev/null; then
         read -p "Enter git user.name [Sergey Stepanov]: " GIT_USERNAME
@@ -74,6 +77,8 @@ install_other_console() {
 
     if [ ${git_config_updated} -eq 1 ]; then
         step_print "Git config updated"
+    else
+        step_print "Git config is already updated"
     fi
 
     step_done

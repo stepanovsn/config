@@ -3,6 +3,7 @@
 install_system() {
     local packages=(
         "alsa-utils"
+        "chromium"
         "bluez-utils"
         "firefox"
         "pulseaudio"

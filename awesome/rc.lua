@@ -46,6 +46,28 @@ volumetimer = timer({ timeout = 0.2 })
 volumetimer:connect_signal("timeout", function () update_volume(volumewidget) end)
 volumetimer:start()
 
+-- Bluetooth widget
+function update_bt(widget)
+   local fd = io.popen("bluetoothctl devices Connected | cut -d' ' -f 3-")
+   local bt = fd:read("*all")
+   fd:close()
+
+   device = ""
+   if (bt ~= nil and bt ~= '') then
+       device = bt:sub(1, -2)
+   end
+
+   widget:set_markup(device)
+end
+
+btwidget = wibox.widget.textbox()
+btwidget.font = "Roboto 12"
+update_bt(btwidget)
+
+bt_timer = timer({ timeout = 0.2 })
+bt_timer:connect_signal("timeout", function () update_bt(btwidget) end)
+bt_timer:start()
+
 -- Battery widget
 function update_battery(widget)
    local fd = io.popen("upower -i `upower -e | grep 'BAT'` | grep 'percentage' | awk '{print $NF}' | cut -d '%' -f 1")
@@ -294,6 +316,13 @@ awful.screen.connect_for_each_screen(function(s)
                     --right = 24,
                     --widget = wibox.container.margin
                 --},
+                {
+                    {
+                        widget = btwidget
+                    },
+                    right = 24,
+                    widget = wibox.container.margin
+                },
                 {
                     {
                         widget = batterywidget

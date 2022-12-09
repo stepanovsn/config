@@ -37,7 +37,7 @@ export FZF_DEFAULT_OPTS="-e"
 
 # Aliases
 alias sudo='sudo '
-alias ls='ls --color=auto'
+alias ls='ls --color=auto -l'
 alias ll='ls -lah'
 alias ncdu='ncdu -r'
 alias od='od -A x -t xcz'

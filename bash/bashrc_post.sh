@@ -36,7 +36,8 @@ r.storage_open() {
     fi
 
     sudo cryptsetup luksOpen ${1} usb_storage
-    r.mount_fat /dev/mapper/usb_storage ${2}
+    sudo mount /dev/mapper/usb_storage ${2}
+    sudo chmod -R ugo+rw ${2}
 }
 
 r.storage_close() {
@@ -47,6 +48,17 @@ r.storage_close() {
 
     sudo umount ${1}
     sudo cryptsetup close usb_storage
+}
+
+r.storage_sync() {
+    if [ -z ${REG_CONFIG} ] || [ -z ${REG_MATERIALS} ] || [ -z ${REG_STORAGE} ]; then
+        echo "required variables are not set"
+        return;
+    fi
+
+    rsync -vcrtuh --delete ${REG_CONFIG} /mnt/
+    rsync -vcrtuh --delete ${REG_MATERIALS} /mnt/
+    rsync -vcrtuh --delete ${REG_STORAGE} /mnt/
 }
 
 # Add fzf key-bindings

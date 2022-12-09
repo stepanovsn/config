@@ -43,12 +43,11 @@ alias ncdu='ncdu -r'
 alias od='od -A x -t xcz'
 alias nmcli='nmcli -p -c yes'
 alias cal='cal -3m'
-alias mount='mount -o fmask=011,dmask=000'
 
 # Functions
-r.ddiff () {
+r.diff () {
     if [ "$#" -ne 2 ]; then
-        echo "ddiff error: provide 2 arguments"
+        echo "diff error: provide 2 arguments"
         return;
     fi
 
@@ -57,9 +56,9 @@ r.ddiff () {
     nvim -d -O /tmp/ddiff1.txt -O /tmp/ddiff2.txt
 }
 
-r.ddiffh () {
+r.diff_hash () {
     if [ "$#" -ne 2 ]; then
-        echo "ddiffh error: provide 2 arguments"
+        echo "diff_hash error: provide 2 arguments"
         return;
     fi
 
@@ -74,12 +73,12 @@ r.ddiffh () {
     nvim -d -O /tmp/ddiffh1.txt -O /tmp/ddiffh2.txt
 }
 
-r.testcolor() {
-    printf "\x1b[38;2;255;100;0mTRUECOLOR\x1b[0m\n"
-}
-
 r.reload_audio() {
     pulseaudio -k && sudo alsa force-reload
+}
+
+r.status_color() {
+    printf "\x1b[38;2;255;100;0mTRUECOLOR\x1b[0m\n"
 }
 
 r.status_graphics() {
@@ -94,6 +93,10 @@ r.openvpn_connect() {
     fi
 
     sudo openvpn --config /etc/openvpn/client.conf
+}
+
+r.mount_fat() {
+    sudo mount -o fmask=011,dmask=000 ${1} ${2}
 }
 
 # Set up lf: change working dir in shell to last dir in lf on exit.

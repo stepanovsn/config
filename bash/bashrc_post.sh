@@ -29,6 +29,26 @@ r.gdb() {
     tmux kill-pane -t "$id"
 }
 
+r.storage_open() {
+    if [ "$#" -ne 2 ]; then
+        echo "storage_open error: provide 2 argument"
+        return;
+    fi
+
+    sudo cryptsetup luksOpen ${1} usb_storage
+    r.mount_fat /dev/mapper/usb_storage ${2}
+}
+
+r.storage_close() {
+    if [ "$#" -ne 1 ]; then
+        echo "storage_open error: provide 1 argument"
+        return;
+    fi
+
+    sudo umount ${1}
+    sudo cryptsetup close usb_storage
+}
+
 # Add fzf key-bindings
 source "$HOME/.local/share/nvim/site/plugged/fzf/shell/key-bindings.bash" &> /dev/null
 

@@ -30,23 +30,28 @@ r.gdb() {
 }
 
 r.storage_open() {
-    if [ "$#" -ne 2 ]; then
-        echo "storage_open error: provide 2 argument"
+    if [ "$#" -ne 1 ]; then
+        printf "${cRed}specify the device${cNone}\n"
+        return;
+    fi
+
+    if [ ! -z "$(mount | grep " on /storage ")" ]; then
+        printf "${cRed}/storage is busy${cNone}\n"
         return;
     fi
 
     sudo cryptsetup luksOpen ${1} usb_storage
-    sudo mount /dev/mapper/usb_storage ${2}
-    sudo chmod -R ugo+rw ${2}
+    sudo mount /dev/mapper/usb_storage /storage
+    sudo chmod -R ugo+rw /storage
 }
 
 r.storage_close() {
-    if [ "$#" -ne 1 ]; then
-        echo "storage_open error: provide 1 argument"
+    if [ -z "$(mount | grep "/dev/mapper/usb_storage on /storage type ext4")" ]; then
+        printf "${cRed}/storage is not mount${cNone}\n"
         return;
     fi
 
-    sudo umount ${1}
+    sudo umount /storage
     sudo cryptsetup close usb_storage
 }
 
@@ -56,9 +61,14 @@ r.storage_sync() {
         return;
     fi
 
-    rsync -vcrtuh --delete ${REG_CONFIG} /mnt/
-    rsync -vcrtuh --delete ${REG_MATERIALS} /mnt/
-    rsync -vcrtuh --delete ${REG_STORAGE} /mnt/
+    if [ -z "$(mount | grep "/dev/mapper/usb_storage on /storage type ext4")" ]; then
+        printf "${cRed}/storage is not mount${cNone}\n"
+        return;
+    fi
+
+    rsync -vcrtuh --delete ${REG_CONFIG} /storage/data
+    rsync -vcrtuh --delete ${REG_MATERIALS} /storage/data
+    rsync -vcrtuh --delete ${REG_STORAGE} /storage/data
 }
 
 # Add fzf key-bindings

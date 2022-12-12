@@ -3,6 +3,7 @@
 case "$1" in
     *.tar) tar -tvf "$1";;
     *.tar.gz) tar -tvzf "$1";;
+    *.tgz) tar -tvzf "$1";;
     *.tar.bz) tar -tvjf "$1";;
     *.tar.xz) tar -tvJf "$1";;
     *.zip) unzip -l "$1";;

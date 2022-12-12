@@ -17,6 +17,7 @@ install_base() {
         "net-tools"
         "openssh"
         "openssl"
+        "openvpn"
         "python3"
         "python-pip"
         "tar"
@@ -31,6 +32,7 @@ install_base() {
     if distro_arch; then
         packages+=(
             "base-devel"
+            "gtest"
         )
 
         step_print_temp "Getting system updates.."
@@ -44,6 +46,7 @@ install_base() {
     else
         packages+=(
             "clang-tidy"
+            "libgtest-dev"
             "rar"
         )
 

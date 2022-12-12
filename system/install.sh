@@ -6,16 +6,22 @@ install_system() {
         "chromium"
         "bluez-utils"
         "firefox"
+        "libreoffice-still"
         "pulseaudio"
         "pulseaudio-alsa"
         "pulseaudio-bluetooth"
         "pulseaudio-jack"
         "slock"
-        "telegram-desktop")
+        "telegram-desktop"
+        "thunar"
+        "tumbler"
+        "vlc"
+    )
 
     step_upgrade_pacman ${packages[@]}
     step_service_activate bluetooth
     step_install_snap stellarium-daily
+    step_upgrade_aur zoom
 
     local bashrc_updated=0
     local bashrc=$HOME/.bashrc

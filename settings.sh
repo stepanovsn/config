@@ -266,12 +266,15 @@ step_install_snap() {
         step_failed "Snaps can't be installed. snapd is not running"
     fi
 
-    step_print_temp "Installing ${#} snaps.."
+    local snap
+    for snap in "$@"
+    do
+        step_print_temp "Installing snap: $snap"
 
-    local snaps="${@}"
-    if ! sudo snap install ${snaps} &> /dev/null; then
-        step_failed "Failed to install snaps: ${snaps}"
-    fi
+        if ! sudo snap install ${snap} &> /dev/null; then
+            step_failed "Failed to install snap: ${snap}"
+        fi
+    done
 
     step_print "Installed ${#} snaps"
 }

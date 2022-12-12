@@ -394,6 +394,8 @@ globalkeys = gears.table.join(
     awful.key({ modkey}, "F2", function () awful.spawn("chromium") end),
     -- Open Telegram
     awful.key({ modkey}, "F3", function () awful.spawn("telegram-desktop") end),
+    -- Open Thunar
+    awful.key({ modkey}, "F5", function () awful.spawn("thunar") end),
     -- Reload awesome
     awful.key({ modkey, "Control" }, "r", awesome.restart),
     -- Quit awesome

@@ -35,6 +35,11 @@ install_base() {
             "gtest"
         )
 
+        step_print_temp "Updating keyring.."
+        sudo pacman -Sy --noconfirm archlinux-keyring &> /dev/null
+        sudo pacman -Su --noconfirm &> /dev/null
+        step_print "Keyring updated"
+
         step_print_temp "Getting system updates.."
         sudo pacman -Syu --noconfirm &> /dev/null
         step_print "System updated"

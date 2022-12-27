@@ -112,14 +112,20 @@ let g:airline_mode_map={
     \ }
 
 let g:airline#extensions#default#section_truncate_width = {
+    \ 'w': 60,
     \ 'x': 90,
     \ 'y': 40,
     \ 'z': 75,
     \ }
 
+let g:russianMode = 0
+
 function! AirlineInit()
+    call airline#parts#define_function('rus', 'GetRussianModeString')
+
     let g:airline_section_b=airline#section#create([''])
-    let g:airline_section_x=airline#section#create(['%{GetTabsOrSpacesString()} | ', 'filetype', 'ffenc', ' '])
+    let g:airline_section_w=airline#section#create(['rus'])
+    let g:airline_section_x=airline#section#create([' %{GetTabsOrSpacesString()} | ', 'filetype', 'ffenc', ' '])
     let g:airline_section_y=airline#section#create([' %{line("$")} '])
     let g:airline_section_z=airline#section#create([' %{col(".")} '])
 
@@ -316,7 +322,8 @@ nnoremap <Leader>b :Lfcd<CR>
 
 " Keymap: Other
 nnoremap <F8> :ToggleBufExplorer<CR>
-nnoremap <F10> :pwd<CR>
+noremap <F10> :call ToggleRussianMode()<CR>
+inoremap <F10> <C-o>:call ToggleRussianMode()<CR>
 nnoremap <Leader>u :mod<CR>
 nnoremap <Leader>ac :call ClangTidy()<CR><CR>
 
@@ -408,6 +415,168 @@ function! ClangTidy()
         endif
     else
         echo "Only for C/C++ source file"
+    endif
+endfunction
+
+function! GetRussianModeString()
+    if g:russianMode
+        return ' RU '
+    else
+        return ''
+    endif
+endfunction
+
+function! ToggleRussianMode(...)
+    if g:russianMode
+        unmap! `
+        unmap! ~
+        unmap! @
+        unmap! #
+        unmap! $
+        unmap! ^
+        unmap! &
+        unmap! q
+        unmap! w
+        unmap! e
+        unmap! r
+        unmap! t
+        unmap! y
+        unmap! u
+        unmap! i
+        unmap! o
+        unmap! p
+        unmap! [
+        unmap! ]
+        unmap! a
+        unmap! s
+        unmap! d
+        unmap! f
+        unmap! g
+        unmap! h
+        unmap! j
+        unmap! k
+        unmap! l
+        unmap! ;
+        unmap! '
+        unmap! z
+        unmap! x
+        unmap! c
+        unmap! v
+        unmap! b
+        unmap! n
+        unmap! m
+        unmap! ,
+        unmap! .
+        unmap! /
+        unmap! Q
+        unmap! W
+        unmap! E
+        unmap! R
+        unmap! T
+        unmap! Y
+        unmap! U
+        unmap! I
+        unmap! O
+        unmap! P
+        unmap! {
+        unmap! }
+        unmap! A
+        unmap! S
+        unmap! D
+        unmap! F
+        unmap! G
+        unmap! H
+        unmap! J
+        unmap! K
+        unmap! L
+        unmap! :
+        unmap! "
+        unmap! Z
+        unmap! X
+        unmap! C
+        unmap! V
+        unmap! B
+        unmap! N
+        unmap! M
+        unmap! <
+        unmap! >
+        unmap! ?
+        let g:russianMode = 0
+    else
+        noremap! ` ё
+        noremap! ~ Ё
+        noremap! @ "
+        noremap! # №
+        noremap! $ ;
+        noremap! ^ :
+        noremap! & ?
+        noremap! q й
+        noremap! w ц
+        noremap! e у
+        noremap! r к
+        noremap! t е
+        noremap! y н
+        noremap! u г
+        noremap! i ш
+        noremap! o щ
+        noremap! p з
+        noremap! [ х
+        noremap! ] ъ
+        noremap! a ф
+        noremap! s ы
+        noremap! d в
+        noremap! f а
+        noremap! g п
+        noremap! h р
+        noremap! j о
+        noremap! k л
+        noremap! l д
+        noremap! ; ж
+        noremap! ' э
+        noremap! z я
+        noremap! x ч
+        noremap! c с
+        noremap! v м
+        noremap! b и
+        noremap! n т
+        noremap! m ь
+        noremap! , б
+        noremap! . ю
+        noremap! / .
+        noremap! Q Й
+        noremap! W Ц
+        noremap! E У
+        noremap! R К
+        noremap! T Е
+        noremap! Y Н
+        noremap! U Г
+        noremap! I Ш
+        noremap! O Щ
+        noremap! P З
+        noremap! { Х
+        noremap! } Ъ
+        noremap! A Ф
+        noremap! S Ы
+        noremap! D В
+        noremap! F А
+        noremap! G П
+        noremap! H Р
+        noremap! J О
+        noremap! K Л
+        noremap! L Д
+        noremap! : Ж
+        noremap! " Э
+        noremap! Z Я
+        noremap! X Ч
+        noremap! C С
+        noremap! V М
+        noremap! B И
+        noremap! N Т
+        noremap! M Ь
+        noremap! < Б
+        noremap! > Ю
+        noremap! ? ,
+        let g:russianMode = 1
     endif
 endfunction
 

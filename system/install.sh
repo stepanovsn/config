@@ -6,6 +6,7 @@ install_system() {
         "chromium"
         "bluez-utils"
         "firefox"
+        "gedit"
         "libreoffice-still"
         "pulseaudio"
         "pulseaudio-alsa"

@@ -15,6 +15,7 @@ install_base() {
         "mtools"
         "ncdu"
         "net-tools"
+        "ntfs-3g"
         "openssh"
         "openssl"
         "openvpn"

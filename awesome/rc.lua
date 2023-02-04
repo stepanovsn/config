@@ -417,8 +417,10 @@ globalkeys = gears.table.join(
     -- Swap with previous client
     awful.key({ modkey, "Shift" }, "k", function () awful.client.swap.byidx( -1) end),
 
-    -- Go to next screen
-    awful.key({ modkey }, "i", function () awful.screen.focus_relative( 1) end),
+    -- Go to left screen
+    awful.key({ modkey }, "i", function () awful.screen.focus_relative(-1) end),
+    -- Go to right screen
+    awful.key({ modkey }, "o", function () awful.screen.focus_relative(1) end),
 
     -- Switch to next layout
     awful.key({ modkey}, "space", function () awful.layout.inc(1) end),
@@ -480,14 +482,17 @@ clientkeys = gears.table.join(
     awful.key({ modkey, "Shift"   }, "c", function (c) c:kill() end),
     -- Toggle floating
     awful.key({ modkey, "Control" }, "space", awful.client.floating.toggle),
-    -- Move to another screen
-    awful.key({ modkey}, "o", function (c) c:move_to_screen() end),
+    -- Move to left screen
+    awful.key({ modkey, "Shift"}, "i", function (c) c:move_to_screen(c.screen.index - 1) end),
+    -- Move to right screen
+    awful.key({ modkey, "Shift"}, "o", function (c) c:move_to_screen() end),
     -- Move to right tag
     awful.key({ modkey, "Shift"   }, "l",
         function (c)
             local new_tag_index = math.fmod(c.first_tag.index, 3) + 1
             local tag = awful.screen.focused().tags[new_tag_index]
             c:move_to_tag(tag)
+            awful.tag.viewnext()
         end),
     -- Move to left tag
     awful.key({ modkey, "Shift"   }, "h",
@@ -498,6 +503,7 @@ clientkeys = gears.table.join(
             end
             local tag = awful.screen.focused().tags[new_tag_index]
             c:move_to_tag(tag)
+            awful.tag.viewprev()
         end)
 )
 

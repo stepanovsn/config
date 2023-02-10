@@ -40,6 +40,10 @@ r.storage_open() {
         return;
     fi
 
+    if [ ! -d "/storage" ]; then
+        sudo mkdir -p /storage
+    fi
+
     sudo cryptsetup luksOpen ${1} usb_storage
     sudo mount /dev/mapper/usb_storage /storage
     sudo chmod -R ugo+rw /storage

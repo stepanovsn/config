@@ -70,8 +70,8 @@ r.storage_sync() {
         return;
     fi
 
-    rsync -vcrtuh --delete ${REG_CONFIG} /storage/storage
-    rsync -vcrtuh --delete ${REG_STORAGE} /storage/storage
+    rsync -vcrtuh --delete ${REG_CONFIG} /storage
+    rsync -vcrtuh --delete ${REG_STORAGE} /storage
 }
 
 # Add fzf key-bindings

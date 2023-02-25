@@ -23,6 +23,7 @@ install_base() {
         "python-pip"
         "tar"
         "termshark"
+        "trash-cli"
         "unrar"
         "unzip"
         "upower"

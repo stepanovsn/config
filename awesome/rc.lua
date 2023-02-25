@@ -397,7 +397,10 @@ globalkeys = gears.table.join(
     -- Open Thunar
     awful.key({ modkey}, "F5", function () awful.spawn("thunar") end),
     -- Reload awesome
-    awful.key({ modkey, "Control" }, "r", awesome.restart),
+    awful.key({ modkey, "Control" }, "r", function ()
+        awful.util.spawn_with_shell("~/.fehbg")
+        awesome.restart()
+    end),
     -- Quit awesome
     awful.key({ modkey, "Shift"   }, "q", awesome.quit),
 

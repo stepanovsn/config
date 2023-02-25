@@ -1,4 +1,12 @@
 #!/bin/sh
-if [ -f "${HOME}/resources/wallpaper.jpg" ]; then
-    feh --no-fehbg --bg-tile "${HOME}/resources/wallpaper.jpg"
+
+WALLPAPER="${HOME}/resources/wallpaper.jpg"
+if [ -f $WALLPAPER ]; then
+    WALLPAPER_WIDTH=$(mediainfo $WALLPAPER | grep -E "^Width\s+:" | sed 's/ \+/ /g' | cut -d ' ' -f 3- | rev | cut -d ' ' -f 2- | rev)
+    WALLPAPER_HEIGHT=$(mediainfo $WALLPAPER | grep -E "^Height\s+:" | sed 's/ \+/ /g' | cut -d ' ' -f 3- | rev | cut -d ' ' -f 2- | rev)
+    if [ "${WALLPAPER_WIDTH}" == "3 840" ] && [ "${WALLPAPER_HEIGHT}" == "2 160" ]; then
+        feh --no-fehbg --bg-tile $WALLPAPER
+    else
+        feh --no-fehbg --bg-max $WALLPAPER
+    fi
 fi

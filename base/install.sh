@@ -5,6 +5,7 @@ install_base() {
         "bash-completion"
         "cmake"
         "dmidecode"
+        "dnsutils"
         "dosfstools"
         "fzf"
         "gcc"

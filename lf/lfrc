@@ -1,5 +1,5 @@
 # Main settings
-set hidden on
+set nohidden
 set incsearch on
 set ignorecase on
 set smartcase on

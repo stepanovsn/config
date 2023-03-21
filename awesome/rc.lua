@@ -18,6 +18,12 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 
+-- For notification, use:
+-- naughty.notify({text='some message'})
+-- naughty.notify({text=some_string})
+-- naughty.notify({text=tostring(some_number)})
+-- naughty.notify({text=tostring(#some_array)})  -- for array w/o holes
+
 -- xrandr to handle multiple monitors
 local xrandr = require("xrandr")
 
@@ -398,6 +404,7 @@ globalkeys = gears.table.join(
     awful.key({ modkey}, "F5", function () awful.spawn("thunar") end),
     -- Reload awesome
     awful.key({ modkey, "Control" }, "r", function ()
+        xrandr.disable_disconnected_outputs()
         awful.util.spawn_with_shell("~/.fehbg")
         awesome.restart()
     end),

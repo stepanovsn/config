@@ -25,6 +25,28 @@ local function outputs()
    return outputs
 end
 
+local function disable_disconnected_outputs()
+    local xrandr = io.popen("xrandr -q --current")
+    if not xrandr then
+        return
+    end
+
+    local any_output = false
+    local cmd = "xrandr"
+    for line in xrandr:lines() do
+        local output = line:match("^([%w-]+) disconnected ")
+        if output then
+            cmd = cmd .. " --output " .. output .. " --off"
+            any_output = true
+        end
+    end
+    xrandr:close()
+
+    if any_output then
+        spawn(cmd, false)
+    end
+end
+
 local function arrange(out)
    -- We need to enumerate all permutations of horizontal outputs.
 
@@ -132,5 +154,6 @@ return {
    outputs = outputs,
    arrange = arrange,
    menu = menu,
-   xrandr = xrandr
+   xrandr = xrandr,
+   disable_disconnected_outputs = disable_disconnected_outputs
 }

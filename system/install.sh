@@ -23,7 +23,7 @@ install_system() {
     step_upgrade_pacman ${packages[@]}
     step_service_activate bluetooth
     step_install_snap stellarium-daily
-    step_upgrade_aur zoom
+    step_upgrade_yay zoom
 
     local bashrc_updated=0
     local bashrc=$HOME/.bashrc

@@ -215,6 +215,21 @@ step_remove_pacman() {
     step_print "Removed ${#} pacman packages"
 }
 
+step_upgrade_yay() {
+    if [ "$#" -eq 0 ]; then
+        step_failed "step_upgrade_yay() incorrect number of arguments"
+    fi
+
+    step_print_temp "Upgrading ${#} yay packages.."
+
+    local packages="${@}"
+    if ! yay -S --noconfirm ${packages} &> /dev/null; then
+        step_failed "Failed to upgrade yay packages: ${packages}"
+    fi
+
+    step_print "Upgraded ${#} yay packages"
+}
+
 step_upgrade_aur() {
     if [ "$#" -eq 0 ]; then
         step_failed "step_upgrade_aur() incorrect number of arguments"

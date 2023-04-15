@@ -50,6 +50,7 @@ install_base() {
 
         step_upgrade_pacman ${packages[@]}
 
+        step_upgrade_aur yay
         step_upgrade_aur snapd
         step_service_activate snapd
     else

@@ -11,6 +11,7 @@ REG_MACHINE_LIST=(
 ALL_COMPONENTS=(
     "nvidia"
     "x"
+    "grub"
     "awesome"
     "picom"
     "feh"

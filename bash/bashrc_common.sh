@@ -80,18 +80,18 @@ r.reload_audio() {
 
 r.status_color() {
     for mode in {0..4}; do
-        for fg in {31..37}; do
+        for fg in {30..37}; do
             echo -ne "\e[$mode;$fg;40m [$mode;$fg;40m \e[0m "
         done
         echo
     done
 
-    for fg in {31..37}; do
+    for fg in {30..37}; do
         echo -ne "\e[7;$fg;40m [7;$fg;40m \e[0m "
     done
     echo
 
-    for bg in {41..47}; do
+    for bg in {40..47}; do
         echo -ne "\e[0;30;${bg}m [0;30;${bg}m \e[0m "
     done
     echo

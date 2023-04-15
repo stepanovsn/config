@@ -11,7 +11,10 @@ call plug#begin('~/.local/share/nvim/site/plugged')
 call plug#end()
 
 " Settings: Main
-set termguicolors
+if (match(system("tput colors"), "8") == -1)
+    set termguicolors
+endif
+
 syntax enable
 set ffs=unix,dos,mac
 set timeoutlen=3000

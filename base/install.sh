@@ -36,6 +36,7 @@ install_base() {
         packages+=(
             "base-devel"
             "gtest"
+            "xz"
         )
 
         step_print_temp "Updating keyring.."
@@ -56,6 +57,7 @@ install_base() {
             "clang-tidy"
             "libgtest-dev"
             "rar"
+            "xz-utils"
         )
 
         step_print_temp "Updating apt indices.."

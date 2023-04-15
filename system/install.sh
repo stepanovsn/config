@@ -15,6 +15,7 @@ install_system() {
         "pulseaudio-jack"
         "slock"
         "telegram-desktop"
+        "terminus-font"
         "thunar"
         "tumbler"
         "vlc"
@@ -50,6 +51,17 @@ install_system() {
         step_print "$bashrc is already updated"
     else
         step_print "$bashrc updated"
+    fi
+
+    local vconsole_conf="/etc/vconsole.conf"
+    if ! [ -f $vconsole_conf ]; then
+        step_failed "$vconsole_conf not found"
+    else
+        local font="FONT=ter-v20n"
+        if ! grep -q "${font}" $vconsole_conf; then
+            step_failed "Vt font is not set or incorrect"
+        fi
+        step_print "Vt font is correct"
     fi
 
     step_done

@@ -158,7 +158,7 @@ hi VertSplit guifg=#343d4d guibg=#343d4d ctermfg=8 ctermbg=0
 hi StatusLine guifg=#343d4d guibg=#343d4d ctermfg=8 ctermbg=0
 hi StatusLineNC guifg=#343d4d guibg=#343d4d ctermfg=8 ctermbg=0
 hi LineNr guifg=#4c566a ctermfg=8
-hi CursorLineNr guifg=#d8dee9 guibg=#343d4d ctermfg=7 ctermbg=0
+hi CursorLineNr guifg=#d8dee9 guibg=#343d4d cterm=none ctermfg=7 ctermbg=0
 hi Normal guifg=#e5e9f0 guibg=#282e38 ctermfg=7 ctermbg=0
 hi EndOfBuffer guifg=#282e38 ctermfg=0
 hi DiffAdd guibg=#343d4d ctermbg=0

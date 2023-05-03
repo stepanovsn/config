@@ -312,9 +312,28 @@ nnoremap <Leader>mc :delm A-Z<CR>
 nnoremap <silent><expr> <F9> (&hls && v:hlsearch ? ':nohls' : ':set hls')."\n"
 set pastetoggle=<Leader>p
 
-" Keymap: Minimal mode
-nnoremap <Leader>vm :execute 'set nonu \| set nornu \| set nolist'<CR>
-nnoremap <Leader>vf :execute 'set nu \| set rnu \| set list'<CR>
+" Keymap: View mode
+nnoremap <Leader>vc :<C-u>call SetCodeViewMode()<CR>
+nnoremap <Leader>vr :<C-u>call SetReaderViewMode()<CR>
+nnoremap <Leader>vm :<C-u>call SetMinimalViewMode()<CR>
+
+function! SetCodeViewMode()
+    set number
+    set relativenumber
+    set list
+endfunction
+
+function! SetReaderViewMode()
+    set number
+    set norelativenumber
+    set nolist
+endfunction
+
+function! SetMinimalViewMode()
+    set nonumber
+    set norelativenumber
+    set nolist
+endfunction
 
 " Keymap: Lf
 command! LfcdCurrentFile call OpenLfIn("%", 'cd')
@@ -431,8 +450,6 @@ endfunction
 
 function! ToggleRussianMode(...)
     if g:russianMode
-        unmap! `
-        unmap! ~
         unmap! @
         unmap! #
         unmap! $
@@ -506,8 +523,6 @@ function! ToggleRussianMode(...)
         unmap! ?
         let g:russianMode = 0
     else
-        noremap! ` ё
-        noremap! ~ Ё
         noremap! @ "
         noremap! # №
         noremap! $ ;

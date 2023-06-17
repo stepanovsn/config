@@ -2,7 +2,7 @@
 
 install_nvim() {
     if distro_arch; then
-        step_upgrade_pacman neovim
+        step_upgrade_pacman neovim python-pynvim
     else
         step_install_snap "nvim --classic"
     fi
@@ -11,12 +11,6 @@ install_nvim() {
     local vimplug_file="${XDG_DATA_HOME:-$HOME/.local/share}/nvim/site/autoload/plug.vim"
     local vimplug_install="curl -fLo ${vimplug_file} --create-dirs \
         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
-
-    step_print_temp "Installing pynvim.."
-    if ! pip3 install pynvim &> /dev/null; then
-        step_failed "Failed to install pynvim"
-    fi
-    step_print "Pynvim installed"
 
     if [ -f ${vimplug_file} ]; then
         rm ${vimplug_file}

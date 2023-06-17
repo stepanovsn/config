@@ -1,9 +1,9 @@
 # Main settings
 set nohidden
-set incsearch on
-set ignorecase on
-set smartcase on
-set wrapscan on
+set incsearch true
+set ignorecase true
+set smartcase true
+set wrapscan true
 set tabstop 4
 set findlen 2
 

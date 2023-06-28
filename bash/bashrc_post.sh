@@ -74,6 +74,112 @@ r.storage_sync() {
     rsync -vcrtuh --delete ${REG_STORAGE} /storage
 }
 
+r.gpg_encrypt() {
+    if [ "$#" -ne 1 ]; then
+        printf "${cRed}specify the file/directory${cNone}\n"
+        return;
+    fi
+
+    local input="${1}"
+    if [ ! -e "${input}" ]; then
+        printf "${cRed}${input} not found${cNone}\n"
+        return;
+    fi
+
+    if [ "$(pwd)" != "$(dirname $(realpath "${input}"))" ]; then
+        printf "${cRed}${input} is located outside this directory${cNone}\n"
+        return;
+    fi
+
+    local input="$(basename ${input})"
+    local cleanup=""
+    if [ -d "${input}" ]; then
+        local archive="${input}.tar"
+        if [ -e "${archive}" ]; then
+            printf "${cRed}can't create ${archive}. file already exists${cNone}\n"
+            return;
+        fi
+
+        tar cvf "${archive}" "${input}"
+        local input="${archive}"
+        local cleanup="${archive}"
+    elif [ ! -f "${input}" ]; then
+        printf "${cRed}${input} is neither file nor directory${cNone}\n"
+        return;
+    fi
+
+    local output="${input}.gpg"
+    if [ -e "${output}" ]; then
+        printf "${cRed}${output} already exists${cNone}\n"
+    else
+        gpg --symmetric --cipher-algo AES256 --no-symkey-cache --output "${output}" "${input}"
+        if [ -e "${output}" ]; then
+            echo "${output} created"
+        else
+            printf "${cRed}${output} hasn't been created. something went wrong${cNone}\n"
+        fi
+    fi
+
+    if [ ! -z "${cleanup}" ]; then
+        rm "${cleanup}"
+    fi
+}
+
+r.gpg_decrypt() {
+    if [ "$#" -ne 1 ]; then
+        printf "${cRed}specify the encrypted file${cNone}\n"
+        return;
+    fi
+
+    local input="${1}"
+    if [ ! -f "${input}" ]; then
+        printf "${cRed}${input} is not a file${cNone}\n"
+        return;
+    fi
+
+    if [ "$(pwd)" != "$(dirname $(realpath "${input}"))" ]; then
+        printf "${cRed}${input} is located outside this directory${cNone}\n"
+        return;
+    fi
+
+    local input="$(basename ${input})"
+    if [ "${input##*.}" != "gpg" ]; then
+        printf "${cRed}${input} is not gpg signed file${cNone}\n"
+        return;
+    fi
+
+    local output="${input%.*}"
+    if [ -e "${output}" ]; then
+        printf "${cRed}${output} already exists${cNone}\n"
+        return;
+    fi
+
+    gpg --decrypt --cipher-algo AES256 --no-symkey-cache --output "${output}" "${input}"
+    if [ ! -e "${output}" ]; then
+        printf "${cRed}${output} hasn't been created. something went wrong${cNone}\n"
+        return;
+    fi
+
+    if [ "${output##*.}" != "tar" ]; then
+        echo "${output} created"
+        return;
+    fi
+
+    local directory="${output%.*}"
+    if [ -e "${directory}" ]; then
+        printf "${cRed}${directory} already exists${cNone}\n"
+    else
+        tar xvf "${output}"
+        if [ -e "${output}" ]; then
+            echo "${directory} created"
+        else
+            printf "${cRed}${directory} hasn't been created. something went wrong${cNone}\n"
+        fi
+    fi
+
+    rm "${output}"
+}
+
 # Add fzf key-bindings
 source "$HOME/.local/share/nvim/site/plugged/fzf/shell/key-bindings.bash" &> /dev/null
 

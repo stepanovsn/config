@@ -28,13 +28,6 @@ set mouse=
 set diffopt=filler,context:18
 set diffopt+=vertical
 
-" Settings: Line numbers
-set numberwidth=6
-set relativenumber
-set number
-set cursorline
-set cursorlineopt=number
-
 " Settings: Tabs
 set tabstop=4
 set shiftwidth=0
@@ -56,6 +49,7 @@ hi ColorColumn guibg=#303845 ctermbg=8
 " Settings: Other
 autocmd FileType git setlocal foldmethod=syntax
 autocmd BufEnter * :syntax sync minlines=50
+autocmd VimEnter * call SetCodeViewMode()
 
 " Utils: Ctags
 set tags=./tags,tags;$HOME
@@ -242,6 +236,9 @@ if has('termguicolors') && &termguicolors
     let g:terminal_color_15 = '#e8e8e8'
 endif
 
+" Colors: special
+hi Cursor blend=100
+
 " Keymap: Split motion
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
@@ -318,21 +315,40 @@ nnoremap <Leader>vr :<C-u>call SetReaderViewMode()<CR>
 nnoremap <Leader>vm :<C-u>call SetMinimalViewMode()<CR>
 
 function! SetCodeViewMode()
-    set number
+    set numberwidth=6
     set relativenumber
+    set number
+    set cursorline
+    set cursorlineopt=number
     set list
+    set cmdheight=1
+    set laststatus=2
+    set showtabline=2
+    set guicursor-=a:Cursor
 endfunction
 
 function! SetReaderViewMode()
-    set number
+    set numberwidth=12
     set norelativenumber
+    set number
+    set nocursorline
     set nolist
+    set cmdheight=0
+    set laststatus=0
+    set showtabline=0
+    set guicursor+=a:Cursor
 endfunction
 
 function! SetMinimalViewMode()
-    set nonumber
+    set numberwidth=6
     set norelativenumber
+    set nonumber
+    set nocursorline
     set nolist
+    set cmdheight=1
+    set laststatus=2
+    set showtabline=2
+    set guicursor-=a:Cursor
 endfunction
 
 " Keymap: Lf

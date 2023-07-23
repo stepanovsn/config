@@ -13,6 +13,7 @@ install_system() {
         "pulseaudio-alsa"
         "pulseaudio-bluetooth"
         "pulseaudio-jack"
+        "scrot"
         "slock"
         "telegram-desktop"
         "terminus-font"
@@ -63,6 +64,10 @@ install_system() {
         fi
         step_print "Vt font is correct"
     fi
+
+    local screenshots_dir=$HOME/screenshots
+    mkdir -p "$screenshots_dir"
+    step_print "$screenshots_dir created"
 
     step_done
 }

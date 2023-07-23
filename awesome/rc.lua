@@ -474,7 +474,13 @@ globalkeys = gears.table.join(
           function ()
               myscreen = awful.screen.focused()
               myscreen.mywibox.visible = not myscreen.mywibox.visible
-          end)
+          end),
+
+    -- Make a screenshot
+    awful.key({ modkey }, "s",
+        function()
+            awful.util.spawn_with_shell("scrot -q 100 ~/screenshots/%Y-%m-%d_%H:%M:%S.jpg")
+        end)
 )
 
 clientkeys = gears.table.join(

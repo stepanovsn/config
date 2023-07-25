@@ -4,8 +4,10 @@ install_base() {
     local packages=(
         "bash-completion"
         "cmake"
+        "csvkit"
         "dmidecode"
         "dnsutils"
+        "docx2txt"
         "dosfstools"
         "fzf"
         "gcc"
@@ -14,6 +16,7 @@ install_base() {
         "lshw"
         "minicom"
         "moreutils"
+        "mp3info"
         "mtools"
         "ncdu"
         "net-tools"
@@ -30,6 +33,7 @@ install_base() {
         "unrar"
         "unzip"
         "upower"
+        "usbutils"
         "wget"
         "zip"
     )

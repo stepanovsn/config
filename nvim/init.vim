@@ -366,11 +366,20 @@ nnoremap <Leader>u :mod<CR>
 nnoremap <Leader>ac :call ClangTidy()<CR><CR>
 
 " Functions
+function! OpenQflist()
+    copen
+    let length = len(getqflist()) + 1
+    if (length > 15)
+        let length = 15
+    endif
+    call feedkeys(":resize " . length . "\<CR>")
+endfunction
+
 function! Rg(...)
     let searchString = join(a:000, ' ')
     let files = split(system(&grepprg . " -F -l '" . searchString . "'"), '\n')
     call setqflist([], ' ', {'lines': files, 'efm': '%f'})
-    copen
+    call OpenQflist()
     let @/ = EscapeVimRegexp(searchString)
 endfunction
 
@@ -378,14 +387,14 @@ function! Rgl(...)
     let searchString = join(a:000, ' ')
     let lines = split(system(&grepprg . " -F '" . searchString . "'"), '\n')
     call setqflist([], ' ', {'lines': lines})
-    copen
+    call OpenQflist()
 endfunction
 
 function! Rge(...)
     let searchString = join(a:000, ' ')
     let lines = split(system(&grepprg . " '" . searchString . "'"), '\n')
     call setqflist([], ' ', {'lines': lines})
-    copen
+    call OpenQflist()
 endfunction
 
 function! SearchLocal(string)

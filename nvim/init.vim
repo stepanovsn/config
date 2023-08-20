@@ -332,6 +332,7 @@ nnoremap <Leader>vt o━━━━━━━━━━━━━━━━━━━�
             \───────────────────────────────────────────<ESC>kkk0la
 nnoremap <Leader>vf i«»<ESC>i
 nnoremap <Leader>vd i‹›<ESC>i
+nnoremap <Leader>vs O─ │ ━ ╱ ╲ ▒ 🮙<ESC>j0
 
 " Keymap: Other
 nnoremap <F8> :ToggleBufExplorer<CR>

@@ -23,6 +23,7 @@ set smartcase
 set guicursor=a:block-blinkon1
 set guicursor+=i:ver100-blinkon1
 set mouse=
+set concealcursor=n
 
 " Settings: Diff
 set diffopt=filler,context:18
@@ -210,11 +211,11 @@ hi Todo guifg=#4aa881 ctermfg=2
 
 " Colors: vimnote
 hi VimnoteHeader guifg=#cf8e6d ctermfg=3
-hi VimnoteSubheader guifg=#db79b9 ctermfg=5
-hi VimnoteFocus guifg=#5fafff ctermfg=6
+hi VimnoteSubheader guifg=#ebcb8b ctermfg=11
+hi VimnoteFocused guifg=#5fafff ctermfg=6
 hi VimnoteDimmed guifg=#8697b5 ctermfg=8
-hi VimnoteUnfocus guifg=#4f5a73 ctermfg=8
-hi VimnoteHide guifg=#282e38 ctermfg=0
+hi VimnoteInstrumental guifg=#4f5a73 ctermfg=8
+hi VimnoteConcealed guifg=#db79b9 ctermfg=5
 
 " Colors: 16
 if has('termguicolors') && &termguicolors
@@ -309,11 +310,37 @@ nnoremap <Leader>mc :delm A-Z<CR>
 nnoremap <silent><expr> <F9> (&hls && v:hlsearch ? ':nohls' : ':set hls')."\n"
 set pastetoggle=<Leader>p
 
+" Keymap: Lf
+command! LfcdCurrentFile call OpenLfIn("%", 'cd')
+nnoremap <C-n> :Lf<CR>
+nnoremap <C-b> :LfWorkingDirectory<CR>
+nnoremap <Leader>n :LfcdCurrentFile<CR>
+nnoremap <Leader>b :Lfcd<CR>
+
 " Keymap: View mode
 nnoremap <Leader>vc :<C-u>call SetCodeViewMode()<CR>
 nnoremap <Leader>vr :<C-u>call SetReaderViewMode()<CR>
 nnoremap <Leader>vm :<C-u>call SetMinimalViewMode()<CR>
 
+" Keymap: Inserting
+nnoremap <Leader>vh O=====================================================
+            \  =====================================================<ESC>bhi
+nnoremap <Leader>vt o━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━<CR><ESC>0i
+            \    │    │    │<CR><ESC>0i
+            \━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━<CR><ESC>0i
+            \    │    │    │<CR><ESC>0i
+            \───────────────────────────────────────────<ESC>kkk0la
+nnoremap <Leader>vf i«»<ESC>i
+nnoremap <Leader>vd i‹›<ESC>i
+
+" Keymap: Other
+nnoremap <F8> :ToggleBufExplorer<CR>
+noremap <F10> :call ToggleRussianMode()<CR>
+inoremap <F10> <C-o>:call ToggleRussianMode()<CR>
+nnoremap <Leader>u :mod<CR>
+nnoremap <Leader>ac :call ClangTidy()<CR><CR>
+
+" Functions
 function! SetCodeViewMode()
     set numberwidth=6
     set relativenumber
@@ -325,6 +352,7 @@ function! SetCodeViewMode()
     set laststatus=2
     set showtabline=2
     set guicursor-=a:Cursor
+    set conceallevel=0
 endfunction
 
 function! SetReaderViewMode()
@@ -337,6 +365,7 @@ function! SetReaderViewMode()
     set laststatus=0
     set showtabline=0
     set guicursor+=a:Cursor
+    set conceallevel=3
 endfunction
 
 function! SetMinimalViewMode()
@@ -349,28 +378,16 @@ function! SetMinimalViewMode()
     set laststatus=2
     set showtabline=2
     set guicursor-=a:Cursor
+    set conceallevel=0
 endfunction
 
-" Keymap: Lf
-command! LfcdCurrentFile call OpenLfIn("%", 'cd')
-nnoremap <C-n> :Lf<CR>
-nnoremap <C-b> :LfWorkingDirectory<CR>
-nnoremap <Leader>n :LfcdCurrentFile<CR>
-nnoremap <Leader>b :Lfcd<CR>
-
-" Keymap: Other
-nnoremap <F8> :ToggleBufExplorer<CR>
-noremap <F10> :call ToggleRussianMode()<CR>
-inoremap <F10> <C-o>:call ToggleRussianMode()<CR>
-nnoremap <Leader>u :mod<CR>
-nnoremap <Leader>ac :call ClangTidy()<CR><CR>
-
-" Functions
 function! OpenQflist()
     copen
     let length = len(getqflist()) + 1
     if (length > 15)
         let length = 15
+    elseif (length < 3)
+        let length = 3
     endif
     call feedkeys(":resize " . length . "\<CR>")
 endfunction

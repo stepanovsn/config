@@ -94,6 +94,26 @@ step_hard_link () {
     step_print "Created hard link: \"${1}\" -> \"${2}\""
 }
 
+step_replace_file_sudo () {
+    if [ "$#" -ne 2 ]; then
+        step_failed "step_replace_file_sudo() incorrect number of arguments"
+    fi
+
+    if ! sudo mkdir -p $(dirname ${1}) &> /dev/null; then
+        step_failed "Failed to replace file \"${2}\" -> \"${1}\""
+    fi
+
+    if ! sudo rm -f ${1} &> /dev/null; then
+        step_failed "Failed to replace file \"${2}\" -> \"${1}\""
+    fi
+
+    if ! sudo cp ${2} ${1} &> /dev/null; then
+        step_failed "Failed to replace file \"${2}\" -> \"${1}\""
+    fi
+
+    step_print "File replaced: \"${2}\" -> \"${1}\""
+}
+
 step_reset_dir () {
     if [ "$#" -ne 1 ]; then
         step_failed "step_reset_dir() incorrect number of arguments"

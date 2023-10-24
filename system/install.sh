@@ -9,6 +9,7 @@ install_system() {
         "evince"
         "gedit"
         "libreoffice-still"
+        "obs-studio"
         "pulseaudio"
         "pulseaudio-alsa"
         "pulseaudio-bluetooth"
@@ -68,6 +69,8 @@ install_system() {
     local screenshots_dir=$HOME/screenshots
     mkdir -p "$screenshots_dir"
     step_print "$screenshots_dir created"
+
+    step_replace_file_sudo /etc/systemd/logind.conf.d/logind.conf $ROOT_DIR/system/systemd_configs/logind.conf
 
     step_done
 }

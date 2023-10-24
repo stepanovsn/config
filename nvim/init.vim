@@ -167,6 +167,7 @@ hi IncSearch guifg=#bf616a guibg=#2e3440 ctermfg=0 ctermbg=3
 hi Whitespace guifg=#434c5e ctermfg=8
 hi Visual guibg=#434c5e ctermfg=0 ctermbg=2
 hi MatchParen none
+hi Conceal guifg=#e5e9f0 guibg=#282e38 ctermfg=7 ctermbg=0
 
 " Colors: code
 hi Comment guifg=#4aa881 ctermfg=2
@@ -323,16 +324,22 @@ nnoremap <Leader>vr :<C-u>call SetReaderViewMode()<CR>
 nnoremap <Leader>vm :<C-u>call SetMinimalViewMode()<CR>
 
 " Keymap: Inserting
-nnoremap <Leader>vh O=====================================================
+nnoremap <Leader>oh O=====================================================
             \  =====================================================<ESC>bhi
-nnoremap <Leader>vt o━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━<CR><ESC>0i
+nnoremap <Leader>ot o━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━<CR><ESC>0i
             \    │    │    │<CR><ESC>0i
             \━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━<CR><ESC>0i
             \    │    │    │<CR><ESC>0i
             \───────────────────────────────────────────<ESC>kkk0la
-nnoremap <Leader>vf i«»<ESC>i
-nnoremap <Leader>vd i‹›<ESC>i
-nnoremap <Leader>vs O─ │ ━ ╱ ╲ ▒ 🮙<ESC>j0
+nnoremap <Leader>of a«»<ESC>i
+vnoremap <Leader>of c«<C-R>"»<ESC>
+nnoremap <Leader>obf a⟪⟫<ESC>i
+vnoremap <Leader>obf c⟪<C-R>"⟫<ESC>
+nnoremap <Leader>od a‹›<ESC>i
+vnoremap <Leader>od c‹<C-R>"›<ESC>
+nnoremap <Leader>obd a⟨⟩<ESC>i
+vnoremap <Leader>obd c⟨<C-R>"⟩<ESC>
+nnoremap <Leader>os o<ESC>o<ESC>O─│┌┐└┘├┤┬┴┼<Enter>━┃┏┓┗┛┣┫┳┻╋<Enter>◄ ► ▲ ▼ 🢐 🢒 🢑 🢓<Enter>╱╲<Enter>▒🮙<ESC>4k0
 
 " Keymap: Other
 nnoremap <F8> :ToggleBufExplorer<CR>
@@ -366,7 +373,7 @@ function! SetReaderViewMode()
     set laststatus=0
     set showtabline=0
     set guicursor+=a:Cursor
-    set conceallevel=3
+    set conceallevel=2
 endfunction
 
 function! SetMinimalViewMode()

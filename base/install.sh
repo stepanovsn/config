@@ -12,6 +12,7 @@ install_base() {
         "fzf"
         "gcc"
         "hwinfo"
+        "inxi"
         "libheif"
         "lshw"
         "minicom"
@@ -42,6 +43,7 @@ install_base() {
         packages+=(
             "base-devel"
             "gtest"
+            "pacman-contrib"
             "xz"
         )
 

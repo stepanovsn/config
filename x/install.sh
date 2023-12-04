@@ -28,7 +28,7 @@ install_x() {
     # X files
     step_soft_link $ROOT_DIR/x/.xinitrc $HOME/.xinitrc
     step_soft_link $ROOT_DIR/x/.xprofile $HOME/.xprofile
-    step_soft_link $ROOT_DIR/x/.Xresources $HOME/.Xresources
+    step_soft_link "$ROOT_DIR/x/color_schemes/.Xresources_${REG_CONSOLE_COLOR_SCHEME}" $HOME/.Xresources
 
     if $(xhost >& /dev/null) && ! xrdb -merge ~/.Xresources &> /dev/null; then
         step_warn "Failed to merge Xresources"

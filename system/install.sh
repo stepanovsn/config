@@ -28,16 +28,12 @@ install_system() {
     step_install_snap stellarium-daily
     step_upgrade_yay zoom
 
-    local bashrc_updated=0
     local bashrc=$HOME/.bashrc
-    local config_text="export REG_CONFIG=${ROOT_DIR}"
-    local storage_text="export REG_STORAGE="
 
-    if ! grep -xq "${config_text}" $bashrc; then
-        printf "\n# Add config location:\n${config_text}\n" >> $bashrc
-        local bashrc_updated=1
-    fi
+    local config_text="export REG_CONFIG"
+    insert_text_info_file "${bashrc}" "${config_text}=${ROOT_DIR}" "${config_text}" "${REG_NON_COMMENT_LINE}"
 
+    local storage_text="export REG_STORAGE"
     if ! grep -q "${storage_text}" $bashrc; then
         local default_storage=${HOME}/storage
         read -p "Provide storage location [${default_storage}]: " STORAGE_LOCATION
@@ -45,15 +41,10 @@ install_system() {
             STORAGE_LOCATION=${default_storage}
         fi
 
-        printf "\n# Add storage location:\n${storage_text}${STORAGE_LOCATION}\n" >> $bashrc
-        local bashrc_updated=1
+        insert_text_info_file "${bashrc}" "${storage_text}=${STORAGE_LOCATION}" "${storage_text}" "${REG_NON_COMMENT_LINE}"
     fi
 
-    if [ "${bashrc_updated}" -eq 0 ]; then
-        step_print "$bashrc is already updated"
-    else
-        step_print "$bashrc updated"
-    fi
+    step_print "$bashrc updated"
 
     local vconsole_conf="/etc/vconsole.conf"
     if ! [ -f $vconsole_conf ]; then

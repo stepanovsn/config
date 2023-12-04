@@ -1,5 +1,13 @@
 #!/bin/bash
 
+case "${REG_CONSOLE_COLOR_SCHEME,,}" in
+    "moonlight");;
+    "pure");;
+    *) export REG_CONSOLE_COLOR_SCHEME="moonlight";;
+esac
+
+export REG_NON_COMMENT_LINE="\\(^\\s*[^\\s#].*$\\|^$\\)"
+
 # Common variables
 if [ -t 1 ]; then
     cNone='\e[0m'
@@ -398,6 +406,74 @@ minimize_path () {
         -e ':e' -e 's|//|/|g' -e 't e' \
         -e ':f' -e '/^.\{2,\}$/ s|/$||g' -e 't f' \
         <<< ${1})
+}
+
+escape_variable() {
+    if [[ "$#" -ne 1 ]]; then
+        step_failed "escape_variable() incorrect number of arguments"
+    fi
+
+    RESULT=$(sed -e 's|/|\\/|g' -e 's|\.|\\.|g' <<< "${1}")
+}
+
+insert_text_info_file() {
+    if [[ "$#" -lt 2 || "$#" -gt 4 ]]; then
+        step_failed "insert_text_info_file() incorrect number of arguments"
+    fi
+
+    local file=${1}
+    local text=${2}
+    if [[ ! -z ${3} ]]; then
+        local check=${3}
+    fi
+    if [[ ! -z ${4} ]]; then
+        local pattern=${4}
+    fi
+
+    if [ ! -f ${file} ]; then
+        step_failed "insert_text_info_file() ${file} does not exist"
+    fi
+
+    if [[ ! -z ${check} ]] && $(grep -qe "${check}" "${file}"); then
+        return 0
+    fi
+
+    escape_variable "${text}"
+    local text_escaped="${RESULT}"
+    if [[ ! -z ${pattern} ]] && $(grep -qe "${pattern}" "${file}"); then
+        sed -i "0,/${pattern}/s//${text_escaped}\n&/" "${file}"
+    else
+        sed -i "\$a\\${text_escaped}" "${file}"
+    fi
+}
+
+replace_text_in_file() {
+    if [[ "$#" -lt 3 || "$#" -gt 4 ]]; then
+        step_failed "replace_text_in_file() incorrect number of arguments"
+    fi
+
+    local file=${1}
+    local text=${2}
+    local check=${3}
+    if [[ ! -z ${4} ]]; then
+        local pattern=${4}
+    fi
+
+    if [ ! -f ${file} ]; then
+        step_failed "replace_text_in_file() ${file} does not exist"
+    fi
+
+    escape_variable "${check}"
+    local check_escaped="${RESULT}"
+    sed -i "/${check_escaped}/d" "${file}"
+
+    escape_variable "${text}"
+    local text_escaped="${RESULT}"
+    if [[ ! -z ${pattern} ]] && $(grep -qe "${pattern}" "${file}"); then
+        sed -i "0,/${pattern}/s//${text_escaped}\n&/" "${file}"
+    else
+        sed -i "\$a\\${text_escaped}" "${file}"
+    fi
 }
 
 distro_arch() {

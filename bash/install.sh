@@ -2,68 +2,42 @@
 
 install_bash() {
     # Add to user's bashrc
-    local message_shown=0
-    local bashrc_updated=0
     local bashrc=$HOME/.bashrc
-    local bash_source_text="source ${ROOT_DIR}/bash/bashrc_post.sh"
-    local distr_text="export REG_DISTRO=\"${REG_DISTRO}\""
-    local machine_text="export REG_MACHINE=\"${REG_MACHINE}\""
-
     if [ ! -f $bashrc ]; then
         step_warn "$bashrc not found. Default one will be created"
         printf "#!/bin/bash\n" >> $bashrc
-        local message_shown=1
     fi
 
-    if ! grep -xq "${distr_text}" $bashrc; then
-        printf "\n# Specify Linux distribution:\n${distr_text}\n" >> $bashrc
-        local bashrc_updated=1
-    fi
+    local distr_text="export REG_DISTRO"
+    insert_text_info_file "${bashrc}" "${distr_text}=${REG_DISTRO}" "${distr_text}" "${REG_NON_COMMENT_LINE}"
 
     if [ ! -z ${REG_MACHINE} ]; then
-        if ! grep -xq "${machine_text}" $bashrc; then
-            printf "\n# Specify machine profile:\n${machine_text}\n" >> $bashrc
-            local bashrc_updated=1
-        fi
+        local machine_text="export REG_MACHINE"
+        insert_text_info_file "${bashrc}" "${machine_text}=${REG_MACHINE}" "${machine_text}" "${REG_NON_COMMENT_LINE}"
     fi
 
-    if ! grep -xq "${bash_source_text}" $bashrc; then
-        printf "\n# Add custom bash settings:\n${bash_source_text}\n" >> $bashrc
-        local bashrc_updated=1
-    fi
+    local color_scheme_text="export REG_CONSOLE_COLOR_SCHEME"
+    replace_text_in_file "${bashrc}" "${color_scheme_text}=${REG_CONSOLE_COLOR_SCHEME}" "${color_scheme_text}" "${REG_NON_COMMENT_LINE}"
 
-    if [ "${message_shown}" -eq 0 ]; then
-        if [ "${bashrc_updated}" -eq 0 ]; then
-            step_print "$bashrc is already updated"
-        else
-            step_print "$bashrc updated"
-        fi
-    fi
+    local bash_source_text="source ${ROOT_DIR}/bash/bashrc_post.sh"
+    insert_text_info_file "${bashrc}" "${bash_source_text}" "${bash_source_text}"
+
+    step_print "$bashrc updated"
 
     # Add to root's bashrc
-    local message_shown=0
-    local bashrc_updated=0
-    local bashrc=/root/.bashrc
     local bash_source_text="source ${ROOT_DIR}/bash/bashrc_root_post.sh"
 
+    local bashrc=/root/.bashrc
     if [ -z $(sudo find /root -maxdepth 1 -name .bashrc) ]; then
         step_warn "$bashrc not found. Default one will be created"
         printf "#!/bin/bash\n" | sudo tee $bashrc &> /dev/null
-        local message_shown=1
     fi
 
     if ! sudo grep -xq "${bash_source_text}" $bashrc; then
-        printf "\n# Add custom bash settings:\n${bash_source_text}\n" | sudo tee -a $bashrc &> /dev/null
-        local bashrc_updated=1
+        sudo sed -i "\$a\\${bash_source_text}" $bashrc
     fi
 
-    if [ "${message_shown}" -eq 0 ]; then
-        if [ "${bashrc_updated}" -eq 0 ]; then
-            step_print "$bashrc is already updated"
-        else
-            step_print "$bashrc updated"
-        fi
-    fi
+    step_print "$bashrc updated"
 
     # Add default tmux session
     local tmux_main="$HOME/tmux_main.sh"

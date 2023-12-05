@@ -13,7 +13,7 @@ call plug#end()
 " Settings: Define the color scheme
 let color_scheme = $REG_CONSOLE_COLOR_SCHEME
 if (len(color_scheme) == 0)
-    let color_scheme = "moonlight"
+    let color_scheme = "pure"
 endif
 
 " Import colors

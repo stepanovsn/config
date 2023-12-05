@@ -81,7 +81,7 @@ function update_battery(widget)
    if percent < 20 then
        widget:set_markup('<span color="#bd5b5b">' .. percent .. '%</span>')
    elseif percent < 50 then
-       widget:set_markup('<span color="#ebcb8b">' .. percent .. '%</span>')
+       widget:set_markup('<span color="#cfac67">' .. percent .. '%</span>')
    else
        widget:set_markup(percent .. "%")
    end
@@ -144,7 +144,7 @@ lockscreen = function() awful.util.spawn("slock") end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init(gears.filesystem.get_dir("config") .. "themes/regular/theme.lua")
+beautiful.init(gears.filesystem.get_dir("config") .. "themes/pure.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "xterm"
@@ -727,3 +727,16 @@ end)
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
+
+-- No borders when rearranging only 1 non-floating or maximized client
+screen.connect_signal("arrange", function (s)
+    local only_one = #s.tiled_clients == 1
+    local max_layout = s.selected_tag.layout == awful.layout.suit.max
+    for _, c in pairs(s.clients) do
+        if only_one and not c.floating or max_layout or c.maximized then
+            c.border_width = 0
+        else
+            c.border_width = beautiful.border_width -- your border width
+        end
+    end
+end)

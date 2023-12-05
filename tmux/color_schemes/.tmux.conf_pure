@@ -58,10 +58,10 @@ if-shell '[[ $(tput colors) = 8 ]]' {
     set -g message-style 'fg=color7,bold bg=color4'
 } {
     set -g pane-border-style 'fg=#4c566a'
-    set -g pane-active-border-style 'fg=#5fafff'
-    set -g status-style 'bg=#282e38'
-    set -g status-right "#[fg=#a8aeba bg=#343d4d]  #S  "
-    setw -g window-status-current-format '#[fg=#5fafff bg=#232830]  #I#[fg=#767b82]:#[fg=#c0c7d1]#W  '
-    setw -g window-status-format '  #[fg=#5fafff]#I#[fg=#838891]:#W  '
-    set -g message-style 'fg=#eceff4 bg=#005f87'
+    set -g pane-active-border-style 'fg=#66a2de'
+    set -g status-style 'bg=#1b1b1b'
+    set -g status-right "#[fg=#c1c3c9 bg=#272929]  #S  "
+    setw -g window-status-current-format '#[fg=#66a2de bg=#121212]  #I#[fg=#767b82]:#[fg=#c1c3c9]#W  '
+    setw -g window-status-format '  #[fg=#66a2de]#I#[fg=#838891]:#W  '
+    set -g message-style 'fg=#eceff4 bg=#2d5e91'
 }

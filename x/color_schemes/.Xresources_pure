@@ -9,9 +9,9 @@ xterm*allowBoldFonts: false
 XTerm*boldMode: false
 xterm*renderfont: true
 xterm*cursorColor: rgb:6a/eb/92
-xterm*background: rgb:28/2e/38
-xterm*foreground: rgb:e5/e9/f0
-xterm*color0: rgb:18/18/18
+xterm*background: rgb:1b/1b/1b
+xterm*foreground: rgb:c1/c3/c9
+xterm*color0: rgb:1b/1b/1b
 xterm*color1: rgb:c9/57/4f
 xterm*color2: rgb:51/c4/6a
 xterm*color3: rgb:d1/a2/45

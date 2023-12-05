@@ -1,67 +1,67 @@
 function g:AirlineInitColors()
-    hi airline_tab guifg=#a0a6b0 guibg=#343d4d cterm=none ctermfg=8 ctermbg=0
-    hi airline_tabsel guifg=#a0a6b0 guibg=#232830 cterm=none ctermfg=7 ctermbg=0
-    hi airline_tabmod guifg=#eceff4 guibg=#2d5e91 cterm=none ctermfg=6 ctermbg=0
-    hi airline_tablabel guifg=#ced4de guibg=#343d4d cterm=none ctermfg=7 ctermbg=0
+    hi airline_tab guifg=#a0a6b0 guibg=#272729 cterm=none ctermfg=8 ctermbg=0
+    hi airline_tabsel guifg=#a0a6b0 guibg=#121212 cterm=none ctermfg=7 ctermbg=0
+    hi airline_tabmod guifg=#eceff4 guibg=#254569 cterm=none ctermfg=6 ctermbg=0
+    hi airline_tablabel guifg=#ced4de guibg=#272729 cterm=none ctermfg=7 ctermbg=0
 endfunction
 
 " Settings: Ruler
-hi ColorColumn guibg=#303845 ctermbg=8
+hi ColorColumn guibg=#272729 ctermbg=8
 
 " Colors: Special
 hi Cursor blend=100
 
 " Colors: Main
-hi VertSplit guifg=#343d4d guibg=#343d4d ctermfg=8 ctermbg=0
-hi StatusLine guifg=#343d4d guibg=#343d4d ctermfg=8 ctermbg=0
-hi StatusLineNC guifg=#343d4d guibg=#343d4d ctermfg=8 ctermbg=0
-hi LineNr guifg=#4c566a ctermfg=8
-hi CursorLineNr guifg=#d8dee9 guibg=#343d4d cterm=none ctermfg=7 ctermbg=0
-hi Normal guifg=#e5e9f0 guibg=#282e38 ctermfg=7 ctermbg=0
-hi EndOfBuffer guifg=#282e38 ctermfg=0
-hi DiffAdd guibg=#343d4d ctermbg=0
-hi DiffDelete guifg=#232830 guibg=#232830 ctermfg=8 ctermbg=0
-hi DiffChange guibg=#343d4d ctermbg=0
-hi DiffText guibg=#235959 ctermfg=0 ctermbg=6
-hi FoldColumn guifg=#15ebeb guibg=#39465c cterm=none ctermfg=6 ctermbg=0
-hi Folded guifg=#15ebeb guibg=#435573 cterm=none ctermfg=6 ctermbg=0
-hi Search guifg=#2e3440 guibg=#e0c896 ctermfg=0 ctermbg=3
-hi IncSearch guifg=#bf616a guibg=#2e3440 ctermfg=0 ctermbg=3
-hi Whitespace guifg=#434c5e ctermfg=8
-hi Visual guibg=#434c5e ctermfg=0 ctermbg=2
+hi VertSplit guifg=#272729 guibg=#272729 ctermfg=8 ctermbg=0
+hi StatusLine guifg=#272729 guibg=#272729 ctermfg=8 ctermbg=0
+hi StatusLineNC guifg=#272729 guibg=#272729 ctermfg=8 ctermbg=0
+hi LineNr guifg=#46494f ctermfg=8
+hi CursorLineNr guifg=#c1c3c9 guibg=#272729 cterm=none ctermfg=7 ctermbg=0
+hi Normal guifg=#c1c3c9 guibg=#1b1b1b ctermfg=7 ctermbg=0
+hi EndOfBuffer guifg=#1b1b1b ctermfg=0
+hi DiffAdd guibg=#272729 ctermbg=0
+hi DiffDelete guifg=#121212 guibg=#121212 ctermfg=8 ctermbg=0
+hi DiffChange guibg=#272729 ctermbg=0
+hi DiffText guibg=#0f4747 ctermfg=0 ctermbg=6
+hi FoldColumn guifg=#15ebeb guibg=#40444a cterm=none ctermfg=6 ctermbg=0
+hi Folded guifg=#15ebeb guibg=#40444a cterm=none ctermfg=6 ctermbg=0
+hi Search guifg=#2a2e36 guibg=#b8a06c ctermfg=0 ctermbg=3
+hi IncSearch guifg=#bf616a guibg=#2a2e36 ctermfg=0 ctermbg=3
+hi Whitespace guifg=#383838 ctermfg=8
+hi Visual guibg=#383838 ctermfg=0 ctermbg=2
 hi MatchParen none
-hi Conceal guifg=#e5e9f0 guibg=#282e38 ctermfg=7 ctermbg=0
+hi Conceal guifg=#d4dee6 guibg=#1b1b1b ctermfg=7 ctermbg=0
 
 " Colors: Code
 hi Comment guifg=#4aa881 ctermfg=2
 
-hi PreProc guifg=#7c8aa3 ctermfg=8
-hi Define guifg=#7c8aa3 ctermfg=8
-hi Macro guifg=#7c8aa3 ctermfg=8
-hi Include guifg=#7c8aa3 ctermfg=8
+hi PreProc guifg=#727d8f ctermfg=8
+hi Define guifg=#727d8f ctermfg=8
+hi Macro guifg=#727d8f ctermfg=8
+hi Include guifg=#727d8f ctermfg=8
 
-hi Type guifg=#5fafff ctermfg=4
-hi StorageClass guifg=#5fafff ctermfg=4
-hi Structure guifg=#5fafff ctermfg=4
-hi Typedef guifg=#5fafff ctermfg=4
+hi Type guifg=#66a2de ctermfg=4
+hi StorageClass guifg=#66a2de ctermfg=4
+hi Structure guifg=#66a2de ctermfg=4
+hi Typedef guifg=#66a2de ctermfg=4
 
-hi Constant guifg=#7c8aa3 ctermfg=8
+hi Constant guifg=#727d8f ctermfg=8
 hi String guifg=#cf8e6d ctermfg=3
 hi Character guifg=#d08770 ctermfg=3
-hi Number guifg=#87d7ff ctermfg=6
-hi Boolean guifg=#87d7ff  ctermfg=6
-hi Float guifg=#87d7ff ctermfg=6
+hi Number guifg=#88caeb ctermfg=6
+hi Boolean guifg=#88caeb  ctermfg=6
+hi Float guifg=#88caeb ctermfg=6
 
-hi Statement guifg=#5fafff ctermfg=6
-hi Conditional guifg=#5fafff ctermfg=6
-hi Repeat guifg=#5fafff ctermfg=6
-hi Label guifg=#5fafff ctermfg=6
-hi Operator guifg=#5fafff ctermfg=6
-hi Keyword guifg=#5fafff ctermfg=6
-hi Exception guifg=#5fafff ctermfg=6
+hi Statement guifg=#66a2de ctermfg=6
+hi Conditional guifg=#66a2de ctermfg=6
+hi Repeat guifg=#66a2de ctermfg=6
+hi Label guifg=#66a2de ctermfg=6
+hi Operator guifg=#66a2de ctermfg=6
+hi Keyword guifg=#66a2de ctermfg=6
+hi Exception guifg=#66a2de ctermfg=6
 
 hi Identifier guifg=#bd5b5b ctermfg=1
-hi Function guifg=#ebcb8b ctermfg=11
+hi Function guifg=#cfac67 ctermfg=11
 
 hi Special guifg=#875fff ctermfg=5
 hi SpecialChar guifg=#875fff ctermfg=5
@@ -70,14 +70,14 @@ hi Delimiter guifg=#875fff ctermfg=5
 hi SpecialComment guifg=#875fff ctermfg=5
 hi Debug guifg=#875fff ctermfg=5
 
-hi Error guifg=#e5e9f0 guibg=#994e4e ctermfg=7 ctermbg=1
+hi Error guifg=#d4dee6 guibg=#994e4e ctermfg=7 ctermbg=1
 hi Todo guifg=#4aa881 ctermfg=2
 
 " Colors: Vimnote
 hi VimnoteHeader guifg=#cf8e6d ctermfg=3
-hi VimnoteSubheader guifg=#ebcb8b ctermfg=11
-hi VimnoteFocused guifg=#5fafff ctermfg=6
-hi VimnoteDimmed guifg=#8697b5 ctermfg=8
+hi VimnoteSubheader guifg=#cfac67 ctermfg=11
+hi VimnoteFocused guifg=#66a2de ctermfg=6
+hi VimnoteDimmed guifg=#727d8f ctermfg=8
 hi VimnoteInstrumental guifg=#4f5a73 ctermfg=8
 hi VimnoteConcealed guifg=#db79b9 ctermfg=5
 

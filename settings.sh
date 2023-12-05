@@ -3,7 +3,7 @@
 case "${REG_CONSOLE_COLOR_SCHEME,,}" in
     "moonlight");;
     "pure");;
-    *) export REG_CONSOLE_COLOR_SCHEME="moonlight";;
+    *) export REG_CONSOLE_COLOR_SCHEME="pure";;
 esac
 
 export REG_NON_COMMENT_LINE="\\(^\\s*[^\\s#].*$\\|^$\\)"

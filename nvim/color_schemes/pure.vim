@@ -1,6 +1,6 @@
 function g:AirlineInitColors()
     hi airline_tab guifg=#a0a6b0 guibg=#272729 cterm=none ctermfg=8 ctermbg=0
-    hi airline_tabsel guifg=#ced4de guibg=#40444a cterm=none ctermfg=7 ctermbg=0
+    hi airline_tabsel guifg=#a0a6b0 guibg=#121212 cterm=none ctermfg=7 ctermbg=0
     hi airline_tabmod guifg=#eceff4 guibg=#254569 cterm=none ctermfg=6 ctermbg=0
     hi airline_tablabel guifg=#ced4de guibg=#272729 cterm=none ctermfg=7 ctermbg=0
 endfunction
@@ -78,7 +78,7 @@ hi VimnoteHeader guifg=#cf8e6d ctermfg=3
 hi VimnoteSubheader guifg=#cfac67 ctermfg=11
 hi VimnoteFocused guifg=#66a2de ctermfg=6
 hi VimnoteDimmed guifg=#727d8f ctermfg=8
-hi VimnoteInstrumental guifg=#4f5a73 ctermfg=8
+hi VimnoteInstrumental guifg=#46494f ctermfg=8
 hi VimnoteConcealed guifg=#db79b9 ctermfg=5
 
 " Colors: 16

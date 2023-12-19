@@ -160,10 +160,9 @@ modkey = "Mod4"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
-    --awful.layout.suit.floating,
     awful.layout.suit.max,
     --awful.layout.suit.max.fullscreen,
-    awful.layout.suit.tile,
+    --awful.layout.suit.tile,
     --awful.layout.suit.tile.left,
     --awful.layout.suit.tile.bottom,
     --awful.layout.suit.tile.top,
@@ -171,11 +170,12 @@ awful.layout.layouts = {
     --awful.layout.suit.fair.horizontal,
     --awful.layout.suit.spiral,
     --awful.layout.suit.spiral.dwindle,
-    awful.layout.suit.magnifier,
+    --awful.layout.suit.magnifier,
     --awful.layout.suit.corner.nw,
     --awful.layout.suit.corner.ne,
     --awful.layout.suit.corner.sw,
     --awful.layout.suit.corner.se,
+    --awful.layout.suit.floating,
 }
 -- }}}
 
@@ -295,6 +295,7 @@ awful.screen.connect_for_each_screen(function(s)
             widget = wibox.container.constraint,
         }
     }
+    local mylayoutbox = awful.widget.layoutbox(s)
 
     -- Create the wibox
     s.mywibox = awful.wibar(
@@ -370,6 +371,11 @@ awful.screen.connect_for_each_screen(function(s)
                         format = "%R",
                         widget = wibox.widget.textclock()
                     },
+                    right = 24,
+                    widget = wibox.container.margin
+                },
+                {
+                    mylayoutbox,
                     right = 24,
                     widget = wibox.container.margin
                 },
@@ -617,6 +623,7 @@ awful.rules.rules = {
                      raise = true,
                      keys = clientkeys,
                      buttons = clientbuttons,
+                     size_hints_honor = false,
                      screen = awful.screen.preferred,
                      placement = awful.placement.no_overlap+awful.placement.no_offscreen
      }

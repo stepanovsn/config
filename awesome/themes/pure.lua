@@ -6,7 +6,8 @@ local theme_assets = require("beautiful.theme_assets")
 local xresources = require("beautiful.xresources")
 local dpi = xresources.apply_dpi
 
-local gfs = require("gears.filesystem")
+local awful = require("awful")
+local themes_path = awful.util.get_configuration_dir() .. "/themes/"
 
 local theme = {}
 
@@ -26,7 +27,6 @@ theme.wibar_bg     = "#272929"
 -- Taglist settings
 theme.taglist_fg_focus = "#ced4de"
 theme.taglist_bg_focus = "#40444a"
-theme.gap_single_client = false
 
 -- Tasklist settings
 theme.tasklist_fg_focus = "#ced4de"
@@ -44,5 +44,8 @@ theme.menu_bg_focus = "#40444a"
 theme.menu_fg_focus = "#ced4de"
 theme.menu_bg_normal = "#272929"
 theme.menu_fg_normal = "#a0a6b0"
+
+theme.layout_fairv = themes_path .. "icons/fairv.png"
+theme.layout_max = themes_path .. "icons/max.png"
 
 return theme

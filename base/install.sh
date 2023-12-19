@@ -47,6 +47,14 @@ install_base() {
             "xz"
         )
 
+        # In case of key problems:
+        # - Remove /etc/pacman.d/gnupg directory
+        # - Run 'sudo pacman-key --init'
+        # - Run 'sudo pacman-key --populate'
+
+        # In case of other package problems:
+        # - Update /etc/pacman.d/mirrorlist according to https://www.archlinux.org/mirrorlist/
+
         step_print_temp "Updating keyring.."
         sudo pacman -Sy --noconfirm archlinux-keyring &> /dev/null
         sudo pacman -Su --noconfirm &> /dev/null

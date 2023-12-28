@@ -9,7 +9,56 @@ export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
 export LESS=' -R '
 
 # Set up PS colors
-export PS1="${debian_chroot:+($debian_chroot)}${cGreen}\u@\h${cNone}${cGrey}:${cNone}${cBlue}\w${cNone}${cGrey}\$${cNone} "
+function prompt_func {
+    local ps1="${cGrey}${debian_chroot:+($debian_chroot)}${cGreen}\u${cGrey}:"
+
+    if git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
+        local baseDirRelative=$(git rev-parse  --show-cdup)
+        if [ -z ${baseDirRelative} ]; then
+            local baseDir=$(dirname $(pwd))
+        else
+            local baseDir=$(dirname $(cd ${baseDirRelative} && pwd))
+        fi
+        local repoDir=$(realpath -s --relative-base=${baseDir} $(pwd))
+        local baseDir=$(realpath -s --relative-base=${HOME} ${baseDir})
+        if [[ ${baseDir} == "." ]]; then
+            local baseDir="~"
+        elif [[ ${baseDir:0:1} != "/" ]]; then
+            local baseDir="~/${baseDir}"
+        fi
+
+        # Verify the result
+        local reference=$(dirs +0)
+        if [[ "${baseDir}/${repoDir}" != "${reference}" ]]; then
+            ps1+="${cRed}\w"
+        else
+            local dirLength=$(echo "${baseDir}/${repoDir}" | wc -c)
+            if [[ ${dirLength} -gt 48 ]]; then
+                local baseDir=$(echo "${baseDir}" | sed -r 's|/([^/]{,2})[^/]*|/\1..|g')
+            fi
+
+            ps1+="${cBlue}${baseDir}/${cCyan}${repoDir}"
+
+            local gitBranch=$(git branch --show-current)
+            if [[ ${#gitBranch} -gt 24 ]]; then
+                local gitBranch="~${gitBranch:(-24)}"
+            fi
+            ps1+="${cGrey}:${gitBranch}"
+        fi
+    else
+        ps1+="${cBlue}\w"
+    fi
+
+    jobs > /dev/null 2>&1
+    local jobCount="$(jobs | wc -l)"
+    if [[ $jobCount != 0 ]]; then
+        ps1+="${cGrey}:${cPurple}${jobCount}"
+    fi
+
+    export PS1="${ps1}${cGrey}\$${cNone} "
+}
+
+export PROMPT_COMMAND=prompt_func
 
 # Functions
 r.view() {

@@ -19,12 +19,14 @@ install_system() {
         "telegram-desktop"
         "terminus-font"
         "thunar"
+        "tlp"
         "tumbler"
         "vlc"
     )
 
     step_upgrade_pacman ${packages[@]}
     step_service_activate bluetooth
+    step_service_activate tlp
     step_install_snap stellarium-daily
     step_upgrade_yay zoom
 

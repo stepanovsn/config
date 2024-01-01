@@ -2,7 +2,7 @@
 
 install_lf() {
     # Download required version
-    local version=r30
+    local version=r31
     if $(command -v lf &> /dev/null) && [ $(lf --version) == $version ]; then
         step_print "Required version ${version} is already installed."
     else

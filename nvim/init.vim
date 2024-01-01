@@ -52,9 +52,6 @@ set smartindent
 hi ExtraWhitespace guifg=#ff0000 ctermfg=9
 match ExtraWhitespace /\s\+$/
 
-" Settings: Ruler
-set colorcolumn=120
-
 " Settings: Other
 autocmd FileType git setlocal foldmethod=syntax
 autocmd BufEnter * :syntax sync minlines=50
@@ -251,7 +248,7 @@ nnoremap <Leader>od a‹›<ESC>i
 vnoremap <Leader>od c‹<C-R>"›<ESC>
 nnoremap <Leader>obd a⟨⟩<ESC>i
 vnoremap <Leader>obd c⟨<C-R>"⟩<ESC>
-nnoremap <Leader>os o<ESC>o<ESC>O─│┌┐└┘├┤┬┴┼<Enter>━┃┏┓┗┛┣┫┳┻╋<Enter>◄ ► ▲ ▼ 🢐 🢒 🢑 🢓<Enter>╱╲<Enter>▒🮙<ESC>4k0
+nnoremap <Leader>os o<ESC>o<ESC>O─│┌┐└┘├┤┬┴┼ ┆<Enter>━┃┏┓┗┛┣┫┳┻╋<Enter>● ◆ ▬ ◄ ► ▲ ▼ 🢐 🢒 🢑 🢓<Enter>╱╲<Enter>▒🮙<ESC>4k0
 
 " Keymap: Other
 nnoremap <F8> :ToggleBufExplorer<CR>
@@ -273,6 +270,7 @@ function! SetCodeViewMode()
     set showtabline=2
     set guicursor-=a:Cursor
     set conceallevel=0
+    set colorcolumn=120,160
 endfunction
 
 function! SetReaderViewMode()
@@ -286,6 +284,7 @@ function! SetReaderViewMode()
     set showtabline=0
     set guicursor+=a:Cursor
     set conceallevel=2
+    set colorcolumn=
 endfunction
 
 function! SetMinimalViewMode()
@@ -299,6 +298,7 @@ function! SetMinimalViewMode()
     set showtabline=2
     set guicursor-=a:Cursor
     set conceallevel=0
+    set colorcolumn=120,160
 endfunction
 
 function! OpenQflist()

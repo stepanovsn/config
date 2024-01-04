@@ -74,27 +74,50 @@ bt_timer = timer({ timeout = 0.2 })
 bt_timer:connect_signal("timeout", function () update_bt(btwidget) end)
 bt_timer:start()
 
+-- Battery info
+bat_percent = 0
+bat_percent_prev = 0
+bat_percent_critical = 5
+function update_bat_percent()
+    local fd = io.popen("upower -i `upower -e | grep 'BAT'` | grep 'percentage' | awk '{print $NF}' | cut -d '%' -f 1")
+    bat_percent = tonumber(fd:read("*l"))
+    fd:close()
+
+    if (bat_percent_prev ~= 0 and bat_percent_prev ~= bat_percent) then
+        if (bat_percent_prev <= bat_percent_critical and bat_percent > bat_percent_critical) then
+            awesome.restart()
+        elseif (bat_percent_prev > bat_percent_critical and bat_percent <= bat_percent_critical) then
+            awesome.restart()
+        elseif (bat_percent < bat_percent_prev and bat_percent <= bat_percent_critical) then
+            naughty.notify({text='Critical charge level'})
+        end
+    end
+
+    bat_percent_prev = bat_percent
+end
+update_bat_percent()
+
 -- Battery widget
-function update_battery(widget)
-   local fd = io.popen("upower -i `upower -e | grep 'BAT'` | grep 'percentage' | awk '{print $NF}' | cut -d '%' -f 1")
-   local percent = tonumber(fd:read("*l"))
-   if percent < 20 then
-       widget:set_markup('<span color="#bd5b5b">' .. percent .. '%</span>')
-   elseif percent < 50 then
-       widget:set_markup('<span color="#cfac67">' .. percent .. '%</span>')
-   else
-       widget:set_markup(percent .. "%")
-   end
-   fd:close()
+function update_battery_widget(widget)
+    update_bat_percent()
+    if bat_percent < bat_percent_critical then
+        widget:set_markup(bat_percent .. "%")
+    elseif bat_percent < 20 then
+        widget:set_markup('<span color="#bd5b5b">' .. bat_percent .. '%</span>')
+    elseif bat_percent < 70 then
+        widget:set_markup('<span color="#cfac67">' .. bat_percent .. '%</span>')
+    else
+        widget:set_markup(bat_percent .. "%")
+    end
 end
 
 batterywidget = wibox.widget.textbox()
 batterywidget.font = "Roboto 12"
-update_battery(batterywidget)
+update_battery_widget(batterywidget)
 
-batterytimer = timer({ timeout = 5 })
-batterytimer:connect_signal("timeout", function () update_battery(batterywidget) end)
-batterytimer:start()
+batterywidget_timer = timer({ timeout = 1 })
+batterywidget_timer:connect_signal("timeout", function () update_battery_widget(batterywidget) end)
+batterywidget_timer:start()
 
 -- Network widget
 function update_network(widget)
@@ -144,7 +167,11 @@ lockscreen = function() awful.util.spawn("slock") end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init(gears.filesystem.get_dir("config") .. "themes/pure.lua")
+if bat_percent <= bat_percent_critical then
+    beautiful.init(gears.filesystem.get_dir("config") .. "themes/pure_red.lua")
+else
+    beautiful.init(gears.filesystem.get_dir("config") .. "themes/pure.lua")
+end
 
 -- This is used later as the default terminal and editor to run.
 terminal = "xterm"

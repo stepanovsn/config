@@ -248,7 +248,7 @@ nnoremap <Leader>od a‹›<ESC>i
 vnoremap <Leader>od c‹<C-R>"›<ESC>
 nnoremap <Leader>obd a⟨⟩<ESC>i
 vnoremap <Leader>obd c⟨<C-R>"⟩<ESC>
-nnoremap <Leader>os o<ESC>o<ESC>O─│┌┐└┘├┤┬┴┼ ┆<Enter>━┃┏┓┗┛┣┫┳┻╋<Enter>● ◆ ▬ ◄ ► ▲ ▼ 🢐 🢒 🢑 🢓<Enter>╱╲<Enter>▒🮙<ESC>4k0
+nnoremap <Leader>os o<ESC>o<ESC>O─│┌┐└┘├┤┬┴┼<Enter>━┃┏┓┗┛┣┫┳┻╋<Enter>╴╵╶╷╸╹╺╻┆<Enter>● ◆ ▬ ◄ ► ▲ ▼ 🢐 🢒 🢑 🢓<Enter>╱╲<Enter>▒🮙<ESC>4k0
 
 " Keymap: Other
 nnoremap <F8> :ToggleBufExplorer<CR>

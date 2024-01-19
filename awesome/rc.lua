@@ -78,9 +78,14 @@ bt_timer:start()
 bat_percent = 0
 bat_percent_prev = 0
 bat_percent_critical = 5
+bat_charging = false
 function update_bat_percent()
     local fd = io.popen("upower -i `upower -e | grep 'BAT'` | grep 'percentage' | awk '{print $NF}' | cut -d '%' -f 1")
     bat_percent = tonumber(fd:read("*l"))
+    fd:close()
+
+    local fd = io.popen("upower -i `upower -e | grep 'BAT'` | grep 'state' | awk '{print $NF}'")
+    bat_state = fd:read("*l")
     fd:close()
 
     if (bat_percent_prev ~= 0 and bat_percent_prev ~= bat_percent) then
@@ -94,29 +99,46 @@ function update_bat_percent()
     end
 
     bat_percent_prev = bat_percent
+
+    if bat_state == "charging" then
+        bat_charging = true
+    else
+        bat_charging = false
+    end
 end
 update_bat_percent()
 
 -- Battery widget
-function update_battery_widget(widget)
+function update_battery_widget(text_widget, icon_widget)
     update_bat_percent()
-    if bat_percent < bat_percent_critical then
-        widget:set_markup(bat_percent .. "%")
-    elseif bat_percent < 20 then
-        widget:set_markup('<span color="#bd5b5b">' .. bat_percent .. '%</span>')
-    elseif bat_percent < 70 then
-        widget:set_markup('<span color="#cfac67">' .. bat_percent .. '%</span>')
+
+    -- Set icon
+    local bat_icon_level = tostring((bat_percent + 3) // 4)
+    bat_icon_prefix = ""
+    if bat_charging == true then
+        bat_icon_prefix = ""
     else
-        widget:set_markup(bat_percent .. "%")
+        bat_icon_prefix = "dis"
     end
+    local bat_icon_file = awful.util.get_configuration_dir() .. "/themes/icons/pure/panel/battery_" ..
+        bat_icon_prefix .. "charging" .. bat_icon_level .. ".png"
+    icon_widget:set_image(bat_icon_file)
+
+    -- Set text
+    text_widget:set_markup(bat_percent)
+
+    -- Set colored text
+    --text_widget:set_markup('<span color="#bd5b5b">' .. bat_percent .. '</span>')
 end
 
-batterywidget = wibox.widget.textbox()
-batterywidget.font = "Roboto 12"
-update_battery_widget(batterywidget)
+battery_textwidget = wibox.widget.textbox()
+battery_textwidget.font = "Roboto 12"
+battery_icon_widget = wibox.widget.imagebox()
+update_battery_widget(battery_textwidget, battery_icon_widget)
 
 batterywidget_timer = timer({ timeout = 1 })
-batterywidget_timer:connect_signal("timeout", function () update_battery_widget(batterywidget) end)
+batterywidget_timer:connect_signal("timeout",
+    function () update_battery_widget(battery_textwidget, battery_icon_widget) end)
 batterywidget_timer:start()
 
 -- Network widget
@@ -357,9 +379,10 @@ awful.screen.connect_for_each_screen(function(s)
                     right = 24,
                     widget = wibox.container.margin
                 },
+                battery_icon_widget,
                 {
                     {
-                        widget = batterywidget
+                        widget = battery_textwidget
                     },
                     right = 24,
                     widget = wibox.container.margin

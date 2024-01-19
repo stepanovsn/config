@@ -45,7 +45,7 @@ theme.menu_fg_focus = "#ced4de"
 theme.menu_bg_normal = "#272929"
 theme.menu_fg_normal = "#a0a6b0"
 
-theme.layout_fairv = themes_path .. "icons/fairv.png"
-theme.layout_max = themes_path .. "icons/max.png"
+theme.layout_fairv = themes_path .. "icons/pure/layout/fairv.png"
+theme.layout_max = themes_path .. "icons/pure/layout/max.png"
 
 return theme

@@ -27,53 +27,6 @@ require("awful.hotkeys_popup.keys")
 -- xrandr to handle multiple monitors
 local xrandr = require("xrandr")
 
--- Volume widget
-function update_volume(widget)
-   local fd = io.popen("amixer sget Master")
-   local status = fd:read("*all")
-   fd:close()
-
-   local volume = string.format("% 3d", string.match(status, "(%d?%d?%d)%%"))
-   status = string.match(status, "%[(o[^%]]*)%]")
-   if string.find(status, "on", 1, true) then
-       volume = volume .. "%"
-   else
-       volume = "M"
-   end
-
-   widget:set_markup(volume)
-end
-
-volumewidget = wibox.widget.textbox()
-volumewidget.font = "Roboto 12"
-update_volume(volumewidget)
-
-volumetimer = timer({ timeout = 0.2 })
-volumetimer:connect_signal("timeout", function () update_volume(volumewidget) end)
-volumetimer:start()
-
--- Bluetooth widget
-function update_bt(widget)
-   local fd = io.popen("bluetoothctl devices Connected | cut -d' ' -f 3-")
-   local bt = fd:read("*all")
-   fd:close()
-
-   device = ""
-   if (bt ~= nil and bt ~= '') then
-       device = bt:sub(1, -2)
-   end
-
-   widget:set_markup(device)
-end
-
-btwidget = wibox.widget.textbox()
-btwidget.font = "Roboto 12"
-update_bt(btwidget)
-
-bt_timer = timer({ timeout = 0.2 })
-bt_timer:connect_signal("timeout", function () update_bt(btwidget) end)
-bt_timer:start()
-
 -- Battery info
 bat_percent = 0
 bat_percent_prev = 0
@@ -108,57 +61,177 @@ function update_bat_percent()
 end
 update_bat_percent()
 
--- Battery widget
-function update_battery_widget(text_widget, icon_widget)
-    update_bat_percent()
+-- Bluetooth widget
+function update_bt_widget(widget)
+    local fd = io.popen("bluetoothctl devices Connected | cut -d' ' -f 3-")
+    local bt = fd:read("*all")
+    fd:close()
 
-    -- Set icon
-    local bat_icon_level = tostring((bat_percent + 3) // 4)
-    bat_icon_prefix = ""
-    if bat_charging == true then
-        bat_icon_prefix = ""
+    if (bt ~= nil and bt ~= '') then
+        device = bt:sub(1, -2)
+
+        local max_device_len = 14
+        if string.len(device) > max_device_len then
+            device = string.sub(device, 1, max_device_len - 2) .. '..'
+        end
+
+        widget:set_markup('<span color="#6c7075">Blu: </span><span color="#4aa881">' .. device .. '</span>')
     else
-        bat_icon_prefix = "dis"
+        widget:set_markup('')
     end
-    local bat_icon_file = awful.util.get_configuration_dir() .. "/themes/icons/pure/panel/battery_" ..
-        bat_icon_prefix .. "charging" .. bat_icon_level .. ".png"
-    icon_widget:set_image(bat_icon_file)
-
-    -- Set text
-    text_widget:set_markup(bat_percent)
-
-    -- Set colored text
-    --text_widget:set_markup('<span color="#bd5b5b">' .. bat_percent .. '</span>')
 end
 
-battery_textwidget = wibox.widget.textbox()
-battery_textwidget.font = "Roboto 12"
-battery_icon_widget = wibox.widget.imagebox()
-update_battery_widget(battery_textwidget, battery_icon_widget)
+bt_widget = wibox.widget.textbox()
+bt_widget.font = "Roboto 12"
+update_bt_widget(bt_widget)
 
-batterywidget_timer = timer({ timeout = 1 })
-batterywidget_timer:connect_signal("timeout",
-    function () update_battery_widget(battery_textwidget, battery_icon_widget) end)
-batterywidget_timer:start()
+-- Volume widget
+function update_volume_widget(widget)
+    local fd = io.popen("amixer sget Master")
+    local status = fd:read("*all")
+    fd:close()
+
+    local volume = string.format("% 3d", string.match(status, "(%d?%d?%d)%%"))
+    status = string.match(status, "%[(o[^%]]*)%]")
+    if string.find(status, "on", 1, true) then
+        widget:set_markup('<span color="#6c7075">Vol: </span>' .. volume)
+    else
+        widget:set_markup('<span color="#6c7075">Vol: </span><span color="#bd5b5b">Mute</span>')
+    end
+end
+
+volume_widget = wibox.widget.textbox()
+volume_widget.font = "Roboto 12"
+update_volume_widget(volume_widget)
+
+-- Battery widget
+function update_battery_widget(widget)
+    if bat_charging == true then
+        widget:set_markup('<span color="#6c7075">Bat: </span><span color="#4aa881">' .. bat_percent .. '</span>')
+    elseif bat_percent < 20 then
+        widget:set_markup('<span color="#6c7075">Bat: </span><span color="#bd5b5b">' .. bat_percent .. '</span>')
+    elseif bat_percent < 40 then
+        widget:set_markup('<span color="#6c7075">Bat: </span><span color="#cfac67">' .. bat_percent .. '</span>')
+    else
+        widget:set_markup('<span color="#6c7075">Bat: </span>' .. bat_percent)
+    end
+end
+
+battery_widget = wibox.widget.textbox()
+battery_widget.font = "Roboto 12"
+update_battery_widget(battery_widget)
 
 -- Network widget
-function update_network(widget)
-   local fd = io.popen("nmcli -t -f STATE general")
-   if fd:read("*l") == "connected" then
-       widget:set_markup("con")
-   else
-       widget:set_markup("dis")
-   end
-   fd:close()
+function update_network_widget(widget)
+    local fd = io.popen("nmcli -t -f STATE general")
+    local status = fd:read("*l")
+    fd:close()
+
+    if status == "connected" then
+        local fd = io.popen("nmcli -t -f NAME c show --active | head -n 1")
+        name = fd:read("*l")
+        fd:close()
+
+        local max_name_len = 14
+        if string.len(name) > max_name_len then
+            name = string.sub(name, 1, max_name_len - 2) .. '..'
+        end
+
+        widget:set_markup('<span color="#6c7075">Net: </span>' .. name)
+    else
+        widget:set_markup('<span color="#6c7075">Net: </span><span color="#bd5b5b">Disconnected</span>')
+    end
 end
 
-networkwidget = wibox.widget.textbox()
-networkwidget.font = "Roboto 12"
-update_network(networkwidget)
+network_widget = wibox.widget.textbox()
+network_widget.font = "Roboto 12"
+update_network_widget(network_widget)
 
-networktimer = timer({ timeout = 1 })
-networktimer:connect_signal("timeout", function () update_network(networkwidget) end)
-networktimer:start()
+-- Language widget
+function update_lang_widget(widget)
+    local fd = io.popen("xkblayout-state print \"%s\"")
+    local lang = fd:read("*l")
+    fd:close()
+
+    if lang == "us" then
+        widget:set_markup('<span color="#6c7075">Lan: </span>Eng')
+    elseif lang == "ru" then
+        widget:set_markup('<span color="#6c7075">Lan: </span>Rus')
+    else
+        widget:set_markup('<span color="#6c7075">Lan: </span>' .. lang)
+    end
+end
+
+lang_widget = wibox.widget.textbox()
+lang_widget.font = "Roboto 12"
+update_lang_widget(lang_widget)
+
+-- Language widget
+function update_lang_widget(widget)
+    local fd = io.popen("xkblayout-state print \"%s\"")
+    local lang = fd:read("*l")
+    fd:close()
+
+    if lang == "us" then
+        widget:set_markup('<span color="#6c7075">Lan: </span>Eng')
+    elseif lang == "ru" then
+        widget:set_markup('<span color="#6c7075">Lan: </span>Rus')
+    else
+        widget:set_markup('<span color="#6c7075">Lan: </span>' .. lang)
+    end
+end
+
+lang_widget = wibox.widget.textbox()
+lang_widget.font = "Roboto 12"
+update_lang_widget(lang_widget)
+
+-- Date widget
+function update_date_widget(widget)
+    local fd = io.popen("date '+%b %-d, %a'")
+    local datetime = fd:read("*l")
+    fd:close()
+
+    widget:set_markup('<span color="#6c7075">Dat: </span>' .. datetime)
+end
+
+date_widget = wibox.widget.textbox()
+date_widget.font = "Roboto 12"
+update_date_widget(date_widget)
+
+-- Time widget
+function update_time_widget(widget)
+    local fd = io.popen("date '+%-H:%M'")
+    local datetime = fd:read("*l")
+    fd:close()
+
+    widget:set_markup('<span color="#6c7075">Tim: </span>' .. datetime)
+end
+
+time_widget = wibox.widget.textbox()
+time_widget.font = "Roboto 12"
+update_time_widget(time_widget)
+
+-- Common widget timer
+common_sec_timer = timer({ timeout = 1 })
+common_sec_timer:connect_signal("timeout",
+    function ()
+        update_bat_percent()
+
+        update_battery_widget(battery_widget)
+        update_bt_widget(bt_widget)
+        update_network_widget(network_widget)
+        update_date_widget(date_widget)
+    end)
+common_sec_timer:start()
+
+common_200_ms_timer = timer({ timeout = 0.2 })
+common_200_ms_timer:connect_signal("timeout",
+    function ()
+        update_volume_widget(volume_widget)
+        update_lang_widget(lang_widget)
+        update_time_widget(time_widget)
+    end)
+common_200_ms_timer:start()
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -340,7 +413,7 @@ awful.screen.connect_for_each_screen(function(s)
                 widget = wibox.container.background,
             },
             strategy = max,
-            width = 300,
+            width = 180,
             widget = wibox.container.constraint,
         }
     }
@@ -369,64 +442,61 @@ awful.screen.connect_for_each_screen(function(s)
                     --{
                         --widget = wibox.widget.systray()
                     --},
-                    --right = 24,
+                    --right = 18,
                     --widget = wibox.container.margin
                 --},
                 {
                     {
-                        widget = btwidget
+                        widget = bt_widget
                     },
-                    right = 24,
-                    widget = wibox.container.margin
-                },
-                battery_icon_widget,
-                {
-                    {
-                        widget = battery_textwidget
-                    },
-                    right = 24,
+                    right = 18,
                     widget = wibox.container.margin
                 },
                 {
                     {
-                        widget = volumewidget
+                        widget = battery_widget
                     },
-                    right = 24,
+                    right = 18,
                     widget = wibox.container.margin
                 },
                 {
                     {
-                        widget = networkwidget
+                        widget = volume_widget
                     },
-                    right = 24,
+                    right = 18,
                     widget = wibox.container.margin
                 },
                 {
                     {
-                        widget = awful.widget.keyboardlayout()
+                        widget = network_widget
                     },
-                    right = 24,
+                    right = 18,
                     widget = wibox.container.margin
                 },
                 {
                     {
-                        format = "%b %e, %a",
-                        widget = wibox.widget.textclock()
+                        widget = lang_widget
                     },
-                    right = 24,
+                    right = 18,
                     widget = wibox.container.margin
                 },
                 {
                     {
-                        format = "%R",
-                        widget = wibox.widget.textclock()
+                        widget = date_widget
                     },
-                    right = 24,
+                    right = 18,
+                    widget = wibox.container.margin
+                },
+                {
+                    {
+                        widget = time_widget
+                    },
+                    right = 18,
                     widget = wibox.container.margin
                 },
                 {
                     mylayoutbox,
-                    right = 24,
+                    right = 18,
                     widget = wibox.container.margin
                 },
                 layout = wibox.layout.fixed.horizontal,

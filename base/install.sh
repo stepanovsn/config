@@ -69,11 +69,14 @@ install_base() {
         step_upgrade_aur yay
         step_upgrade_aur snapd
         step_service_activate snapd
+
+        step_upgrade_yay xkblayout-state
     else
         packages+=(
             "clang-tidy"
             "libgtest-dev"
             "rar"
+            "xkblayout-state"
             "xz-utils"
         )
 

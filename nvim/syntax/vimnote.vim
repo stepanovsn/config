@@ -12,4 +12,4 @@ syntax match VimnoteNormal /[⟨⟩⟪⟫]/ contained conceal cchar=
 syntax match VimnoteInstrumental /^=\{15,\} \(.* =\{15,\}$\)\@=/
 syntax match VimnoteInstrumental /\(^=\{15,\} .*\)\@<= =\{15,\}$/
 syntax match VimnoteInstrumental /^=== /
-syntax match VimnoteInstrumental /[─│┌┐└┘├┤┬┴┼━┃┏┓┗┛┣┫┳┻╋╴╵╶╷╸╹╺╻┆╱╲▒🮙●◆▬◄►▲▼🢐🢒🢑🢓]/
+syntax match VimnoteInstrumental /[─│┌┐└┘├┤┬┴┼━┃┏┓┗┛┣┫┳┻╋╢╟╤╧╴╵╶╷╸╹╺╻┆╱╲▒🮙●◆▬◄►▲▼🢐🢒🢑🢓]/

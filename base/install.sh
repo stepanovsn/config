@@ -5,6 +5,7 @@ install_base() {
         "bash-completion"
         "cmake"
         "csvkit"
+        "curl"
         "dmidecode"
         "dnsutils"
         "docx2txt"
@@ -12,8 +13,8 @@ install_base() {
         "fzf"
         "gcc"
         "hwinfo"
+        "inotify-tools"
         "inxi"
-        "libheif"
         "lshw"
         "minicom"
         "moreutils"
@@ -22,7 +23,6 @@ install_base() {
         "ncdu"
         "net-tools"
         "ntfs-3g"
-        "openssh"
         "openssl"
         "openvpn"
         "pdftk"
@@ -43,6 +43,8 @@ install_base() {
         packages+=(
             "base-devel"
             "gtest"
+            "libheif"
+            "openssh"
             "pacman-contrib"
             "xz"
         )
@@ -75,8 +77,8 @@ install_base() {
         packages+=(
             "clang-tidy"
             "libgtest-dev"
+            "openssh-server"
             "rar"
-            "xkblayout-state"
             "xz-utils"
         )
 

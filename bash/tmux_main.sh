@@ -10,5 +10,5 @@ new-window -n 'other' \; \
 select-window -t 3 \;
 
 # For window splitting
-#split-window -h -p 40 \; \
+#split-window -h -l 40 \; \
 #select-pane -t 0 \; \

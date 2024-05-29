@@ -4,6 +4,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && pwd)"
 source $SCRIPT_DIR/bashrc_common.sh
 
 # Set up environment variables
+export PATH="$HOME/bin:$PATH"
 export RIPGREP_CONFIG_PATH=$HOME"/.rgrc"
 export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
 export LESS=' -R '

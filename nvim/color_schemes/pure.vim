@@ -81,6 +81,14 @@ hi VimnoteDimmed guifg=#727d8f ctermfg=8
 hi VimnoteInstrumental guifg=#46494f ctermfg=8
 hi VimnoteConcealed guifg=#db79b9 ctermfg=5
 
+" Colors: Kaspersky log
+hi KlogDimmed guifg=#46494f ctermfg=6
+hi KlogDebug guifg=#88caeb ctermfg=6
+hi KlogInfo guifg=#88caeb ctermfg=6
+hi KlogWarn guifg=#cfac67 ctermfg=11
+hi KlogError guifg=#bd5b5b ctermfg=1
+hi KlogAlert guibg=#632b2b ctermbg=1
+
 " Colors: 16
 if has('termguicolors') && &termguicolors
     let g:terminal_color_0 = '#000000'

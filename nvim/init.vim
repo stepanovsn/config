@@ -232,7 +232,7 @@ nnoremap <Leader>vc :<C-u>call SetCodeViewMode()<CR>
 nnoremap <Leader>vr :<C-u>call SetReaderViewMode()<CR>
 nnoremap <Leader>vm :<C-u>call SetMinimalViewMode()<CR>
 
-" Keymap: Inserting
+" Keymap: Vimnote keynotes
 nnoremap <Leader>oh O=====================================================
             \  =====================================================<ESC>bhi
 nnoremap <Leader>ot o━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━<CR><ESC>0i
@@ -242,14 +242,34 @@ nnoremap <Leader>ot o━━━━━━━━━━━━━━━━━━━�
             \───────────────────────────────────────────<ESC>kkk0la
 nnoremap <Leader>of a«»<ESC>i
 vnoremap <Leader>of c«<C-R>"»<ESC>
-nnoremap <Leader>obf a⟪⟫<ESC>i
-vnoremap <Leader>obf c⟪<C-R>"⟫<ESC>
+nnoremap <Leader>oF a⟪⟫<ESC>i
+vnoremap <Leader>oF c⟪<C-R>"⟫<ESC>
 nnoremap <Leader>od a‹›<ESC>i
 vnoremap <Leader>od c‹<C-R>"›<ESC>
-nnoremap <Leader>obd a⟨⟩<ESC>i
-vnoremap <Leader>obd c⟨<C-R>"⟩<ESC>
-nnoremap <Leader>os o<ESC>o<ESC>O─│┌┐└┘├┤┬┴┼<Enter>━┃┏┓┗┛┣┫┳┻╋<Enter>╢╟╤╧<Enter>╴╵╶╷╸╹╺╻┆<Enter>● ◆ ▬ ◄ ► ▲ ▼ 🢐 🢒 🢑 🢓<Enter>╱╲<Enter>▒🮙<ESC>4k0
+nnoremap <Leader>oD a⟨⟩<ESC>i
+vnoremap <Leader>oD c⟨<C-R>"⟩<ESC>
+nnoremap <Leader>os o<ESC>o<ESC>O─│┌┐└┘├┤┬┴┼<Enter>━┃┏┓┗┛┣┫┳┻╋<Enter>═║╢╟╤╧<Enter>╴╵╶╷╸╹╺╻┆<Enter>● ◆ ▬ ◄ ► ▲ ▼ 🢐 🢒 🢑 🢓<Enter>╱╲<Enter>▒🮙<ESC>4k0
 
+" Keymap: Rnote keynotes
+nnoremap <Leader>isb a\b{}<ESC>i
+vnoremap <Leader>isb c\b{<C-R>"}<ESC>
+nnoremap <Leader>isi a\i{}<ESC>i
+vnoremap <Leader>isi c\i{<C-R>"}<ESC>
+nnoremap <Leader>ism a\m{}<ESC>i
+vnoremap <Leader>ism c\m{<C-R>"}<ESC>
+nnoremap <Leader>isn a\n<ESC>i
+
+nnoremap <Leader>ihc O\chapter{}<ESC>i
+nnoremap <Leader>ihs O\section{}<ESC>i
+nnoremap <Leader>ihu O\subsection[clear="both"]{}<ESC>i
+
+nnoremap <Leader>it o\text<ESC>o
+nnoremap <Leader>ie o\thead<Enter>\tbody<ESC>O
+nnoremap <Leader>ia o\annotation[width="80"]<ESC>o
+nnoremap <Leader>ii o\image[title="Title" width="30"]{}<ESC>i
+nnoremap <Leader>ib o\imageblock[groupby="1"]<ESC>o\item[title="Title"]{}<ESC>i
+nnoremap <Leader>il o\listing[syntax="none"]<ESC>o
+nnoremap <Leader>in o\list<ESC>o- 
 
 " Keymap: Other
 nnoremap <F8> :ToggleBufExplorer<CR>

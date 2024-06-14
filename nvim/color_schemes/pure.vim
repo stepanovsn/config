@@ -30,7 +30,7 @@ hi IncSearch guifg=#bf616a guibg=#2a2e36 ctermfg=0 ctermbg=3
 hi Whitespace guifg=#383838 ctermfg=8
 hi Visual guibg=#383838 ctermfg=0 ctermbg=2
 hi MatchParen none
-hi Conceal guifg=#d4dee6 guibg=#1b1b1b ctermfg=7 ctermbg=0
+hi Conceal guifg=#46494f guibg=#1b1b1b ctermfg=8 ctermbg=0
 
 " Colors: Code
 hi Comment guifg=#4aa881 ctermfg=2
@@ -80,6 +80,17 @@ hi VimnoteFocused guifg=#66a2de ctermfg=6
 hi VimnoteDimmed guifg=#727d8f ctermfg=8
 hi VimnoteInstrumental guifg=#46494f ctermfg=8
 hi VimnoteConcealed guifg=#db79b9 ctermfg=5
+
+" Colors: Rnote
+hi RnoteAlert guibg=#632b2b ctermbg=1
+hi RnoteChapter guifg=#ba6338 ctermfg=5
+hi RnoteSection guifg=#cf8e6d ctermfg=3
+hi RnoteSubsection guifg=#cfac67 ctermfg=11
+hi RnoteStyled guifg=#66a2de ctermfg=6
+hi RnoteSpecial guifg=#d07ad6 ctermfg=5
+hi RnoteService1 guifg=#46494f ctermfg=8
+hi RnoteService2 guifg=#46494f ctermfg=8
+hi RnoteService3 guifg=#46494f ctermfg=8
 
 " Colors: Kaspersky log
 hi KlogDimmed guifg=#46494f ctermfg=6

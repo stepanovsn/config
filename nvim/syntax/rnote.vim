@@ -2,8 +2,6 @@
 syntax match RnoteAlert /\(\\\)\@<!\(\\\{1\}\|\\\{3\}\|\\\{5\}\|\\\{7\}\|\\\{9\}\|\\\{11\}\|\\\{11\}\|\\\{13\}\|\\\{15\}\)[^\\]\+/
 
 " Blocks with no data
-syntax match RnoteService1 /\(\\\)\@<!\\wide\(\($\|\s\)\)\@=/ conceal contains=RnoteService3
-syntax match RnoteService1 /\(\\\)\@<!\\thin\(\($\|\s\)\)\@=/ conceal contains=RnoteService3
 syntax match RnoteService1 /\(\\\)\@<!\\n\(\($\|\s\)\)\@=/ conceal cchar=▼ " line break
 
 " Blocks with enclosed data
@@ -21,8 +19,6 @@ syntax region RnoteStyled matchgroup=RnoteService1 start=|\(\\\)\@<!\\m{| end=|\
 
 " Blocks with open data and no parameters
 syntax match RnoteService1 /\(\\\)\@<!\\text\(\($\|\s\)\)\@=/ conceal contains=RnoteService3
-syntax match RnoteService1 /\(\\\)\@<!\\thead\(\($\|\s\)\)\@=/ conceal contains=RnoteService3
-syntax match RnoteService1 /\(\\\)\@<!\\tbody\(\($\|\s\)\)\@=/ conceal contains=RnoteService3
 syntax match RnoteService1 /\(\\\)\@<!\\list\(\($\|\s\)\)\@=/ conceal contains=RnoteService3
 syntax match RnoteService1 /\(\\\)\@<!\\s\(\($\|\s\)\)\@=/ conceal cchar=┃
 
@@ -30,11 +26,17 @@ syntax match RnoteService1 /\(\\\)\@<!\\s\(\($\|\s\)\)\@=/ conceal cchar=┃
 syntax match RnoteService1 /\(\\\)\@<!\\annotation\(\[[^\[\]]*\]\)\?\(\($\|\s\)\)\@=/ conceal contains=RnoteService2
 syntax match RnoteService1 /\(\\\)\@<!\\listing\(\[[^\[\]]*\]\)\?\(\($\|\s\)\)\@=/ conceal contains=RnoteService2
 syntax match RnoteService1 /\(\\\)\@<!\\imageblock\(\[[^\[\]]*\]\)\?\(\($\|\s\)\)\@=/ conceal contains=RnoteService2
-syntax match RnoteService1 /\(\\\)\@<!\\c\(\[[^\[\]]*\]\)\?\(\($\|\s\)\)\@=/ conceal cchar=┃
+syntax match RnoteService1 /\(\\\)\@<!\\thead\(\[[^\[\]]*\]\)\?\(\($\|\s\)\)\@=/ conceal contains=RnoteService2
+syntax match RnoteService1 /\(\\\)\@<!\\tbody\(\[[^\[\]]*\]\)\?\(\($\|\s\)\)\@=/ conceal contains=RnoteService2
+syntax match RnoteService1 /\(\\\)\@<!\\layout\(\[[^\[\]]*\]\)\?\(\($\|\s\)\)\@=/ conceal contains=RnoteService2
+syntax match RnoteServiceCell /\(\\\)\@<!\\c\(\[[^\[\]]*\]\)\?\(\($\|\s\)\)\@=/ conceal cchar=┃
 
 syntax match RnoteService2 /\(\\\)\@<!\\annotation/ conceal contained contains=RnoteService3
 syntax match RnoteService2 /\(\\\)\@<!\\listing/ conceal contained contains=RnoteService3
 syntax match RnoteService2 /\(\\\)\@<!\\imageblock/ conceal contained contains=RnoteService3
+syntax match RnoteService2 /\(\\\)\@<!\\thead/ conceal contained contains=RnoteService3
+syntax match RnoteService2 /\(\\\)\@<!\\tbody/ conceal contained contains=RnoteService3
+syntax match RnoteService2 /\(\\\)\@<!\\layout/ conceal contained contains=RnoteService3
 
 syntax match RnoteService3 /\\l/ conceal contained cchar=L
 syntax match RnoteService3 /\\t/ conceal contained cchar=T
@@ -54,5 +56,6 @@ syntax match RnoteService3 /l/ conceal contained cchar=L
 syntax match RnoteService3 /o/ conceal contained cchar=O
 syntax match RnoteService3 /s/ conceal contained cchar=S
 syntax match RnoteService3 /t/ conceal contained cchar=T
-syntax match RnoteService3 /y/ conceal contained cchar=Y
+syntax match RnoteService3 /u/ conceal contained cchar=U
 syntax match RnoteService3 /x/ conceal contained cchar=X
+syntax match RnoteService3 /y/ conceal contained cchar=Y

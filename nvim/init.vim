@@ -261,15 +261,17 @@ nnoremap <Leader>isn a\n<ESC>i
 
 nnoremap <Leader>ihc O\chapter{}<ESC>i
 nnoremap <Leader>ihs O\section{}<ESC>i
-nnoremap <Leader>ihu O\subsection[clear="both"]{}<ESC>i
+nnoremap <Leader>ihu O\subsection[clear]{}<ESC>i
 
 nnoremap <Leader>it o\text<ESC>o
-nnoremap <Leader>ie o\thead<Enter>\tbody<ESC>O
+nnoremap <Leader>ie o\thead<Enter>\tbody[headcol="1" full]<ESC>O
 nnoremap <Leader>ia o\annotation[width="80"]<ESC>o
 nnoremap <Leader>ii o\image[title="Title" width="30"]{}<ESC>i
-nnoremap <Leader>ib o\imageblock[groupby="1"]<ESC>o\item[title="Title"]{}<ESC>i
+nnoremap <Leader>ib o\imageblock[groupby="1" width="100"]<ESC>o\item[title="Title"]{}<ESC>i
 nnoremap <Leader>il o\listing[syntax="none"]<ESC>o
+nnoremap <Leader>iy o\layout[width="80"]<ESC>o
 nnoremap <Leader>in o\list<ESC>o- 
+nnoremap <Leader>im o\math{}<ESC>i
 
 " Keymap: Other
 nnoremap <F8> :ToggleBufExplorer<CR>

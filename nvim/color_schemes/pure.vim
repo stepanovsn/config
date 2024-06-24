@@ -91,6 +91,7 @@ hi RnoteSpecial guifg=#d07ad6 ctermfg=5
 hi RnoteService1 guifg=#46494f ctermfg=8
 hi RnoteService2 guifg=#46494f ctermfg=8
 hi RnoteService3 guifg=#46494f ctermfg=8
+hi RnoteServiceCell guifg=#d07ad6 ctermfg=5
 
 " Colors: Kaspersky log
 hi KlogDimmed guifg=#46494f ctermfg=6

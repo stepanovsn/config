@@ -5,7 +5,9 @@ install_x() {
         "autorandr"
         "libxkbcommon"
         "xorg"
+        "xorg-server-devel"
         "xorg-xinit"
+        "xorg-xrandr"
         "xterm")
 
     step_remove_pacman acpilight

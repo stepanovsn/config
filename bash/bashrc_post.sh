@@ -230,6 +230,146 @@ r.gpg_decrypt() {
     rm "${output}"
 }
 
+r.git_activity() {
+    addedLine="  "
+    removedLine="  "
+    fileCountLine="  "
+    dateLine="  "
+    dayOfTheWeekLine="  "
+    lineLength=2
+
+    day=$(date -I --date='-27 day')
+    last=$(date -I --date='+1 day')
+    dayCount=$(date +%u -d "$day")
+    while [ "$day" != "$last" ]; do
+        if [[ ${dayCount} == 8 ]]; then
+            dayCount=1
+            dateLine="${dateLine}|  "
+            dayOfTheWeekLine="${dayOfTheWeekLine}|  "
+            addedLine="${addedLine}|  "
+            removedLine="${removedLine}|  "
+            fileCountLine="${fileCountLine}|  "
+            lineLength=$((lineLength + 3))
+            continue;
+        fi
+
+        if [[ ${dayCount} > 5 ]]; then
+            dateLine="${dateLine}${cGrey}"
+            dayOfTheWeekLine="${dayOfTheWeekLine}${cGrey}"
+        fi
+
+        # day of the week
+        dayOfTheWeek=$(date +%a -d "$day")
+        maxFieldLength=${#dayOfTheWeek}
+
+        # date
+        date=$(date +%e -d "$day" | sed 's/^ *//g')
+        if [[ ${#date} > ${maxFieldLength} ]]; then
+            maxFieldLength=${#date}
+        fi
+
+        # git stats
+        added=0
+        removed=0
+        fileCount=0
+        nextDate=$(date -I -d "$day + 1 day")
+        lastCommit=$(git log --since="$date" --until="$nextDate" --pretty=format:"%h" --no-patch -1)
+        if [ ! -z "$lastCommit" ]; then
+            previousCommit=$(git log --until="$date" --pretty=format:"%h" --no-patch -1)
+            while read line; do
+                newAdded="$(echo "$line" | cut -f 1)"
+                if [ "$newAdded" != "-" ]; then
+                    added=$((added + newAdded))
+                fi
+
+                newRemoved="$(echo "$line" | cut -f 2)"
+                if [ "$newRemoved" != "-" ]; then
+                    removed=$((removed + newRemoved))
+                fi
+
+                ((fileCount++))
+            done <<<$(git diff --numstat "$previousCommit" "$lastCommit")
+
+            if [[ ${#added} > ${maxFieldLength} ]]; then
+                maxFieldLength=${#added}
+            fi
+            if [[ ${#removed} > ${maxFieldLength} ]]; then
+                maxFieldLength=${#removed}
+            fi
+            if [[ ${#fileCount} > ${maxFieldLength} ]]; then
+                maxFieldLength=${#fileCount}
+            fi
+        fi
+
+        if [ "$added" == "0" ]; then
+            added=" "
+        fi
+        if [ "$removed" == "0" ]; then
+            removed=" "
+        fi
+        if [ "$fileCount" == "0" ]; then
+            fileCount=" "
+        fi
+
+        ((maxFieldLength+=2))
+
+        addedLine="${addedLine}${cGreen}${added}${cNone}"
+        length=${#added}
+        while [ "$length" != "$maxFieldLength" ]; do
+            addedLine="${addedLine} "
+            ((length++))
+        done
+
+        removedLine="${removedLine}${cRed}${removed}${cNone}"
+        length=${#removed}
+        while [ "$length" != "$maxFieldLength" ]; do
+            removedLine="${removedLine} "
+            ((length++))
+        done
+
+        fileCountLine="${fileCountLine}${fileCount}"
+        length=${#fileCount}
+        while [ "$length" != "$maxFieldLength" ]; do
+            fileCountLine="${fileCountLine} "
+            ((length++))
+        done
+
+        dateLine="${dateLine}${date}"
+        length=${#date}
+        while [ "$length" != "$maxFieldLength" ]; do
+            dateLine="${dateLine} "
+            ((length++))
+        done
+
+        dayOfTheWeekLine="${dayOfTheWeekLine}${dayOfTheWeek}"
+        length=${#dayOfTheWeek}
+        while [ "$length" != "$maxFieldLength" ]; do
+            dayOfTheWeekLine="${dayOfTheWeekLine} "
+            ((length++))
+        done
+
+
+        if [ ${dayCount} > 5 ]; then
+            dateLine="${dateLine}${cNone}"
+            dayOfTheWeekLine="${dayOfTheWeekLine}${cNone}"
+        fi
+
+        day=$(date -I -d "$day + 1 day")
+        ((dayCount++))
+        lineLength=$((lineLength + maxFieldLength))
+    done
+
+    separatorLine=$(printf '%*s' "$lineLength" | tr ' ' "-")
+
+    echo "$separatorLine"
+    printf "$addedLine\n"
+    printf "$removedLine\n"
+    printf "$fileCountLine\n"
+    echo "$separatorLine"
+    printf "$dateLine\n"
+    printf "$dayOfTheWeekLine\n"
+}
+
 # Add fzf key-bindings
 source "$HOME/.local/share/nvim/site/plugged/fzf/shell/key-bindings.bash" &> /dev/null
 

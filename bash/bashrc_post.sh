@@ -231,12 +231,13 @@ r.gpg_decrypt() {
 }
 
 r.git_activity() {
-    addedLine="  "
-    removedLine="  "
-    fileCountLine="  "
-    dateLine="  "
-    dayOfTheWeekLine="  "
-    lineLength=2
+    commitCountLine="   commit  |  "
+    addedLine="    added  |  "
+    removedLine="  removed  |  "
+    fileCountLine="     file  |  "
+    dateLine="           |  "
+    dayOfTheWeekLine="           |  "
+    lineLength=14
 
     day=$(date -I --date='-27 day')
     last=$(date -I --date='+1 day')
@@ -246,6 +247,7 @@ r.git_activity() {
             dayCount=1
             dateLine="${dateLine}|  "
             dayOfTheWeekLine="${dayOfTheWeekLine}|  "
+            commitCountLine="${commitCountLine}|  "
             addedLine="${addedLine}|  "
             removedLine="${removedLine}|  "
             fileCountLine="${fileCountLine}|  "
@@ -272,10 +274,12 @@ r.git_activity() {
         added=0
         removed=0
         fileCount=0
+        commitCount=0
+        targetDate=$(date -I -d "$day")
         nextDate=$(date -I -d "$day + 1 day")
-        lastCommit=$(git log --since="$date" --until="$nextDate" --pretty=format:"%h" --no-patch -1)
+        lastCommit=$(git log --since="$targetDate" --until="$nextDate" --pretty=format:"%h" --no-patch -1)
         if [ ! -z "$lastCommit" ]; then
-            previousCommit=$(git log --until="$date" --pretty=format:"%h" --no-patch -1)
+            previousCommit=$(git log --until="$targetDate" --pretty=format:"%h" --no-patch -1)
             while read line; do
                 newAdded="$(echo "$line" | cut -f 1)"
                 if [ "$newAdded" != "-" ]; then
@@ -290,6 +294,11 @@ r.git_activity() {
                 ((fileCount++))
             done <<<$(git diff --numstat "$previousCommit" "$lastCommit")
 
+            commitCount=$(git rev-list --count "$previousCommit".."$lastCommit")
+
+            if [[ ${#commitCount} > ${maxFieldLength} ]]; then
+                maxFieldLength=${#commitCount}
+            fi
             if [[ ${#added} > ${maxFieldLength} ]]; then
                 maxFieldLength=${#added}
             fi
@@ -310,8 +319,18 @@ r.git_activity() {
         if [ "$fileCount" == "0" ]; then
             fileCount=" "
         fi
+        if [ "$commitCount" == "0" ]; then
+            commitCount=" "
+        fi
 
         ((maxFieldLength+=2))
+
+        commitCountLine="${commitCountLine}${cYellow}${commitCount}${cNone}"
+        length=${#commitCount}
+        while [ "$length" != "$maxFieldLength" ]; do
+            commitCountLine="${commitCountLine} "
+            ((length++))
+        done
 
         addedLine="${addedLine}${cGreen}${added}${cNone}"
         length=${#added}
@@ -362,6 +381,7 @@ r.git_activity() {
     separatorLine=$(printf '%*s' "$lineLength" | tr ' ' "-")
 
     echo "$separatorLine"
+    printf "$commitCountLine\n"
     printf "$addedLine\n"
     printf "$removedLine\n"
     printf "$fileCountLine\n"

@@ -156,6 +156,10 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+" Keymap: Motion on wrapped lines
+noremap <M-j> gj
+noremap <M-k> gk
+
 " Keymap: Tag navigation
 nnoremap tp :tp<CR>
 nnoremap tn :tn<CR>
@@ -263,15 +267,17 @@ nnoremap <Leader>ihc O\chapter{}<ESC>i
 nnoremap <Leader>ihs O\section{}<ESC>i
 nnoremap <Leader>ihu O\subsection[clear]{}<ESC>i
 
-nnoremap <Leader>it o\text<ESC>o
+nnoremap <Leader>it o\text<ESC>
 nnoremap <Leader>ie o\thead<Enter>\tbody[headcol="1" full]<ESC>O
 nnoremap <Leader>ia o\annotation[width="80"]<ESC>o
 nnoremap <Leader>ii o\image[title="Title" width="30"]{}<ESC>i
 nnoremap <Leader>ib o\imageblock[groupby="1" width="100"]<ESC>o\item[title="Title"]{}<ESC>i
-nnoremap <Leader>il o\listing[syntax="none"]<ESC>o
-nnoremap <Leader>iy o\layout[width="80"]<ESC>o
-nnoremap <Leader>in o\list<ESC>o- 
+nnoremap <Leader>il o\listing[syntax="cpp"]<ESC>o
+nnoremap <Leader>in o\list<ESC>j
 nnoremap <Leader>im o\math{}<ESC>i
+
+" Keymap: insert special chars
+nnoremap <Leader>cw i <ESC>
 
 " Keymap: Other
 nnoremap <F8> :ToggleBufExplorer<CR>
@@ -435,150 +441,150 @@ endfunction
 
 function! ToggleRussianMode(...)
     if g:russianMode
-        unmap! @
-        unmap! #
-        unmap! $
-        unmap! ^
-        unmap! &
-        unmap! q
-        unmap! w
-        unmap! e
-        unmap! r
-        unmap! t
-        unmap! y
-        unmap! u
-        unmap! i
-        unmap! o
-        unmap! p
-        unmap! [
-        unmap! ]
-        unmap! a
-        unmap! s
-        unmap! d
-        unmap! f
-        unmap! g
-        unmap! h
-        unmap! j
-        unmap! k
-        unmap! l
-        unmap! ;
-        unmap! '
-        unmap! z
-        unmap! x
-        unmap! c
-        unmap! v
-        unmap! b
-        unmap! n
-        unmap! m
-        unmap! ,
-        unmap! .
-        unmap! /
-        unmap! Q
-        unmap! W
-        unmap! E
-        unmap! R
-        unmap! T
-        unmap! Y
-        unmap! U
-        unmap! I
-        unmap! O
-        unmap! P
-        unmap! {
-        unmap! }
-        unmap! A
-        unmap! S
-        unmap! D
-        unmap! F
-        unmap! G
-        unmap! H
-        unmap! J
-        unmap! K
-        unmap! L
-        unmap! :
-        unmap! "
-        unmap! Z
-        unmap! X
-        unmap! C
-        unmap! V
-        unmap! B
-        unmap! N
-        unmap! M
-        unmap! <
-        unmap! >
-        unmap! ?
+        iunmap @
+        iunmap #
+        iunmap $
+        iunmap ^
+        iunmap &
+        iunmap q
+        iunmap w
+        iunmap e
+        iunmap r
+        iunmap t
+        iunmap y
+        iunmap u
+        iunmap i
+        iunmap o
+        iunmap p
+        iunmap [
+        iunmap ]
+        iunmap a
+        iunmap s
+        iunmap d
+        iunmap f
+        iunmap g
+        iunmap h
+        iunmap j
+        iunmap k
+        iunmap l
+        iunmap ;
+        iunmap '
+        iunmap z
+        iunmap x
+        iunmap c
+        iunmap v
+        iunmap b
+        iunmap n
+        iunmap m
+        iunmap ,
+        iunmap .
+        iunmap /
+        iunmap Q
+        iunmap W
+        iunmap E
+        iunmap R
+        iunmap T
+        iunmap Y
+        iunmap U
+        iunmap I
+        iunmap O
+        iunmap P
+        iunmap {
+        iunmap }
+        iunmap A
+        iunmap S
+        iunmap D
+        iunmap F
+        iunmap G
+        iunmap H
+        iunmap J
+        iunmap K
+        iunmap L
+        iunmap :
+        iunmap "
+        iunmap Z
+        iunmap X
+        iunmap C
+        iunmap V
+        iunmap B
+        iunmap N
+        iunmap M
+        iunmap <
+        iunmap >
+        iunmap ?
         let g:russianMode = 0
     else
-        noremap! @ "
-        noremap! # №
-        noremap! $ ;
-        noremap! ^ :
-        noremap! & ?
-        noremap! q й
-        noremap! w ц
-        noremap! e у
-        noremap! r к
-        noremap! t е
-        noremap! y н
-        noremap! u г
-        noremap! i ш
-        noremap! o щ
-        noremap! p з
-        noremap! [ х
-        noremap! ] ъ
-        noremap! a ф
-        noremap! s ы
-        noremap! d в
-        noremap! f а
-        noremap! g п
-        noremap! h р
-        noremap! j о
-        noremap! k л
-        noremap! l д
-        noremap! ; ж
-        noremap! ' э
-        noremap! z я
-        noremap! x ч
-        noremap! c с
-        noremap! v м
-        noremap! b и
-        noremap! n т
-        noremap! m ь
-        noremap! , б
-        noremap! . ю
-        noremap! / .
-        noremap! Q Й
-        noremap! W Ц
-        noremap! E У
-        noremap! R К
-        noremap! T Е
-        noremap! Y Н
-        noremap! U Г
-        noremap! I Ш
-        noremap! O Щ
-        noremap! P З
-        noremap! { Х
-        noremap! } Ъ
-        noremap! A Ф
-        noremap! S Ы
-        noremap! D В
-        noremap! F А
-        noremap! G П
-        noremap! H Р
-        noremap! J О
-        noremap! K Л
-        noremap! L Д
-        noremap! : Ж
-        noremap! " Э
-        noremap! Z Я
-        noremap! X Ч
-        noremap! C С
-        noremap! V М
-        noremap! B И
-        noremap! N Т
-        noremap! M Ь
-        noremap! < Б
-        noremap! > Ю
-        noremap! ? ,
+        inoremap @ "
+        inoremap # №
+        inoremap $ ;
+        inoremap ^ :
+        inoremap & ?
+        inoremap q й
+        inoremap w ц
+        inoremap e у
+        inoremap r к
+        inoremap t е
+        inoremap y н
+        inoremap u г
+        inoremap i ш
+        inoremap o щ
+        inoremap p з
+        inoremap [ х
+        inoremap ] ъ
+        inoremap a ф
+        inoremap s ы
+        inoremap d в
+        inoremap f а
+        inoremap g п
+        inoremap h р
+        inoremap j о
+        inoremap k л
+        inoremap l д
+        inoremap ; ж
+        inoremap ' э
+        inoremap z я
+        inoremap x ч
+        inoremap c с
+        inoremap v м
+        inoremap b и
+        inoremap n т
+        inoremap m ь
+        inoremap , б
+        inoremap . ю
+        inoremap / .
+        inoremap Q Й
+        inoremap W Ц
+        inoremap E У
+        inoremap R К
+        inoremap T Е
+        inoremap Y Н
+        inoremap U Г
+        inoremap I Ш
+        inoremap O Щ
+        inoremap P З
+        inoremap { Х
+        inoremap } Ъ
+        inoremap A Ф
+        inoremap S Ы
+        inoremap D В
+        inoremap F А
+        inoremap G П
+        inoremap H Р
+        inoremap J О
+        inoremap K Л
+        inoremap L Д
+        inoremap : Ж
+        inoremap " Э
+        inoremap Z Я
+        inoremap X Ч
+        inoremap C С
+        inoremap V М
+        inoremap B И
+        inoremap N Т
+        inoremap M Ь
+        inoremap < Б
+        inoremap > Ю
+        inoremap ? ,
         let g:russianMode = 1
     endif
 endfunction

@@ -83,6 +83,7 @@ hi VimnoteConcealed guifg=#db79b9 ctermfg=5
 
 " Colors: Rnote
 hi RnoteAlert guibg=#632b2b ctermbg=1
+hi RnoteDocument guifg=#bd5b5b ctermfg=1
 hi RnoteChapter guifg=#ba6338 ctermfg=5
 hi RnoteSection guifg=#cf8e6d ctermfg=3
 hi RnoteSubsection guifg=#cfac67 ctermfg=11

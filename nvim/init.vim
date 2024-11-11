@@ -261,6 +261,11 @@ nnoremap <Leader>isi a\i{}<ESC>i
 vnoremap <Leader>isi c\i{<C-R>"}<ESC>
 nnoremap <Leader>ism a\m{}<ESC>i
 vnoremap <Leader>ism c\m{<C-R>"}<ESC>
+nnoremap <Leader>ise a\e{}<ESC>i
+vnoremap <Leader>ise c\e{<C-R>"}<ESC>
+nnoremap <Leader>isr a\r{}<ESC>i
+nnoremap <Leader>isl a\l[text=""]{}<ESC>i
+vnoremap <Leader>isl c\l[text=""]{<C-R>"}<ESC>
 nnoremap <Leader>isn a\n<ESC>i
 
 nnoremap <Leader>ihc O\chapter{}<ESC>i
@@ -270,10 +275,9 @@ nnoremap <Leader>ihu O\subsection[clear]{}<ESC>i
 nnoremap <Leader>it o\text<ESC>
 nnoremap <Leader>ie o\thead<Enter>\tbody[headcol="1" full]<ESC>O
 nnoremap <Leader>ia o\annotation[width="80"]<ESC>o
-nnoremap <Leader>ii o\image[title="Title" width="30"]{}<ESC>i
-nnoremap <Leader>ib o\imageblock[groupby="1" width="100"]<ESC>o\item[title="Title"]{}<ESC>i
-nnoremap <Leader>il o\listing[syntax="cpp"]<ESC>o
-nnoremap <Leader>in o\list<ESC>j
+nnoremap <Leader>ii o\image[title="Title" width="400" refbyname]{}<ESC>i
+nnoremap <Leader>ib o\imageblock[groupby="1" width="400"]<ESC>o\item[title="Title" refbyname]{}<ESC>i
+nnoremap <Leader>il o\listing[numbered syntax="cpp"]<ESC>o
 nnoremap <Leader>im o\math{}<ESC>i
 
 " Keymap: insert special chars

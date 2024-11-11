@@ -57,6 +57,9 @@ install_base() {
         # In case of other package problems:
         # - Update /etc/pacman.d/mirrorlist according to https://www.archlinux.org/mirrorlist/
 
+        # or:
+        # - pacman -Syyu
+
         step_print_temp "Updating keyring.."
         sudo pacman -Sy --noconfirm archlinux-keyring &> /dev/null
         sudo pacman -Su --noconfirm &> /dev/null

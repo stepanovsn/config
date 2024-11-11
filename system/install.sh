@@ -22,6 +22,7 @@ install_system() {
         "tlp"
         "tumbler"
         "vlc"
+        "xclip"
     )
 
     step_upgrade_pacman ${packages[@]}

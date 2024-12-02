@@ -39,6 +39,7 @@ syntax match RnoteService2 /\(\\\)\@<!\\tbody/ conceal contained contains=RnoteS
 " Blocks with no data and no parameters
 syntax match RnoteService1 /\(\\\)\@<!\\n\(\($\|\s\)\)\@=/ conceal cchar=▼ " line break
 syntax match RnoteService1 /\(\\\)\@<!\\end\(\($\|\s\)\)\@=/ conceal cchar=┃ " end of table row or annotation line
+syntax match Normal /\(\\\)\@<!\\-\(\($\|\s\)\)\@=/ " escaped hyphen
 
 syntax match RnoteService1 /\(\\\)\@<!\\text\(\($\|\s\)\)\@=/ conceal contains=RnoteService3
 syntax match RnoteService1 /\(\\\)\@<!\\s\(\($\|\s\)\)\@=/ conceal cchar=┃

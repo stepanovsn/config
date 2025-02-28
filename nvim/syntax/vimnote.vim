@@ -6,7 +6,7 @@ syntax match VimnoteFocused /⟪.*⟫/ contains=ALL
 syntax region VimnoteDimmed matchgroup=Normal start=/‹/ end=/›/ concealends contains=ALL
 syntax match VimnoteDimmed /⟨.*⟩/ contains=ALL
 syntax match VimnoteDimmed /^.*\(    [-=] \)\@=/
-  
+
 syntax match VimnoteNormal /[⟨⟩⟪⟫]/ contained conceal cchar= 
 
 syntax match VimnoteInstrumental /^=\{15,\} \(.* =\{15,\}$\)\@=/

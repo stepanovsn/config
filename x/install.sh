@@ -38,10 +38,10 @@ install_x() {
     step_print "Xresources merged"
 
     # Keyboard layout
-    if ! sudo localectl --no-convert set-x11-keymap us,ru pc104 qwerty grp:alt_shift_toggle &> /dev/null; then
-        step_failed "Failed to set keyboard layout"
-    fi
-    step_print "Keyboard layout set"
+    # Alternatively, the keyboard layout can be configured by localectl
+    # More info on https://wiki.archlinux.org/title/Xorg/Keyboard_configuration
+    sudo cp "${ROOT_DIR}/x/00-keyboard.conf" "/etc/X11/xorg.conf.d/"
+    step_print "Keyboard X config file copied."
 
     # Udev rules
     sudo cp $ROOT_DIR/x/90-backlight.rules /etc/udev/rules.d/

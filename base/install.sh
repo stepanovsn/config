@@ -61,9 +61,10 @@ install_base() {
         # - pacman -Syyu
 
         step_print_temp "Updating keyring.."
-        sudo pacman -Sy --noconfirm archlinux-keyring &> /dev/null
-        sudo pacman -Su --noconfirm &> /dev/null
-        step_print "Keyring updated"
+        #sudo pacman -Sy --noconfirm archlinux-keyring &> /dev/null
+        #sudo pacman -Su --noconfirm &> /dev/null
+        #step_print "Keyring updated"
+        step_warn "Keyring updating skipped"
 
         step_print_temp "Getting system updates.."
         sudo pacman -Syu --noconfirm &> /dev/null

@@ -2,16 +2,16 @@
 syntax match RnoteAlert /\(\\\)\@<!\(\\\{1\}\|\\\{3\}\|\\\{5\}\|\\\{7\}\|\\\{9\}\|\\\{11\}\|\\\{11\}\|\\\{13\}\|\\\{15\}\)[^\\]\+/
 
 " Blocks with data and parameters
-syntax region RnoteChapter matchgroup=RnoteService1 start=|\(\\\)\@<!\\chapter\(\[[^\[\]]*\]\)\?{| end=|\(\\\)\@<!}| concealends
-syntax region RnoteSection matchgroup=RnoteService1 start=|\(\\\)\@<!\\section\(\[[^\[\]]*\]\)\?{| end=|\(\\\)\@<!}| concealends
-syntax region RnoteSubsection matchgroup=RnoteService1 start=|\(\\\)\@<!\\subsection\(\[[^\[\]]*\]\)\?{| end=|\(\\\)\@<!}| concealends
+syntax region RnoteChapter matchgroup=RnoteService1 start=|\(\\\)\@<!\\chapter\(\[.\{-}\(\(\\\)\@<!\]\)\)\?{| end=|\(\\\)\@<!}| concealends
+syntax region RnoteSection matchgroup=RnoteService1 start=|\(\\\)\@<!\\section\(\[.\{-}\(\(\\\)\@<!\]\)\)\?{| end=|\(\\\)\@<!}| concealends
+syntax region RnoteSubsection matchgroup=RnoteService1 start=|\(\\\)\@<!\\subsection\(\[.\{-}\(\(\\\)\@<!\]\)\)\?{| end=|\(\\\)\@<!}| concealends
 
-syntax region RnoteDocument matchgroup=RnoteService1 start=|\(\\\)\@<!\\document\(\[[^\[\]]*\]\)\?{| end=|\(\\\)\@<!}| concealends
-syntax region RnoteSpecial matchgroup=RnoteService1 start=|\(\\\)\@<!\\image\(\[[^\[\]]*\]\)\?{| end=|\(\\\)\@<!}| concealends
-syntax region RnoteSpecial matchgroup=RnoteService1 start=|\(\\\)\@<!\\item\(\[[^\[\]]*\]\)\?{| end=|\(\\\)\@<!}| concealends
+syntax region RnoteDocument matchgroup=RnoteService1 start=|\(\\\)\@<!\\document\(\[.\{-}\(\(\\\)\@<!\]\)\)\?{| end=|\(\\\)\@<!}| concealends
+syntax region RnoteSpecial matchgroup=RnoteService1 start=|\(\\\)\@<!\\image\(\[.\{-}\(\(\\\)\@<!\]\)\)\?{| end=|\(\\\)\@<!}| concealends
+syntax region RnoteSpecial matchgroup=RnoteService1 start=|\(\\\)\@<!\\item\(\[.\{-}\(\(\\\)\@<!\]\)\)\?{| end=|\(\\\)\@<!}| concealends
 
-syntax region RnoteStyled matchgroup=RnoteService1 start=|\(\\\)\@<!\\l\(\[[^\[\]]*\]\)\?{| end=|\(\\\)\@<!}| concealends
-syntax region RnoteStyled matchgroup=RnoteService1 start=|\(\\\)\@<!\\r\(\[[^\[\]]*\]\)\?{| end=|\(\\\)\@<!}| concealends
+syntax region RnoteStyled matchgroup=RnoteService1 start=|\(\\\)\@<!\\l\(\[.\{-}\(\(\\\)\@<!\]\)\)\?{| end=|\(\\\)\@<!}| concealends
+syntax region RnoteStyled matchgroup=RnoteService1 start=|\(\\\)\@<!\\r\(\[.\{-}\(\(\\\)\@<!\]\)\)\?{| end=|\(\\\)\@<!}| concealends
 
 " Blocks with data and no parameters
 syntax region RnoteStyled matchgroup=RnoteService1 start=|\(\\\)\@<!\\b{| end=|\(\\\)\@<!}| concealends
@@ -23,12 +23,12 @@ syntax region RnoteStyled matchgroup=RnoteService1 start=|\(\\\)\@<!\\e{| end=|\
 syntax region RnoteSpecial matchgroup=RnoteService1 start=|\(\\\)\@<!\\math{| end=|\(\\\)\@<!}| concealends
 
 " Blocks with no data and parameters
-syntax match RnoteService1 /\(\\\)\@<!\\annotation\(\[[^\[\]]*\]\)\?\(\($\|\s\)\)\@=/ conceal contains=RnoteService2
-syntax match RnoteService1 /\(\\\)\@<!\\listing\(\[[^\[\]]*\]\)\?\(\($\|\s\)\)\@=/ conceal contains=RnoteService2
-syntax match RnoteService1 /\(\\\)\@<!\\imageblock\(\[[^\[\]]*\]\)\?\(\($\|\s\)\)\@=/ conceal contains=RnoteService2
-syntax match RnoteService1 /\(\\\)\@<!\\thead\(\[[^\[\]]*\]\)\?\(\($\|\s\)\)\@=/ conceal contains=RnoteService2
-syntax match RnoteService1 /\(\\\)\@<!\\tbody\(\[[^\[\]]*\]\)\?\(\($\|\s\)\)\@=/ conceal contains=RnoteService2
-syntax match RnoteServiceCell /\(\\\)\@<!\\c\(\[[^\[\]]*\]\)\?\(\($\|\s\)\)\@=/ conceal cchar=┃
+syntax match RnoteService1 /\(\\\)\@<!\\annotation\(\[.\{-}\(\(\\\)\@<!\]\)\)\?\(\($\|\s\)\)\@=/ conceal contains=RnoteService2
+syntax match RnoteService1 /\(\\\)\@<!\\listing\(\[.\{-}\(\(\\\)\@<!\]\)\)\?\(\($\|\s\)\)\@=/ conceal contains=RnoteService2
+syntax match RnoteService1 /\(\\\)\@<!\\imageblock\(\[.\{-}\(\(\\\)\@<!\]\)\)\?\(\($\|\s\)\)\@=/ conceal contains=RnoteService2
+syntax match RnoteService1 /\(\\\)\@<!\\thead\(\[.\{-}\(\(\\\)\@<!\]\)\)\?\(\($\|\s\)\)\@=/ conceal contains=RnoteService2
+syntax match RnoteService1 /\(\\\)\@<!\\tbody\(\[.\{-}\(\(\\\)\@<!\]\)\)\?\(\($\|\s\)\)\@=/ conceal contains=RnoteService2
+syntax match RnoteServiceCell /\(\\\)\@<!\\c\(\[.\{-}\(\(\\\)\@<!\]\)\)\?\(\($\|\s\)\)\@=/ conceal cchar=┃
 
 syntax match RnoteService2 /\(\\\)\@<!\\annotation/ conceal contained contains=RnoteService3 " used for better view mode
 syntax match RnoteService2 /\(\\\)\@<!\\listing/ conceal contained contains=RnoteService3 " used for better view mode

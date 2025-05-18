@@ -45,6 +45,11 @@ theme.menu_fg_focus = "#ced4de"
 theme.menu_bg_normal = "#272929"
 theme.menu_fg_normal = "#a0a6b0"
 
+-- Pane counter widget
+theme.pane_counter_fg = "#202020"
+theme.pane_counter_bg = "#808080"
+
+-- Icons
 theme.layout_fairv = themes_path .. "icons/pure/layout/fairv.png"
 theme.layout_max = themes_path .. "icons/pure/layout/max.png"
 

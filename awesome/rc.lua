@@ -301,6 +301,9 @@ awful.layout.layouts = {
 }
 -- }}}
 
+-- Create floating widgets
+local pane_counter_widgets = {}
+
 -- {{{ Menu
 -- Create a launcher widget and a main menu
 myawesomemenu = {
@@ -600,6 +603,9 @@ globalkeys = gears.table.join(
           function ()
               myscreen = awful.screen.focused()
               myscreen.mywibox.visible = not myscreen.mywibox.visible
+              if pane_counter_widgets[myscreen] then
+                  pane_counter_widgets[myscreen].visible = not myscreen.mywibox.visible
+              end
           end),
 
     -- Make a screenshot
@@ -866,4 +872,73 @@ screen.connect_signal("arrange", function (s)
             c.border_width = beautiful.border_width -- your border width
         end
     end
+end)
+
+-- Function to count visible tiled clients (panes) on a given screen
+local function count_panes(s)
+    local count = 0
+    for _, t in ipairs(s.tags) do  -- Check all tags on the screen
+        for _, c in ipairs(t:clients()) do  -- Check all clients in each tag
+            if not c.floating and c.screen == s then  -- Ensure client belongs to this screen
+                count = count + 1
+            end
+        end
+    end
+    return count
+end
+
+-- Create the widget for a given screen
+local function create_pane_counter(s)
+    local textbox = wibox.widget {
+        text = " 0 ",
+        align = "center",
+        valign = "center",
+        widget = wibox.widget.textbox,
+    }
+
+    local function update_pane_count()
+        textbox.text = " " .. count_panes(s) .. " "
+    end
+
+    -- Update when clients change
+    client.connect_signal("manage", function() update_pane_count() end)
+    client.connect_signal("unmanage", function() update_pane_count() end)
+    client.connect_signal("property::hidden", function() update_pane_count() end)
+    client.connect_signal("property::minimized", function() update_pane_count() end)
+    client.connect_signal("tagged", function() update_pane_count() end)
+
+    -- Create the floating widget
+    local pane_counter_widget = awful.popup {
+        widget = {
+            {
+                textbox,
+                widget = wibox.container.margin,
+            },
+            bg = beautiful.pane_counter_bg,
+            fg = beautiful.pane_counter_fg,
+            widget = wibox.container.background,
+        },
+        ontop = true,
+        visible = not s.mywibox.visible,
+        screen = s,
+        placement = function(c)
+            awful.placement.top_right(c, { margins = { right = 5, top = 5 } })
+        end,
+        shape = beautiful.shape, -- Optional: rounded corners
+    }
+
+    pane_counter_widgets[s] = pane_counter_widget
+
+    -- Initial update
+    update_pane_count()
+end
+
+-- Create the widget for all screens
+for s in screen do
+    create_pane_counter(s)
+end
+
+-- Update when screens are added/removed (for multi-monitor setups)
+screen.connect_signal("added", function(s)
+    create_pane_counter(s)
 end)

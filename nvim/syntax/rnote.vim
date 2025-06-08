@@ -28,7 +28,7 @@ syntax match RnoteService1 /\(\\\)\@<!\\listing\(\[.\{-}\(\(\\\)\@<!\]\)\)\?\(\(
 syntax match RnoteService1 /\(\\\)\@<!\\imageblock\(\[.\{-}\(\(\\\)\@<!\]\)\)\?\(\($\|\s\)\)\@=/ conceal contains=RnoteService2
 syntax match RnoteService1 /\(\\\)\@<!\\thead\(\[.\{-}\(\(\\\)\@<!\]\)\)\?\(\($\|\s\)\)\@=/ conceal contains=RnoteService2
 syntax match RnoteService1 /\(\\\)\@<!\\tbody\(\[.\{-}\(\(\\\)\@<!\]\)\)\?\(\($\|\s\)\)\@=/ conceal contains=RnoteService2
-syntax match RnoteServiceCell /\(\\\)\@<!\\c\(\[.\{-}\(\(\\\)\@<!\]\)\)\?\(\($\|\s\)\)\@=/ conceal cchar=┃
+syntax match RnoteService1 /\(\\\)\@<!\\cell\(\[.\{-}\(\(\\\)\@<!\]\)\)\?\(\($\|\s\)\)\@=/ conceal cchar=┃
 
 syntax match RnoteService2 /\(\\\)\@<!\\annotation/ conceal contained contains=RnoteService3 " used for better view mode
 syntax match RnoteService2 /\(\\\)\@<!\\listing/ conceal contained contains=RnoteService3 " used for better view mode
@@ -42,7 +42,7 @@ syntax match RnoteService1 /\(\\\)\@<!\\end\(\($\|\s\)\)\@=/ conceal cchar=┃ "
 syntax match Normal /\(\\\)\@<!\\-\(\($\|\s\)\)\@=/ " escaped hyphen
 
 syntax match RnoteService1 /\(\\\)\@<!\\text\(\($\|\s\)\)\@=/ conceal contains=RnoteService3
-syntax match RnoteService1 /\(\\\)\@<!\\s\(\($\|\s\)\)\@=/ conceal cchar=┃
+syntax match RnoteService1 /\(\\\)\@<!\\split\(\($\|\s\)\)\@=/ conceal cchar=┃
 
 " Special highlight groups
 syntax match RnoteService3 /\\l/ conceal contained cchar=L

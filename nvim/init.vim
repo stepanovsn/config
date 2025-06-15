@@ -222,7 +222,6 @@ nnoremap <Leader>mc :delm A-Z<CR>
 
 " Keymap: Toggling
 nnoremap <silent><expr> <F9> (&hls && v:hlsearch ? ':nohls' : ':set hls')."\n"
-set pastetoggle=<Leader>p
 
 " Keymap: Lf
 command! LfcdCurrentFile call OpenLfIn("%", 'cd')

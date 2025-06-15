@@ -28,6 +28,7 @@ syntax match RnoteService1 /\(\\\)\@<!\\listing\(\[.\{-}\(\(\\\)\@<!\]\)\)\?\(\(
 syntax match RnoteService1 /\(\\\)\@<!\\imageblock\(\[.\{-}\(\(\\\)\@<!\]\)\)\?\(\($\|\s\)\)\@=/ conceal contains=RnoteService2
 syntax match RnoteService1 /\(\\\)\@<!\\thead\(\[.\{-}\(\(\\\)\@<!\]\)\)\?\(\($\|\s\)\)\@=/ conceal contains=RnoteService2
 syntax match RnoteService1 /\(\\\)\@<!\\tbody\(\[.\{-}\(\(\\\)\@<!\]\)\)\?\(\($\|\s\)\)\@=/ conceal contains=RnoteService2
+syntax match RnoteService1 /\(\\\)\@<!\\set\(\[.\{-}\(\(\\\)\@<!\]\)\)\?\(\($\|\s\)\)\@=/ conceal contains=RnoteService2
 syntax match RnoteService1 /\(\\\)\@<!\\cell\(\[.\{-}\(\(\\\)\@<!\]\)\)\?\(\($\|\s\)\)\@=/ conceal cchar=┃
 
 syntax match RnoteService2 /\(\\\)\@<!\\annotation/ conceal contained contains=RnoteService3 " used for better view mode
@@ -35,6 +36,7 @@ syntax match RnoteService2 /\(\\\)\@<!\\listing/ conceal contained contains=Rnot
 syntax match RnoteService2 /\(\\\)\@<!\\imageblock/ conceal contained contains=RnoteService3 " used for better view mode
 syntax match RnoteService2 /\(\\\)\@<!\\thead/ conceal contained contains=RnoteService3 " used for better view mode
 syntax match RnoteService2 /\(\\\)\@<!\\tbody/ conceal contained contains=RnoteService3 " used for better view mode
+syntax match RnoteService2 /\(\\\)\@<!\\set/ conceal contained contains=RnoteService3 " used for better view mode
 
 " Blocks with no data and no parameters
 syntax match RnoteService1 /\(\\\)\@<!\\n\(\($\|\s\)\)\@=/ conceal cchar=▼ " line break

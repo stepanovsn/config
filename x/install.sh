@@ -10,10 +10,7 @@ install_x() {
         "xorg-xrandr"
         "xterm")
 
-    step_remove_pacman acpilight
     step_upgrade_pacman ${packages[@]}
-    step_remove_pacman xorg-xbacklight
-    step_upgrade_pacman acpilight
 
     # Fonts
     step_print_temp "Installing fonts.."

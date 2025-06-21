@@ -1,0 +1,14 @@
+=h= tar.gz
+Create:     =c= tar cvzf name.tar.gz src_dir
+List:       =c= tar tvzf name.tar.gz
+Unpack:     =c= tar xvzf name.tar.gz -C dest_dir
+
+=h= zip
+Create:     =c= zip name.zip -r src_dir
+List:       =c= unzip -l name.zip
+Unpack:     =c= unzip name.zip -d dest_dir
+
+=h= rar
+Create:     =c= rar a -r name.rar src_dir
+List:       =c= unrar l
+Unpack:     =c= unrar x name.rar dest_dir

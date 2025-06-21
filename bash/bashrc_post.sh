@@ -394,6 +394,10 @@ r.help_archive() {
     source $SCRIPT_DIR/show_help.sh $SCRIPT_DIR/help/archive.txt
 }
 
+r.help_nmcli() {
+    source $SCRIPT_DIR/show_help.sh $SCRIPT_DIR/help/nmcli.txt | less
+}
+
 # Add fzf key-bindings
 source "$HOME/.local/share/nvim/site/plugged/fzf/shell/key-bindings.bash" &> /dev/null
 

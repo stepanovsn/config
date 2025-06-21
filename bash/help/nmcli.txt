@@ -1,0 +1,48 @@
+=h= Show information
+Devices and dns status:         =c= nmcli
+NetworkManager status:          =c= nmcli g
+Networking status:              =c= nmcli n
+Show connections:               =c= nmcli con
+Show all devices status:        =c= nmcli dev
+Show all devices info:          =c= nmcli dev sh
+
+=h= Control
+Enable/disable networking:                =c= nmcli n [on/off]
+Enable/disable type of connection:        =c= nmcli r [type] [on|off]
+    Types: wifi, wwan, all
+
+=h= Connection properties
+Most used connection properties and values:
+=c= ipv4.method manual                    =n= IPv4 address configured statically
+=c= ipv4.method auto                      =n= Configuration settings from a DHCPv4 server
+=c= ipv4.address "192.168.0.10/24"        =n= Static IPv4 address, network prefix
+=c= ipv4.gateway 192.168.0.1              =n= IPv4 Gateway
+=c= ipv4.dns 8.8.8.8                      =n= Modify /etc/resolv.conf to use this nameserver
+=c= connection.autoconnect yes            =n= Automatically activate this connection on boot
+=c= connection.id eth0                    =n= Name of the connection
+=c= connection.interface-name             =n= Bind connection to the network interface
+
+=h= Examples
+Add IP to DNS servers list:        =c= nmcli con mod eno1 +ipv4.dns 8.8.4.4
+Add new connection:                =c= nmcli con add type ethernet connection.interface-name enp1s0
+Disconnect the interface:          =c= nmcli dev disconnect enp0s8
+Unmanage the interface:            =c= nmcli device set enp0s8 managed no
+
+Configure static IP address:
+=c= nmcli con modify eno1 ipv4.addresses "192.168.0.100/24 192.168.0.1"
+=c= nmcli con modify eno1 ipv4.method manual
+=c= nmcli con down eno1 && nmcli con up eno1
+=c= nmcli device show eno1
+
+Configure DHCP:
+=c= nmcli con modify eno1 ipv4.method auto
+=c= nmcli con down eno1 && nmcli con up eno1
+=c= nmcli device show eno1
+
+Connect to wifi:
+=c= nmcli radio wifi on
+=c= sudo nmcli dev wifi rescan
+=c= nmcli dev wifi list
+=c= sudo nmcli --ask dev wifi connect NETWORK_NAME
+=c= nmcli dev status
+=c= nmcli con show

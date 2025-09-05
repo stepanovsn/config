@@ -10,17 +10,17 @@ syntax region RnoteDocument matchgroup=RnoteService1 start=|\(\\\)\@<!\\document
 syntax region RnoteSpecial matchgroup=RnoteService1 start=|\(\\\)\@<!\\image\(\[.\{-}\(\(\\\)\@<!\]\)\)\?{| end=|\(\\\)\@<!}| concealends
 syntax region RnoteSpecial matchgroup=RnoteService1 start=|\(\\\)\@<!\\item\(\[.\{-}\(\(\\\)\@<!\]\)\)\?{| end=|\(\\\)\@<!}| concealends
 
-syntax region RnoteStyled matchgroup=RnoteService1 start=|\(\\\)\@<!\\l\(\[.\{-}\(\(\\\)\@<!\]\)\)\?{| end=|\(\\\)\@<!}| concealends
-syntax region RnoteStyled matchgroup=RnoteService1 start=|\(\\\)\@<!\\r\(\[.\{-}\(\(\\\)\@<!\]\)\)\?{| end=|\(\\\)\@<!}| concealends
+syntax region RnoteStyled matchgroup=RnoteService1 start=|\(\\\)\@<!\\link\(\[.\{-}\(\(\\\)\@<!\]\)\)\?{| end=|\(\\\)\@<!}| concealends
+syntax region RnoteStyled matchgroup=RnoteService1 start=|\(\\\)\@<!\\reference\(\[.\{-}\(\(\\\)\@<!\]\)\)\?{| end=|\(\\\)\@<!}| concealends
 
 " Blocks with data and no parameters
-syntax region RnoteStyled matchgroup=RnoteService1 start=|\(\\\)\@<!\\b{| end=|\(\\\)\@<!}| concealends
-syntax region RnoteStyled matchgroup=RnoteService1 start=|\(\\\)\@<!\\i{| end=|\(\\\)\@<!}| concealends
-syntax region RnoteStyled matchgroup=RnoteService1 start=|\(\\\)\@<!\\m{| end=|\(\\\)\@<!}| concealends
-syntax region RnoteStyled matchgroup=RnoteService1 start=|\(\\\)\@<!\\t{| end=|\(\\\)\@<!}| concealends
-syntax region RnoteStyled matchgroup=RnoteService1 start=|\(\\\)\@<!\\e{| end=|\(\\\)\@<!}| concealends
+syntax region RnoteStyled matchgroup=RnoteService1 start=|\(\\\)\@<!\\bold{| end=|\(\\\)\@<!}| concealends
+syntax region RnoteStyled matchgroup=RnoteService1 start=|\(\\\)\@<!\\italic{| end=|\(\\\)\@<!}| concealends
+syntax region RnoteStyled matchgroup=RnoteService1 start=|\(\\\)\@<!\\math{| end=|\(\\\)\@<!}| concealends
+syntax region RnoteStyled matchgroup=RnoteService1 start=|\(\\\)\@<!\\tag{| end=|\(\\\)\@<!}| concealends
+syntax region RnoteStyled matchgroup=RnoteService1 start=|\(\\\)\@<!\\code{| end=|\(\\\)\@<!}| concealends
 
-syntax region RnoteSpecial matchgroup=RnoteService1 start=|\(\\\)\@<!\\math{| end=|\(\\\)\@<!}| concealends
+syntax region RnoteSpecial matchgroup=RnoteService1 start=|\(\\\)\@<!\\formula{| end=|\(\\\)\@<!}| concealends
 
 " Blocks with no data and parameters
 syntax match RnoteService1 /\(\\\)\@<!\\annotation\(\[.\{-}\(\(\\\)\@<!\]\)\)\?\(\($\|\s\)\)\@=/ conceal contains=RnoteService2
@@ -39,7 +39,7 @@ syntax match RnoteService2 /\(\\\)\@<!\\tbody/ conceal contained contains=RnoteS
 syntax match RnoteService2 /\(\\\)\@<!\\set/ conceal contained contains=RnoteService3 " used for better view mode
 
 " Blocks with no data and no parameters
-syntax match RnoteService1 /\(\\\)\@<!\\n\(\($\|\s\)\)\@=/ conceal cchar=▼ " line break
+syntax match RnoteService1 /\(\\\)\@<!\\line\(\($\|\s\)\)\@=/ conceal cchar=▼ " line break
 syntax match RnoteService1 /\(\\\)\@<!\\end\(\($\|\s\)\)\@=/ conceal cchar=┃ " end of table row or annotation line
 syntax match Normal /\(\\\)\@<!\\-\(\($\|\s\)\)\@=/ " escaped hyphen
 

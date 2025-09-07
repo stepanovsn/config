@@ -29,7 +29,6 @@ install_system() {
     step_service_activate bluetooth
     step_service_activate tlp
     step_install_snap stellarium-daily
-    step_upgrade_yay zoom
 
     local bashrc=$HOME/.bashrc
 

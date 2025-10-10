@@ -254,18 +254,18 @@ vnoremap <Leader>oD c⟨<C-R>"⟩<ESC>
 nnoremap <Leader>os o<ESC>o<ESC>O─│┌┐└┘├┤┬┴┼<Enter>━┃┏┓┗┛┣┫┳┻╋<Enter>═║╢╟╤╧<Enter>╴╵╶╷╸╹╺╻┆<Enter>● ◆ ▬ ◄ ► ▲ ▼ 🢐 🢒 🢑 🢓<Enter>╱╲<Enter>▒🮙<ESC>4k0
 
 " Keymap: Rnote keynotes
-nnoremap <Leader>isb a\b{}<ESC>i
-vnoremap <Leader>isb c\b{<C-R>"}<ESC>
-nnoremap <Leader>isi a\i{}<ESC>i
-vnoremap <Leader>isi c\i{<C-R>"}<ESC>
-nnoremap <Leader>ism a\m{}<ESC>i
-vnoremap <Leader>ism c\m{<C-R>"}<ESC>
-nnoremap <Leader>ise a\e{}<ESC>i
-vnoremap <Leader>ise c\e{<C-R>"}<ESC>
-nnoremap <Leader>isr a\r{}<ESC>i
-nnoremap <Leader>isl a\l[text=""]{}<ESC>i
-vnoremap <Leader>isl c\l[text=""]{<C-R>"}<ESC>
-nnoremap <Leader>isn a\n<ESC>i
+nnoremap <Leader>isb a\bold{}<ESC>i
+vnoremap <Leader>isb c\bold{<C-R>"}<ESC>
+nnoremap <Leader>isi a\italic{}<ESC>i
+vnoremap <Leader>isi c\italic{<C-R>"}<ESC>
+nnoremap <Leader>ism a\math{}<ESC>i
+vnoremap <Leader>ism c\math{<C-R>"}<ESC>
+nnoremap <Leader>ise a\code{}<ESC>i
+vnoremap <Leader>ise c\code{<C-R>"}<ESC>
+nnoremap <Leader>isr a\reference{}<ESC>i
+nnoremap <Leader>isl a\link[text=""]{}<ESC>i
+vnoremap <Leader>isl c\link[text=""]{<C-R>"}<ESC>
+nnoremap <Leader>isn a\line<ESC>i
 
 nnoremap <Leader>ihc O\chapter{}<ESC>i
 nnoremap <Leader>ihs O\section{}<ESC>i
@@ -277,7 +277,7 @@ nnoremap <Leader>ia o\annotation[width="80"]<ESC>o
 nnoremap <Leader>ii o\image[title="Title" width="400" refbyname]{}<ESC>i
 nnoremap <Leader>ib o\imageblock[groupby="1" width="400"]<ESC>o\item[title="Title" refbyname]{}<ESC>i
 nnoremap <Leader>il o\listing[numbered syntax="cpp"]<ESC>o
-nnoremap <Leader>im o\math{}<ESC>i
+nnoremap <Leader>im o\formula{}<ESC>i
 
 " Keymap: insert special chars
 nnoremap <Leader>cw i <ESC>

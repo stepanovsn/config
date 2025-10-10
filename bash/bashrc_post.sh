@@ -395,7 +395,7 @@ r.help_archive() {
 }
 
 r.help_nmcli() {
-    source $SCRIPT_DIR/show_help.sh $SCRIPT_DIR/help/nmcli.txt | less
+    source $SCRIPT_DIR/show_help.sh $SCRIPT_DIR/help/nmcli.txt
 }
 
 r.help_pdf() {

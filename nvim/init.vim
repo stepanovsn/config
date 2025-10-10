@@ -24,38 +24,39 @@ if (match(system("tput colors"), "8") == -1)
     set termguicolors
 endif
 
-syntax enable
-set ffs=unix,dos,mac
-set timeoutlen=3000
-set ignorecase
-set smartcase
-set guicursor=a:block-blinkon1
-set guicursor+=i:ver100-blinkon1
-set mouse=
-set concealcursor=n
+syntax enable                       " syntax highlighting
+set ffs=unix,dos,mac                " file formats to try
+set timeoutlen=3000                 " timeout for key sequence completion
+set ignorecase                      " case-insensitive search
+set smartcase                       " override 'ignorecase' if search contains uppercase letters
+set guicursor=a:block-blinkon1      " cursor in normal mode: blinking block
+set guicursor+=i:ver100-blinkon1    " cursor in insert mode: blinking vertical bar (100% height)
+set mouse=                          " disable mouse support
+set concealcursor=n                 " hide concealed text (like markdown links) in normal mode only.
 
 " Settings: Diff
-set diffopt=filler,context:18
-set diffopt+=vertical
+set diffopt=filler,context:18       " configure diff display: show filter lines in diff; 18 lines of context
+set diffopt+=vertical               " configure diff display: split vertically
 
 " Settings: Tabs
-set tabstop=4
-set shiftwidth=0
-set smarttab
-set expandtab
-set autoindent
-set smartindent
+set tabstop=4                       " tab is displayed as 4 spaces
+set shiftwidth=0                    " use 'tabstop' value for indenting
+set smarttab                        " if tab is pressed at the beginning of a line, use shiftwidth for indentation.
+                                    " in other contexts (not at the beginning of a line), softtabstop (if set) and tabstop are used
+set expandtab                       " in insert mode, replace tab key press with spaces
+set autoindent                      " new line inherits the indentation level of the previous line
+set smartindent                     " this option builds upon 'autoindent' by providing more intelligent, C-style indentation
 
 " Settings: Invisible characters
-:set listchars=tab:>·,space:·,trail:~
-:set list
-hi ExtraWhitespace guifg=#ff0000 ctermfg=9
-match ExtraWhitespace /\s\+$/
+:set listchars=tab:>·,space:·,trail:~           " show tabs as >·, spaces as ·, trailing spaces as ~
+:set list                                       " enable visible whitespaces
+hi ExtraWhitespace guifg=#ff0000 ctermfg=9      " red color for ExtraWhitespace
+match ExtraWhitespace /\s\+$/                   " apply red color for trailing whitespaces
 
 " Settings: Other
-autocmd FileType git setlocal foldmethod=syntax
-autocmd BufEnter * :syntax sync minlines=50
-autocmd VimEnter * call SetCodeViewMode()
+autocmd FileType git setlocal foldmethod=syntax     " set foldmethod=syntax for git files
+autocmd BufEnter * :syntax sync minlines=50         " sync syntax highlighting from 50 lines back on buffer enter
+autocmd VimEnter * call SetCodeViewMode()           " code view mode by default (see the functio)
 
 " Utils: Ctags
 set tags=./tags,tags;$HOME
@@ -291,18 +292,18 @@ nnoremap <Leader>ac :call ClangTidy()<CR><CR>
 
 " Functions
 function! SetCodeViewMode()
-    set numberwidth=6
-    set relativenumber
-    set number
-    set cursorline
-    set cursorlineopt=number
-    set list
-    set cmdheight=1
-    set laststatus=2
-    set showtabline=2
-    set guicursor-=a:Cursor
-    set conceallevel=0
-    set colorcolumn=120,160
+    set numberwidth=6               " line number column
+    set relativenumber              " line numbers relative to the current cursor position
+    set number                      " absolute line numbers on the current line
+    set cursorline                  " highlights the current line where the cursor is located
+    set cursorlineopt=number        " only highlights the line number of the current line, not the entire line
+    set list                        " shows invisible characters like tabs, spaces, and line endings
+    set cmdheight=1                 " height of the command line
+    set laststatus=2                " always shows the status line
+    set showtabline=2               " always shows the tab line when multiple buffers are open
+    set guicursor-=a:Cursor         " removes cursor shape change in insert mode for GUI versions
+    set conceallevel=0              " text concealing level
+    set colorcolumn=120,160         " displays vertical lines at columns 120 and 160
 endfunction
 
 function! SetReaderViewMode()

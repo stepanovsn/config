@@ -3,6 +3,7 @@
 install_base() {
     local packages=(
         "bash-completion"
+        "clang"
         "cmake"
         "csvkit"
         "curl"
@@ -12,6 +13,7 @@ install_base() {
         "dosfstools"
         "fzf"
         "gcc"
+        "jq"
         "hwinfo"
         "inotify-tools"
         "inxi"

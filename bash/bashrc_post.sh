@@ -110,7 +110,7 @@ r.storage_close() {
 }
 
 r.storage_sync() {
-    if [ -z ${REG_CONFIG} ] || [ -z ${REG_STORAGE} ]; then
+    if [ -z ${REG_CONFIG_DIR} ] || [ -z ${REG_STORAGE_DIR} ]; then
         echo "required variables are not set"
         return;
     fi
@@ -120,8 +120,8 @@ r.storage_sync() {
         return;
     fi
 
-    rsync -vcrtuh --delete ${REG_CONFIG} /storage
-    rsync -vcrtuh --delete ${REG_STORAGE} /storage
+    rsync -vcrtuh --delete ${REG_CONFIG_DIR} /storage
+    rsync -vcrtuh --delete ${REG_STORAGE_DIR} /storage
 }
 
 r.gpg_encrypt() {

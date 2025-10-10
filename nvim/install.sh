@@ -17,14 +17,14 @@ install_nvim() {
     fi
 
     step_print_temp "Installing Vimplug.."
-    if ! ${vimplug_install} &> /dev/null; then
+    if ! run_command ${vimplug_install}; then
         step_failed "Failed to download vimplug"
     fi
     step_print "Vimplug installed"
 
     # Install nvim plugins
     step_print_temp "Installing nvim plugins.."
-    if ! nvim --headless +PlugUpgrade +PlugUpdate +qa &> /dev/null; then
+    if ! run_command nvim --headless +PlugUpgrade +PlugUpdate +qa; then
         step_failed "Failed to update nvim plugins"
     fi
     step_print "Nvim plugins updated"

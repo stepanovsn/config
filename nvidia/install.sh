@@ -10,7 +10,7 @@ install_nvidia() {
     step_print "Config files copied."
 
     step_print_temp "Updating initramfs.."
-    sudo mkinitcpio -P &> /dev/null
+    run_command sudo mkinitcpio -P
     step_print "Initramfs reconstructed."
 
     step_done

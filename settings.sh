@@ -79,11 +79,11 @@ step_soft_link () {
         step_failed "step_soft_link() incorrect number of arguments"
     fi
 
-    if ! rm -rf ${2} &> /dev/null; then
+    if ! run_command rm -rf ${2}; then
         step_failed "Failed to create soft link \"${1}\" -> \"${2}\""
     fi
 
-    if ! ln -sfn ${1} ${2} &> /dev/null; then
+    if ! run_command ln -sfn ${1} ${2}; then
         step_failed "Failed to create soft link \"${1}\" -> \"${2}\""
     fi
 
@@ -95,7 +95,7 @@ step_hard_link () {
         step_failed "step_hard_link() incorrect number of arguments"
     fi
 
-    if ! ln -fn ${1} ${2} &> /dev/null; then
+    if ! run_command ln -fn ${1} ${2}; then
         step_failed "Failed to create hard link \"${1}\" -> \"${2}\""
     fi
 
@@ -107,15 +107,15 @@ step_replace_file_sudo () {
         step_failed "step_replace_file_sudo() incorrect number of arguments"
     fi
 
-    if ! sudo mkdir -p $(dirname ${1}) &> /dev/null; then
+    if ! run_command sudo mkdir -p $(dirname ${1}); then
         step_failed "Failed to replace file \"${2}\" -> \"${1}\""
     fi
 
-    if ! sudo rm -f ${1} &> /dev/null; then
+    if ! run_command sudo rm -f ${1}; then
         step_failed "Failed to replace file \"${2}\" -> \"${1}\""
     fi
 
-    if ! sudo cp ${2} ${1} &> /dev/null; then
+    if ! run_command sudo cp ${2} ${1}; then
         step_failed "Failed to replace file \"${2}\" -> \"${1}\""
     fi
 
@@ -127,11 +127,11 @@ step_reset_dir () {
         step_failed "step_reset_dir() incorrect number of arguments"
     fi
 
-    if ! rm -rf ${1} &> /dev/null; then
+    if ! run_command rm -rf ${1}; then
         step_failed "Failed to reset dir ${1}"
     fi
 
-    if ! mkdir -p ${1} &> /dev/null; then
+    if ! run_command mkdir -p ${1}; then
         step_failed "Failed to reset dir ${1}"
     fi
 }
@@ -141,11 +141,11 @@ step_reset_dir_sudo () {
         step_failed "step_reset_dir() incorrect number of arguments"
     fi
 
-    if ! sudo rm -rf ${1} &> /dev/null; then
+    if ! run_command sudo rm -rf ${1}; then
         step_failed "Failed to reset dir ${1}"
     fi
 
-    if ! sudo mkdir -p ${1} &> /dev/null; then
+    if ! run_command sudo mkdir -p ${1}; then
         step_failed "Failed to reset dir ${1}"
     fi
 }
@@ -157,7 +157,7 @@ step_wget () {
 
     step_print_temp "Downloading \"${1}\" to \"${2}\" .."
 
-    if ! wget -O ${2} ${1} &> /dev/null; then
+    if ! run_command wget -O ${2} ${1}; then
         step_failed "Failed to download: ${1}"
     fi
 
@@ -171,7 +171,7 @@ step_untar () {
 
     step_print_temp "Unpacking \"${1}\" to \"${2}\" .."
 
-    if ! tar xvzf ${1} -C ${2} &> /dev/null; then
+    if ! run_command tar xvzf ${1} -C ${2}; then
         step_failed "Failed to untar: ${1}"
     fi
 
@@ -183,15 +183,15 @@ step_service_activate () {
         step_failed "step_service_activate() incorrect number of arguments"
     fi
 
-    if ! sudo systemctl enable ${1}.service &> /dev/null; then
+    if ! run_command sudo systemctl enable ${1}.service; then
         step_failed "Systemd service \"${1}\" failed to enable"
     fi
 
-    if ! sudo systemctl start ${1}.service &> /dev/null; then
+    if ! run_command sudo systemctl start ${1}.service; then
         step_failed "Systemd service \"${1}\" failed to start"
     fi
 
-    if ! systemctl is-active --quiet snapd &> /dev/null; then
+    if ! run_command systemctl is-active --quiet snapd; then
         step_failed "Systemd service \"${1}\" failed to activate"
     fi
 
@@ -206,7 +206,7 @@ step_upgrade_apt() {
     step_print_temp "Upgrading ${#} apt packages.."
 
     local packages="${@}"
-    if ! sudo apt upgrade -y ${packages} &> /dev/null; then
+    if ! run_command sudo apt upgrade -y ${packages}; then
         step_failed "Failed to upgrade apt packages: ${packages}"
     fi
 
@@ -221,7 +221,7 @@ step_upgrade_pacman() {
     step_print_temp "Upgrading ${#} pacman packages.."
 
     local packages="${@}"
-    if ! sudo pacman -S --noconfirm ${packages} &> /dev/null; then
+    if ! run_command sudo pacman -S --noconfirm ${packages}; then
         step_failed "Failed to upgrade pacman packages: ${packages}"
     fi
 
@@ -236,7 +236,7 @@ step_remove_pacman() {
     step_print_temp "Removing ${#} pacman packages.."
 
     local packages="${@}"
-    if ! sudo pacman -R --noconfirm ${packages} &> /dev/null; then
+    if ! run_command sudo pacman -R --noconfirm ${packages}; then
         step_failed "Failed to remove pacman packages: ${packages}"
     fi
 
@@ -251,7 +251,7 @@ step_upgrade_yay() {
     step_print_temp "Upgrading ${#} yay packages.."
 
     local packages="${@}"
-    if ! yay -S --noconfirm ${packages} &> /dev/null; then
+    if ! run_command yay -S --noconfirm ${packages}; then
         step_failed "Failed to upgrade yay packages: ${packages}"
     fi
 
@@ -271,23 +271,23 @@ step_upgrade_aur() {
         step_print_temp "Upgrading AUR package: $package"
 
         local package_path=$HOME/.aur/$package
-        if ! mkdir -p $package_path &> /dev/null; then
+        if ! run_command mkdir -p $package_path; then
             failed_package=$package
             break
         fi
 
         cd $package_path
         if [ -z "$(ls -A)" ]; then
-            if ! git clone https://aur.archlinux.org/${package}.git . &> /dev/null; then
+            if ! run_command git clone https://aur.archlinux.org/${package}.git .; then
                 failed_package=$package
                 break
             fi
-        elif ! git pull &> /dev/null; then
+        elif ! run_command git pull; then
             failed_package=$package
             break
         fi
 
-        if ! makepkg -si --noconfirm &> /dev/null; then
+        if ! run_command makepkg -si --noconfirm; then
             failed_package=$package
             break
         else
@@ -314,7 +314,7 @@ step_install_snap() {
     do
         step_print_temp "Installing snap: $snap"
 
-        if ! sudo snap install ${snap} &> /dev/null; then
+        if ! run_command sudo snap install ${snap}; then
             step_failed "Failed to install snap: ${snap}"
         fi
     done
@@ -488,4 +488,12 @@ distro_ubuntu() {
         return 0
     fi
     return 1
+}
+
+run_command() {
+    if [ -v REG_VERBOSE ]; then
+        "$@"
+    else
+        "$@" &> /dev/null
+    fi
 }

@@ -19,7 +19,7 @@ install_x() {
     sudo cp -r $ROOT_DIR/x/roboto_mono/* ${font_dir}
     sudo chmod -R ugo+rwx ${font_dir}
 
-    if ! sudo fc-cache -fv &> /dev/null; then
+    if ! run_command sudo fc-cache -fv; then
         step_failed "Failed to update fonts"
     fi
     step_print "Fonts installed"
@@ -29,7 +29,7 @@ install_x() {
     step_soft_link $ROOT_DIR/x/.xprofile $HOME/.xprofile
     step_soft_link "$ROOT_DIR/x/color_schemes/.Xresources_${REG_CONSOLE_COLOR_SCHEME}" $HOME/.Xresources
 
-    if $(xhost >& /dev/null) && ! xrdb -merge ~/.Xresources &> /dev/null; then
+    if $(run_command xhost) && ! run_command xrdb -merge ~/.Xresources; then
         step_warn "Failed to merge Xresources"
     fi
     step_print "Xresources merged"

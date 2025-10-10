@@ -24,11 +24,11 @@ install_internal() {
     local secure_file
     for secure_file in "${secure_files[@]}"
     do
-        if ! sudo chown root:root $ROOT_DIR/$secure_file &> /dev/null; then
+        if ! run_command sudo chown root:root $ROOT_DIR/$secure_file; then
             step_failed "Can't change $secure_file ownership"
         fi
 
-        if ! sudo chmod ugo+r $ROOT_DIR/$secure_file ; then
+        if ! run_command sudo chmod ugo+r $ROOT_DIR/$secure_file ; then
             step_failed "Can't change $secure_file mod"
         fi
     done

@@ -8,7 +8,7 @@ install_git() {
     fi
 
     local updated=0
-    if ! git config --global user.name &> /dev/null; then
+    if ! run_command git config --global user.name; then
         read -p "Enter git user.name [Sergey Stepanov]: " GIT_USERNAME
         if [ -z ${GIT_USERNAME} ]; then
             GIT_USERNAME="Sergey Stepanov"
@@ -17,7 +17,7 @@ install_git() {
         local updated=1
     fi
 
-    if ! git config --global user.email &> /dev/null; then
+    if ! run_command git config --global user.email; then
         read -p "Enter git user.email [inndie.md@gmail.com]: " GIT_EMAIL
         if [ -z ${GIT_EMAIL} ]; then
             GIT_EMAIL="inndie.md@gmail.com"

@@ -61,13 +61,13 @@ install_base() {
         # - pacman -Syyu
 
         step_print_temp "Updating keyring.."
-        #sudo pacman -Sy --noconfirm archlinux-keyring &> /dev/null
-        #sudo pacman -Su --noconfirm &> /dev/null
+        #run_command sudo pacman -Sy --noconfirm archlinux-keyring
+        #run_command sudo pacman -Su --noconfirm
         #step_print "Keyring updated"
         step_warn "Keyring updating skipped"
 
         step_print_temp "Getting system updates.."
-        sudo pacman -Syu --noconfirm &> /dev/null
+        run_command sudo pacman -Syu --noconfirm
         step_print "System updated"
 
         step_upgrade_pacman ${packages[@]}
@@ -87,7 +87,7 @@ install_base() {
         )
 
         step_print_temp "Updating apt indices.."
-        sudo apt update &> /dev/null
+        run_command sudo apt update
         step_print "Apt indices updated"
 
         step_upgrade_apt ${packages[@]}

@@ -151,6 +151,9 @@ let g:NERDCustomDelimiters={
     \ 'c': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' }
     \ }
 
+" Data: hints
+exec "source " . stdpath('config') . "/hints.vim"
+
 " Keymap: Split motion
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
@@ -289,6 +292,9 @@ noremap <F10> :call ToggleRussianMode()<CR>
 inoremap <F10> <C-o>:call ToggleRussianMode()<CR>
 nnoremap <Leader>u :mod<CR>
 nnoremap <Leader>ac :call ClangTidy()<CR><CR>
+
+" Keymap: hints
+nnoremap <Leader>hr :call ShowHint(g:rnote_hint)<CR>
 
 " Functions
 function! SetCodeViewMode()
@@ -601,4 +607,8 @@ function! OpenGitStatus(...)
     endif
 
     tab G
+endfunction
+
+function! ShowHint(hint)
+  echo join(a:hint, "\n")
 endfunction

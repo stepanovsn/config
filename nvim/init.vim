@@ -264,23 +264,27 @@ nnoremap <Leader>isi a\italic{}<ESC>i
 vnoremap <Leader>isi c\italic{<C-R>"}<ESC>
 nnoremap <Leader>ism a\math{}<ESC>i
 vnoremap <Leader>ism c\math{<C-R>"}<ESC>
-nnoremap <Leader>ise a\code{}<ESC>i
-vnoremap <Leader>ise c\code{<C-R>"}<ESC>
 nnoremap <Leader>isr a\reference{}<ESC>i
+vnoremap <Leader>isc c\code{<C-R>"}<ESC>
+nnoremap <Leader>isc a\code{}<ESC>i
+nnoremap <Leader>ist a\tag<ESC>i
 nnoremap <Leader>isl a\link[text=""]{}<ESC>i
 vnoremap <Leader>isl c\link[text=""]{<C-R>"}<ESC>
-nnoremap <Leader>isn a\line<ESC>i
+nnoremap <Leader>ise o\listing[numbered syntax="cpp"]<ESC>o
+nnoremap <Leader>iss o\set[italic bold]<ESC>o
+nnoremap <Leader>isn a\line<ESC>o
+
+nnoremap <Leader>ihd O\document[lang=eng]{}<ESC>i
 
 nnoremap <Leader>ihc O\chapter{}<ESC>i
 nnoremap <Leader>ihs O\section{}<ESC>i
 nnoremap <Leader>ihu O\subsection[clear]{}<ESC>i
 
 nnoremap <Leader>it o\text<ESC>
-nnoremap <Leader>ie o\thead<Enter>\tbody[headcol="1" full]<ESC>O
-nnoremap <Leader>ia o\annotation[width="80"]<ESC>o
+nnoremap <Leader>ie o\thead<Enter> \cell  \cell  \end<Enter><Left>\tbody<ESC>$<Delete><Up>0i
+nnoremap <Leader>ia o\annotation<Enter> \split  \end<ESC>0i
 nnoremap <Leader>ii o\image[title="Title" width="400" refbyname]{}<ESC>i
-nnoremap <Leader>ib o\imageblock[groupby="1" width="400"]<ESC>o\item[title="Title" refbyname]{}<ESC>i
-nnoremap <Leader>il o\listing[numbered syntax="cpp"]<ESC>o
+nnoremap <Leader>ib o\imageblock[groupby="2" width="1000"]<ESC>o\item[title="Title" refbyname]{}<ESC>i
 nnoremap <Leader>im o\formula{}<ESC>i
 
 " Keymap: insert special chars

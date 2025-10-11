@@ -390,12 +390,16 @@ r.git_activity() {
     printf "$dayOfTheWeekLine\n"
 }
 
+r.help_nvim() {
+    source $SCRIPT_DIR/show_help.sh $SCRIPT_DIR/help/nvim.txt | less
+}
+
 r.help_archive() {
     source $SCRIPT_DIR/show_help.sh $SCRIPT_DIR/help/archive.txt
 }
 
 r.help_nmcli() {
-    source $SCRIPT_DIR/show_help.sh $SCRIPT_DIR/help/nmcli.txt
+    source $SCRIPT_DIR/show_help.sh $SCRIPT_DIR/help/nmcli.txt | less
 }
 
 r.help_pdf() {

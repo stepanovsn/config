@@ -239,24 +239,6 @@ nnoremap <Leader>vc :<C-u>call SetCodeViewMode()<CR>
 nnoremap <Leader>vr :<C-u>call SetReaderViewMode()<CR>
 nnoremap <Leader>vm :<C-u>call SetMinimalViewMode()<CR>
 
-" Keymap: Vimnote keynotes
-nnoremap <Leader>oh O=====================================================
-            \  =====================================================<ESC>bhi
-nnoremap <Leader>ot o━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━<CR><ESC>0i
-            \    │    │    │<CR><ESC>0i
-            \━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━<CR><ESC>0i
-            \    │    │    │<CR><ESC>0i
-            \───────────────────────────────────────────<ESC>kkk0la
-nnoremap <Leader>of a«»<ESC>i
-vnoremap <Leader>of c«<C-R>"»<ESC>
-nnoremap <Leader>oF a⟪⟫<ESC>i
-vnoremap <Leader>oF c⟪<C-R>"⟫<ESC>
-nnoremap <Leader>od a‹›<ESC>i
-vnoremap <Leader>od c‹<C-R>"›<ESC>
-nnoremap <Leader>oD a⟨⟩<ESC>i
-vnoremap <Leader>oD c⟨<C-R>"⟩<ESC>
-nnoremap <Leader>os o<ESC>o<ESC>O─│┌┐└┘├┤┬┴┼<Enter>━┃┏┓┗┛┣┫┳┻╋<Enter>═║╢╟╤╧<Enter>╴╵╶╷╸╹╺╻┆<Enter>● ◆ ▬ ◄ ► ▲ ▼ 🢐 🢒 🢑 🢓<Enter>╱╲<Enter>▒🮙<ESC>4k0
-
 " Keymap: Rnote keynotes
 nnoremap <Leader>isb a\bold{}<ESC>i
 vnoremap <Leader>isb c\bold{<C-R>"}<ESC>

@@ -1,3 +1,5 @@
+=H= Configuration
+
 =h= Show information
 Devices and dns status:         =c= nmcli
 NetworkManager status:          =c= nmcli g
@@ -22,7 +24,8 @@ Most used connection properties and values:
 =c= connection.id eth0                    =n= Name of the connection
 =c= connection.interface-name             =n= Bind connection to the network interface
 
-=h= Examples
+=H= Examples
+
 Add IP to DNS servers list:        =c= nmcli con mod eno1 +ipv4.dns 8.8.4.4
 Add new connection:                =c= nmcli con add type ethernet connection.interface-name enp1s0
 Disconnect the interface:          =c= nmcli dev disconnect enp0s8

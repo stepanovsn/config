@@ -1,3 +1,5 @@
+=H= Archive manipulation
+
 =h= tar.gz
 Create:     =c= tar cvzf name.tar.gz src_dir
 List:       =c= tar tvzf name.tar.gz

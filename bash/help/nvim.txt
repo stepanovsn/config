@@ -1,0 +1,286 @@
+=H= Motions
+
+=c= <C-d>           =n= Go down half screen
+=c= <C-u>           =n= Go up half screen
+=c= <C-e>           =n= Move screen one line down
+=c= <C-y>           =n= Move screen one line up
+=c= {               =n= Jump paragraph back
+=c= }               =n= Jump paragraph forward
+=c= b               =n= Go to start of previous word
+=c= B               =n= Go to start of previous word (by spaces)
+=c= w               =n= Go to start of next word
+=c= W               =n= Go to start of next word (by spaces)
+=c= e               =n= Go to end of current word
+=c= E               =n= Go to end of current word (by spaces)
+=c= gg              =n= Go to start of file
+=c= <Number>gg      =n= Go to Nth line
+=c= G               =n= Go to end of file
+=c= H               =n= Go to TOP of page
+=c= M               =n= Go to MIDDLE of page
+=c= L               =n= Go to BOTTOM of page
+=c= 0               =n= Jump to start of the line
+=c= ^               =n= Jump to first character
+=c= $               =n= Jump to end of the line
+=c= zz              =n= Center cursor
+
+=c= <M-j>           =n= (custom) Go down on a wrapped line
+=c= <M-k>           =n= (custom) Go up on a wrapped line
+
+=H= Layout
+
+=c= <F4>            =n= (custom) Calls :q
+
+=h= Windows
+=c= <C-W>n          =n= (custom) \
+=c= :vnew           =n= Split horizontally and start editing an empty file
+=c= <C-W>v          =n= \
+=c= :vs             =n= Split horizontally
+=c= <C-W>s          =n= \
+=c= :sp             =n= Split vertically
+=c= :on             =n= Close other windows
+
+=c= <C-W>r          =n= Rotate windows downwards
+=c= <C-W>R          =n= Rotate windows leftwards
+=c= <C-W>x          =n= Exchange current window with next one. If no next - with previous window
+=c= <C-W>K          =n= Move current window to be at the very top
+                        The same for bottom(J), left(H), right(L)
+=c= <C-W>T          =n= Move current window to a new tab
+
+=c= <C-J>           =n= (custom) Move to lower window
+=c= <C-K>           =n= (custom) Move to upper window
+=c= <C-L>           =n= (custom) Move to right window
+=c= <C-H>           =n= (custom) Move to left window
+
+=c= N<C-W>+         =n= Increase height by N (- for decrease)
+=c= N<C-W>>         =n= Increase width by N (< for decrease)
+=c= <C-W>=          =n= Equalize width and height of all windows
+
+=h= Tabs
+=c= <Number>gt      =n= Move to Nth tab
+=c= <F2>            =n= (custom) Create and go to new tab
+=c= <F3>            =n= (custom) Close tab
+
+=h= Buffers
+=c= :ls             =n= List buffers
+=c= :b<Number>      =n= Open Nth buffer
+=c= :bd             =n= Close current buffer
+=c= :bufdo ..       =n= Apply command to all buffers
+=c= :ene            =n= Edit a new, unnamed buffer
+=c= <F8>            =n= (custom) Open buffer window
+
+=H= Navigation
+
+=c= <C-o>           =n= Go back in jump list
+=c= <C-i>           =n= Go forward in jump list
+
+=c= gd              =n= Go to definition
+=c= <C-]>           =n= Go to definition (ctags)
+=c= <C-t>           =n= Go back to initial point (ctags)
+=c= g]              =n= List all tags (ctags
+=c= tn              =n= (custom) Go to next definition (ctags)
+=c= tp              =n= (custom) Go to previous definition (ctags)
+
+=c= mA              =n= Set mark A
+=c= `A              =n= Go to mark A
+=c= 'A              =n= Go to line of mark A
+=c= <Leader>ml      =n= (custom) List marks from A to Z
+=c= <Leader>mc      =n= (custom) Clear marks from A to Z
+
+=H= Basic editing
+
+=c= u               =n= Undo last change
+=c= <C-r>           =n= Redo last change
+=c= .               =n= Repeat last change under cursor
+=c= r               =n= Change symbol under cursor
+=c= x               =n= Remove symbol under cursor
+=c= a               =n= Append text after cursor position
+=c= A               =n= Append text at end of line
+=c= i               =n= Insert text before the cursor
+=c= I               =n= Insert text and start of the line
+=c= O               =n= Open line(s) above cursor
+=c= o               =n= Open line(s) below cursor
+
+=c= V               =n= Start visual mode for lines
+=c= d               =n= Delete(cut) selection
+=c= y               =n= Copy selection
+=c= с               =n= Replace selected block in insert mode
+=c= p               =n= Insert after cursor
+=c= P               =n= Insert before cursor
+
+=c= :reg            =n= List registers
+=c= “Xy             =n= Yank text into X register (from a to z)
+=c= :pu X           =n= Paste X register
+=c= “Xp             =n= Paste X register (0 is always last yanked text)
+
+=H= Rich editing
+
+=c= J                   =n= Join lines (remove indent and insert up to two spaces)
+=c= gJ                  =n= Join lines (don't insert or remove any spaces)
+
+=c= <Leader>cc          =n= Comment lines
+=c= <Leader>cu          =n= Uncomment lines
+=c= <Leader>c<Space>    =n= Toggle commenting based on first line
+=c= <Leader>ci          =n= Invert commenting of every line individually
+=c= <Leader>cs          =n= Comment in a beautiful way
+
+=c= u                   =n= Set lower case to selected text
+=c= U                   =n= Set upper case
+=c= ~                   =n= Invert case
+
+=c= > or <              =n= Indent selected text or current line
+=c= =                   =n= Autoindent selected lines
+
+=c= C-v u2713           =n= In insert mode, insert Unicode symbol (for example, a mark)
+
+=c= cw                  =n= (custom) In normal mode, insert fixed whitespace
+
+=H= Global
+
+=c= <C-n>           =n= (custom) Open lf at file
+=c= <C-b>           =n= (custom) Open lf in working directory
+=c= <Leader>n       =n= (custom) Change working directory (starting at file)
+=c= <Leader>b       =n= (custom) Change working directory (starting at current wd)
+
+=c= :<C-f>          =n= \
+=c= q:              =n= Open command line history
+=c= q/              =n= Open / history
+=c= q?              =n= Open ? history
+
+=c= <C-p>           =n= Go to previous command(after typing colon)
+=c= <C-n>           =n= Go to next command (after typing colon)
+=c= <Leader>u       =n= (custom) Redraw the screen
+
+=c= <C-r>*          =n= In CLI-mode, insert text from * register
+
+=c= <Leader>ac      =n= (custom) Analyze file with clang-tidy
+
+=c= <Leader>hr      =n= (custom) Show help for rnote syntax
+
+=c= :checkhealth    =n= Check health
+
+=H= Rnote
+
+=c= <Leader>isb     =n= (custom) Insert bold text
+=c= <Leader>isi     =n= (custom) Insert italic text
+=c= <Leader>ism     =n= (custom) Insert inline math
+=c= <Leader>isr     =n= (custom) Insert reference
+=c= <Leader>isl     =n= (custom) Insert link
+=c= <Leader>isc     =n= (custom) Insert inline code
+=c= <Leader>ise     =n= (custom) Insert code block
+=c= <Leader>isn     =n= (custom) Insert line break
+=c= <Leader>ist     =n= (custom) Insert tag
+=c= <Leader>ist     =n= (custom) Insert set
+
+=c= <Leader>ihd     =n= (custom) Insert document
+
+=c= <Leader>ihc     =n= (custom) Insert chapter
+=c= <Leader>ihs     =n= (custom) Insert section
+=c= <Leader>ihu     =n= (custom) Insert subsection
+
+=c= <Leader>it      =n= (custom) Insert text
+=c= <Leader>ie      =n= (custom) Insert table
+=c= <Leader>ia      =n= (custom) Insert annotation
+=c= <Leader>ii      =n= (custom) Insert image
+=c= <Leader>ib      =n= (custom) Insert image block
+=c= <Leader>im      =n= (custom) Insert formula
+
+=H= Modes
+
+=c= C-\ C-n         =n= Exit any mode, including terminal
+
+=c= Q               =n= Switch to Ex mode
+
+=c= <F10>           =n= (custom) Toggle russian mode
+=c= <F9>            =n= (custom) Toggle search highlighting
+
+=c= <Leader>vc      =n= (custom) Switch to code mode
+=c= <Leader>vr      =n= (custom) Switch to reader mode
+=c= <Leader>vm      =n= (custom) Switch to minimal mode
+
+=H= Search and replace
+
+=c= :g/PATTERN                          =n= Search for pattern and display results
+
+=c= /                                   =n= Search forward
+=c= ?                                   =n= Search backward
+=c= n                                   =n= Go to next result
+=c= N                                   =n= Go to previous result
+=c= <Leader>f                           =n= (custom) Grep text globally(Normal and Visual mode)
+=c= *                                   =n= Search text locally(Normal mode)
+=c= <Leader>l                           =n= (custom) Search text locally(Visual mode)
+=c= <Leader>sc                          =n= (custom) Replace word under cursor or selected string(clean)
+=c= <Leader>sr                          =n= (custom) Replace word under cursor or selected string(old word pre-typed)
+=c= <Leader>sbc                         =n= (custom) Replace selected string(clean) in all buffers
+=c= <Leader>sbr                         =n= (custom) Replace selected string(old word pre-typed) in all buffers
+=c= <Leader>sac                         =n= (custom) Replace selected string(clean) in args
+=c= <Leader>sar                         =n= (custom) Replace selected string(old word pre-typed) in args
+
+=c= <F5>                                =n= (custom) Ripgrep (files only)
+=c= <F6>                                =n= (custom) Ripgrep (every match)
+=c= <F7>                                =n= (custom) Ripgrep (every match, regexp)
+=c= <C-p>                               =n= (custom) FZF
+=c= :Rge pattern                        =n= (custom) Ripgrep with regex
+=c= :cfdo %s/old/new/ge | update        =n= Replace 'old' to 'new' in quickfix list files
+
+=H= Diff
+
+To start nvim in diff mode:‹
+=c= nvim -d file1.txt file2.txt›
+
+=c= :diffs file.txt     =n= Open file in diff mode
+=c= :difft              =n= Add buffer to diff
+=c= :diffo              =n= Disable diff (add ! to apply to all windows on tab)
+=c= :dif                =n= Update diff
+=c= do                  =n= Same as :diffget
+=c= dp                  =n= Same as :diffput
+=c= [c                  =n= Jump to previous change
+=c= ]c                  =n= Jump to next change
+
+=c= zo                  =n= Open folding
+=c= zc                  =n= Close folding
+=c= zr                  =n= Reduce folding level
+=c= zm                  =n= Fold more
+
+=H= Git
+
+=c= <Leader>gl      =n= (custom) Git log
+=c= <Leader>gs      =n= (custom) Git status
+=c= <Leader>gc      =n= (custom) Compare with commit or branch (file names only)
+=c= <Leader>gd      =n= (custom) Compare current buffer with revision
+=c= :Gwrite!        =n= Write version to index
+
+=c= dd              =n= (in GStatus) Open comparison
+=c= -               =n= (in GStatus) Toggle file in/out of index
+=c= X               =n= (in GStatus) Discard changes on file
+
+=c= :diffg //2      =n= (in confilcts) Get target branch version
+=c= :diffg //3      =n= (in confilcts) Get merge branch version
+
+=H= File formatting
+
+=c= <Leader>ru          =n= (custom) Reread as unix format
+=c= <Leader>rd          =n= (custom) Reread as dos format
+=c= <Leader>rm          =n= (custom) Reread as mac format
+=c= <Leader>rcu         =n= (custom) Change file format to unix
+=c= <Leader>rcd         =n= (custom) Change file format to dos
+=c= <Leader>rcm         =n= (custom) Change file format to mac
+=c= <Leader>rx          =n= (custom) Remove all ^M in file
+
+=c= <Leader>tt          =n= (custom) Switch the whole file to tabs
+=c= <Leader>ts          =n= (custom) Switch the whole file to whitespaces
+=c= <Leader>tr          =n= (custom) Retab
+=c= <Leader>t2          =n= (custom) Set tab width to 2
+=c= <Leader>t4          =n= (custom) Set tab width to 4
+=c= <Leader>t8          =n= (custom) Set tab width to 8
+
+=c= :set syntax=cpp     =n= Force cpp highlight syntax
+
+=c= <Leader>xx          =n= (custom) Show file in hex
+=c= <Leader>xr          =n= (custom) Switch back to normal
+
+=H= Regex
+
+=c= (atom)\@<=          =n= Positive lookbehind
+=c= (atom)\@<!          =n= Negative lookbehind
+=c= (atom)\@=           =n= Positive lookahead
+=c= (atom)\@!           =n= Negative lookahead

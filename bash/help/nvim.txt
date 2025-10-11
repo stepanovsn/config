@@ -103,14 +103,15 @@
 =c= V               =n= Start visual mode for lines
 =c= d               =n= Delete(cut) selection
 =c= y               =n= Copy selection
+=c= yy              =n= Copy current line
 =c= с               =n= Replace selected block in insert mode
-=c= p               =n= Insert after cursor
-=c= P               =n= Insert before cursor
+=c= p               =n= (custom) Insert from 0 register after cursor
+=c= P               =n= (custom) Insert from 0 register before cursor
 
 =c= :reg            =n= List registers
 =c= “Xy             =n= Yank text into X register (from a to z)
+=c= “Xp             =n= Paste X register
 =c= :pu X           =n= Paste X register
-=c= “Xp             =n= Paste X register (0 is always last yanked text)
 
 =H= Rich editing
 

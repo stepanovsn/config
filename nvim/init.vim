@@ -226,6 +226,9 @@ nnoremap <Leader>mc :delm A-Z<CR>
 
 " Keymap: Toggling
 nnoremap <silent><expr> <F9> (&hls && v:hlsearch ? ':nohls' : ':set hls')."\n"
+nnoremap <F8> :ToggleBufExplorer<CR>
+noremap <F10> :call ToggleRussianMode()<CR>
+inoremap <F10> <C-o>:call ToggleRussianMode()<CR>
 
 " Keymap: Lf
 command! LfcdCurrentFile call OpenLfIn("%", 'cd')
@@ -272,15 +275,14 @@ nnoremap <Leader>im o\formula{}<ESC>i
 " Keymap: insert special chars
 nnoremap <Leader>cw i <ESC>
 
-" Keymap: Other
-nnoremap <F8> :ToggleBufExplorer<CR>
-noremap <F10> :call ToggleRussianMode()<CR>
-inoremap <F10> <C-o>:call ToggleRussianMode()<CR>
-nnoremap <Leader>u :mod<CR>
-nnoremap <Leader>ac :call ClangTidy()<CR><CR>
-
 " Keymap: hints
 nnoremap <Leader>hr :call ShowHint(g:rnote_hint)<CR>
+
+" Keymap: Other
+nnoremap <Leader>u :mod<CR>
+nnoremap <Leader>ac :call ClangTidy()<CR><CR>
+nnoremap p "0p
+nnoremap P "0P
 
 " Functions
 function! SetCodeViewMode()

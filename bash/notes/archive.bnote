@@ -1,0 +1,19 @@
+=H= Archive manipulation
+
+=h= tar.gz
+
+Create:     =c= tar cvzf name.tar.gz src_dir =n=
+List:       =c= tar tvzf name.tar.gz =n=
+Unpack:     =c= tar xvzf name.tar.gz -C dest_dir =n=
+
+=h= zip
+
+Create:     =c= zip name.zip -r src_dir =n=
+List:       =c= unzip -l name.zip =n=
+Unpack:     =c= unzip name.zip -d dest_dir =n=
+
+=h= rar
+
+Create:     =c= rar a -r name.rar src_dir =n=
+List:       =c= unrar l =n=
+Unpack:     =c= unrar x name.rar dest_dir =n=

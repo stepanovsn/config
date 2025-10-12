@@ -1,11 +1,24 @@
 #!/bin/bash
 
 awk '
+BEGIN { 
+    in_code_section = 0
+}
+
 {
-    gsub(/=h= /, "[38;5;236m===== [38;5;37m", $0)
-    gsub(/=c= /, "[38;5;245m", $0)
-    gsub(/=n= /, "[0m", $0)
-    gsub(/$/, "[0m", $0)
+    if (in_code_section) {
+        gsub(/^/, "[38;5;242m", $0)
+    } else if (/=c=($| )/) {
+        gsub(/=c=($| )/, "[38;5;242m", $0)
+        in_code_section = 1
+    }
+
+    if (/=n=($| )/) {
+        gsub(/=n=($| )/, "[0m", $0)
+        in_code_section = 0
+    }
+
+    gsub(/=h= /, "[38;5;235m===== [38;5;74m", $0)
 
     if (/^=H= .*$/) {
         # Extract the text after "=H= "
@@ -21,15 +34,15 @@ awk '
         for (i = 1; i <= padding_each_side; i++) padding = padding "="
 
         # Build the new line
-        new_line = "[38;5;236m" padding " [38;5;37m" text " [38;5;236m" padding "[0m"
+        new_line = "[38;5;235m" padding " [38;5;62m" text " [38;5;235m" padding "[0m"
 
         # Handle odd numbers by adding one more = at the end if needed
         if (length(new_line) < 120) {
             new_line = new_line "="
         }
 
-        print new_line
+        print "    " new_line
     } else {
-        print
+        print "    " $0
     }
 }' ${1}

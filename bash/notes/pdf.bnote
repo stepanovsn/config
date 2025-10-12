@@ -1,0 +1,4 @@
+=H= PDF manipulation
+
+Extract 1st page:   =c= pdftk input.pdf cat 1 output output.pdf =n=
+Compress file:      =c= magick convert -density 150 input.pdf -compress jpeg -quality 50 output.pdf =n=

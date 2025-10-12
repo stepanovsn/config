@@ -391,19 +391,19 @@ r.git_activity() {
 }
 
 r.help_nvim() {
-    source $SCRIPT_DIR/show_help.sh $SCRIPT_DIR/help/nvim.txt | less
+    source $SCRIPT_DIR/show_help.sh $SCRIPT_DIR/notes/nvim.bnote | less
 }
 
 r.help_archive() {
-    source $SCRIPT_DIR/show_help.sh $SCRIPT_DIR/help/archive.txt
+    source $SCRIPT_DIR/show_help.sh $SCRIPT_DIR/notes/archive.bnote | less
 }
 
 r.help_nmcli() {
-    source $SCRIPT_DIR/show_help.sh $SCRIPT_DIR/help/nmcli.txt | less
+    source $SCRIPT_DIR/show_help.sh $SCRIPT_DIR/notes/nmcli.bnote | less
 }
 
 r.help_pdf() {
-    source $SCRIPT_DIR/show_help.sh $SCRIPT_DIR/help/pdf.txt
+    source $SCRIPT_DIR/show_help.sh $SCRIPT_DIR/notes/pdf.bnote | less
 }
 
 # Add fzf key-bindings

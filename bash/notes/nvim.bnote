@@ -31,6 +31,7 @@
 =c= <F4>            =n= (custom) Calls :q
 
 =h= Windows
+
 =c= <C-W>n          =n= (custom) \
 =c= :vnew           =n= Split horizontally and start editing an empty file
 =c= <C-W>v          =n= \
@@ -56,11 +57,13 @@
 =c= <C-W>=          =n= Equalize width and height of all windows
 
 =h= Tabs
+
 =c= <Number>gt      =n= Move to Nth tab
 =c= <F2>            =n= (custom) Create and go to new tab
 =c= <F3>            =n= (custom) Close tab
 
 =h= Buffers
+
 =c= :ls             =n= List buffers
 =c= :b<Number>      =n= Open Nth buffer
 =c= :bd             =n= Close current buffer

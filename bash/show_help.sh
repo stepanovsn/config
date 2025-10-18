@@ -8,13 +8,21 @@ BEGIN {
 {
     if (in_code_section) {
         gsub(/^/, "[38;5;242m", $0)
-    } else if (/=c=($| )/) {
+    }
+    if (/=c=($| )/) {
         gsub(/=c=($| )/, "[38;5;242m", $0)
         in_code_section = 1
     }
-
+    if (/=C=($| )/) {
+        gsub(/=C=($| )/, "    [38;5;242m", $0)
+        in_code_section = 1
+    }
     if (/=n=($| )/) {
         gsub(/=n=($| )/, "[0m", $0)
+        in_code_section = 0
+    }
+    if (/=N=($| )/) {
+        gsub(/=N=($| )/, "[0m    ", $0)
         in_code_section = 0
     }
 

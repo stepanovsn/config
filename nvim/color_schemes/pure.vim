@@ -82,10 +82,10 @@ hi VimnoteInstrumental guifg=#46494f ctermfg=8
 hi VimnoteConcealed guifg=#db79b9 ctermfg=5
 
 " Colors: Bnote
-hi BnoteHeader guifg=#725fff ctermfg=5
-hi BnoteSubheader guifg=#88caeb ctermfg=5
-hi BnoteCode guifg=#808080 ctermfg=5
-hi BnoteTag guifg=#303030 ctermfg=5
+hi BnoteHeader guifg=#725fff
+hi BnoteSubheader guifg=#88caeb
+hi BnoteCode guifg=#787878
+hi BnoteTag guifg=#303030
 
 " Colors: Rnote
 hi RnoteAlert guibg=#632b2b ctermbg=1

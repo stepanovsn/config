@@ -161,8 +161,8 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
 " Keymap: Motion on wrapped lines
-noremap <M-j> gj
-noremap <M-k> gk
+noremap <A-j> gj
+noremap <A-k> gk
 
 " Keymap: Tag navigation
 nnoremap tp :tp<CR>
@@ -192,6 +192,34 @@ nnoremap <F2> :tabnew<CR>
 nnoremap <F3> :tabclose<CR>
 nnoremap <F4> :q<CR>
 nnoremap <C-w>n :vnew<CR>
+
+nnoremap <A-h> :tabprevious<CR>
+nnoremap <A-l> :tabnext<CR>
+nnoremap <A-m>h :tabmove -1<CR>
+nnoremap <A-m>l :tabmove +1<CR>
+nnoremap <A-n> :tabnew<CR>
+nnoremap <A-c> :tabclose<CR>
+nnoremap <A-o> :tabonly<CR>
+nnoremap <A-1> 1gt
+nnoremap <A-2> 2gt
+nnoremap <A-3> 3gt
+nnoremap <A-4> 4gt
+nnoremap <A-5> 5gt
+nnoremap <A-6> 6gt
+nnoremap <A-7> 7gt
+nnoremap <A-8> 8gt
+nnoremap <A-9> 9gt
+nnoremap <A-0> 10gt
+nnoremap <A-m>1 :call MoveTabToPosition(1)<CR>
+nnoremap <A-m>2 :call MoveTabToPosition(2)<CR>
+nnoremap <A-m>3 :call MoveTabToPosition(3)<CR>
+nnoremap <A-m>4 :call MoveTabToPosition(4)<CR>
+nnoremap <A-m>5 :call MoveTabToPosition(5)<CR>
+nnoremap <A-m>6 :call MoveTabToPosition(6)<CR>
+nnoremap <A-m>7 :call MoveTabToPosition(7)<CR>
+nnoremap <A-m>8 :call MoveTabToPosition(8)<CR>
+nnoremap <A-m>9 :call MoveTabToPosition(9)<CR>
+nnoremap <A-m>0 :call MoveTabToPosition(10)<CR>
 
 " Keymap: Hexdump
 nnoremap <Leader>xx :%!xxd -g 2 -c 8 <CR> \| :set ft=xxd<CR>
@@ -272,17 +300,14 @@ nnoremap <Leader>ii o\image[title="Title" width="400" refbyname]{}<ESC>i
 nnoremap <Leader>ib o\imageblock[groupby="2" width="1000"]<ESC>o\item[title="Title" refbyname]{}<ESC>i
 nnoremap <Leader>im o\formula{}<ESC>i
 
-" Keymap: insert special chars
-nnoremap <Leader>cw i <ESC>
-
 " Keymap: hints
 nnoremap <Leader>hr :call ShowHint(g:rnote_hint)<CR>
 
 " Keymap: Other
 nnoremap <Leader>u :mod<CR>
 nnoremap <Leader>ac :call ClangTidy()<CR><CR>
-nnoremap p "0p
-nnoremap P "0P
+nnoremap <Leader>p "0p
+nnoremap <Leader>P "0P
 
 " Functions
 function! SetCodeViewMode()
@@ -599,4 +624,18 @@ endfunction
 
 function! ShowHint(hint)
   echo join(a:hint, "\n")
+endfunction
+
+function! MoveTabToPosition(pos)
+    let total_index = tabpagenr('$')
+    if (a:pos > total_index)
+        return
+    endif
+
+    let current_index = tabpagenr()
+    if a:pos > current_index
+        execute "tabm " . a:pos
+    else
+        execute "tabm " . (a:pos - 1)
+    endif
 endfunction

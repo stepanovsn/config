@@ -13,6 +13,7 @@ vim.opt.ffs = 'unix,dos,mac'
 vim.opt.timeoutlen = 3000
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
+vim.opt.showmode = false
 
 -- Cursor and mouse
 vim.opt.guicursor = 'a:block-blinkon1,i:ver100-blinkon1'
@@ -45,7 +46,7 @@ vim.opt.tags = './tags,tags;$HOME'
 vim.opt.grepprg = 'rg --vimgrep'
 
 -- Syntax
-vim.cmd('match ExtraWhitespace /\\s\\+$/')
+vim.fn.matchadd('ExtraWhitespace', '\\s\\+$', 10)
 
 -- Tabline
 function _G.my_tabline()
@@ -80,7 +81,7 @@ function _G.my_tabline()
 
         tabline = tabline .. '%' .. i .. 'T'
         tabline = tabline .. (is_current and '%#TabLineSel#' or '%#TabLine#')
-        tabline = tabline ..  ' ' .. i .. ':'
+        tabline = tabline ..  ' ' .. i .. ' '
 
         tabline = tabline .. get_custom_tab_name(bufname, filetype, bufnr)
 
@@ -116,3 +117,84 @@ function get_custom_tab_name(bufname, filetype, bufnr)
 end
 
 vim.opt.tabline = "%!v:lua.my_tabline()"
+
+-- Statusline
+local function get_normalized_mode()
+    local mode = vim.fn.mode()
+
+    if mode == 'n' or mode == 'no' then
+        return 'normal'
+    elseif mode == 'i' then
+        return 'insert'
+    elseif mode == 'v' or mode == 'V' or mode == '' then
+        return 'visual'
+    elseif mode == 'c' then
+        return 'command'
+    elseif mode == 'r' or mode == 'R' then
+        return 'replace'
+    elseif mode == 't' then
+        return 'terminal'
+    else
+        return 'normal'
+    end
+end
+
+local mode_names = {
+    normal = 'NORMAL',
+    insert = 'INSERT',
+    visual = 'VISUAL',
+    command = 'COMMAND',
+    replace = 'REPLACE',
+    terminal = 'TERMINAL',
+}
+
+local mode_colors = {
+    normal = 'normal',
+    command = 'normal',
+    terminal = 'normal',
+    insert = 'insert',
+    visual = 'visual',
+    replace = 'replace',
+}
+
+function _G.my_statusline()
+    local mode = get_normalized_mode()
+    local color_name = mode_colors[mode]
+    local colors = color.mode[color_name] or color.mode.normal
+    local mode_name = mode_names[mode] or 'NORMAL'
+    local is_active = vim.g.statusline_winid == vim.fn.win_getid()
+
+    vim.api.nvim_set_hl(0, 'StatusLineMode', { bg = colors.mode.bg, fg = colors.mode.fg })
+    vim.api.nvim_set_hl(0, 'StatusLineMain', { bg = colors.main.bg, fg = colors.main.fg })
+    vim.api.nvim_set_hl(0, 'StatusLine', { bg = colors.line.bg, fg = colors.line.fg })
+    vim.api.nvim_set_hl(0, 'StatusLineCount', { bg = colors.count.bg, fg = colors.count.fg })
+    vim.api.nvim_set_hl(0, 'StatusLineInactive', { bg = colors.inactive.bg, fg = colors.inactive.fg })
+
+    local status = ""
+
+    if is_active then
+        status = status .. "%#StatusLineMode# " .. mode_name .. " "
+
+        status = status .. "%#StatusLineMain# %t"
+        status = status .. "%{&modified ? '[+]' : ''}"
+        status = status .. "%{&readonly ? '[RO]' : ''}"
+        status = status .. "%="
+
+        status = status .. "%#StatusLine# %{&fileencoding != '' ? &fileencoding : &encoding} "
+        status = status .. "%{&fileformat} "
+        if vim.bo.filetype ~= '' then
+            status = status .. "%{&filetype} "
+        end
+        status = status .. " "
+
+        status = status .. "%#StatusLineCount#  %L  "
+        status = status .. "%#StatusLineMain#  %c  %#StatusLine#"
+    else
+        status = status .. "%#StatusLineInactive# %t"
+    end
+
+    return status
+end
+
+vim.opt.laststatus = 2
+vim.opt.statusline = "%!v:lua.my_statusline()"

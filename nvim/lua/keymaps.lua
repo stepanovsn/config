@@ -108,10 +108,14 @@ function ToggleRussianMode(...)
         disable_russian_mappings()
         vim.g.russianMode = false
         print('Russian mode disabled')
+        -- @todo Display in statusline
+        vim.api.nvim_command('redrawstatus')
     else
         enable_russian_mappings()
         vim.g.russianMode = true
         print('Russian mode enabled')
+        -- @todo Display in statusline
+        vim.api.nvim_command('redrawstatus')
     end
 end
 

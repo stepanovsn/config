@@ -2,7 +2,7 @@
 call plug#begin('~/.local/share/nvim/site/plugged')
     "Plug 'https://github.com/stepanovsn/vim-airline.git'
     Plug 'jlanzarotta/bufexplorer'
-    Plug 'ptzz/lf.vim'
+    "Plug 'ptzz/lf.vim'
     Plug 'voldikss/vim-floaterm'
     Plug 'tpope/vim-fugitive'
     Plug 'bfrg/vim-cpp-modern'
@@ -72,9 +72,9 @@ let g:bufExplorerDisableDefaultKeyMapping = 1
 let g:bufExplorerDefaultHelp = 0
 
 " Utils: Lf
-let g:floaterm_height = 0.7
-let g:floaterm_width = 0.9
-let g:lf_map_keys = 0
+"let g:floaterm_height = 0.7
+"let g:floaterm_width = 0.9
+"let g:lf_map_keys = 0
 hi FloatermBorder guifg=#808080 ctermfg=8
 
 "" Utils: Airline
@@ -222,8 +222,8 @@ nnoremap <C-w>n :vnew<CR>
 "nnoremap <A-m>0 :call MoveTabToPosition(10)<CR>
 
 " Keymap: Hexdump
-nnoremap <Leader>xx :%!xxd -g 2 -c 8 <CR> \| :set ft=xxd<CR>
-nnoremap <Leader>xr :%!xxd -g 2 -c 8 -r<CR> \| :filetype detect<CR>
+"nnoremap <Leader>xx :%!xxd -g 2 -c 8 <CR> \| :set ft=xxd<CR>
+"nnoremap <Leader>xr :%!xxd -g 2 -c 8 -r<CR> \| :filetype detect<CR>
 
 " Keymap: Spaces
 noremap <Leader>tr :retab!<CR>
@@ -259,11 +259,11 @@ nnoremap <F8> :ToggleBufExplorer<CR>
 "inoremap <F10> <C-o>:call ToggleRussianMode()<CR>
 
 " Keymap: Lf
-command! LfcdCurrentFile call OpenLfIn("%", 'cd')
-nnoremap <C-n> :Lf<CR>
-nnoremap <C-b> :LfWorkingDirectory<CR>
-nnoremap <Leader>n :LfcdCurrentFile<CR>
-nnoremap <Leader>b :Lfcd<CR>
+ "command! LfcdCurrentFile call OpenLfIn("%", 'cd')
+ "nnoremap <C-n> :Lf<CR>
+ "nnoremap <C-b> :LfWorkingDirectory<CR>
+ "nnoremap <Leader>n :LfcdCurrentFile<CR>
+ "nnoremap <Leader>b :Lfcd<CR>
 
 " Keymap: View mode
 "nnoremap <Leader>vc :<C-u>call SetCodeViewMode()<CR>

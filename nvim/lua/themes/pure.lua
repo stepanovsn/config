@@ -6,9 +6,10 @@ _G.color = {
         dark = '#121212',
     },
     whitespace = { normal = '#383838', extra = '#ff0000', },
-    visual_select = '#383838',
-    inactive_tab = '#a0a6b0',
-    diff_text = '#0f4747',
+    visual_select = { bg = '#383838' },
+    inactive_tab = { fg = '#a0a6b0' },
+    diff_text = { bg = '#0f4747' },
+    color_column = { bg = '#181818' },
     fold = { fg = '#15ebeb', bg = '#40444a', },
     search = {
         current_match = { fg = '#07080d', bg = '#fce094', },
@@ -44,6 +45,34 @@ _G.color = {
             count = { fg = '#eceff4', bg = '#85292b', },
             inactive = { fg = '#c1c3c9', bg = '#272929', },
         },
+    },
+    code = {
+        comment = '#4aa881',
+        define = '#727d8f',
+        statement = '#66a2de', -- type, etc
+        string = '#cf8e6d',
+        character = '#d08770',
+        number = '#88caeb',
+        identifier = '#bd5b5b',
+        func = '#cfac67',
+        special = '#875fff',
+        error = { fg = '#d4dee6', bg = '#994e4e', },
+    },
+    bnote = {
+        header = '#725fff',
+        subheader = '#88caeb',
+        code = '#787878',
+        tag = '#303030',
+    },
+    rnote = {
+        alert = '#632b2b',
+        document = '#bd5b5b',
+        chapter = '#ba6338',
+        section = '#cf8e6d',
+        subsection = '#cfac67',
+        styled = '#66a2de',
+        special = '#d07ad6',
+        service = '#46494f',
     },
 }
 

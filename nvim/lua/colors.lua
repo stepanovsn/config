@@ -27,10 +27,12 @@ vim.api.nvim_set_hl(0, 'Folded', { fg = color.fold.fg, bg = color.fold.bg })
 vim.api.nvim_set_hl(0, 'DiffAdd', { bg = color.common.interface.bg })
 vim.api.nvim_set_hl(0, 'DiffChange', { bg = color.common.interface.bg })
 vim.api.nvim_set_hl(0, 'DiffDelete', { bg = color.common.dark, fg = color.common.dark })
-vim.api.nvim_set_hl(0, 'DiffText', { fg = color.diff_text })
+vim.api.nvim_set_hl(0, 'DiffText', { bg = color.diff_text })
 
 vim.api.nvim_set_hl(0, 'Whitespace', { fg = color.whitespace.normal })
 vim.api.nvim_set_hl(0, 'ExtraWhitespace', { fg = color.whitespace.extra })
+
+vim.api.nvim_set_hl(0, 'FloatBorder', { bg = color.common.normal.bg, fg = color.common.interface.fg })
 
 -- Code
 vim.cmd('hi Comment guifg=#4aa881 ctermfg=2')

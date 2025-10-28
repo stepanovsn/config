@@ -126,16 +126,6 @@ function OpenQflist()
   vim.cmd('resize ' .. length)
 end
 
-function OpenGitStatus(...)
-  local output = vim.fn.system('git rev-parse --is-inside-work-tree')
-  if vim.v.shell_error ~= 0 then
-    print("Not inside work tree")
-    return
-  end
-
-  vim.cmd('tab G')
-end
-
 function MoveTabToPosition(pos)
   local total_index = vim.fn.tabpagenr('$')
   if pos > total_index then

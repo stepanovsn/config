@@ -161,5 +161,164 @@ end
 vim.keymap.set({'n', 'v', 'o'}, '<F10>', ToggleRussianMode)
 vim.keymap.set('i', '<F10>', '<C-o>:lua ToggleRussianMode()<CR>')
 
--- Fugitive
-vim.keymap.set('n', '<Leader>gs', function() OpenGitStatus() end)
+-- Lf
+local function open_lf(opts)
+    local cmd = "lf "
+
+    if opts.open then
+        cmd = cmd .. "-selection-path /tmp/lf_file "
+    else
+        cmd = cmd .. "-last-dir-path /tmp/lf_file "
+    end
+
+    if opts.file then
+        local filename = vim.fn.expand('%:p')
+        if filename == '' then
+            print('no file')
+            return
+        end
+        cmd = cmd .. filename
+    else
+        cmd = cmd .. vim.fn.getcwd()
+    end
+
+    local width = math.floor(vim.o.columns * 0.8)
+    local height = math.floor(vim.o.lines * 0.8)
+    local col = math.floor((vim.o.columns - width) / 2)
+    local row = math.floor((vim.o.lines - height) / 2)
+    local buf = vim.api.nvim_create_buf(false, true)
+    local win = vim.api.nvim_open_win(buf, true, {
+        relative = 'editor',
+        width = width,
+        height = height,
+        col = col,
+        row = row,
+        style = 'minimal',
+        border = 'rounded'
+    })
+
+    vim.fn.termopen(cmd, {
+        cwd = cwd,
+        on_exit = function(_, exit_code)
+            vim.api.nvim_win_close(win, true)
+            vim.defer_fn(function()
+                if vim.api.nvim_buf_is_valid(buf) then
+                    vim.api.nvim_buf_delete(buf, {force = true})
+                end
+            end, 10)
+
+            if exit_code == 0 and vim.loop.fs_stat("/tmp/lf_file") ~= nil then
+                local output = vim.fn.system('cat /tmp/lf_file')
+                if output and output ~= "" then
+                    local path = vim.trim(output)
+                    if opts.open then
+                        vim.cmd("edit " .. vim.fn.fnameescape(path))
+                    else
+                        vim.cmd("cd " .. vim.fn.fnameescape(path))
+                    end
+                end
+            end
+            vim.fn.system('rm -f /tmp/lf_file')
+        end
+    })
+
+    vim.cmd('startinsert')
+end
+
+vim.keymap.set('n', '<C-b>', function() open_lf({ file = false, open = true }) end)
+vim.keymap.set('n', '<C-n>', function() open_lf({ file = true, open = true }) end)
+vim.keymap.set('n', '<Leader>b', function() open_lf({ file = false, open = false }) end)
+vim.keymap.set('n', '<Leader>n', function() open_lf({ file = true, open = false }) end)
+
+-- Commenting
+comment_strings = {
+  lua = '--',
+  python = '#',
+  javascript = '//',
+  typescript = '//',
+  c = '//',
+  cpp = '//',
+  java = '//',
+  php = '//',
+  ruby = '#',
+  sh = '#',
+  vim = '"',
+  sql = '--',
+  yaml = '#',
+  json = '//',
+  rust = '//',
+  go = '//',
+  _default = '#'
+}
+
+local function get_comment_string()
+    local ft = vim.bo.filetype
+    return comment_strings[ft] or comment_strings._default
+end
+
+function uncomment_selection()
+    local mode = vim.fn.mode()
+    if mode ~= 'V' then
+        print("Not in visual line mode")
+        return
+    end
+
+    local start_line = vim.fn.line("v")
+    local end_line = vim.fn.line(".")
+
+    if start_line > end_line then
+        start_line, end_line = end_line, start_line
+    end
+
+    local comment_str = get_comment_string()
+    local comment_str_spaced = comment_str .. ' '
+    local lines = {}
+
+    for i = start_line, end_line do
+        local line = vim.fn.getline(i)
+        local leading_ws = line:match('^(%s*)') or ''
+        local content = line:sub(#leading_ws + 1)
+
+        if content:sub(1, #comment_str_spaced) == comment_str_spaced then
+            content = content:sub(#comment_str_spaced + 1)
+        elseif content:sub(1, #comment_str) == comment_str then
+            content = content:sub(#comment_str + 1)
+        end
+
+        lines[#lines + 1] = leading_ws .. content
+    end
+
+    vim.api.nvim_buf_set_lines(0, start_line - 1, end_line, false, lines)
+    vim.api.nvim_input('<Esc>')
+end
+
+function comment_selection()
+    local mode = vim.fn.mode()
+    if mode ~= 'V' then
+        print("Not in visual line mode")
+        return
+    end
+
+    local start_line = vim.fn.line("v")
+    local end_line = vim.fn.line(".")
+
+    if start_line > end_line then
+        start_line, end_line = end_line, start_line
+    end
+
+    local comment_str = get_comment_string()
+    local lines = {}
+
+    for i = start_line, end_line do
+        local line = vim.fn.getline(i)
+        local leading_ws = line:match('^(%s*)') or ''
+        local content = line:sub(#leading_ws + 1)
+        lines[#lines + 1] = leading_ws .. comment_str .. ' ' .. content
+    end
+
+    vim.api.nvim_buf_set_lines(0, start_line - 1, end_line, false, lines)
+    vim.api.nvim_input('<Esc>')
+end
+
+vim.keymap.set('v', '<leader>cc', comment_selection)
+vim.keymap.set('v', '<leader>cu', uncomment_selection)

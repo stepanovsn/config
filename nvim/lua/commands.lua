@@ -31,3 +31,10 @@ vim.api.nvim_create_autocmd('VimEnter', {
   callback = SetCodeViewMode,
   group = vim.api.nvim_create_augroup('VimEnterSettings', { clear = true })
 })
+
+vim.api.nvim_create_autocmd("TermOpen", {
+  pattern = "*",
+  callback = function()
+    vim.opt_local.winhl = "Normal:Normal"
+  end,
+})

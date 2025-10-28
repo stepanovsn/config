@@ -1,13 +1,13 @@
 " Plugins
 call plug#begin('~/.local/share/nvim/site/plugged')
     "Plug 'https://github.com/stepanovsn/vim-airline.git'
-    Plug 'jlanzarotta/bufexplorer'
+    "Plug 'jlanzarotta/bufexplorer'
     "Plug 'ptzz/lf.vim'
-    Plug 'voldikss/vim-floaterm'
-    Plug 'tpope/vim-fugitive'
+    "Plug 'voldikss/vim-floaterm'
+    "Plug 'tpope/vim-fugitive'
     Plug 'bfrg/vim-cpp-modern'
-    Plug 'scrooloose/nerdcommenter'
-    Plug 'junegunn/fzf'
+    "Plug 'scrooloose/nerdcommenter'
+    "Plug 'junegunn/fzf'
 call plug#end()
 
 "" Settings: Define the color scheme
@@ -147,9 +147,9 @@ let g:cpp_no_function_highlight = 0
 let g:cpp_attributes_highlight = 0
 
 " Utils: Nerdcommenter
-let g:NERDCustomDelimiters={
-    \ 'c': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' }
-    \ }
+"let g:NERDCustomDelimiters={
+    "\ 'c': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' }
+    "\ }
 
 "" Data: hints
 "exec "source " . stdpath('config') . "/hints.vim"
@@ -243,10 +243,10 @@ nnoremap <C-p> :FZF<CR>
 "vnoremap <Leader>l :<C-u>call SearchLocal(GetVisualSelection())<CR>
 
 " Keymap: Git
-nnoremap <Leader>gl :Gclog -30 -- 
+"nnoremap <Leader>gl :Gclog -30 -- 
 "nnoremap <Leader>gs :<C-u>call OpenGitStatus()<CR>
-nnoremap <Leader>gc :Git difftool --name-only 
-nnoremap <Leader>gd :Gvdiff 
+"nnoremap <Leader>gc :Git difftool --name-only 
+"nnoremap <Leader>gd :Gvdiff 
 
 " Keymap: Marks
 nnoremap <Leader>ml :marks ABCDEFGHIJKLMNOPQRSTUVWXYZ<CR>
@@ -259,11 +259,11 @@ nnoremap <F8> :ToggleBufExplorer<CR>
 "inoremap <F10> <C-o>:call ToggleRussianMode()<CR>
 
 " Keymap: Lf
- "command! LfcdCurrentFile call OpenLfIn("%", 'cd')
- "nnoremap <C-n> :Lf<CR>
- "nnoremap <C-b> :LfWorkingDirectory<CR>
- "nnoremap <Leader>n :LfcdCurrentFile<CR>
- "nnoremap <Leader>b :Lfcd<CR>
+"command! LfcdCurrentFile call OpenLfIn("%", 'cd')
+"nnoremap <C-n> :Lf<CR>
+"nnoremap <C-b> :LfWorkingDirectory<CR>
+"nnoremap <Leader>n :LfcdCurrentFile<CR>
+"nnoremap <Leader>b :Lfcd<CR>
 
 " Keymap: View mode
 "nnoremap <Leader>vc :<C-u>call SetCodeViewMode()<CR>

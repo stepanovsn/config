@@ -174,10 +174,10 @@ local function open_lf(opts)
     if opts.file then
         local filename = vim.fn.expand('%:p')
         if filename == '' then
-            print('no file')
-            return
+            cmd = cmd .. vim.fn.getcwd()
+        else
+            cmd = cmd .. filename
         end
-        cmd = cmd .. filename
     else
         cmd = cmd .. vim.fn.getcwd()
     end

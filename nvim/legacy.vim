@@ -1,14 +1,14 @@
 " Plugins
-call plug#begin('~/.local/share/nvim/site/plugged')
+" call plug#begin('~/.local/share/nvim/site/plugged')
     "Plug 'https://github.com/stepanovsn/vim-airline.git'
     "Plug 'jlanzarotta/bufexplorer'
     "Plug 'ptzz/lf.vim'
     "Plug 'voldikss/vim-floaterm'
     "Plug 'tpope/vim-fugitive'
-    Plug 'bfrg/vim-cpp-modern'
+    " Plug 'bfrg/vim-cpp-modern'
     "Plug 'scrooloose/nerdcommenter'
     "Plug 'junegunn/fzf'
-call plug#end()
+" call plug#end()
 
 "" Settings: Define the color scheme
 "let color_scheme = $REG_CONSOLE_COLOR_SCHEME
@@ -68,14 +68,14 @@ call plug#end()
 "command! -nargs=+ Rge call Rge(<f-args>)
 
 " Utils: BufExplorer
-let g:bufExplorerDisableDefaultKeyMapping = 1
-let g:bufExplorerDefaultHelp = 0
+" let g:bufExplorerDisableDefaultKeyMapping = 1
+" let g:bufExplorerDefaultHelp = 0
 
 " Utils: Lf
 "let g:floaterm_height = 0.7
 "let g:floaterm_width = 0.9
 "let g:lf_map_keys = 0
-hi FloatermBorder guifg=#808080 ctermfg=8
+" hi FloatermBorder guifg=#808080 ctermfg=8
 
 "" Utils: Airline
 "let g:airline_theme=color_scheme
@@ -142,9 +142,9 @@ hi FloatermBorder guifg=#808080 ctermfg=8
 "endfunction
 
 " Utils: vim-cpp-modern
-let g:cpp_member_highlight = 1
-let g:cpp_no_function_highlight = 0
-let g:cpp_attributes_highlight = 0
+" let g:cpp_member_highlight = 1
+" let g:cpp_no_function_highlight = 0
+" let g:cpp_attributes_highlight = 0
 
 " Utils: Nerdcommenter
 "let g:NERDCustomDelimiters={

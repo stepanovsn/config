@@ -36,5 +36,13 @@ return {
 
             vim.keymap.set('n', '<F8>', ':ToggleBufExplorer<CR>')
         end
+    },
+    {
+        'bfrg/vim-cpp-modern',
+        config = function()
+            vim.g.cpp_member_highlight = 1
+            vim.g.cpp_no_function_highlight = 0
+            vim.g.cpp_attributes_highlight = 0
+        end
     }
 }

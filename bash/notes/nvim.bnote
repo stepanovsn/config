@@ -464,6 +464,8 @@ To start nvim in diff mode: =c= nvim -d file1.txt file2.txt =n=
 =C= <Leader>f               =N= Grep text globally
 =C= <Leader>l               =N= Search text locally
 
+=C= <Leader>j               =N= Set file glob option to be used in ripgrep
+
 =h= Substitute
 
 =C= <Leader>sc              =N= Replace word under cursor or selected string(clean)

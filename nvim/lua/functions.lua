@@ -43,10 +43,20 @@ function SetMinimalViewMode()
 end
 
 -- Search
+_G.file_glob = ''
+
+function _G.SetGlob(...)
+    _G.file_glob = vim.fn.input("File glob: ")
+    vim.api.nvim_command('redrawstatus')
+end
+
 function Rg(...)
   local search_string = table.concat({ ... }, ' ')
   local grepprg = vim.opt.grepprg:get()
   local cmd = grepprg .. " -F -l '" .. search_string .. "'"
+  if _G.file_glob ~= '' then
+      cmd = cmd .. ' -g ' .. _G.file_glob .. '  --glob-case-insensitive'
+  end
   local output = vim.fn.system(cmd)
   local files = vim.fn.split(output, '\n')
 
@@ -162,15 +172,23 @@ function _G.create_statusline()
     vim.api.nvim_set_hl(0, 'StatusLineCount', { bg = colors.count.bg, fg = colors.count.fg })
     vim.api.nvim_set_hl(0, 'StatusLineInactive', { bg = colors.inactive.bg, fg = colors.inactive.fg })
 
+    if color_name == 'normal' and _G.file_glob ~= '' then
+        vim.api.nvim_set_hl(0, 'StatusLineGlob', { bg = colors.file_glob.bg, fg = colors.file_glob.fg })
+    end
+
     local status = ""
 
     if is_active then
         status = status .. "%#StatusLineMode# " .. mode_name .. " "
 
-        status = status .. "%#StatusLineMain# %t"
+        status = status .. "%#StatusLineMain# %f"
         status = status .. "%{&modified ? '[+]' : ''}"
         status = status .. "%{&readonly ? '[RO]' : ''}"
         status = status .. "%="
+
+        if color_name == 'normal' and _G.file_glob ~= '' then
+            status = status .. "%#StatusLineGlob# " .. _G.file_glob .. " %#StatusLine# "
+        end
 
         status = status .. "%#StatusLine# %{&fileencoding != '' ? &fileencoding : &encoding} "
         status = status .. "%{&fileformat} "

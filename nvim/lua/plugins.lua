@@ -29,7 +29,7 @@ return {
     },
     {
         'jlanzarotta/bufexplorer',
-        config = function()
+        init = function()
             vim.g.bufExplorerDisableDefaultKeyMapping = 1
             vim.g.bufExplorerDefaultHelp = 0
 

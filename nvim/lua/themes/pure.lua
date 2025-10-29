@@ -22,6 +22,7 @@ _G.color = {
             main = { fg = '#c1c3c9', bg = '#272929', },
             line = { fg = '#a0a6b0', bg = '#272929', },
             count = { fg = '#ced4de', bg = '#121212', },
+            file_glob = { fg = '#000000', bg = '#7f6eff', },
             inactive = { fg = '#c1c3c9', bg = '#272929', },
         },
         insert = {

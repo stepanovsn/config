@@ -59,6 +59,8 @@ vim.keymap.set('v', '<Leader>l', function()
     end
 end)
 
+vim.keymap.set('n', '<Leader>j', _G.SetGlob)
+
 -- Substitute
 vim.keymap.set('n', '<Leader>sc', ':%s/\\<<C-r><C-w>\\>//gc<Left><Left><Left>')
 vim.keymap.set('n', '<Leader>sr', ':%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gc<Left><Left><Left>')

@@ -155,18 +155,18 @@
 "exec "source " . stdpath('config') . "/hints.vim"
 
 " Keymap: Split motion
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
-
-" Keymap: Motion on wrapped lines
-noremap <A-j> gj
-noremap <A-k> gk
-
-" Keymap: Tag navigation
-nnoremap tp :tp<CR>
-nnoremap tn :tn<CR>
+" nnoremap <C-J> <C-W><C-J>
+" nnoremap <C-K> <C-W><C-K>
+" nnoremap <C-L> <C-W><C-L>
+" nnoremap <C-H> <C-W><C-H>
+" 
+" " Keymap: Motion on wrapped lines
+" noremap <A-j> gj
+" noremap <A-k> gk
+" 
+" " Keymap: Tag navigation
+" nnoremap tp :tp<CR>
+" nnoremap tn :tn<CR>
 
 "" Keymap: Replace
 "nnoremap <Leader>sc :%s/\<<C-r><C-w>\>//gc<Left><Left><Left>
@@ -179,19 +179,19 @@ nnoremap tn :tn<CR>
 "vnoremap <Leader>sar :<c-u>call SubstituteReplaceInScope("argdo", GetVisualSelection())<CR>
 
 " Keymap: File format
-nnoremap <Leader>ru :execute 'e ++ff=unix'<CR>
-nnoremap <Leader>rd :execute 'e ++ff=dos'<CR>
-nnoremap <Leader>rm :execute 'e ++ff=mac'<CR>
-nnoremap <Leader>rcu :execute 'setlocal ff=unix'<CR>
-nnoremap <Leader>rcd :execute 'setlocal ff=dos'<CR>
-nnoremap <Leader>rcm :execute 'setlocal ff=mac'<CR>
-nnoremap <Leader>rx :%s/\r//g<CR>
+" nnoremap <Leader>ru :execute 'e ++ff=unix'<CR>
+" nnoremap <Leader>rd :execute 'e ++ff=dos'<CR>
+" nnoremap <Leader>rm :execute 'e ++ff=mac'<CR>
+" nnoremap <Leader>rcu :execute 'setlocal ff=unix'<CR>
+" nnoremap <Leader>rcd :execute 'setlocal ff=dos'<CR>
+" nnoremap <Leader>rcm :execute 'setlocal ff=mac'<CR>
+" nnoremap <Leader>rx :%s/\r//g<CR>
 
 " Keymap: Tabs and windows
-nnoremap <F2> :tabnew<CR>
-nnoremap <F3> :tabclose<CR>
-nnoremap <F4> :q<CR>
-nnoremap <C-w>n :vnew<CR>
+" nnoremap <F2> :tabnew<CR>
+" nnoremap <F3> :tabclose<CR>
+" nnoremap <F4> :q<CR>
+" nnoremap <C-w>n :vnew<CR>
 
 "nnoremap <A-h> :tabprevious<CR>
 "nnoremap <A-l> :tabnext<CR>
@@ -226,18 +226,18 @@ nnoremap <C-w>n :vnew<CR>
 "nnoremap <Leader>xr :%!xxd -g 2 -c 8 -r<CR> \| :filetype detect<CR>
 
 " Keymap: Spaces
-noremap <Leader>tr :retab!<CR>
-noremap <Leader>tt :set noexpandtab<CR>
-noremap <Leader>ts :set expandtab<CR>
-noremap <Leader>t2 :set tabstop=2<CR>
-noremap <Leader>t4 :set tabstop=4<CR>
-noremap <Leader>t8 :set tabstop=8<CR>
+" noremap <Leader>tr :retab!<CR>
+" noremap <Leader>tt :set noexpandtab<CR>
+" noremap <Leader>ts :set expandtab<CR>
+" noremap <Leader>t2 :set tabstop=2<CR>
+" noremap <Leader>t4 :set tabstop=4<CR>
+" noremap <Leader>t8 :set tabstop=8<CR>
 
 " Keymap: Search
 "nnoremap <F5> :Rg 
 "nnoremap <F6> :Rgl 
 "nnoremap <F7> :Rge 
-nnoremap <C-p> :FZF<CR>
+" nnoremap <C-p> :FZF<CR>
 "nnoremap <Leader>f :Rg <C-r><C-w><CR>
 "vnoremap <Leader>f :<C-u>call Rg(GetVisualSelection())<CR>
 "vnoremap <Leader>l :<C-u>call SearchLocal(GetVisualSelection())<CR>
@@ -248,13 +248,13 @@ nnoremap <C-p> :FZF<CR>
 "nnoremap <Leader>gc :Git difftool --name-only 
 "nnoremap <Leader>gd :Gvdiff 
 
-" Keymap: Marks
-nnoremap <Leader>ml :marks ABCDEFGHIJKLMNOPQRSTUVWXYZ<CR>
-nnoremap <Leader>mc :delm A-Z<CR>
-
-" Keymap: Toggling
-nnoremap <silent><expr> <F9> (&hls && v:hlsearch ? ':nohls' : ':set hls')."\n"
-nnoremap <F8> :ToggleBufExplorer<CR>
+" " Keymap: Marks
+" nnoremap <Leader>ml :marks ABCDEFGHIJKLMNOPQRSTUVWXYZ<CR>
+" nnoremap <Leader>mc :delm A-Z<CR>
+" 
+" " Keymap: Toggling
+" nnoremap <silent><expr> <F9> (&hls && v:hlsearch ? ':nohls' : ':set hls')."\n"
+" nnoremap <F8> :ToggleBufExplorer<CR>
 "noremap <F10> :call ToggleRussianMode()<CR>
 "inoremap <F10> <C-o>:call ToggleRussianMode()<CR>
 
@@ -271,43 +271,43 @@ nnoremap <F8> :ToggleBufExplorer<CR>
 "nnoremap <Leader>vm :<C-u>call SetMinimalViewMode()<CR>
 
 " Keymap: Rnote keynotes
-nnoremap <Leader>isb a\bold{}<ESC>i
-vnoremap <Leader>isb c\bold{<C-R>"}<ESC>
-nnoremap <Leader>isi a\italic{}<ESC>i
-vnoremap <Leader>isi c\italic{<C-R>"}<ESC>
-nnoremap <Leader>ism a\math{}<ESC>i
-vnoremap <Leader>ism c\math{<C-R>"}<ESC>
-nnoremap <Leader>isr a\reference{}<ESC>i
-vnoremap <Leader>isc c\code{<C-R>"}<ESC>
-nnoremap <Leader>isc a\code{}<ESC>i
-nnoremap <Leader>ist a\tag<ESC>i
-nnoremap <Leader>isl a\link[text=""]{}<ESC>i
-vnoremap <Leader>isl c\link[text=""]{<C-R>"}<ESC>
-nnoremap <Leader>ise o\listing[numbered syntax="cpp"]<ESC>o
-nnoremap <Leader>iss o\set[italic bold]<ESC>o
-nnoremap <Leader>isn a\line<ESC>o
-
-nnoremap <Leader>ihd O\document[lang=eng]{}<ESC>i
-
-nnoremap <Leader>ihc O\chapter{}<ESC>i
-nnoremap <Leader>ihs O\section{}<ESC>i
-nnoremap <Leader>ihu O\subsection[clear]{}<ESC>i
-
-nnoremap <Leader>it o\text<ESC>
-nnoremap <Leader>ie o\thead<Enter> \cell  \cell  \end<Enter><Left>\tbody<ESC>$<Delete><Up>0i
-nnoremap <Leader>ia o\annotation<Enter> \split  \end<ESC>0i
-nnoremap <Leader>ii o\image[title="Title" width="400" refbyname]{}<ESC>i
-nnoremap <Leader>ib o\imageblock[groupby="2" width="1000"]<ESC>o\item[title="Title" refbyname]{}<ESC>i
-nnoremap <Leader>im o\formula{}<ESC>i
+" nnoremap <Leader>isb a\bold{}<ESC>i
+" vnoremap <Leader>isb c\bold{<C-R>"}<ESC>
+" nnoremap <Leader>isi a\italic{}<ESC>i
+" vnoremap <Leader>isi c\italic{<C-R>"}<ESC>
+" nnoremap <Leader>ism a\math{}<ESC>i
+" vnoremap <Leader>ism c\math{<C-R>"}<ESC>
+" nnoremap <Leader>isr a\reference{}<ESC>i
+" vnoremap <Leader>isc c\code{<C-R>"}<ESC>
+" nnoremap <Leader>isc a\code{}<ESC>i
+" nnoremap <Leader>ist a\tag<ESC>i
+" nnoremap <Leader>isl a\link[text=""]{}<ESC>i
+" vnoremap <Leader>isl c\link[text=""]{<C-R>"}<ESC>
+" nnoremap <Leader>ise o\listing[numbered syntax="cpp"]<ESC>o
+" nnoremap <Leader>iss o\set[italic bold]<ESC>o
+" nnoremap <Leader>isn a\line<ESC>o
+" 
+" nnoremap <Leader>ihd O\document[lang=eng]{}<ESC>i
+" 
+" nnoremap <Leader>ihc O\chapter{}<ESC>i
+" nnoremap <Leader>ihs O\section{}<ESC>i
+" nnoremap <Leader>ihu O\subsection[clear]{}<ESC>i
+" 
+" nnoremap <Leader>it o\text<ESC>
+" nnoremap <Leader>ie o\thead<Enter> \cell  \cell  \end<Enter><Left>\tbody<ESC>$<Delete><Up>0i
+" nnoremap <Leader>ia o\annotation<Enter> \split  \end<ESC>0i
+" nnoremap <Leader>ii o\image[title="Title" width="400" refbyname]{}<ESC>i
+" nnoremap <Leader>ib o\imageblock[groupby="2" width="1000"]<ESC>o\item[title="Title" refbyname]{}<ESC>i
+" nnoremap <Leader>im o\formula{}<ESC>i
 
 " Keymap: hints
 "nnoremap <Leader>hr :call ShowHint(g:rnote_hint)<CR>
 
 " Keymap: Other
-nnoremap <Leader>u :mod<CR>
-nnoremap <Leader>ac :call ClangTidy()<CR><CR>
-nnoremap <Leader>p "0p
-nnoremap <Leader>P "0P
+" nnoremap <Leader>u :mod<CR>
+" nnoremap <Leader>ac :call ClangTidy()<CR><CR>
+" nnoremap <Leader>p "0p
+" nnoremap <Leader>P "0P
 
 "" Functions
 "function! SetCodeViewMode()
@@ -431,28 +431,28 @@ nnoremap <Leader>P "0P
     "endwhile
 "endfunction
 
-function! ClangTidy()
-    let l:filename = expand('%')
-    if l:filename =~ '\.\(cpp\|c\)$'
-        let l:cmd = 'clang-tidy ' . l:filename
-        let l:output = split(system(l:cmd), '\n')
-        if (match(l:output, 'Error while trying to load a compilation database') >= 0)
-            echo 'No compilation database'
-        else
-            call filter(l:output, {idx, val -> match(val, '\d\+:\d\+: \w\+: ') >= 0})
-            if (len(l:output) == 0)
-                echo 'No issues'
-                cclose
-            else
-                cexpr l:output
-                copen
-                let w:quickfix_title = l:cmd
-            endif
-        endif
-    else
-        echo "Only for C/C++ source file"
-    endif
-endfunction
+" function! ClangTidy()
+    " let l:filename = expand('%')
+    " if l:filename =~ '\.\(cpp\|c\)$'
+        " let l:cmd = 'clang-tidy ' . l:filename
+        " let l:output = split(system(l:cmd), '\n')
+        " if (match(l:output, 'Error while trying to load a compilation database') >= 0)
+            " echo 'No compilation database'
+        " else
+            " call filter(l:output, {idx, val -> match(val, '\d\+:\d\+: \w\+: ') >= 0})
+            " if (len(l:output) == 0)
+                " echo 'No issues'
+                " cclose
+            " else
+                " cexpr l:output
+                " copen
+                " let w:quickfix_title = l:cmd
+            " endif
+        " endif
+    " else
+        " echo "Only for C/C++ source file"
+    " endif
+" endfunction
 
 "function! GetRussianModeString()
     "if g:russianMode

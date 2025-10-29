@@ -426,84 +426,127 @@ To start nvim in diff mode: =c= nvim -d file1.txt file2.txt =n=
 =C= :diffg //2      =N=         - Get target branch version
 =C= :diffg //3      =N=         - Get merge branch version
 
-=h= Nerdcommenter plugin
-
-                                Change commenting:
-=C= <Leader>cc          =N=     - Comment
-=C= <Leader>cu          =N=     - Uncomment
-=C= <Leader>c<Space>    =N=     - Toggle based on first line
-=C= <Leader>ci          =N=     - Invert every line individually
-=C= <Leader>cs          =N=     - Comment in a beautiful way
-
 =H= Custom key bindings
 
-                                Window navigation:
+=h= Windows
+
+                                Move to:
 =C= <C-J>           =N=         - Lower
 =C= <C-K>           =N=         - Upper
 =C= <C-L>           =N=         - Right
 =C= <C-H>           =N=         - Left
 
-                                Tab manipulation:
-=C= <A-n>         =N=           - Create
-=C= <A-c>         =N=           - Close
-=C= <A-o>         =N=           - Only
-=C= <A-h>         =N=           - Go to left
-=C= <A-l>         =N=           - Go to right
-=C= <A-[number]>  =N=           - Go to [number]th
-=C= <A-m>h        =N=           - Move to left
-=C= <A-m>l        =N=           - Move to right
-=C= <A-m>[number]  =N=          - Move to [number]th
+=C= <C-w>n          =N=         New
+=C= <C-q>           =N=         Close
 
-                                Go on a wrapped line:
+=h= Tabs
+
+=C= <A-n>         =N=           New
+=C= <A-c>         =N=           Close
+=C= <A-o>         =N=           Only
+
+                                Go to:
+=C= <A-h>         =N=           - Left
+=C= <A-l>         =N=           - Right
+=C= <A-[number]>  =N=           - [number]th
+
+                                Move to:
+=C= <A-m>h        =N=           - Left
+=C= <A-m>l        =N=           - Right
+=C= <A-m>[number]  =N=          - [number]th
+
+=h= Search
+
+=C= <F2>                    =N= Ripgrep (files only)
+=C= <F3>                    =N= Ripgrep (every match)
+=C= <F4>                    =N= Ripgrep (every match, regexp)
+
+=C= <Leader>f               =N= Grep text globally
+=C= <Leader>l               =N= Search text locally
+
+=h= Substitute
+
+=C= <Leader>sc              =N= Replace word under cursor or selected string(clean)
+=C= <Leader>sr              =N= Replace word under cursor or selected string(old word pre-typed)
+=C= <Leader>sbc             =N= Replace selected string(clean) in all buffers
+=C= <Leader>sbr             =N= Replace selected string(old word pre-typed) in all buffers
+=C= <Leader>sac             =N= Replace selected string(clean) in args
+=C= <Leader>sar             =N= Replace selected string(old word pre-typed) in args
+
+=h= File format
+
+                                Reread as:
+=C= <Leader>ru          =N=     - Unix
+=C= <Leader>rd          =N=     - Dos
+=C= <Leader>rm          =N=     - Mac
+
+                                Change to:
+=C= <Leader>rcu         =N=     - Unix
+=C= <Leader>rcd         =N=     - Dos
+=C= <Leader>rcm         =N=     - Mac
+
+=C= <Leader>rx          =N=     Remove all =c= ^M =n= in file
+
+=h= Tabulation
+
+                                Switch to:
+=C= <Leader>tt          =N=     - Tabs
+=C= <Leader>ts          =N=     - Whitespaces
+
+                                Set width to:
+=C= <Leader>t2          =N=     - 2
+=C= <Leader>t4          =N=     - 4
+=C= <Leader>t8          =N=     - 8
+
+=C= <Leader>tr          =N=     Retab
+
+=h= Lf
+
+                                Select file starting at:
+=C= <C-n>           =N=         - Current file
+=C= <C-b>           =N=         - Cwd
+
+                                Change cwd starting at:
+=C= <Leader>n       =N=         - Current file
+=C= <Leader>b       =N=         - Cwd
+
+=h= Toggle
+
+=C= <F9>            =N=         Toggle search highlighting
+=C= <F10>           =N=         Toggle russian mode
+
+=h= Other
+
+                                Switch to mode:
+=C= <Leader>vc      =N=         - Code
+=C= <Leader>vr      =N=         - Reader
+=C= <Leader>vm      =N=         - Minimal
+
+                                Commenting:
+=C= <Leader>cc          =N=     - Comment
+=C= <Leader>cu          =N=     - Uncomment
+
+                                Motion on a wrapped line:
 =C= <M-j>           =N=         - Down
 =C= <M-k>           =N=         - Up
 
-                                File format:
-=C= <Leader>ru          =N=     - Reread as unix
-=C= <Leader>rd          =N=     - Reread as dos
-=C= <Leader>rm          =N=     - Reread as mac
-=C= <Leader>rcu         =N=     - Change to unix
-=C= <Leader>rcd         =N=     - Change to dos
-=C= <Leader>rcm         =N=     - Change to mac
-=C= <Leader>rx          =N=     - Remove all ^M in file
-
-                                Tabulation:
-=C= <Leader>tt          =N=     - Switch to tabs
-=C= <Leader>ts          =N=     - Switch to whitespaces
-=C= <Leader>tr          =N=     - Retab
-=C= <Leader>t2          =N=     - Set width to 2
-=C= <Leader>t4          =N=     - Set width to 4
-=C= <Leader>t8          =N=     - Set width to 8
-
-                                Git (fugitive plugin):
-=C= <Leader>gl      =N=         - Log
-=C= <Leader>gs      =N=         - Status
-=C= <Leader>gc      =N=         - Compare with commit or branch (file names only)
-=C= <Leader>gd      =N=         - Compare current buffer with revision
-
-=h= Unsorted
-
-These keybindings should be reviewed!
-
-=C= <F4>            =N=         Calls :q
-=C= <F2>            =N=         Create and go to new tab
-=C= <F3>            =N=         Close tab
-=C= <F8>            =N=         Open buffer window
-
-=C= tn              =N=         Go to next definition (ctags)
-=C= tp              =N=         Go to previous definition (ctags)
 =C= <Leader>ml      =N=         List marks from A to Z
 =C= <Leader>mc      =N=         Clear marks from A to Z
-=C= <Leader>p       =N=         Insert from 0 register after cursor
-=C= <Leader>P       =N=         Insert from 0 register before cursor
-=C= <C-n>           =N=         Open lf at file
-=C= <C-b>           =N=         Open lf in working directory
-=C= <Leader>n       =N=         Change working directory (starting at file)
-=C= <Leader>b       =N=         Change working directory (starting at current wd)
+
+                                Navigate ctags:
+=C= tn              =N=         - Next
+=C= tp              =N=         - Previous
 
 =C= <Leader>u       =N=         Redraw the screen
+
 =C= <Leader>ac      =N=         Analyze file with clang-tidy
-=C= <Leader>hr      =N=         Show help for rnote syntax
+
+                                Insert from 0 register:
+=C= <Leader>p       =N=         - After cursor
+=C= <Leader>P       =N=         - Before cursor
+
+=h= Rnote
+
 =C= <Leader>isb     =N=         Insert bold text
 =C= <Leader>isi     =N=         Insert italic text
 =C= <Leader>ism     =N=         Insert inline math
@@ -511,9 +554,9 @@ These keybindings should be reviewed!
 =C= <Leader>isl     =N=         Insert link
 =C= <Leader>isc     =N=         Insert inline code
 =C= <Leader>ise     =N=         Insert code block
-=C= <Leader>isn     =N=         Insert line break
 =C= <Leader>ist     =N=         Insert tag
-=C= <Leader>ist     =N=         Insert set
+=C= <Leader>iss     =N=         Insert set
+=C= <Leader>isn     =N=         Insert line break
 
 =C= <Leader>ihd     =N=         Insert document
 
@@ -526,28 +569,16 @@ These keybindings should be reviewed!
 =C= <Leader>ia      =N=         Insert annotation
 =C= <Leader>ii      =N=         Insert image
 =C= <Leader>ib      =N=         Insert image block
-=C= <Leader>im      =N=         Insert formula
+=C= <Leader>if      =N=         Insert formula
 
-=C= <F10>           =N=         Toggle russian mode
-=C= <F9>            =N=         Toggle search highlighting
+=h= Plugins
 
-=C= <Leader>vc      =N=         Switch to code mode
-=C= <Leader>vr      =N=         Switch to reader mode
-=C= <Leader>vm      =N=         Switch to minimal mode
+                                Git (fugitive plugin):
+=C= <Leader>gl      =N=         - Log
+=C= <Leader>gs      =N=         - Status
+=C= <Leader>gc      =N=         - Compare with commit or branch (file names only)
+=C= <Leader>gd      =N=         - Compare current buffer with revision
 
-=C= <Leader>f               =N= Grep text globally(Normal and Visual mode)
-=C= <Leader>l               =N= Search text locally(Visual mode)
-=C= <Leader>sc              =N= Replace word under cursor or selected string(clean)
-=C= <Leader>sr              =N= Replace word under cursor or selected string(old word pre-typed)
-=C= <Leader>sbc             =N= Replace selected string(clean) in all buffers
-=C= <Leader>sbr             =N= Replace selected string(old word pre-typed) in all buffers
-=C= <Leader>sac             =N= Replace selected string(clean) in args
-=C= <Leader>sar             =N= Replace selected string(old word pre-typed) in args
+=C= <F8>            =N=         Open buffer window
 
-=C= <F5>                    =N= Ripgrep (files only)
-=C= <F6>                    =N= Ripgrep (every match)
-=C= <F7>                    =N= Ripgrep (every match, regexp)
 =C= <C-p>                   =N= FZF
-
-=C= <Leader>xx          =N=     Show file in hex
-=C= <Leader>xr          =N=     Switch back to normal

@@ -25,7 +25,6 @@ return {
         end,
         config = function()
             vim.keymap.set("n", "<C-p>", ":FZF<CR>", { noremap = true, silent = true })
-
         end,
     },
     {

@@ -481,6 +481,42 @@ function _G.comment_selection()
     vim.api.nvim_input('<Esc>')
 end
 
+-- Analysis
+function ClangTidy()
+    local filename = vim.fn.expand('%')
+
+    -- Check if file is C/C++
+    if string.match(filename, '%.(cpp|c)$') then
+        local cmd = 'clang-tidy ' .. filename
+        local output = vim.fn.system(cmd)
+        local lines = vim.split(output, '\n')
+
+        -- Check for compilation database error
+        if vim.fn.match(lines, 'Error while trying to load a compilation database') >= 0 then
+            print('No compilation database')
+        else
+            -- Filter lines that match the error pattern
+            local filtered_lines = {}
+            for idx, val in ipairs(lines) do
+                if vim.fn.match(val, [[\d\+:\d\+: \w\+: ]]) >= 0 then
+                    table.insert(filtered_lines, val)
+                end
+            end
+
+            if #filtered_lines == 0 then
+                print('No issues')
+                vim.cmd.cclose()
+            else
+                vim.fn.cexpr(filtered_lines)
+                vim.cmd.copen()
+                vim.w.quickfix_title = cmd
+            end
+        end
+    else
+        print("Only for C/C++ source file")
+    end
+end
+
 -- Utils
 function OpenQflist()
   vim.cmd('copen')

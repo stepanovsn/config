@@ -539,8 +539,6 @@ To start nvim in diff mode: =c= nvim -d file1.txt file2.txt =n=
 
 =C= <Leader>u       =N=         Redraw the screen
 
-=C= <Leader>ac      =N=         Analyze file with clang-tidy
-
                                 Insert from 0 register:
 =C= <Leader>p       =N=         - After cursor
 =C= <Leader>P       =N=         - Before cursor

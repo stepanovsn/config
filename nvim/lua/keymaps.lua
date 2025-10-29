@@ -166,8 +166,6 @@ vim.keymap.set('n', 'tp', ':tp<CR>')
 -- Other
 vim.keymap.set('n', '<Leader>u', ':mod<CR>')
 
-vim.keymap.set('n', '<Leader>ac', ClangTidy)
-
 vim.keymap.set('n', '<Leader>p', '"0p')
 vim.keymap.set('n', '<Leader>P', '"0P')
 

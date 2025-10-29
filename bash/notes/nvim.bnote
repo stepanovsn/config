@@ -437,7 +437,7 @@ To start nvim in diff mode: =c= nvim -d file1.txt file2.txt =n=
 =C= <C-H>           =N=         - Left
 
 =C= <C-w>n          =N=         New
-=C= <C-q>           =N=         Close
+=C= <F10>           =N=         Close
 
 =h= Tabs
 
@@ -515,7 +515,7 @@ To start nvim in diff mode: =c= nvim -d file1.txt file2.txt =n=
 =h= Toggle
 
 =C= <F9>            =N=         Toggle search highlighting
-=C= <F10>           =N=         Toggle russian mode
+=C= <F7>           =N=         Toggle russian mode
 
 =h= Other
 

@@ -63,6 +63,24 @@ install_system() {
     mkdir -p "$screenshots_dir"
     step_print "$screenshots_dir created"
 
+    # Chromium bookmarks
+    local bookmark_file=
+    if [ -n "${REG_STORAGE_DIR}" ]; then
+        bookmark_file="${REG_STORAGE_DIR}/data/chromium/bookmarks"
+    elif [ -n "${STORAGE_LOCATION}" ]; then
+        bookmark_file="${STORAGE_LOCATION}/data/chromium/bookmarks"
+    fi
+
+    local chromium_dir="${HOME}/.config/chromium/Default"
+    if [ ! -f "${bookmark_file}" ]; then
+        step_warn "Chromium bookmark file doesn't exists (${bookmark_file})"
+    elif [ ! -d "${chromium_dir}" ]; then
+        step_warn "Chromium directory doesn't exists (${chromium_dir})"
+    else
+        step_soft_link ${bookmark_file} ${chromium_dir}/Bookmarks
+    fi
+
+    # Login
     step_replace_file_sudo /etc/systemd/logind.conf.d/logind.conf $ROOT_DIR/system/systemd_configs/logind.conf
 
     step_done

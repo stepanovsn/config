@@ -437,7 +437,7 @@ To start nvim in diff mode: =c= nvim -d file1.txt file2.txt =n=
 =C= <C-H>           =N=         - Left
 
 =C= <C-w>n          =N=         New
-=C= <F10>           =N=         Close
+=C= <F4>            =N=         Close
 
 =h= Tabs
 
@@ -457,9 +457,9 @@ To start nvim in diff mode: =c= nvim -d file1.txt file2.txt =n=
 
 =h= Search
 
-=C= <F2>                    =N= Ripgrep (files only)
-=C= <F3>                    =N= Ripgrep (every match)
-=C= <F4>                    =N= Ripgrep (every match, regexp)
+=C= <F5>                    =N= Ripgrep (files only)
+=C= <F6>                    =N= Ripgrep (every match)
+=C= <F7>                    =N= Ripgrep (every match, regexp)
 
 =C= <Leader>f               =N= Grep text globally
 =C= <Leader>l               =N= Search text locally
@@ -515,7 +515,7 @@ To start nvim in diff mode: =c= nvim -d file1.txt file2.txt =n=
 =h= Toggle
 
 =C= <F9>            =N=         Toggle search highlighting
-=C= <F7>           =N=         Toggle russian mode
+=C= <F10>           =N=         Toggle russian mode
 
 =h= Other
 

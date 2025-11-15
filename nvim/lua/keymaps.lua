@@ -6,7 +6,7 @@ vim.keymap.set('n', '<C-H>', '<C-W><C-H>')
 
 vim.keymap.set('n', '<C-w>n', function() vim.cmd.vnew() end)
 
-vim.keymap.set('n', '<F10>', function() vim.cmd.quit() end)
+vim.keymap.set('n', '<F4>', function() vim.cmd.quit() end)
 
 -- Tab navigation and manipulation
 vim.keymap.set('n', '<A-n>', '<cmd>tabnew<CR>')
@@ -36,9 +36,9 @@ vim.keymap.set('n', '<A-m>0', function()
 end)
 
 -- Search
-vim.keymap.set('n', '<F2>', ':Rg<Space>')
-vim.keymap.set('n', '<F3>', ':Rgl<Space>')
-vim.keymap.set('n', '<F4>', ':Rge<Space>')
+vim.keymap.set('n', '<F5>', ':Rg<Space>')
+vim.keymap.set('n', '<F6>', ':Rgl<Space>')
+vim.keymap.set('n', '<F7>', ':Rge<Space>')
 vim.keymap.set('n', '<Leader>f', ':Rg<Space><C-r><C-w><CR>')
 
 vim.keymap.set('v', '<Leader>f', function()
@@ -141,8 +141,8 @@ vim.keymap.set('n', '<F9>', function()
     end
 end, { desc = 'Toggle search highlighting' })
 
-vim.keymap.set({'n', 'v', 'o'}, '<F7>', ToggleRussianMode)
-vim.keymap.set('i', '<F7>', '<C-o>:lua ToggleRussianMode()<CR>')
+vim.keymap.set({'n', 'v', 'o'}, '<F10>', ToggleRussianMode)
+vim.keymap.set('i', '<F10>', '<C-o>:lua ToggleRussianMode()<CR>')
 
 -- Modes
 vim.keymap.set('n', '<Leader>vc', SetCodeViewMode)

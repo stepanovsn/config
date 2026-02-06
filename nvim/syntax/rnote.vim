@@ -29,6 +29,8 @@ syntax match RnoteService1 /\(\\\)\@<!\\imageblock\(\[.\{-}\(\(\\\)\@<!\]\)\)\?\
 syntax match RnoteService1 /\(\\\)\@<!\\thead\(\[.\{-}\(\(\\\)\@<!\]\)\)\?\(\($\|\s\)\)\@=/ conceal contains=RnoteService2
 syntax match RnoteService1 /\(\\\)\@<!\\tbody\(\[.\{-}\(\(\\\)\@<!\]\)\)\?\(\($\|\s\)\)\@=/ conceal contains=RnoteService2
 syntax match RnoteService1 /\(\\\)\@<!\\set\(\[.\{-}\(\(\\\)\@<!\]\)\)\?\(\($\|\s\)\)\@=/ conceal contains=RnoteService2
+syntax match RnoteService1 /\(\\\)\@<!\\complex\(\[.\{-}\(\(\\\)\@<!\]\)\)\?\(\($\|\s\)\)\@=/ conceal contains=RnoteService2
+syntax match RnoteService1 /\(\\\)\@<!\\entry\(\[.\{-}\(\(\\\)\@<!\]\)\)\?\(\($\|\s\)\)\@=/ conceal contains=RnoteService2
 syntax match RnoteService1 /\(\\\)\@<!\\cell\(\[.\{-}\(\(\\\)\@<!\]\)\)\?\(\($\|\s\)\)\@=/ conceal cchar=┃
 
 syntax match RnoteService2 /\(\\\)\@<!\\annotation/ conceal contained contains=RnoteService3 " used for better view mode

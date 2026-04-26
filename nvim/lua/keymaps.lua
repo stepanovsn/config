@@ -124,7 +124,7 @@ vim.keymap.set('n', '<Leader>t2', function() vim.opt.tabstop = 2 end)
 vim.keymap.set('n', '<Leader>t4', function() vim.opt.tabstop = 4 end)
 vim.keymap.set('n', '<Leader>t8', function() vim.opt.tabstop = 8 end)
 
-vim.keymap.set('n', '<Leader>tr', function() vim.cmd.retab('!') end)
+vim.keymap.set('n', '<Leader>tr', function() vim.cmd('retab!') end)
 
 -- Lf
 vim.keymap.set('n', '<C-n>', function() _G.open_lf({ file = true, open = true }) end)

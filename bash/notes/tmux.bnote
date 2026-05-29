@@ -1,0 +1,79 @@
+=H= Commands
+
+Create session:         =c= tmux new -s <name> =n=
+List sessions:          =c= tmux ls =n=
+Attach to session:      =c= tmux attach -t <name> =n=
+Kill session:           =c= tmux kill-session -t <name> =n=
+Rename session:         =c= tmux rename-session -t <old> <new> =n=
+
+=H= Keybindings
+
+=h= Session management
+
+=C= prefix d =N=                        - Detach from current session
+
+=C= prefix s =N=                        - List sessions
+=C= prefix $ =N=                        - Rename current session
+
+=h= Window management
+
+=C= prefix c =N=                        - Create new window
+=C= prefix $ =N=                        - Kill current window
+
+=C= prefix n =N=                        - Switch to next window
+=C= prefix p =N=                        - Switch to previous window
+=C= prefix <number> =N=                 - Switch to <number> window
+
+=C= prefix w =N=                        - List windows
+=C= prefix , =N=                        - Rename current window
+
+=h= Pane management
+
+=C= prefix " =N=                        - Split horizontally (top/bottom)
+=C= prefix % =N=                        - Split vertically (left/right)
+=C= prefix ! =N=                        - Break the pane into new window
+=C= prefix x =N=                        - Kill the pane
+
+=C= prefix { =N=                        - Swap the pane with the previous one
+=C= prefix } =N=                        - Swap the pane with the next one
+=C= prefix C-<arrow> =N=                - Resize the pane (step = 1 cell)
+=C= prefix M-<arrow> =N=                - Resize the pane (step = 5 cells)
+=C= prefix z =N=                        - Zoom the pane
+
+                                        Switch to layout:
+=C= prefix M-1 =N=                      - Even-horizontal
+=C= prefix M-2 =N=                      - Even-vertical
+=C= prefix M-3 =N=                      - Main-horizontal
+=C= prefix M-4 =N=                      - Main-vertical
+=C= prefix M-5 =N=                      - Tiled
+
+=C= prefix <arrow> =N=                  - Move between panes (by arrow keys)
+=C= prefix ; =N=                        - Toggle between the current and previous pane
+
+=C= prefix q =N=                        - Show pane numbers
+
+=h= Copy mode
+
+=C= prefix [ =N=                        - Enter copy mode
+=C= q =N=                               - Exit copy mode
+=C= Space =N=                           - Start selecting
+=C= Enter =N=                           - Copy selected text
+=C= prefix ] =N=                        - Paste
+
+=h= Other
+
+=C= prefix t =N=                        - Show time
+
+=h= Custom
+
+=C= prefix v =N=                        - Set session working dir to current pane dir
+
+=C= prefix b =N=                        - Toggle status bar visibility
+
+=C= prefix k =N=                        - Kill current session
+
+=C= Ctrl+Shift+<arrow> =N=              - Move window to the left (right)
+=C= prefix j-<number> =N=               - Move pane to <number> window
+=C= prefix a <number> =N=               - Swap the pane by number
+
+=C= M-<arrow> =N=                       - Go to <arrow> pane

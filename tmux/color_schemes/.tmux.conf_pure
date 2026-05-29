@@ -2,17 +2,18 @@
 unbind C-b
 set -g prefix F12
 bind-key F12 send-prefix
+setw -g mode-keys vi
 
 # Keybindings
-bind k confirm-before kill-session
-bind b set -g status
+bind k confirm-before kill-session # Kill session
+bind b set -g status # Status bar visibility
 bind -n M-Left select-pane -L
 bind -n M-Right select-pane -R
 bind -n M-Up select-pane -U
 bind -n M-Down select-pane -D
-bind-key -n C-S-Left swap-window -t -1 \; previous-window
+bind-key -n C-S-Left swap-window -t -1 \; previous-window # Move window left/right
 bind-key -n C-S-Right swap-window -t +1 \; next-window
-bind-key -Tdest-window 1 join-pane -t :1 -h
+bind-key -Tdest-window 1 join-pane -t :1 -h # Move pane to window
 bind-key -Tdest-window 2 join-pane -t :2 -h
 bind-key -Tdest-window 3 join-pane -t :3 -h
 bind-key -Tdest-window 4 join-pane -t :4 -h
@@ -22,6 +23,8 @@ bind-key -Tdest-window 7 join-pane -t :7 -h
 bind-key -Tdest-window 8 join-pane -t :8 -h
 bind-key -Tdest-window 9 join-pane -t :9 -h
 bind-key j switch-client -Tdest-window
+bind-key a display-panes -d 0 "swap-pane -t '%%'" # Swap panes by numbers
+bind-key v attach-session -t . -c "#{pane_current_path}" # Set session working dir
 
 # Statusbar
 set -g status-interval 1
@@ -37,6 +40,7 @@ setw -g monitor-activity off
 set -g bell-action none
 set -g allow-rename off
 set -g base-index 1
+setw -g pane-base-index 1
 set -g renumber-windows on
 set -g focus-events on
 set -sg escape-time 10

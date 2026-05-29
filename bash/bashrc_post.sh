@@ -406,6 +406,10 @@ r.help_pdf() {
     source $SCRIPT_DIR/show_help.sh $SCRIPT_DIR/notes/pdf.bnote | less
 }
 
+r.help_tmux() {
+    source $SCRIPT_DIR/show_help.sh $SCRIPT_DIR/notes/tmux.bnote | less
+}
+
 # Add fzf key-bindings
 source "$HOME/.local/share/nvim/site/plugged/fzf/shell/key-bindings.bash" &> /dev/null
 

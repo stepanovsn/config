@@ -18,7 +18,7 @@ send-keys 'cd ~/rn_converter' C-m './watch.sh'  C-m \; \
 select-pane -t 0 \; \
 resize-pane -Z \; \
 new-window -n 'wordstock' \; \
-send-keys 'cd ~/wordstock' C-m \; \
+send-keys 'cd ~/wordstock' C-m './run_localhost.sh'  C-m \; \
 send-keys C-l \; \
 split-window -h -l 50 \; \
 send-keys 'cd ~/wordstock' C-m './watch.sh'  C-m \; \

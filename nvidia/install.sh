@@ -1,7 +1,7 @@
 #!/bin/bash
 
 install_nvidia() {
-    step_upgrade_pacman nvidia nvidia-utils nvidia-settings opencl-nvidia
+    step_upgrade_pacman nvidia-utils nvidia-settings opencl-nvidia
 
     # Copy config
     sudo cp "${ROOT_DIR}/nvidia/10-nvidia-drm-outputclass.conf" "/etc/X11/xorg.conf.d/"

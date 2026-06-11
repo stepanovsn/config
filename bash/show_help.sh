@@ -1,6 +1,14 @@
 #!/bin/bash
 
-awk '
+TERMINAL_WIDTH=$(tput cols)
+if [[ ${TERMINAL_WIDTH} -gt 121 ]]; then
+    SIDE_SPACE_WIDTH=$((($TERMINAL_WIDTH - 121)/ 2))
+    SIDE_SPACE=$(printf "%*s" $SIDE_SPACE_WIDTH "")
+else
+    SIDE_SPACE=""
+fi
+
+awk -v SIDE_SPACE="$SIDE_SPACE" '
 BEGIN { 
     in_code_section = 0
 }
@@ -49,8 +57,10 @@ BEGIN {
             new_line = new_line "="
         }
 
-        print "    " new_line
+        new_line = SIDE_SPACE new_line
+        print new_line
     } else {
-        print "    " $0
+        text = SIDE_SPACE $0
+        print text
     }
 }' ${1}

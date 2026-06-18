@@ -130,9 +130,3 @@ lfcd () {
         fi
     fi
 }
-
-# Bindings
-bind '"\C-n":"lfcd\C-m"'
-bind '"\C-p":"fzf\C-m"'
-bind '"\C-b":"nvim\C-m"'
-bind '"\C-]":" | nvim -"'

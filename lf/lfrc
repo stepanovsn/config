@@ -48,5 +48,13 @@ cmd extract ${{
     esac
 }}
 
-# Remove some defaults
-cmd open
+cmd open ${{
+    case "$LF_OPEN_MODE" in
+        "bnote")
+            ${REG_CONFIG_DIR}/bash/show_help.sh "$f" | less
+            lf -remote "send $id quit"
+            ;;
+        *)
+            ;;
+    esac
+}}

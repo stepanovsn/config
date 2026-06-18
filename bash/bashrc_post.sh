@@ -390,24 +390,8 @@ r.git_activity() {
     printf "$dayOfTheWeekLine\n"
 }
 
-r.help_nvim() {
-    source $SCRIPT_DIR/show_help.sh $SCRIPT_DIR/notes/nvim.bnote | less
-}
-
-r.help_archive() {
-    source $SCRIPT_DIR/show_help.sh $SCRIPT_DIR/notes/archive.bnote | less
-}
-
-r.help_nmcli() {
-    source $SCRIPT_DIR/show_help.sh $SCRIPT_DIR/notes/nmcli.bnote | less
-}
-
-r.help_pdf() {
-    source $SCRIPT_DIR/show_help.sh $SCRIPT_DIR/notes/pdf.bnote | less
-}
-
-r.help_tmux() {
-    source $SCRIPT_DIR/show_help.sh $SCRIPT_DIR/notes/tmux.bnote | less
+r.help() {
+    LF_OPEN_MODE="bnote" lf ${REG_CONFIG_DIR}/bash/notes
 }
 
 # Add fzf key-bindings
@@ -429,3 +413,8 @@ elif $(command -v tmux &> /dev/null) && ! [ -n "$TMUX" ] && [ -z "$(tmux lsc)" ]
         fi
     fi
 fi
+
+bind '"\C-xn":"lfcd\C-m"'
+bind '"\C-xb":"nvim\C-m"'
+bind '"\C-xp":"fzf\C-m"'
+bind '"\C-xh":"r.help\C-m"'

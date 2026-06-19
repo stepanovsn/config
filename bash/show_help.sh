@@ -1,28 +1,20 @@
 #!/bin/bash
 
-TERMINAL_WIDTH=$(tput cols)
-if [[ ${TERMINAL_WIDTH} -gt 121 ]]; then
-    SIDE_SPACE_WIDTH=$((($TERMINAL_WIDTH - 121)/ 2))
-    SIDE_SPACE=$(printf "%*s" $SIDE_SPACE_WIDTH "")
-else
-    SIDE_SPACE=""
-fi
-
-awk -v SIDE_SPACE="$SIDE_SPACE" '
+awk  '
 BEGIN { 
     in_code_section = 0
 }
 
 {
     if (in_code_section) {
-        gsub(/^/, "[38;5;242m", $0)
+        gsub(/^/, "[38;5;110m", $0)
     }
     if (/=c=($| )/) {
-        gsub(/=c=($| )/, "[38;5;242m", $0)
+        gsub(/=c=($| )/, "[38;5;110m", $0)
         in_code_section = 1
     }
     if (/=C=($| )/) {
-        gsub(/=C=($| )/, "    [38;5;242m", $0)
+        gsub(/=C=($| )/, "    [38;5;110m", $0)
         in_code_section = 1
     }
     if (/=n=($| )/) {
@@ -34,7 +26,7 @@ BEGIN {
         in_code_section = 0
     }
 
-    gsub(/=h= /, "[38;5;235m===== [38;5;74m", $0)
+    gsub(/=h= /, "[38;5;236m===== [38;5;180m", $0)
 
     if (/^=H= .*$/) {
         # Extract the text after "=H= "
@@ -50,17 +42,15 @@ BEGIN {
         for (i = 1; i <= padding_each_side; i++) padding = padding "="
 
         # Build the new line
-        new_line = "[38;5;235m" padding " [38;5;62m" text " [38;5;235m" padding "[0m"
+        new_line = "[38;5;236m" padding " [38;5;172m" text " [38;5;236m" padding "[0m"
 
         # Handle odd numbers by adding one more = at the end if needed
         if (length(new_line) < 120) {
             new_line = new_line "="
         }
 
-        new_line = SIDE_SPACE new_line
-        print new_line
+        print "    " new_line
     } else {
-        text = SIDE_SPACE $0
-        print text
+        print "    " $0
     }
 }' ${1}

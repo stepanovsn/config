@@ -2,53 +2,53 @@
 
 =h= Show information
 
-Devices and dns status:         =c= nmcli =n=
-NetworkManager status:          =c= nmcli g =n=
-Networking status:              =c= nmcli n =n=
-Show connections:               =c= nmcli con =n=
-Show all devices status:        =c= nmcli dev =n=
-Show all devices info:          =c= nmcli dev sh =n=
+Devices and dns status:         ‹nmcli›
+NetworkManager status:          ‹nmcli g›
+Networking status:              ‹nmcli n›
+Show connections:               ‹nmcli con›
+Show all devices status:        ‹nmcli dev›
+Show all devices info:          ‹nmcli dev sh›
 
 =h= Control
 
-Enable/disable networking:                =c= nmcli n [on/off] =n=
-Enable/disable type of connection:        =c= nmcli r [type] [on|off] =n=
+Enable/disable networking:                ‹nmcli n [on/off]›
+Enable/disable type of connection:        ‹nmcli r [type] [on|off]›
     Types: wifi, wwan, all
 
 =h= Connection properties
 
 Most used connection properties and values:
-=c= ipv4.method manual                    =n= IPv4 address configured statically
-=c= ipv4.method auto                      =n= Configuration settings from a DHCPv4 server
-=c= ipv4.address "192.168.0.10/24"        =n= Static IPv4 address, network prefix
-=c= ipv4.gateway 192.168.0.1              =n= IPv4 Gateway
-=c= ipv4.dns 8.8.8.8                      =n= Modify /etc/resolv.conf to use this nameserver
-=c= connection.autoconnect yes            =n= Automatically activate this connection on boot
-=c= connection.id eth0                    =n= Name of the connection
-=c= connection.interface-name             =n= Bind connection to the network interface
+‹ipv4.method manual                    ›IPv4 address configured statically
+‹ipv4.method auto                      ›Configuration settings from a DHCPv4 server
+‹ipv4.address "192.168.0.10/24"        ›Static IPv4 address, network prefix
+‹ipv4.gateway 192.168.0.1              ›IPv4 Gateway
+‹ipv4.dns 8.8.8.8                      ›Modify /etc/resolv.conf to use this nameserver
+‹connection.autoconnect yes            ›Automatically activate this connection on boot
+‹connection.id eth0                    ›Name of the connection
+‹connection.interface-name             ›Bind connection to the network interface
 
 =H= Examples
 
-Add IP to DNS servers list:        =c= nmcli con mod eno1 +ipv4.dns 8.8.4.4 =n=
-Add new connection:                =c= nmcli con add type ethernet connection.interface-name enp1s0 =n=
-Disconnect the interface:          =c= nmcli dev disconnect enp0s8 =n=
-Unmanage the interface:            =c= nmcli device set enp0s8 managed no =n=
+Add IP to DNS servers list:        ‹nmcli con mod eno1 +ipv4.dns 8.8.4.4›
+Add new connection:                ‹nmcli con add type ethernet connection.interface-name enp1s0›
+Disconnect the interface:          ‹nmcli dev disconnect enp0s8›
+Unmanage the interface:            ‹nmcli device set enp0s8 managed no›
 
-Configure static IP address: =c=
+Configure static IP address:‹
 nmcli con modify eno1 ipv4.addresses "192.168.0.100/24 192.168.0.1"
 nmcli con modify eno1 ipv4.method manual
 nmcli con down eno1 && nmcli con up eno1
-nmcli device show eno1 =n=
+nmcli device show eno1›
 
-Configure DHCP: =c=
+Configure DHCP:‹
 nmcli con modify eno1 ipv4.method auto
 nmcli con down eno1 && nmcli con up eno1
-nmcli device show eno1 =n=
+nmcli device show eno1›
 
-Connect to wifi: =c=
+Connect to wifi:‹
 nmcli radio wifi on
 sudo nmcli dev wifi rescan
 nmcli dev wifi list
 sudo nmcli --ask dev wifi connect NETWORK_NAME
 nmcli dev status
-nmcli con show =n=
+nmcli con show›

@@ -24,32 +24,32 @@ One of them is Replace mode.
 
 =h= Key bindings
 
-=c= =n=                         Switch to mode:
-=c= i I a A o O c C s S =n=     - Insert (details are given later in this document)
-=c= : / ? ! =n=                 - Cmdline (details are given later in this document)
-=c= v =n=                       - Visual
-=c= V =n=                       - Visual line
-=c= <C-v> =n=                   - Visual block
-=c= R =n=                       - Replace
-=c= gQ =n=                      - Ex
+‹›                        Switch to mode:
+‹i I a A o O c C s S ›    - Insert (details are given later in this document)
+‹: / ? ! ›                - Cmdline (details are given later in this document)
+‹v ›                      - Visual
+‹V ›                      - Visual line
+‹<C-v> ›                  - Visual block
+‹R ›                      - Replace
+‹gQ ›                     - Ex
 
-=c= =n=                         Go back to normal mode:
-=c= <Esc> =n=                   - From any mode except Ex mode
-=c= :visual =n=                 - From Ex mode
+‹›                        Go back to normal mode:
+‹<Esc> ›                  - From any mode except Ex mode
+‹:visual ›                - From Ex mode
 
 =H= Syntax
 
 Vim has core syntax for editing actions.
 Any action needs a target. It could be a motion or a text object.
 
-- For regular motions (cursor-based): =c= [" + register][count][operator][count][motion] =n=
-- For text objects (structure-based): =c= [" + register][count][operator][text-object] =n=
+- For regular motions (cursor-based): ‹[" + register][count][operator][count][motion]›
+- For text objects (structure-based): ‹[" + register][count][operator][text-object]›
 
 Here:
-=c= " + register =n=             - What register to use
-=c= operator =n=                 - What to do (delete, change, yank, etc.)
-=c= motion/text-object =n=       - Where to do it (move cursor or select text)
-=c= count =n=                    - How many times (optional multiplier)
+‹" + register ›            - What register to use
+‹operator ›                - What to do (delete, change, yank, etc.)
+‹motion/text-object ›      - Where to do it (move cursor or select text)
+‹count ›                   - How many times (optional multiplier)
 
 Navigation actions are the same motions except they don't have any operator applied (a "null operator").
 
@@ -65,253 +65,253 @@ Below are listed not all but main motions/text objects/operators.
 
 The motion covers the content from cursor to specific location.
 
-=c= =n=                By character:
-=c= h =n=              - Left
-=c= j =n=              - Down
-=c= k =n=              - Up
-=c= l =n=              - Right
+‹›               By character:
+‹h ›             - Left
+‹j ›             - Down
+‹k ›             - Up
+‹l ›             - Right
 
-=c= =n=                By word (normal / space separated):
-=c= w / W =n=          - Next
-=c= b / B =n=          - Previous
-=c= e / E =n=          - End of current
-=c= ge / gE =n=        - End of previous
+‹›               By word (normal / space separated):
+‹w / W ›         - Next
+‹b / B ›         - Previous
+‹e / E ›         - End of current
+‹ge / gE ›       - End of previous
 
-=c= =n=                In line:
-=c= 0 =n=              - Start of current
-=c= ^ =n=              - First non-blank character of current
-=c= $ =n=              - End of current
-=c= | =n=              - Column (0 by default) of current
-=c= + =n=              - First non-blank of next
-=c= - =n=              - First non-blank of previous
+‹›               In line:
+‹0 ›             - Start of current
+‹^ ›             - First non-blank character of current
+‹$ ›             - End of current
+‹| ›             - Column (0 by default) of current
+‹+ ›             - First non-blank of next
+‹- ›             - First non-blank of previous
 
-=c= =n=                By single-line search:
-=c= f{char} =n=        - Next occurence of {char} on the line
-=c= t{char} =n=        - Right before next occurence of {char} on the line
-=c= F{char} =n=        - Previous occurence of {char} on the line
-=c= T{char} =n=        - Right before previous occurence of {char} on the line
-=c= ;      =n=         - Repeat search in the same direction
-=c= ,      =n=         - Repeat search in the opposite direction
+‹›               By single-line search:
+‹f{char} ›       - Next occurence of {char} on the line
+‹t{char} ›       - Right before next occurence of {char} on the line
+‹F{char} ›       - Previous occurence of {char} on the line
+‹T{char} ›       - Right before previous occurence of {char} on the line
+‹;      ›        - Repeat search in the same direction
+‹,      ›        - Repeat search in the opposite direction
 
-=c= =n=                By paragraph:
-=c= { =n=              - Forward
-=c= } =n=              - Back
+‹›               By paragraph:
+‹{ ›             - Forward
+‹} ›             - Back
 
-=c= =n=                Inside screen:
-=c= H =n=              - Top
-=c= M =n=              - Middle
-=c= L =n=              - Bottom
+‹›               Inside screen:
+‹H ›             - Top
+‹M ›             - Middle
+‹L ›             - Bottom
 
-=c= =n=                By position in the file:
-=c= gg =n=             - Specific (0 by default) line
-=c= G =n=              - Last line in file
+‹›               By position in the file:
+‹gg ›            - Specific (0 by default) line
+‹G ›             - Last line in file
 
-=c= =n=                By global search:
-=c= /{pattern} =n=     - Search forward
-=c= ?{pattern} =n=     - Search backward
-=c= n          =n=     - Last search same direction
-=c= N          =n=     - Last search opposite direction
-=c= *          =n=     - Next occurence of the word
+‹›               By global search:
+‹/{pattern} ›    - Search forward
+‹?{pattern} ›    - Search backward
+‹n          ›    - Last search same direction
+‹N          ›    - Last search opposite direction
+‹*          ›    - Next occurence of the word
 
-=c= =n=                By marks:
-=c= `{mark} =n=        - Exact mark location
-=c= '{mark} =n=        - Line of mark
+‹›               By marks:
+‹`{mark} ›       - Exact mark location
+‹'{mark} ›       - Line of mark
 
-=c= =n=                By other targets:
-=c= %     =n=          - Matching bracket/parenthesis/brace
-=c= gd    =n=          - Definition
+‹›               By other targets:
+‹%     ›         - Matching bracket/parenthesis/brace
+‹gd    ›         - Definition
 
 =h= Text objects
 
-Text object have syntax: =c= [i/a][object] =n=
+Text object have syntax: ‹[i/a][object]›
 
 Where:
 - 'i' (inner) selects inside the delimiters
 - 'a' (around) selects including the delimiters.
 
-=c= =n=         Objects:
-=c= w =n=       - Word
-=c= W =n=       - Word (space-separated)
-=c= ' =n=       - Single quotes
-=c= " =n=       - Double quotes
-=c= ( =n=       - Parentheses
-=c= [ =n=       - Brackets
-=c= { =n=       - Braces
-=c= t =n=       - Tag (html/xml)
-=c= s =n=       - Sentence
-=c= p =n=       - Paragraph
+‹›        Objects:
+‹w ›      - Word
+‹W ›      - Word (space-separated)
+‹' ›      - Single quotes
+‹" ›      - Double quotes
+‹( ›      - Parentheses
+‹[ ›      - Brackets
+‹{ ›      - Braces
+‹t ›      - Tag (html/xml)
+‹s ›      - Sentence
+‹p ›      - Paragraph
 
 =h= Operators
 
 All of the operators below, when pressed twice, are applied to the current line.
-Case operators should repeat only last symbol, e.g. =c= g~~ =n= changes case of the current line.
+Case operators should repeat only last symbol, e.g. ‹g~~ ›changes case of the current line.
 
-=c= =n=          Editing:
-=c= d =n=        - Delete (cut)
-=c= c =n=        - Change (delete + enter insert mode)
-=c= y =n=        - Yank (copy)
+‹›         Editing:
+‹d ›       - Delete (cut)
+‹c ›       - Change (delete + enter insert mode)
+‹y ›       - Yank (copy)
 
-=c= =n=          Indent:
-=c= > =n=        - Increase
-=c= < =n=        - Decrease
+‹›         Indent:
+‹> ›       - Increase
+‹< ›       - Decrease
 
-=c= =n=          Change case:
-=c= g~ =n=       - Toggle
-=c= gU =n=       - Uppercase
-=c= gu =n=       - Lowercase
+‹›         Change case:
+‹g~ ›      - Toggle
+‹gU ›      - Uppercase
+‹gu ›      - Lowercase
 
-=c= =n=          Other:
-=c= = =n=        - Auto-indent
-=c= ! =n=        - Filter text through external command
+‹›         Other:
+‹= ›       - Auto-indent
+‹! ›       - Filter text through external command
 
 =h= Examples
 
-=c= d2w =n=                - Delete next two words
-=c= di" =n=                - Delete inside quotes
-=c= dt, =n=                - Delete until next comma (keeps comma)
-=c= c$ =n=                 - Change to end of line
-=c= yiw =n=                - Yank inner word
-=c= yap =n=                - Yank around paragraph
-=c= g~l =n=                - Toggle case under cursor
-=c= !ipsort<Enter> =n=     - Sort current paragraph
+‹d2w ›               - Delete next two words
+‹di" ›               - Delete inside quotes
+‹dt, ›               - Delete until next comma (keeps comma)
+‹c$ ›                - Change to end of line
+‹yiw ›               - Yank inner word
+‹yap ›               - Yank around paragraph
+‹g~l ›               - Toggle case under cursor
+‹!ipsort<Enter> ›    - Sort current paragraph
 
 =H= Motions and navigation
 
-=c= =n=             Scroll screen by one line:
-=c= <C-y> =n=       - Up
-=c= <C-e> =n=       - Down
+‹›            Scroll screen by one line:
+‹<C-y> ›      - Up
+‹<C-e> ›      - Down
 
-=c= =n=             Scroll screen by half page:
-=c= <C-u> =n=       - Up
-=c= <C-d> =n=       - Down
+‹›            Scroll screen by half page:
+‹<C-u> ›      - Up
+‹<C-d> ›      - Down
 
-=c= =n=             Scroll screen so the current line is at:
-=c= zt =n=          - Top
-=c= zz =n=          - Center
-=c= zb =n=          - Bottom
+‹›            Scroll screen so the current line is at:
+‹zt ›         - Top
+‹zz ›         - Center
+‹zb ›         - Bottom
 
 =h= Jumplist/changelist
 
 Bug motions and other navigation commands are saved in the jumplist.
-It can be observed with: =c= :jumps =n=
+It can be observed with: ‹:jumps›
 
-=c= =n=             Navigate in jump list:
-=c= <C-o> =n=       - Back
-=c= <C-i> =n=       - Forward
+‹›            Navigate in jump list:
+‹<C-o> ›      - Back
+‹<C-i> ›      - Forward
 
-=c= =n=             Navigate in change list
-=c= g; =n=          - Back
-=c= g, =n=          - Forward
+‹›            Navigate in change list
+‹g; ›         - Back
+‹g, ›         - Forward
 
 =H= Layout
 
 =h= Windows
 
-=c= =n=                     Move to the window on the:
-=c= <C-W>h =n=              - Left
-=c= <C-W>j =n=              - Bottom
-=c= <C-W>k =n=              - Top
-=c= <C-W>l =n=              - Right
+‹›                    Move to the window on the:
+‹<C-W>h ›             - Left
+‹<C-W>j ›             - Bottom
+‹<C-W>k ›             - Top
+‹<C-W>l ›             - Right
 
-=c= =n=                     Split the window:
-=c= <C-W>s =n=              - Vertically
-=c= <C-W>v =n=              - Horizontally
-=c= :vnew  =n=              - Horizontally and start editing an empty file
+‹›                    Split the window:
+‹<C-W>s ›             - Vertically
+‹<C-W>v ›             - Horizontally
+‹:vnew  ›             - Horizontally and start editing an empty file
 
-=c= =n=                     Move the window to:
-=c= <C-W>H =n=              - Left
-=c= <C-W>J =n=              - Bottom
-=c= <C-W>K =n=              - Top
-=c= <C-W>L =n=              - Right
-=c= <C-W>T =n=              - New tab
-=c= <C-W>x =n=              - Swap with next
+‹›                    Move the window to:
+‹<C-W>H ›             - Left
+‹<C-W>J ›             - Bottom
+‹<C-W>K ›             - Top
+‹<C-W>L ›             - Right
+‹<C-W>T ›             - New tab
+‹<C-W>x ›             - Swap with next
 
-=c= <C-W>o =n=              Close all other windows
+‹<C-W>o ›             Close all other windows
 
-=c= =n=                     Change window size:
-=c= [number]<C-W>+ =n=      - Increase height
-=c= [number]<C-W>- =n=      - Decrease height
-=c= [number]<C-W>> =n=      - Increase width
-=c= [number]<C-W>< =n=      - Decrease width
-=c= <C-W>=         =n=      - Equalize all windows
+‹›                    Change window size:
+‹[number]<C-W>+ ›     - Increase height
+‹[number]<C-W>- ›     - Decrease height
+‹[number]<C-W>> ›     - Increase width
+‹[number]<C-W>< ›     - Decrease width
+‹<C-W>=         ›     - Equalize all windows
 
 =h= Tabs
 
-=c= =n=                  Go to tab:
-=c= gt         =n=       - Next
-=c= gT         =n=       - Previous
-=c= [number]gt =n=       - Specific
+‹›                 Go to tab:
+‹gt         ›      - Next
+‹gT         ›      - Previous
+‹[number]gt ›      - Specific
 
-=c= =n=                  Manipulate tabs:
-=c= :tabnew    =n=       - New tab
-=c= :tabclose  =n=       - Close tab
-=c= :tabonly   =n=       - Close other tabs
+‹›                 Manipulate tabs:
+‹:tabnew    ›      - New tab
+‹:tabclose  ›      - Close tab
+‹:tabonly   ›      - Close other tabs
 
 =H= Editing
 
 There listed some shortcuts and compound commands which don't follow core syntax.
 Plus some other types of commands used in editing.
 
-=c= =n=               Enter insert mode:
-=c= i         =n=     - Before cursor
-=c= I         =n=     - Beggining of line
-=c= a         =n=     - After cursor
-=c= A         =n=     - End of line
-=c= o         =n=     - New line below
-=c= O         =n=     - New line above
+‹›              Enter insert mode:
+‹i         ›    - Before cursor
+‹I         ›    - Beggining of line
+‹a         ›    - After cursor
+‹A         ›    - End of line
+‹o         ›    - New line below
+‹O         ›    - New line above
 
-=c= =n=               Single letter operation (under cursor):
-=c= x         =n=     - Delete (same as "dl")
-=c= r         =n=     - Replace
-=c= s         =n=     - Substitute (same as "cl")
-=c= ~         =n=     - Toggle case
+‹›              Single letter operation (under cursor):
+‹x         ›    - Delete (same as "dl")
+‹r         ›    - Replace
+‹s         ›    - Substitute (same as "cl")
+‹~         ›    - Toggle case
 
-=c= =n=               Line operation:
-=c= C         =n=     - Change to end of line (same as "c$")
-=c= D         =n=     - Delete to end of line (same as "d$")
-=c= S         =n=     - Substitute line (same as "cc")
+‹›              Line operation:
+‹C         ›    - Change to end of line (same as "c$")
+‹D         ›    - Delete to end of line (same as "d$")
+‹S         ›    - Substitute line (same as "cc")
 
-=c= =n=               Paste:
-=c= p         =n=     - After cursor
-=c= P         =n=     - Before cursor
+‹›              Paste:
+‹p         ›    - After cursor
+‹P         ›    - Before cursor
 
-=c= =n=               Changes:
-=c= u         =n=     - Undo
-=c= U         =n=     - Undo all changes on current line
-=c= <C-r>     =n=     - Redo
-=c= .         =n=     - Repeat last change under cursor
+‹›              Changes:
+‹u         ›    - Undo
+‹U         ›    - Undo all changes on current line
+‹<C-r>     ›    - Redo
+‹.         ›    - Repeat last change under cursor
 
-=c= =n=               Join current line with the next one:
-=c= J         =n=     - Remove the indent and insert up to two spaces
-=c= gJ        =n=     - Don't insert or remove any spaces.
+‹›              Join current line with the next one:
+‹J         ›    - Remove the indent and insert up to two spaces
+‹gJ        ›    - Don't insert or remove any spaces.
 
-=c= =n=               Change numbers under cursor:
-=c= <C-a>     =n=     - Increase
-=c= <C-x>     =n=     - Decrease
+‹›              Change numbers under cursor:
+‹<C-a>     ›    - Increase
+‹<C-x>     ›    - Decrease
 
-=c= C-v u2713 =n=     In insert mode, insert Unicode symbol (for example, a mark)
+‹C-v u2713 ›    In insert mode, insert Unicode symbol (for example, a mark)
 
 =h= Visual mode editing
 
-=c= =n=             Basic:
-=c= d     =n=       - Delete
-=c= y     =n=       - Yank
-=c= p     =n=       - Replace
-=c= с     =n=       - Change
+‹›            Basic:
+‹d     ›      - Delete
+‹y     ›      - Yank
+‹p     ›      - Replace
+‹с     ›      - Change
 
-=c= =n=             Change case:
-=c= u     =n=       - To lower
-=c= U     =n=       - To upper
-=c= ~     =n=       - Invert
+‹›            Change case:
+‹u     ›      - To lower
+‹U     ›      - To upper
+‹~     ›      - Invert
 
-=c= =n=             Indentation of selected lines:
-=c= >     =n=       - Increase
-=c= <     =n=       - Decrease
-=c= =     =n=       - Automatic
+‹›            Indentation of selected lines:
+‹>     ›      - Increase
+‹<     ›      - Decrease
+‹=     ›      - Automatic
 
-=c= =n=             Change numbers:
-=c= <C-a> =n=       - Increase
-=c= <C-x> =n=       - Decrease
+‹›            Change numbers:
+‹<C-a> ›      - Increase
+‹<C-x> ›      - Decrease
 
 =H= Cmdline
 
@@ -319,266 +319,266 @@ Plus some other types of commands used in editing.
 - In the start of command : run shell (external) command.
 - After command           : add 'force' modifier.
 
-=c= =n=              Go to command:
-=c= <C-p>  =n=       - Previous
-=c= <C-n>  =n=       - Next
+‹›             Go to command:
+‹<C-p>  ›      - Previous
+‹<C-n>  ›      - Next
 
-=c= <C-r>X =n=       Insert text from 'X' register
+‹<C-r>X ›      Insert text from 'X' register
 
 =H= Other
 
-=c= =n=                      Open history:
-=c= :<C-f>          =n=      - Command line
-=c= q:              =n=      - Command line
-=c= q/              =n=      - /
-=c= q?              =n=      - ?
+‹›                     Open history:
+‹:<C-f>          ›     - Command line
+‹q:              ›     - Command line
+‹q/              ›     - /
+‹q?              ›     - ?
 
-=c= :set syntax=cpp =n=      Force cpp highlight syntax
+‹:set syntax=cpp ›     Force cpp highlight syntax
 
-=c= :g/PATTERN      =n=      Search for pattern and display results
+‹:g/PATTERN      ›     Search for pattern and display results
 
-=c= :checkhealth    =n=      Check health
+‹:checkhealth    ›     Check health
 
 =h= Buffers
 
-=c= :ls            =n=       List buffers
-=c= :b[number]     =n=       Open specific buffer
-=c= :bd            =n=       Close current buffer
-=c= :bufdo command =n=       Apply command to all buffers
-=c= :ene           =n=       Edit a new, unnamed buffer
+‹:ls            ›      List buffers
+‹:b[number]     ›      Open specific buffer
+‹:bd            ›      Close current buffer
+‹:bufdo command ›      Apply command to all buffers
+‹:ene           ›      Edit a new, unnamed buffer
 
 =h= Marks
 
-=c= mA     =n=       Set mark A
-=c= :marks =n=       List marks
+‹mA     ›      Set mark A
+‹:marks ›      List marks
 
 =h= Ctags
 
-=c= =n=              Jump to:
-=c= <C-]>  =n=       - Definition
-=c= <C-t>  =n=       - Back to initial point
-=c= :tn    =n=       - Previous tag
-=c= :tp    =n=       - Next tag
+‹›             Jump to:
+‹<C-]>  ›      - Definition
+‹<C-t>  ›      - Back to initial point
+‹:tn    ›      - Previous tag
+‹:tp    ›      - Next tag
 
-=c= g]     =n=       List all tags
+‹g]     ›      List all tags
 
 =H= Information
 
 =h= Registers
 
-Use =c= :reg =n= to list registers.
+Use ‹:reg ›to list registers.
 
 Register types:
 
-=c= "       =n=       Any text yanked or deleted without specifying another register automatically goes here
-=c= 0       =n=       Yanked text
-=c= 1-9     =n=       Deleted text (1 is the most recent, and so on)
-=c= A-Z a-z =n=       General-purpose
+‹"       ›      Any text yanked or deleted without specifying another register automatically goes here
+‹0       ›      Yanked text
+‹1-9     ›      Deleted text (1 is the most recent, and so on)
+‹A-Z a-z ›      General-purpose
                       - Using a lowercase letter (e.g., "ay) replaces the content,
                       - while an uppercase letter (e.g., "Ay) appends to it.
 
-=c= *       =n=       Primary selection (X11)
-=c= +       =n=       System clipboard
+‹*       ›      Primary selection (X11)
+‹+       ›      System clipboard
 
-=c= :       =n=       Last executed command (read-only)
-=c= %       =n=       Name of the current file (read-only)
+‹:       ›      Last executed command (read-only)
+‹%       ›      Name of the current file (read-only)
 
 =h= Regex syntax
 
-=c= (atom)\@<= =n=       Positive lookbehind
-=c= (atom)\@<! =n=       Negative lookbehind
-=c= (atom)\@=  =n=       Positive lookahead
-=c= (atom)\@!  =n=       Negative lookahead
+‹(atom)\@<= ›      Positive lookbehind
+‹(atom)\@<! ›      Negative lookbehind
+‹(atom)\@=  ›      Positive lookahead
+‹(atom)\@!  ›      Negative lookahead
 
 =H= Diff
 
-To start nvim in diff mode: =c= nvim -d file1.txt file2.txt =n=
+To start nvim in diff mode: ‹nvim -d file1.txt file2.txt›
 
-=c= :diffs file.txt =n=    Open file in diff mode
-=c= :difft          =n=    Add buffer to diff
-=c= :diffo          =n=    Disable diff (add ! to apply to all windows on tab)
-=c= :dif            =n=    Update diff
-=c= do              =n=    Same as :diffget
-=c= dp              =n=    Same as :diffput
+‹:diffs file.txt ›   Open file in diff mode
+‹:difft          ›   Add buffer to diff
+‹:diffo          ›   Disable diff (add ! to apply to all windows on tab)
+‹:dif            ›   Update diff
+‹do              ›   Same as :diffget
+‹dp              ›   Same as :diffput
 
-=c= =n=                    Jump to change:
-=c= [c              =n=    - Previous
-=c= ]c              =n=    - Next
+‹›                   Jump to change:
+‹[c              ›   - Previous
+‹]c              ›   - Next
 
-=c= =n=                    Manipulte folding:
-=c= zo              =n=    - Open
-=c= zc              =n=    - Close
-=c= zr              =n=    - Reduce level
-=c= zm              =n=    - Fold more
+‹›                   Manipulte folding:
+‹zo              ›   - Open
+‹zc              ›   - Close
+‹zr              ›   - Reduce level
+‹zm              ›   - Fold more
 
 =H= Plugins
 
 =h= Fugitive
 
-=c= :Gwrite!   =n=       Write version to index
+‹:Gwrite!   ›      Write version to index
 
-=c= =n=                  In GStatus:
-=c= dd         =n=       - Open comparison
-=c= -          =n=       - Toggle file in/out of index
-=c= X          =n=       - Discard changes on file
+‹›                 In GStatus:
+‹dd         ›      - Open comparison
+‹-          ›      - Toggle file in/out of index
+‹X          ›      - Discard changes on file
 
-=c= =n=                  In conflicts:
-=c= :diffg //2 =n=       - Get target branch version
-=c= :diffg //3 =n=       - Get merge branch version
+‹›                 In conflicts:
+‹:diffg //2 ›      - Get target branch version
+‹:diffg //3 ›      - Get merge branch version
 
 =H= Custom key bindings
 
 =h= Windows
 
-=c= =n=              Move to:
-=c= <C-J>  =n=       - Lower
-=c= <C-K>  =n=       - Upper
-=c= <C-L>  =n=       - Right
-=c= <C-H>  =n=       - Left
+‹›             Move to:
+‹<C-J>  ›      - Lower
+‹<C-K>  ›      - Upper
+‹<C-L>  ›      - Right
+‹<C-H>  ›      - Left
 
-=c= <C-w>n =n=       New
-=c= <F4>   =n=       Close
+‹<C-w>n ›      New
+‹<F4>   ›      Close
 
 =h= Tabs
 
-=c= <A-n>         =n=      New
-=c= <A-c>         =n=      Close
-=c= <A-o>         =n=      Only
+‹<A-n>         ›     New
+‹<A-c>         ›     Close
+‹<A-o>         ›     Only
 
-=c= =n=                    Go to:
-=c= <A-h>         =n=      - Left
-=c= <A-l>         =n=      - Right
-=c= <A-[number]>  =n=      - [number]th
+‹›                   Go to:
+‹<A-h>         ›     - Left
+‹<A-l>         ›     - Right
+‹<A-[number]>  ›     - [number]th
 
-=c= =n=                    Move to:
-=c= <A-m>h        =n=      - Left
-=c= <A-m>l        =n=      - Right
-=c= <A-m>[number] =n=      - [number]th
+‹›                   Move to:
+‹<A-m>h        ›     - Left
+‹<A-m>l        ›     - Right
+‹<A-m>[number] ›     - [number]th
 
 =h= Search
 
-=c= <F5>        =n=       Ripgrep (files only)
-=c= <F6>        =n=       Ripgrep (every match)
-=c= <F7>        =n=       Ripgrep (every match, regexp)
+‹<F5>        ›      Ripgrep (files only)
+‹<F6>        ›      Ripgrep (every match)
+‹<F7>        ›      Ripgrep (every match, regexp)
 
-=c= <Leader>f   =n=       Grep text globally
-=c= <Leader>l   =n=       Search text locally
+‹<Leader>f   ›      Grep text globally
+‹<Leader>l   ›      Search text locally
 
-=c= <Leader>j   =n=       Set file glob option to be used in ripgrep
+‹<Leader>j   ›      Set file glob option to be used in ripgrep
 
 =h= Substitute
 
-=c= <Leader>sc  =n=       Replace word under cursor or selected string(clean)
-=c= <Leader>sr  =n=       Replace word under cursor or selected string(old word pre-typed)
-=c= <Leader>sbc =n=       Replace selected string(clean) in all buffers
-=c= <Leader>sbr =n=       Replace selected string(old word pre-typed) in all buffers
-=c= <Leader>sac =n=       Replace selected string(clean) in args
-=c= <Leader>sar =n=       Replace selected string(old word pre-typed) in args
+‹<Leader>sc  ›      Replace word under cursor or selected string(clean)
+‹<Leader>sr  ›      Replace word under cursor or selected string(old word pre-typed)
+‹<Leader>sbc ›      Replace selected string(clean) in all buffers
+‹<Leader>sbr ›      Replace selected string(old word pre-typed) in all buffers
+‹<Leader>sac ›      Replace selected string(clean) in args
+‹<Leader>sar ›      Replace selected string(old word pre-typed) in args
 
 =h= File format
 
-=c= =n=                   Reread as:
-=c= <Leader>ru  =n=       - Unix
-=c= <Leader>rd  =n=       - Dos
-=c= <Leader>rm  =n=       - Mac
+‹›                  Reread as:
+‹<Leader>ru  ›      - Unix
+‹<Leader>rd  ›      - Dos
+‹<Leader>rm  ›      - Mac
 
-=c= =n=                   Change to:
-=c= <Leader>rcu =n=       - Unix
-=c= <Leader>rcd =n=       - Dos
-=c= <Leader>rcm =n=       - Mac
+‹›                  Change to:
+‹<Leader>rcu ›      - Unix
+‹<Leader>rcd ›      - Dos
+‹<Leader>rcm ›      - Mac
 
-=c= <Leader>rx  =n=       Remove all =c= ^M =n= in file
+‹<Leader>rx  ›      Remove all ‹^M ›in file
 
 =h= Tabulation
 
-=c= =n=                  Switch to:
-=c= <Leader>tt =n=       - Tabs
-=c= <Leader>ts =n=       - Whitespaces
+‹›                 Switch to:
+‹<Leader>tt ›      - Tabs
+‹<Leader>ts ›      - Whitespaces
 
-=c= =n=                  Set width to:
-=c= <Leader>t2 =n=       - 2
-=c= <Leader>t4 =n=       - 4
-=c= <Leader>t8 =n=       - 8
+‹›                 Set width to:
+‹<Leader>t2 ›      - 2
+‹<Leader>t4 ›      - 4
+‹<Leader>t8 ›      - 8
 
-=c= <Leader>tr =n=       Retab
+‹<Leader>tr ›      Retab
 
 =h= Lf
 
-=c= =n=                  Select file starting at:
-=c= <C-n>      =n=       - Current file
-=c= <C-b>      =n=       - Cwd
+‹›                 Select file starting at:
+‹<C-n>      ›      - Current file
+‹<C-b>      ›      - Cwd
 
-=c= =n=                  Change cwd starting at:
-=c= <Leader>n  =n=       - Current file
-=c= <Leader>b  =n=       - Cwd
+‹›                 Change cwd starting at:
+‹<Leader>n  ›      - Current file
+‹<Leader>b  ›      - Cwd
 
 =h= Toggle
 
-=c= <F9>       =n=       Toggle search highlighting
-=c= <F10>      =n=       Toggle russian mode
+‹<F9>       ›      Toggle search highlighting
+‹<F10>      ›      Toggle russian mode
 
 =h= Other
 
-=c= =n=                  Switch to mode:
-=c= <Leader>vc =n=       - Code
-=c= <Leader>vr =n=       - Reader
-=c= <Leader>vm =n=       - Minimal
+‹›                 Switch to mode:
+‹<Leader>vc ›      - Code
+‹<Leader>vr ›      - Reader
+‹<Leader>vm ›      - Minimal
 
-=c= =n=                  Commenting:
-=c= <Leader>cc =n=       - Comment
-=c= <Leader>cu =n=       - Uncomment
+‹›                 Commenting:
+‹<Leader>cc ›      - Comment
+‹<Leader>cu ›      - Uncomment
 
-=c= =n=                  Motion on a wrapped line:
-=c= <M-j>      =n=       - Down
-=c= <M-k>      =n=       - Up
+‹›                 Motion on a wrapped line:
+‹<M-j>      ›      - Down
+‹<M-k>      ›      - Up
 
-=c= <Leader>ml =n=       List marks from A to Z
-=c= <Leader>mc =n=       Clear marks from A to Z
+‹<Leader>ml ›      List marks from A to Z
+‹<Leader>mc ›      Clear marks from A to Z
 
-=c= =n=                  Navigate ctags:
-=c= tn         =n=       - Next
-=c= tp         =n=       - Previous
+‹›                 Navigate ctags:
+‹tn         ›      - Next
+‹tp         ›      - Previous
 
-=c= <Leader>u  =n=       Redraw the screen
+‹<Leader>u  ›      Redraw the screen
 
-=c= =n=                  Insert from 0 register:
-=c= <Leader>p  =n=       - After cursor
-=c= <Leader>P  =n=       - Before cursor
+‹›                 Insert from 0 register:
+‹<Leader>p  ›      - After cursor
+‹<Leader>P  ›      - Before cursor
 
 =h= Rnote
 
-=c= <Leader>isb =n=       Insert bold text
-=c= <Leader>isi =n=       Insert italic text
-=c= <Leader>ism =n=       Insert inline math
-=c= <Leader>isr =n=       Insert reference
-=c= <Leader>isl =n=       Insert link
-=c= <Leader>isc =n=       Insert inline code
-=c= <Leader>ise =n=       Insert code block
-=c= <Leader>ist =n=       Insert tag
-=c= <Leader>iss =n=       Insert set
-=c= <Leader>isn =n=       Insert line break
+‹<Leader>isb ›      Insert bold text
+‹<Leader>isi ›      Insert italic text
+‹<Leader>ism ›      Insert inline math
+‹<Leader>isr ›      Insert reference
+‹<Leader>isl ›      Insert link
+‹<Leader>isc ›      Insert inline code
+‹<Leader>ise ›      Insert code block
+‹<Leader>ist ›      Insert tag
+‹<Leader>iss ›      Insert set
+‹<Leader>isn ›      Insert line break
 
-=c= <Leader>ihd =n=       Insert document
+‹<Leader>ihd ›      Insert document
 
-=c= <Leader>ihc =n=       Insert chapter
-=c= <Leader>ihs =n=       Insert section
-=c= <Leader>ihu =n=       Insert subsection
+‹<Leader>ihc ›      Insert chapter
+‹<Leader>ihs ›      Insert section
+‹<Leader>ihu ›      Insert subsection
 
-=c= <Leader>it  =n=       Insert text
-=c= <Leader>ie  =n=       Insert table
-=c= <Leader>ia  =n=       Insert annotation
-=c= <Leader>ii  =n=       Insert image
-=c= <Leader>ib  =n=       Insert image block
-=c= <Leader>if  =n=       Insert formula
+‹<Leader>it  ›      Insert text
+‹<Leader>ie  ›      Insert table
+‹<Leader>ia  ›      Insert annotation
+‹<Leader>ii  ›      Insert image
+‹<Leader>ib  ›      Insert image block
+‹<Leader>if  ›      Insert formula
 
 =h= Plugins
 
-=c= =n=                   Git (fugitive plugin):
-=c= <Leader>gl  =n=       - Log
-=c= <Leader>gs  =n=       - Status
-=c= <Leader>gc  =n=       - Compare with commit or branch (file names only)
-=c= <Leader>gd  =n=       - Compare current buffer with revision
+‹›                  Git (fugitive plugin):
+‹<Leader>gl  ›      - Log
+‹<Leader>gs  ›      - Status
+‹<Leader>gc  ›      - Compare with commit or branch (file names only)
+‹<Leader>gd  ›      - Compare current buffer with revision
 
-=c= <F8>        =n=       Open buffer window
+‹<F8>        ›      Open buffer window
 
-=c= <C-p>  =n=            FZF
+‹<C-p>  ›           FZF

@@ -1,79 +1,79 @@
 =H= Commands
 
-Create session:         =c= tmux new -s <name> =n=
-List sessions:          =c= tmux ls =n=
-Attach to session:      =c= tmux attach -t <name> =n=
-Kill session:           =c= tmux kill-session -t <name> =n=
-Rename session:         =c= tmux rename-session -t <old> <new> =n=
+Create session:         ‹tmux new -s <name>›
+List sessions:          ‹tmux ls›
+Attach to session:      ‹tmux attach -t <name>›
+Kill session:           ‹tmux kill-session -t <name>›
+Rename session:         ‹tmux rename-session -t <old> <new>›
 
 =H= Keybindings
 
 =h= Session management
 
-=c= prefix d =n=            - Detach from current session
+‹prefix d ›           - Detach from current session
 
-=c= prefix s =n=            - List sessions
-=c= prefix $ =n=            - Rename current session
+‹prefix s ›           - List sessions
+‹prefix $ ›           - Rename current session
 
 =h= Window management
 
-=c= prefix c =n=            - Create new window
-=c= prefix $ =n=            - Kill current window
+‹prefix c ›           - Create new window
+‹prefix $ ›           - Kill current window
 
-=c= prefix n =n=            - Switch to next window
-=c= prefix p =n=            - Switch to previous window
-=c= prefix <number> =n=     - Switch to <number> window
+‹prefix n ›           - Switch to next window
+‹prefix p ›           - Switch to previous window
+‹prefix <number> ›    - Switch to <number> window
 
-=c= prefix w =n=            - List windows
-=c= prefix , =n=            - Rename current window
+‹prefix w ›           - List windows
+‹prefix , ›           - Rename current window
 
 =h= Pane management
 
-=c= prefix " =n=            - Split horizontally (top/bottom)
-=c= prefix % =n=            - Split vertically (left/right)
-=c= prefix ! =n=            - Break the pane into new window
-=c= prefix x =n=            - Kill the pane
+‹prefix " ›           - Split horizontally (top/bottom)
+‹prefix % ›           - Split vertically (left/right)
+‹prefix ! ›           - Break the pane into new window
+‹prefix x ›           - Kill the pane
 
-=c= prefix { =n=            - Swap the pane with the previous one
-=c= prefix } =n=            - Swap the pane with the next one
-=c= prefix C-<arrow> =n=    - Resize the pane (step = 1 cell)
-=c= prefix M-<arrow> =n=    - Resize the pane (step = 5 cells)
-=c= prefix z =n=            - Zoom the pane
+‹prefix { ›           - Swap the pane with the previous one
+‹prefix } ›           - Swap the pane with the next one
+‹prefix C-<arrow> ›   - Resize the pane (step = 1 cell)
+‹prefix M-<arrow> ›   - Resize the pane (step = 5 cells)
+‹prefix z ›           - Zoom the pane
 
-=c= =n=                     Switch to layout:
-=c= prefix M-1 =n=          - Even-horizontal
-=c= prefix M-2 =n=          - Even-vertical
-=c= prefix M-3 =n=          - Main-horizontal
-=c= prefix M-4 =n=          - Main-vertical
-=c= prefix M-5 =n=          - Tiled
+‹›                    Switch to layout:
+‹prefix M-1 ›         - Even-horizontal
+‹prefix M-2 ›         - Even-vertical
+‹prefix M-3 ›         - Main-horizontal
+‹prefix M-4 ›         - Main-vertical
+‹prefix M-5 ›         - Tiled
 
-=c= prefix <arrow> =n=      - Move between panes (by arrow keys)
-=c= prefix ; =n=            - Toggle between the current and previous pane
+‹prefix <arrow> ›     - Move between panes (by arrow keys)
+‹prefix ; ›           - Toggle between the current and previous pane
 
-=c= prefix q =n=            - Show pane numbers
+‹prefix q ›           - Show pane numbers
 
 =h= Copy mode
 
-=c= prefix [ =n=            - Enter copy mode
-=c= q =n=                   - Exit copy mode
-=c= Space =n=               - Start selecting
-=c= Enter =n=               - Copy selected text
-=c= prefix ] =n=            - Paste
+‹prefix [ ›           - Enter copy mode
+‹q ›                  - Exit copy mode
+‹Space ›              - Start selecting
+‹Enter ›              - Copy selected text
+‹prefix ] ›           - Paste
 
 =h= Other
 
-=c= prefix t =n=            - Show time
+‹prefix t ›           - Show time
 
 =h= Custom
 
-=c= prefix v =n=            - Set session working dir to current pane dir
+‹prefix v ›           - Set session working dir to current pane dir
 
-=c= prefix b =n=            - Toggle status bar visibility
+‹prefix b ›           - Toggle status bar visibility
 
-=c= prefix k =n=            - Kill current session
+‹prefix k ›           - Kill current session
 
-=c= Ctrl+Shift+<arrow> =n=  - Move window to the left (right)
-=c= prefix j-<number> =n=   - Move pane to <number> window
-=c= prefix a <number> =n=   - Swap the pane by number
+‹Ctrl+Shift+<arrow> › - Move window to the left (right)
+‹prefix j-<number> ›  - Move pane to <number> window
+‹prefix a <number> ›  - Swap the pane by number
 
-=c= M-<arrow> =n=           - Go to <arrow> pane
+‹M-<arrow> ›          - Go to <arrow> pane

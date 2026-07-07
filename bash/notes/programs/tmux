@@ -1,79 +1,79 @@
 =H= Commands
 
-Create session:         ‹tmux new -s <name>›
-List sessions:          ‹tmux ls›
-Attach to session:      ‹tmux attach -t <name>›
-Kill session:           ‹tmux kill-session -t <name>›
-Rename session:         ‹tmux rename-session -t <old> <new>›
+Create session:         «tmux new -s <name>»
+List sessions:          «tmux ls»
+Attach to session:      «tmux attach -t <name>»
+Kill session:           «tmux kill-session -t <name>»
+Rename session:         «tmux rename-session -t <old> <new>»
 
 =H= Keybindings
 
 =h= Session management
 
-‹prefix d ›           - Detach from current session
+«prefix d »           - Detach from current session
 
-‹prefix s ›           - List sessions
-‹prefix $ ›           - Rename current session
+«prefix s »           - List sessions
+«prefix $ »           - Rename current session
 
 =h= Window management
 
-‹prefix c ›           - Create new window
-‹prefix $ ›           - Kill current window
+«prefix c »           - Create new window
+«prefix $ »           - Kill current window
 
-‹prefix n ›           - Switch to next window
-‹prefix p ›           - Switch to previous window
-‹prefix <number> ›    - Switch to <number> window
+«prefix n »           - Switch to next window
+«prefix p »           - Switch to previous window
+«prefix <number> »    - Switch to <number> window
 
-‹prefix w ›           - List windows
-‹prefix , ›           - Rename current window
+«prefix w »           - List windows
+«prefix , »           - Rename current window
 
 =h= Pane management
 
-‹prefix " ›           - Split horizontally (top/bottom)
-‹prefix % ›           - Split vertically (left/right)
-‹prefix ! ›           - Break the pane into new window
-‹prefix x ›           - Kill the pane
+«prefix " »           - Split horizontally (top/bottom)
+«prefix % »           - Split vertically (left/right)
+«prefix ! »           - Break the pane into new window
+«prefix x »           - Kill the pane
 
-‹prefix { ›           - Swap the pane with the previous one
-‹prefix } ›           - Swap the pane with the next one
-‹prefix C-<arrow> ›   - Resize the pane (step = 1 cell)
-‹prefix M-<arrow> ›   - Resize the pane (step = 5 cells)
-‹prefix z ›           - Zoom the pane
+«prefix { »           - Swap the pane with the previous one
+«prefix } »           - Swap the pane with the next one
+«prefix C-<arrow> »   - Resize the pane (step = 1 cell)
+«prefix M-<arrow> »   - Resize the pane (step = 5 cells)
+«prefix z »           - Zoom the pane
 
-‹›                    Switch to layout:
-‹prefix M-1 ›         - Even-horizontal
-‹prefix M-2 ›         - Even-vertical
-‹prefix M-3 ›         - Main-horizontal
-‹prefix M-4 ›         - Main-vertical
-‹prefix M-5 ›         - Tiled
+«»                    Switch to layout:
+«prefix M-1 »         - Even-horizontal
+«prefix M-2 »         - Even-vertical
+«prefix M-3 »         - Main-horizontal
+«prefix M-4 »         - Main-vertical
+«prefix M-5 »         - Tiled
 
-‹prefix <arrow> ›     - Move between panes (by arrow keys)
-‹prefix ; ›           - Toggle between the current and previous pane
+«prefix <arrow> »     - Move between panes (by arrow keys)
+«prefix ; »           - Toggle between the current and previous pane
 
-‹prefix q ›           - Show pane numbers
+«prefix q »           - Show pane numbers
 
 =h= Copy mode
 
-‹prefix [ ›           - Enter copy mode
-‹q ›                  - Exit copy mode
-‹Space ›              - Start selecting
-‹Enter ›              - Copy selected text
-‹prefix ] ›           - Paste
+«prefix [ »           - Enter copy mode
+«q »                  - Exit copy mode
+«Space »              - Start selecting
+«Enter »              - Copy selected text
+«prefix ] »           - Paste
 
 =h= Other
 
-‹prefix t ›           - Show time
+«prefix t »           - Show time
 
 =h= Custom
 
-‹prefix v ›           - Set session working dir to current pane dir
+«prefix v »           - Set session working dir to current pane dir
 
-‹prefix b ›           - Toggle status bar visibility
+«prefix b »           - Toggle status bar visibility
 
-‹prefix k ›           - Kill current session
+«prefix k »           - Kill current session
 
-‹Ctrl+Shift+<arrow> › - Move window to the left (right)
-‹prefix j-<number> ›  - Move pane to <number> window
-‹prefix a <number> ›  - Swap the pane by number
+«Ctrl+Shift+<arrow> » - Move window to the left (right)
+«prefix j-<number> »  - Move pane to <number> window
+«prefix a <number> »  - Swap the pane by number
 
-‹M-<arrow> ›          - Go to <arrow> pane
+«M-<arrow> »          - Go to <arrow> pane

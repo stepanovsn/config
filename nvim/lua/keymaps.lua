@@ -172,8 +172,10 @@ vim.keymap.set('n', '<Leader>p', '"0p')
 vim.keymap.set('n', '<Leader>P', '"0P')
 
 -- Bnote
-vim.keymap.set('n', '<Leader>oc', 'a‹›<ESC>i')
-vim.keymap.set('v', '<Leader>oc', 'c‹<C-R>"›<ESC>')
+vim.keymap.set('n', '<Leader>oc', 'a«»<ESC>i')
+vim.keymap.set('v', '<Leader>oc', 'c«<C-R>"»<ESC>')
+vim.keymap.set('n', '<Leader>ol', 'a‹›<ESC>i')
+vim.keymap.set('v', '<Leader>ol', 'c‹<C-R>"›<ESC>')
 
 -- Rnote
 vim.keymap.set('n', '<Leader>isb', 'a\\bold{}<ESC>i')

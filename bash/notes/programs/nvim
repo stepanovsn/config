@@ -24,32 +24,32 @@ One of them is Replace mode.
 
 =h= Key bindings
 
-‹›                        Switch to mode:
-‹i I a A o O c C s S ›    - Insert (details are given later in this document)
-‹: / ? ! ›                - Cmdline (details are given later in this document)
-‹v ›                      - Visual
-‹V ›                      - Visual line
-‹<C-v> ›                  - Visual block
-‹R ›                      - Replace
-‹gQ ›                     - Ex
+«»                        Switch to mode:
+«i I a A o O c C s S »    - Insert (details are given later in this document)
+«: / ? ! »                - Cmdline (details are given later in this document)
+«v »                      - Visual
+«V »                      - Visual line
+«<C-v> »                  - Visual block
+«R »                      - Replace
+«gQ »                     - Ex
 
-‹›                        Go back to normal mode:
-‹<Esc> ›                  - From any mode except Ex mode
-‹:visual ›                - From Ex mode
+«»                        Go back to normal mode:
+«<Esc> »                  - From any mode except Ex mode
+«:visual »                - From Ex mode
 
 =H= Syntax
 
 Vim has core syntax for editing actions.
 Any action needs a target. It could be a motion or a text object.
 
-- For regular motions (cursor-based): ‹[" + register][count][operator][count][motion]›
-- For text objects (structure-based): ‹[" + register][count][operator][text-object]›
+- For regular motions (cursor-based): «[" + register][count][operator][count][motion]»
+- For text objects (structure-based): «[" + register][count][operator][text-object]»
 
 Here:
-‹" + register ›            - What register to use
-‹operator ›                - What to do (delete, change, yank, etc.)
-‹motion/text-object ›      - Where to do it (move cursor or select text)
-‹count ›                   - How many times (optional multiplier)
+«" + register »            - What register to use
+«operator »                - What to do (delete, change, yank, etc.)
+«motion/text-object »      - Where to do it (move cursor or select text)
+«count »                   - How many times (optional multiplier)
 
 Navigation actions are the same motions except they don't have any operator applied (a "null operator").
 
@@ -65,253 +65,253 @@ Below are listed not all but main motions/text objects/operators.
 
 The motion covers the content from cursor to specific location.
 
-‹›               By character:
-‹h ›             - Left
-‹j ›             - Down
-‹k ›             - Up
-‹l ›             - Right
+«»               By character:
+«h »             - Left
+«j »             - Down
+«k »             - Up
+«l »             - Right
 
-‹›               By word (normal / space separated):
-‹w / W ›         - Next
-‹b / B ›         - Previous
-‹e / E ›         - End of current
-‹ge / gE ›       - End of previous
+«»               By word (normal / space separated):
+«w / W »         - Next
+«b / B »         - Previous
+«e / E »         - End of current
+«ge / gE »       - End of previous
 
-‹›               In line:
-‹0 ›             - Start of current
-‹^ ›             - First non-blank character of current
-‹$ ›             - End of current
-‹| ›             - Column (0 by default) of current
-‹+ ›             - First non-blank of next
-‹- ›             - First non-blank of previous
+«»               In line:
+«0 »             - Start of current
+«^ »             - First non-blank character of current
+«$ »             - End of current
+«| »             - Column (0 by default) of current
+«+ »             - First non-blank of next
+«- »             - First non-blank of previous
 
-‹›               By single-line search:
-‹f{char} ›       - Next occurence of {char} on the line
-‹t{char} ›       - Right before next occurence of {char} on the line
-‹F{char} ›       - Previous occurence of {char} on the line
-‹T{char} ›       - Right before previous occurence of {char} on the line
-‹;      ›        - Repeat search in the same direction
-‹,      ›        - Repeat search in the opposite direction
+«»               By single-line search:
+«f{char} »       - Next occurence of {char} on the line
+«t{char} »       - Right before next occurence of {char} on the line
+«F{char} »       - Previous occurence of {char} on the line
+«T{char} »       - Right before previous occurence of {char} on the line
+«;      »        - Repeat search in the same direction
+«,      »        - Repeat search in the opposite direction
 
-‹›               By paragraph:
-‹{ ›             - Forward
-‹} ›             - Back
+«»               By paragraph:
+«{ »             - Forward
+«} »             - Back
 
-‹›               Inside screen:
-‹H ›             - Top
-‹M ›             - Middle
-‹L ›             - Bottom
+«»               Inside screen:
+«H »             - Top
+«M »             - Middle
+«L »             - Bottom
 
-‹›               By position in the file:
-‹gg ›            - Specific (0 by default) line
-‹G ›             - Last line in file
+«»               By position in the file:
+«gg »            - Specific (0 by default) line
+«G »             - Last line in file
 
-‹›               By global search:
-‹/{pattern} ›    - Search forward
-‹?{pattern} ›    - Search backward
-‹n          ›    - Last search same direction
-‹N          ›    - Last search opposite direction
-‹*          ›    - Next occurence of the word
+«»               By global search:
+«/{pattern} »    - Search forward
+«?{pattern} »    - Search backward
+«n          »    - Last search same direction
+«N          »    - Last search opposite direction
+«*          »    - Next occurence of the word
 
-‹›               By marks:
-‹`{mark} ›       - Exact mark location
-‹'{mark} ›       - Line of mark
+«»               By marks:
+«`{mark} »       - Exact mark location
+«'{mark} »       - Line of mark
 
-‹›               By other targets:
-‹%     ›         - Matching bracket/parenthesis/brace
-‹gd    ›         - Definition
+«»               By other targets:
+«%     »         - Matching bracket/parenthesis/brace
+«gd    »         - Definition
 
 =h= Text objects
 
-Text object have syntax: ‹[i/a][object]›
+Text object have syntax: «[i/a][object]»
 
 Where:
 - 'i' (inner) selects inside the delimiters
 - 'a' (around) selects including the delimiters.
 
-‹›        Objects:
-‹w ›      - Word
-‹W ›      - Word (space-separated)
-‹' ›      - Single quotes
-‹" ›      - Double quotes
-‹( ›      - Parentheses
-‹[ ›      - Brackets
-‹{ ›      - Braces
-‹t ›      - Tag (html/xml)
-‹s ›      - Sentence
-‹p ›      - Paragraph
+«»        Objects:
+«w »      - Word
+«W »      - Word (space-separated)
+«' »      - Single quotes
+«" »      - Double quotes
+«( »      - Parentheses
+«[ »      - Brackets
+«{ »      - Braces
+«t »      - Tag (html/xml)
+«s »      - Sentence
+«p »      - Paragraph
 
 =h= Operators
 
 All of the operators below, when pressed twice, are applied to the current line.
-Case operators should repeat only last symbol, e.g. ‹g~~ ›changes case of the current line.
+Case operators should repeat only last symbol, e.g. «g~~ »changes case of the current line.
 
-‹›         Editing:
-‹d ›       - Delete (cut)
-‹c ›       - Change (delete + enter insert mode)
-‹y ›       - Yank (copy)
+«»         Editing:
+«d »       - Delete (cut)
+«c »       - Change (delete + enter insert mode)
+«y »       - Yank (copy)
 
-‹›         Indent:
-‹> ›       - Increase
-‹< ›       - Decrease
+«»         Indent:
+«> »       - Increase
+«< »       - Decrease
 
-‹›         Change case:
-‹g~ ›      - Toggle
-‹gU ›      - Uppercase
-‹gu ›      - Lowercase
+«»         Change case:
+«g~ »      - Toggle
+«gU »      - Uppercase
+«gu »      - Lowercase
 
-‹›         Other:
-‹= ›       - Auto-indent
-‹! ›       - Filter text through external command
+«»         Other:
+«= »       - Auto-indent
+«! »       - Filter text through external command
 
 =h= Examples
 
-‹d2w ›               - Delete next two words
-‹di" ›               - Delete inside quotes
-‹dt, ›               - Delete until next comma (keeps comma)
-‹c$ ›                - Change to end of line
-‹yiw ›               - Yank inner word
-‹yap ›               - Yank around paragraph
-‹g~l ›               - Toggle case under cursor
-‹!ipsort<Enter> ›    - Sort current paragraph
+«d2w »               - Delete next two words
+«di" »               - Delete inside quotes
+«dt, »               - Delete until next comma (keeps comma)
+«c$ »                - Change to end of line
+«yiw »               - Yank inner word
+«yap »               - Yank around paragraph
+«g~l »               - Toggle case under cursor
+«!ipsort<Enter> »    - Sort current paragraph
 
 =H= Motions and navigation
 
-‹›            Scroll screen by one line:
-‹<C-y> ›      - Up
-‹<C-e> ›      - Down
+«»            Scroll screen by one line:
+«<C-y> »      - Up
+«<C-e> »      - Down
 
-‹›            Scroll screen by half page:
-‹<C-u> ›      - Up
-‹<C-d> ›      - Down
+«»            Scroll screen by half page:
+«<C-u> »      - Up
+«<C-d> »      - Down
 
-‹›            Scroll screen so the current line is at:
-‹zt ›         - Top
-‹zz ›         - Center
-‹zb ›         - Bottom
+«»            Scroll screen so the current line is at:
+«zt »         - Top
+«zz »         - Center
+«zb »         - Bottom
 
 =h= Jumplist/changelist
 
 Bug motions and other navigation commands are saved in the jumplist.
-It can be observed with: ‹:jumps›
+It can be observed with: «:jumps»
 
-‹›            Navigate in jump list:
-‹<C-o> ›      - Back
-‹<C-i> ›      - Forward
+«»            Navigate in jump list:
+«<C-o> »      - Back
+«<C-i> »      - Forward
 
-‹›            Navigate in change list
-‹g; ›         - Back
-‹g, ›         - Forward
+«»            Navigate in change list
+«g; »         - Back
+«g, »         - Forward
 
 =H= Layout
 
 =h= Windows
 
-‹›                    Move to the window on the:
-‹<C-W>h ›             - Left
-‹<C-W>j ›             - Bottom
-‹<C-W>k ›             - Top
-‹<C-W>l ›             - Right
+«»                    Move to the window on the:
+«<C-W>h »             - Left
+«<C-W>j »             - Bottom
+«<C-W>k »             - Top
+«<C-W>l »             - Right
 
-‹›                    Split the window:
-‹<C-W>s ›             - Vertically
-‹<C-W>v ›             - Horizontally
-‹:vnew  ›             - Horizontally and start editing an empty file
+«»                    Split the window:
+«<C-W>s »             - Vertically
+«<C-W>v »             - Horizontally
+«:vnew  »             - Horizontally and start editing an empty file
 
-‹›                    Move the window to:
-‹<C-W>H ›             - Left
-‹<C-W>J ›             - Bottom
-‹<C-W>K ›             - Top
-‹<C-W>L ›             - Right
-‹<C-W>T ›             - New tab
-‹<C-W>x ›             - Swap with next
+«»                    Move the window to:
+«<C-W>H »             - Left
+«<C-W>J »             - Bottom
+«<C-W>K »             - Top
+«<C-W>L »             - Right
+«<C-W>T »             - New tab
+«<C-W>x »             - Swap with next
 
-‹<C-W>o ›             Close all other windows
+«<C-W>o »             Close all other windows
 
-‹›                    Change window size:
-‹[number]<C-W>+ ›     - Increase height
-‹[number]<C-W>- ›     - Decrease height
-‹[number]<C-W>> ›     - Increase width
-‹[number]<C-W>< ›     - Decrease width
-‹<C-W>=         ›     - Equalize all windows
+«»                    Change window size:
+«[number]<C-W>+ »     - Increase height
+«[number]<C-W>- »     - Decrease height
+«[number]<C-W>> »     - Increase width
+«[number]<C-W>< »     - Decrease width
+«<C-W>=         »     - Equalize all windows
 
 =h= Tabs
 
-‹›                 Go to tab:
-‹gt         ›      - Next
-‹gT         ›      - Previous
-‹[number]gt ›      - Specific
+«»                 Go to tab:
+«gt         »      - Next
+«gT         »      - Previous
+«[number]gt »      - Specific
 
-‹›                 Manipulate tabs:
-‹:tabnew    ›      - New tab
-‹:tabclose  ›      - Close tab
-‹:tabonly   ›      - Close other tabs
+«»                 Manipulate tabs:
+«:tabnew    »      - New tab
+«:tabclose  »      - Close tab
+«:tabonly   »      - Close other tabs
 
 =H= Editing
 
 There listed some shortcuts and compound commands which don't follow core syntax.
 Plus some other types of commands used in editing.
 
-‹›              Enter insert mode:
-‹i         ›    - Before cursor
-‹I         ›    - Beggining of line
-‹a         ›    - After cursor
-‹A         ›    - End of line
-‹o         ›    - New line below
-‹O         ›    - New line above
+«»              Enter insert mode:
+«i         »    - Before cursor
+«I         »    - Beggining of line
+«a         »    - After cursor
+«A         »    - End of line
+«o         »    - New line below
+«O         »    - New line above
 
-‹›              Single letter operation (under cursor):
-‹x         ›    - Delete (same as "dl")
-‹r         ›    - Replace
-‹s         ›    - Substitute (same as "cl")
-‹~         ›    - Toggle case
+«»              Single letter operation (under cursor):
+«x         »    - Delete (same as "dl")
+«r         »    - Replace
+«s         »    - Substitute (same as "cl")
+«~         »    - Toggle case
 
-‹›              Line operation:
-‹C         ›    - Change to end of line (same as "c$")
-‹D         ›    - Delete to end of line (same as "d$")
-‹S         ›    - Substitute line (same as "cc")
+«»              Line operation:
+«C         »    - Change to end of line (same as "c$")
+«D         »    - Delete to end of line (same as "d$")
+«S         »    - Substitute line (same as "cc")
 
-‹›              Paste:
-‹p         ›    - After cursor
-‹P         ›    - Before cursor
+«»              Paste:
+«p         »    - After cursor
+«P         »    - Before cursor
 
-‹›              Changes:
-‹u         ›    - Undo
-‹U         ›    - Undo all changes on current line
-‹<C-r>     ›    - Redo
-‹.         ›    - Repeat last change under cursor
+«»              Changes:
+«u         »    - Undo
+«U         »    - Undo all changes on current line
+«<C-r>     »    - Redo
+«.         »    - Repeat last change under cursor
 
-‹›              Join current line with the next one:
-‹J         ›    - Remove the indent and insert up to two spaces
-‹gJ        ›    - Don't insert or remove any spaces.
+«»              Join current line with the next one:
+«J         »    - Remove the indent and insert up to two spaces
+«gJ        »    - Don't insert or remove any spaces.
 
-‹›              Change numbers under cursor:
-‹<C-a>     ›    - Increase
-‹<C-x>     ›    - Decrease
+«»              Change numbers under cursor:
+«<C-a>     »    - Increase
+«<C-x>     »    - Decrease
 
-‹C-v u2713 ›    In insert mode, insert Unicode symbol (for example, a mark)
+«C-v u2713 »    In insert mode, insert Unicode symbol (for example, a mark)
 
 =h= Visual mode editing
 
-‹›            Basic:
-‹d     ›      - Delete
-‹y     ›      - Yank
-‹p     ›      - Replace
-‹с     ›      - Change
+«»            Basic:
+«d     »      - Delete
+«y     »      - Yank
+«p     »      - Replace
+«с     »      - Change
 
-‹›            Change case:
-‹u     ›      - To lower
-‹U     ›      - To upper
-‹~     ›      - Invert
+«»            Change case:
+«u     »      - To lower
+«U     »      - To upper
+«~     »      - Invert
 
-‹›            Indentation of selected lines:
-‹>     ›      - Increase
-‹<     ›      - Decrease
-‹=     ›      - Automatic
+«»            Indentation of selected lines:
+«>     »      - Increase
+«<     »      - Decrease
+«=     »      - Automatic
 
-‹›            Change numbers:
-‹<C-a> ›      - Increase
-‹<C-x> ›      - Decrease
+«»            Change numbers:
+«<C-a> »      - Increase
+«<C-x> »      - Decrease
 
 =H= Cmdline
 
@@ -319,266 +319,271 @@ Plus some other types of commands used in editing.
 - In the start of command : run shell (external) command.
 - After command           : add 'force' modifier.
 
-‹›             Go to command:
-‹<C-p>  ›      - Previous
-‹<C-n>  ›      - Next
+«»             Go to command:
+«<C-p>  »      - Previous
+«<C-n>  »      - Next
 
-‹<C-r>X ›      Insert text from 'X' register
+«<C-r>X »      Insert text from 'X' register
 
 =H= Other
 
-‹›                     Open history:
-‹:<C-f>          ›     - Command line
-‹q:              ›     - Command line
-‹q/              ›     - /
-‹q?              ›     - ?
+«»                     Open history:
+«:<C-f>          »     - Command line
+«q:              »     - Command line
+«q/              »     - /
+«q?              »     - ?
 
-‹:set syntax=cpp ›     Force cpp highlight syntax
+«:set syntax=cpp »     Force cpp highlight syntax
 
-‹:g/PATTERN      ›     Search for pattern and display results
+«:g/PATTERN      »     Search for pattern and display results
 
-‹:checkhealth    ›     Check health
+«:checkhealth    »     Check health
 
 =h= Buffers
 
-‹:ls            ›      List buffers
-‹:b[number]     ›      Open specific buffer
-‹:bd            ›      Close current buffer
-‹:bufdo command ›      Apply command to all buffers
-‹:ene           ›      Edit a new, unnamed buffer
+«:ls            »      List buffers
+«:b[number]     »      Open specific buffer
+«:bd            »      Close current buffer
+«:bufdo command »      Apply command to all buffers
+«:ene           »      Edit a new, unnamed buffer
 
 =h= Marks
 
-‹mA     ›      Set mark A
-‹:marks ›      List marks
+«mA     »      Set mark A
+«:marks »      List marks
 
 =h= Ctags
 
-‹›             Jump to:
-‹<C-]>  ›      - Definition
-‹<C-t>  ›      - Back to initial point
-‹:tn    ›      - Previous tag
-‹:tp    ›      - Next tag
+«»             Jump to:
+«<C-]>  »      - Definition
+«<C-t>  »      - Back to initial point
+«:tn    »      - Previous tag
+«:tp    »      - Next tag
 
-‹g]     ›      List all tags
+«g]     »      List all tags
 
 =H= Information
 
 =h= Registers
 
-Use ‹:reg ›to list registers.
+Use «:reg »to list registers.
 
 Register types:
 
-‹"       ›      Any text yanked or deleted without specifying another register automatically goes here
-‹0       ›      Yanked text
-‹1-9     ›      Deleted text (1 is the most recent, and so on)
-‹A-Z a-z ›      General-purpose
+«"       »      Any text yanked or deleted without specifying another register automatically goes here
+«0       »      Yanked text
+«1-9     »      Deleted text (1 is the most recent, and so on)
+«A-Z a-z »      General-purpose
                       - Using a lowercase letter (e.g., "ay) replaces the content,
                       - while an uppercase letter (e.g., "Ay) appends to it.
 
-‹*       ›      Primary selection (X11)
-‹+       ›      System clipboard
+«*       »      Primary selection (X11)
+«+       »      System clipboard
 
-‹:       ›      Last executed command (read-only)
-‹%       ›      Name of the current file (read-only)
+«:       »      Last executed command (read-only)
+«%       »      Name of the current file (read-only)
 
 =h= Regex syntax
 
-‹(atom)\@<= ›      Positive lookbehind
-‹(atom)\@<! ›      Negative lookbehind
-‹(atom)\@=  ›      Positive lookahead
-‹(atom)\@!  ›      Negative lookahead
+«(atom)\@<= »      Positive lookbehind
+«(atom)\@<! »      Negative lookbehind
+«(atom)\@=  »      Positive lookahead
+«(atom)\@!  »      Negative lookahead
 
 =H= Diff
 
-To start nvim in diff mode: ‹nvim -d file1.txt file2.txt›
+To start nvim in diff mode: «nvim -d file1.txt file2.txt»
 
-‹:diffs file.txt ›   Open file in diff mode
-‹:difft          ›   Add buffer to diff
-‹:diffo          ›   Disable diff (add ! to apply to all windows on tab)
-‹:dif            ›   Update diff
-‹do              ›   Same as :diffget
-‹dp              ›   Same as :diffput
+«:diffs file.txt »   Open file in diff mode
+«:difft          »   Add buffer to diff
+«:diffo          »   Disable diff (add ! to apply to all windows on tab)
+«:dif            »   Update diff
+«do              »   Same as :diffget
+«dp              »   Same as :diffput
 
-‹›                   Jump to change:
-‹[c              ›   - Previous
-‹]c              ›   - Next
+«»                   Jump to change:
+«[c              »   - Previous
+«]c              »   - Next
 
-‹›                   Manipulte folding:
-‹zo              ›   - Open
-‹zc              ›   - Close
-‹zr              ›   - Reduce level
-‹zm              ›   - Fold more
+«»                   Manipulte folding:
+«zo              »   - Open
+«zc              »   - Close
+«zr              »   - Reduce level
+«zm              »   - Fold more
 
 =H= Plugins
 
 =h= Fugitive
 
-‹:Gwrite!   ›      Write version to index
+«:Gwrite!   »      Write version to index
 
-‹›                 In GStatus:
-‹dd         ›      - Open comparison
-‹-          ›      - Toggle file in/out of index
-‹X          ›      - Discard changes on file
+«»                 In GStatus:
+«dd         »      - Open comparison
+«-          »      - Toggle file in/out of index
+«X          »      - Discard changes on file
 
-‹›                 In conflicts:
-‹:diffg //2 ›      - Get target branch version
-‹:diffg //3 ›      - Get merge branch version
+«»                 In conflicts:
+«:diffg //2 »      - Get target branch version
+«:diffg //3 »      - Get merge branch version
 
 =H= Custom key bindings
 
 =h= Windows
 
-‹›             Move to:
-‹<C-J>  ›      - Lower
-‹<C-K>  ›      - Upper
-‹<C-L>  ›      - Right
-‹<C-H>  ›      - Left
+«»             Move to:
+«<C-J>  »      - Lower
+«<C-K>  »      - Upper
+«<C-L>  »      - Right
+«<C-H>  »      - Left
 
-‹<C-w>n ›      New
-‹<F4>   ›      Close
+«<C-w>n »      New
+«<F4>   »      Close
 
 =h= Tabs
 
-‹<A-n>         ›     New
-‹<A-c>         ›     Close
-‹<A-o>         ›     Only
+«<A-n>         »     New
+«<A-c>         »     Close
+«<A-o>         »     Only
 
-‹›                   Go to:
-‹<A-h>         ›     - Left
-‹<A-l>         ›     - Right
-‹<A-[number]>  ›     - [number]th
+«»                   Go to:
+«<A-h>         »     - Left
+«<A-l>         »     - Right
+«<A-[number]>  »     - [number]th
 
-‹›                   Move to:
-‹<A-m>h        ›     - Left
-‹<A-m>l        ›     - Right
-‹<A-m>[number] ›     - [number]th
+«»                   Move to:
+«<A-m>h        »     - Left
+«<A-m>l        »     - Right
+«<A-m>[number] »     - [number]th
 
 =h= Search
 
-‹<F5>        ›      Ripgrep (files only)
-‹<F6>        ›      Ripgrep (every match)
-‹<F7>        ›      Ripgrep (every match, regexp)
+«<F5>        »      Ripgrep (files only)
+«<F6>        »      Ripgrep (every match)
+«<F7>        »      Ripgrep (every match, regexp)
 
-‹<Leader>f   ›      Grep text globally
-‹<Leader>l   ›      Search text locally
+«<Leader>f   »      Grep text globally
+«<Leader>l   »      Search text locally
 
-‹<Leader>j   ›      Set file glob option to be used in ripgrep
+«<Leader>j   »      Set file glob option to be used in ripgrep
 
 =h= Substitute
 
-‹<Leader>sc  ›      Replace word under cursor or selected string(clean)
-‹<Leader>sr  ›      Replace word under cursor or selected string(old word pre-typed)
-‹<Leader>sbc ›      Replace selected string(clean) in all buffers
-‹<Leader>sbr ›      Replace selected string(old word pre-typed) in all buffers
-‹<Leader>sac ›      Replace selected string(clean) in args
-‹<Leader>sar ›      Replace selected string(old word pre-typed) in args
+«<Leader>sc  »      Replace word under cursor or selected string(clean)
+«<Leader>sr  »      Replace word under cursor or selected string(old word pre-typed)
+«<Leader>sbc »      Replace selected string(clean) in all buffers
+«<Leader>sbr »      Replace selected string(old word pre-typed) in all buffers
+«<Leader>sac »      Replace selected string(clean) in args
+«<Leader>sar »      Replace selected string(old word pre-typed) in args
 
 =h= File format
 
-‹›                  Reread as:
-‹<Leader>ru  ›      - Unix
-‹<Leader>rd  ›      - Dos
-‹<Leader>rm  ›      - Mac
+«»                  Reread as:
+«<Leader>ru  »      - Unix
+«<Leader>rd  »      - Dos
+«<Leader>rm  »      - Mac
 
-‹›                  Change to:
-‹<Leader>rcu ›      - Unix
-‹<Leader>rcd ›      - Dos
-‹<Leader>rcm ›      - Mac
+«»                  Change to:
+«<Leader>rcu »      - Unix
+«<Leader>rcd »      - Dos
+«<Leader>rcm »      - Mac
 
-‹<Leader>rx  ›      Remove all ‹^M ›in file
+«<Leader>rx  »      Remove all «^M »in file
 
 =h= Tabulation
 
-‹›                 Switch to:
-‹<Leader>tt ›      - Tabs
-‹<Leader>ts ›      - Whitespaces
+«»                 Switch to:
+«<Leader>tt »      - Tabs
+«<Leader>ts »      - Whitespaces
 
-‹›                 Set width to:
-‹<Leader>t2 ›      - 2
-‹<Leader>t4 ›      - 4
-‹<Leader>t8 ›      - 8
+«»                 Set width to:
+«<Leader>t2 »      - 2
+«<Leader>t4 »      - 4
+«<Leader>t8 »      - 8
 
-‹<Leader>tr ›      Retab
+«<Leader>tr »      Retab
 
 =h= Lf
 
-‹›                 Select file starting at:
-‹<C-n>      ›      - Current file
-‹<C-b>      ›      - Cwd
+«»                 Select file starting at:
+«<C-n>      »      - Current file
+«<C-b>      »      - Cwd
 
-‹›                 Change cwd starting at:
-‹<Leader>n  ›      - Current file
-‹<Leader>b  ›      - Cwd
+«»                 Change cwd starting at:
+«<Leader>n  »      - Current file
+«<Leader>b  »      - Cwd
 
 =h= Toggle
 
-‹<F9>       ›      Toggle search highlighting
-‹<F10>      ›      Toggle russian mode
+«<F9>       »      Toggle search highlighting
+«<F10>      »      Toggle russian mode
 
 =h= Other
 
-‹›                 Switch to mode:
-‹<Leader>vc ›      - Code
-‹<Leader>vr ›      - Reader
-‹<Leader>vm ›      - Minimal
+«»                 Switch to mode:
+«<Leader>vc »      - Code
+«<Leader>vr »      - Reader
+«<Leader>vm »      - Minimal
 
-‹›                 Commenting:
-‹<Leader>cc ›      - Comment
-‹<Leader>cu ›      - Uncomment
+«»                 Commenting:
+«<Leader>cc »      - Comment
+«<Leader>cu »      - Uncomment
 
-‹›                 Motion on a wrapped line:
-‹<M-j>      ›      - Down
-‹<M-k>      ›      - Up
+«»                 Motion on a wrapped line:
+«<M-j>      »      - Down
+«<M-k>      »      - Up
 
-‹<Leader>ml ›      List marks from A to Z
-‹<Leader>mc ›      Clear marks from A to Z
+«<Leader>ml »      List marks from A to Z
+«<Leader>mc »      Clear marks from A to Z
 
-‹›                 Navigate ctags:
-‹tn         ›      - Next
-‹tp         ›      - Previous
+«»                 Navigate ctags:
+«tn         »      - Next
+«tp         »      - Previous
 
-‹<Leader>u  ›      Redraw the screen
+«<Leader>u  »      Redraw the screen
 
-‹›                 Insert from 0 register:
-‹<Leader>p  ›      - After cursor
-‹<Leader>P  ›      - Before cursor
+«»                 Insert from 0 register:
+«<Leader>p  »      - After cursor
+«<Leader>P  »      - Before cursor
 
 =h= Rnote
 
-‹<Leader>isb ›      Insert bold text
-‹<Leader>isi ›      Insert italic text
-‹<Leader>ism ›      Insert inline math
-‹<Leader>isr ›      Insert reference
-‹<Leader>isl ›      Insert link
-‹<Leader>isc ›      Insert inline code
-‹<Leader>ise ›      Insert code block
-‹<Leader>ist ›      Insert tag
-‹<Leader>iss ›      Insert set
-‹<Leader>isn ›      Insert line break
+«<Leader>isb »      Insert bold text
+«<Leader>isi »      Insert italic text
+«<Leader>ism »      Insert inline math
+«<Leader>isr »      Insert reference
+«<Leader>isl »      Insert link
+«<Leader>isc »      Insert inline code
+«<Leader>ise »      Insert code block
+«<Leader>ist »      Insert tag
+«<Leader>iss »      Insert set
+«<Leader>isn »      Insert line break
 
-‹<Leader>ihd ›      Insert document
+«<Leader>ihd »      Insert document
 
-‹<Leader>ihc ›      Insert chapter
-‹<Leader>ihs ›      Insert section
-‹<Leader>ihu ›      Insert subsection
+«<Leader>ihc »      Insert chapter
+«<Leader>ihs »      Insert section
+«<Leader>ihu »      Insert subsection
 
-‹<Leader>it  ›      Insert text
-‹<Leader>ie  ›      Insert table
-‹<Leader>ia  ›      Insert annotation
-‹<Leader>ii  ›      Insert image
-‹<Leader>ib  ›      Insert image block
-‹<Leader>if  ›      Insert formula
+«<Leader>it  »      Insert text
+«<Leader>ie  »      Insert table
+«<Leader>ia  »      Insert annotation
+«<Leader>ii  »      Insert image
+«<Leader>ib  »      Insert image block
+«<Leader>if  »      Insert formula
+
+=h= Bnote
+
+«<Leader>oc »       Insert code
+«<Leader>ol »       Insert listing
 
 =h= Plugins
 
-‹›                  Git (fugitive plugin):
-‹<Leader>gl  ›      - Log
-‹<Leader>gs  ›      - Status
-‹<Leader>gc  ›      - Compare with commit or branch (file names only)
-‹<Leader>gd  ›      - Compare current buffer with revision
+«»                  Git (fugitive plugin):
+«<Leader>gl  »      - Log
+«<Leader>gs  »      - Status
+«<Leader>gc  »      - Compare with commit or branch (file names only)
+«<Leader>gd  »      - Compare current buffer with revision
 
-‹<F8>        ›      Open buffer window
+«<F8>        »      Open buffer window
 
-‹<C-p>  ›           FZF
+«<C-p>  »           FZF

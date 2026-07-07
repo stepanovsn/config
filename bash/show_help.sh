@@ -3,19 +3,31 @@
 awk  '
 BEGIN {
     in_code_section = 0
+    in_listing_section = 0
 }
 
 {
     if (in_code_section) {
         gsub(/^/, "[38;5;110m", $0)
     }
-    if (/‹/) {
-        gsub(/‹/, "[38;5;110m", $0)
+    if (in_listing_section) {
+        gsub(/^/, "[38;5;242m", $0)
+    }
+    if (/«/) {
+        gsub(/«/, "[38;5;110m", $0)
         in_code_section = 1
+    }
+    if (/»/) {
+        gsub(/»/, "[0m", $0)
+        in_code_section = 0
+    }
+    if (/‹/) {
+        gsub(/‹/, "[38;5;242m", $0)
+        in_listing_section = 1
     }
     if (/›/) {
         gsub(/›/, "[0m", $0)
-        in_code_section = 0
+        in_listing_section = 0
     }
 
     gsub(/=h= /, "[38;5;236m===== [38;5;180m", $0)

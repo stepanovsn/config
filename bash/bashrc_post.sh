@@ -120,6 +120,18 @@ r.storage_sync() {
         return;
     fi
 
+    DEVICE=$(findmnt -n -o SOURCE --target "/storage")
+    DEVICE_SIZE_GIB=$(lsblk -b -dn -o SIZE "${DEVICE}")
+    DEVICE_SIZE_GIB=$((DEVICE_SIZE_GIB / 1024 / 1024 / 1024))
+
+    CONTENT_SIZE_GIB=$(du -sb "$REG_CONFIG_DIR" | awk '{printf "%d\n", ($1 + 1073741823) / 1073741824}')
+    CONTENT_SIZE_GIB=$((CONTENT_SIZE_GIB + $(du -sb "$REG_STORAGE_DIR" | awk '{printf "%d\n", ($1 + 1073741823) / 1073741824}')))
+
+    if [ "$CONTENT_SIZE_GIB" -gt "$DEVICE_SIZE_GIB" ]; then
+        echo "Storage size is not sufficient"
+        return;
+    fi
+
     rsync -vcrtuh --delete ${REG_CONFIG_DIR} /storage
     rsync -vcrtuh --delete ${REG_STORAGE_DIR} /storage
 }
@@ -392,6 +404,10 @@ r.git_activity() {
 
 r.help() {
     LF_OPEN_MODE="bnote" lf ${REG_CONFIG_DIR}/bash/notes
+}
+
+r.print_alphabet() {
+    i=1; for c in {A..Z}; do ((i > 1 && i % 10 == 1)) && printf "\n"; printf "%s:%-2d  " "$c" "$i"; ((i++)); done; echo ""
 }
 
 # Add fzf key-bindings

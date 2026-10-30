@@ -16,6 +16,9 @@ install_bash() {
         insert_text_info_file "${bashrc}" "${machine_text}=${REG_MACHINE}" "${machine_text}" "${REG_NON_COMMENT_LINE}"
     fi
 
+    local config_text="export REG_CONFIG_DIR"
+    insert_text_info_file "${bashrc}" "${config_text}=${ROOT_DIR}" "${config_text}" "${REG_NON_COMMENT_LINE}"
+
     local color_scheme_text="export REG_CONSOLE_COLOR_SCHEME"
     replace_text_in_file "${bashrc}" "${color_scheme_text}=${REG_CONSOLE_COLOR_SCHEME}" "${color_scheme_text}" "${REG_NON_COMMENT_LINE}"
 

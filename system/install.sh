@@ -32,9 +32,6 @@ install_system() {
 
     local bashrc=$HOME/.bashrc
 
-    local config_text="export REG_CONFIG_DIR"
-    insert_text_info_file "${bashrc}" "${config_text}=${ROOT_DIR}" "${config_text}" "${REG_NON_COMMENT_LINE}"
-
     local storage_text="export REG_STORAGE_DIR"
     if ! grep -q "${storage_text}" $bashrc; then
         local default_storage=${HOME}/storage

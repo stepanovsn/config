@@ -7,7 +7,7 @@ umask 077
 if [ -t 1 ]; then
     cNone='\e[0m'
     cBlack='\e[0;30m'
-    cGrey='\e[1;30m'
+    cGrey='\e[2;37m'
     cRed='\e[0;31m'
     cGreen='\e[0;32m'
     cYellow='\e[0;33m'

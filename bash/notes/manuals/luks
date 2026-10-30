@@ -1,0 +1,13 @@
+=H= LUKS
+
+=h= Set up encrypted storage
+
+Wipe the device:
+‹sudo dd if=/dev/zero of=/dev/sdX bs=1M status=progress conv=fdatasync
+sudo cryptsetup open --type plain -d /dev/urandom /dev/sdX to_be_wiped
+sudo dd if=/dev/zero of=/dev/mapper/to_be_wiped status=progress conv=fdatasync
+cryptsetup close to_be_wiped›
+
+Format the partition:
+‹cryptsetup luksFormat --type luks2 --cipher aes-xts-plain64 --key-size 512 --pbkdf argon2id --iter-time 5000 LUKS_PARTITION
+sudo mkfs.ext4 /dev/mapper/cryptlvm2›

@@ -1,0 +1,54 @@
+=H= Configuration
+
+=h= Show information
+
+Devices and dns status:         ‹nmcli›
+NetworkManager status:          ‹nmcli g›
+Networking status:              ‹nmcli n›
+Show connections:               ‹nmcli con›
+Show all devices status:        ‹nmcli dev›
+Show all devices info:          ‹nmcli dev sh›
+
+=h= Control
+
+Enable/disable networking:                ‹nmcli n [on/off]›
+Enable/disable type of connection:        ‹nmcli r [type] [on|off]›
+    Types: wifi, wwan, all
+
+=h= Connection properties
+
+Most used connection properties and values:
+‹ipv4.method manual                    ›IPv4 address configured statically
+‹ipv4.method auto                      ›Configuration settings from a DHCPv4 server
+‹ipv4.address "192.168.0.10/24"        ›Static IPv4 address, network prefix
+‹ipv4.gateway 192.168.0.1              ›IPv4 Gateway
+‹ipv4.dns 8.8.8.8                      ›Modify /etc/resolv.conf to use this nameserver
+‹connection.autoconnect yes            ›Automatically activate this connection on boot
+‹connection.id eth0                    ›Name of the connection
+‹connection.interface-name             ›Bind connection to the network interface
+
+=H= Examples
+
+Add IP to DNS servers list:        ‹nmcli con mod eno1 +ipv4.dns 8.8.4.4›
+Add new connection:                ‹nmcli con add type ethernet connection.interface-name enp1s0›
+Disconnect the interface:          ‹nmcli dev disconnect enp0s8›
+Unmanage the interface:            ‹nmcli device set enp0s8 managed no›
+
+Configure static IP address:‹
+nmcli con modify eno1 ipv4.addresses "192.168.0.100/24 192.168.0.1"
+nmcli con modify eno1 ipv4.method manual
+nmcli con down eno1 && nmcli con up eno1
+nmcli device show eno1›
+
+Configure DHCP:‹
+nmcli con modify eno1 ipv4.method auto
+nmcli con down eno1 && nmcli con up eno1
+nmcli device show eno1›
+
+Connect to wifi:‹
+nmcli radio wifi on
+sudo nmcli dev wifi rescan
+nmcli dev wifi list
+sudo nmcli --ask dev wifi connect NETWORK_NAME
+nmcli dev status
+nmcli con show›

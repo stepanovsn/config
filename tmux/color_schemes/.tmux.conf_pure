@@ -33,6 +33,7 @@ set -g status-justify right
 set -g status-left ''
 
 # Other settings
+set -g history-limit 10000
 set -g visual-activity off
 set -g visual-bell off
 set -g visual-silence off

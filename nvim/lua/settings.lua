@@ -40,7 +40,7 @@ vim.opt.listchars = 'tab:>·,space:·,trail:~'
 vim.opt.list = true
 
 -- Ctags
-vim.opt.tags = './tags,tags;$HOME'
+vim.opt.tags = { "./tags;", "tags" }
 
 -- Set grep program
 vim.opt.grepprg = 'rg --vimgrep'

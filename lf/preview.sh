@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 if file "${1}" | rg -e "ELF.*executable" &> /dev/null; then
     readelf -h ${1}

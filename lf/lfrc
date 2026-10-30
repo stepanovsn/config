@@ -1,5 +1,6 @@
 # Main settings
-set hidden
+# If hidden files should be shown by default, uncomment this:
+# set hidden
 set incsearch true
 set ignorecase true
 set smartcase true
@@ -52,7 +53,8 @@ cmd open ${{
     case "$LF_OPEN_MODE" in
         "bnote")
             ${REG_CONFIG_DIR}/bash/show_help.sh "$f" | less
-            lf -remote "send $id quit"
+            # If lf needs to be closed after that, uncomment this:
+            # lf -remote "send $id quit"
             ;;
         *)
             ;;

@@ -441,7 +441,8 @@ To start nvim in diff mode: ‹nvim -d file1.txt file2.txt›
 
 =h= Tabs
 
-‹<A-n>         ›     New
+‹<A-n>         ›     New after current
+‹<A-b>         ›     New before current
 ‹<A-c>         ›     Close
 ‹<A-o>         ›     Only
 

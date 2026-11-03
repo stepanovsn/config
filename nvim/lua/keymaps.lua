@@ -10,6 +10,7 @@ vim.keymap.set('n', '<F4>', function() vim.cmd.quit() end)
 
 -- Tab navigation and manipulation
 vim.keymap.set('n', '<A-n>', '<cmd>tabnew<CR>')
+vim.keymap.set('n', '<A-b>', '<cmd>tabnew | tabmove -1<CR>')
 vim.keymap.set('n', '<A-c>', '<cmd>tabclose<CR>')
 vim.keymap.set('n', '<A-o>', '<cmd>tabonly<CR>')
 

@@ -934,11 +934,11 @@ local function create_pane_counter(s)
 end
 
 -- Create the widget for all screens
-for s in screen do
-    create_pane_counter(s)
-end
+--for s in screen do
+    --create_pane_counter(s)
+--end
 
 -- Update when screens are added/removed (for multi-monitor setups)
-screen.connect_signal("added", function(s)
-    create_pane_counter(s)
-end)
+-- screen.connect_signal("added", function(s)
+    -- create_pane_counter(s)
+-- end)

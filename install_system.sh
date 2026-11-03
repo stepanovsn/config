@@ -17,7 +17,8 @@ ALL_COMPONENTS=(
     "feh"
     "xbindkeys"
     "system"
-    "resources")
+    "resources"
+    "unison")
 
 step_check_repo
 step_get_components "$@"

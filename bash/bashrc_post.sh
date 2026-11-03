@@ -92,11 +92,11 @@ r.storage_open() {
 
     if [ ! -d "/storage" ]; then
         sudo mkdir -p /storage
+        sudo chmod u+rw /storage
     fi
 
     sudo cryptsetup luksOpen ${1} usb_storage
     sudo mount /dev/mapper/usb_storage /storage
-    sudo chmod -R ugo+rw /storage
 }
 
 r.storage_close() {
@@ -132,8 +132,8 @@ r.storage_sync() {
         return;
     fi
 
-    rsync -vcrtuh --delete ${REG_CONFIG_DIR} /storage
-    rsync -vcrtuh --delete ${REG_STORAGE_DIR} /storage
+    unison storage ${REG_CONFIG_DIR} /storage/regconfig
+    unison storage ${REG_STORAGE_DIR} /storage/storage
 }
 
 r.gpg_encrypt() {

@@ -1,0 +1,8 @@
+# Ask before propagating changes
+batch = false
+
+# Be cautious about large deletions
+confirmbigdel = true
+
+# Synchronize file modification times
+times = true

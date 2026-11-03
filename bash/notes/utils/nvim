@@ -539,6 +539,7 @@ To start nvim in diff mode: ‹nvim -d file1.txt file2.txt›
 ‹tn         ›      - Next
 ‹tp         ›      - Previous
 
+‹<Leader>w ›       Toggle word wrap
 ‹<Leader>u  ›      Redraw the screen
 
 ‹›                 Insert from 0 register:

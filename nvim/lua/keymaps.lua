@@ -149,6 +149,9 @@ vim.keymap.set('n', '<Leader>vc', SetCodeViewMode)
 vim.keymap.set('n', '<Leader>vr', SetReaderViewMode)
 vim.keymap.set('n', '<Leader>vm', SetMinimalViewMode)
 
+-- Word wrap
+vim.keymap.set("n", "<leader>w", function() vim.wo.wrap = not vim.wo.wrap end)
+
 -- Commenting
 vim.keymap.set('v', '<leader>cc', _G.comment_selection)
 vim.keymap.set('v', '<leader>cu', _G.uncomment_selection)

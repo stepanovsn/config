@@ -463,6 +463,7 @@ To start nvim in diff mode: ‹nvim -d file1.txt file2.txt›
 ‹<F7>        ›      Ripgrep (every match, regexp)
 
 ‹<Leader>f   ›      Grep text globally
+‹<Leader>F   ›      Grep text globally in another tab
 ‹<Leader>l   ›      Search text locally
 
 ‹<Leader>j   ›      Set file glob option to be used in ripgrep

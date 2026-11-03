@@ -41,11 +41,21 @@ vim.keymap.set('n', '<F5>', ':Rg<Space>')
 vim.keymap.set('n', '<F6>', ':Rgl<Space>')
 vim.keymap.set('n', '<F7>', ':Rge<Space>')
 vim.keymap.set('n', '<Leader>f', ':Rg<Space><C-r><C-w><CR>')
+vim.keymap.set('n', '<Leader>F', ':Rgn<Space><C-r><C-w><CR>')
 
 vim.keymap.set('v', '<Leader>f', function()
     local selected_text = GetVisualSelection()
     if selected_text and selected_text ~= '' then
         Rg(selected_text)
+    else
+        print('No text selected')
+    end
+end)
+
+vim.keymap.set('v', '<Leader>F', function()
+    local selected_text = GetVisualSelection()
+    if selected_text and selected_text ~= '' then
+        Rgn(selected_text)
     else
         print('No text selected')
     end

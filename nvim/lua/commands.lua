@@ -3,6 +3,10 @@ vim.api.nvim_create_user_command('Rg', function(opts)
   Rg(unpack(vim.split(opts.args, '%s+')))
 end, { nargs = '+' })
 
+vim.api.nvim_create_user_command('Rgn', function(opts)
+  Rgn(unpack(vim.split(opts.args, '%s+')))
+end, { nargs = '+' })
+
 vim.api.nvim_create_user_command('Rgl', function(opts)
   Rgl(unpack(vim.split(opts.args, '%s+')))
 end, { nargs = '+' })

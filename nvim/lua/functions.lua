@@ -65,6 +65,23 @@ function Rg(...)
   vim.fn.setreg('/', EscapeVimRegexp(search_string))
 end
 
+function Rgn(...)
+  local search_string = table.concat({ ... }, ' ')
+  local grepprg = vim.opt.grepprg:get()
+  local cmd = grepprg .. " -F -l '" .. search_string .. "'"
+  if _G.file_glob ~= '' then
+      cmd = cmd .. ' -g ' .. _G.file_glob .. '  --glob-case-insensitive'
+  end
+  local output = vim.fn.system(cmd)
+  local files = vim.fn.split(output, '\n')
+
+  vim.cmd('tabnew')
+
+  vim.fn.setqflist({}, ' ', { lines = files, efm = '%f' })
+  OpenQflist()
+  vim.fn.setreg('/', EscapeVimRegexp(search_string))
+end
+
 function Rgl(...)
   local search_string = table.concat({ ... }, ' ')
   local grepprg = vim.opt.grepprg:get()

@@ -11,8 +11,6 @@ bind -n M-Left select-pane -L
 bind -n M-Right select-pane -R
 bind -n M-Up select-pane -U
 bind -n M-Down select-pane -D
-bind-key -n C-S-Left swap-window -t -1 \; previous-window # Move window left/right
-bind-key -n C-S-Right swap-window -t +1 \; next-window
 bind-key -Tdest-window 1 join-pane -t :1 -h # Move pane to window
 bind-key -Tdest-window 2 join-pane -t :2 -h
 bind-key -Tdest-window 3 join-pane -t :3 -h
@@ -25,6 +23,17 @@ bind-key -Tdest-window 9 join-pane -t :9 -h
 bind-key j switch-client -Tdest-window
 bind-key a display-panes -d 0 "swap-pane -t '%%'" # Swap panes by numbers
 bind-key v attach-session -t . -c "#{pane_current_path}" # Set session working dir
+bind-key m choose-session 'move-window -t "%%"' # Move window to another session
+bind-key N command-prompt -p "New session name:" "new-session -d -s '%%' \; move-window -t '%1:' \; kill-window -t '%1:1' \; switch-client -t '%1'" # Start a new session from current window
+bind-key M-1 if-shell '[ "#{window_index}" -gt 1 ]' 'move-window -b -t :1'
+bind-key M-2 if-shell '[ "#{window_index}" -gt 2 ]' 'move-window -b -t :2' 'if-shell "[ #{window_index} -lt 2 ]" "move-window -a -t :2"'
+bind-key M-3 if-shell '[ "#{window_index}" -gt 3 ]' 'move-window -b -t :3' 'if-shell "[ #{window_index} -lt 3 ]" "move-window -a -t :3"'
+bind-key M-4 if-shell '[ "#{window_index}" -gt 4 ]' 'move-window -b -t :4' 'if-shell "[ #{window_index} -lt 4 ]" "move-window -a -t :4"'
+bind-key M-5 if-shell '[ "#{window_index}" -gt 5 ]' 'move-window -b -t :5' 'if-shell "[ #{window_index} -lt 5 ]" "move-window -a -t :5"'
+bind-key M-6 if-shell '[ "#{window_index}" -gt 6 ]' 'move-window -b -t :6' 'if-shell "[ #{window_index} -lt 6 ]" "move-window -a -t :6"'
+bind-key M-7 if-shell '[ "#{window_index}" -gt 7 ]' 'move-window -b -t :7' 'if-shell "[ #{window_index} -lt 7 ]" "move-window -a -t :7"'
+bind-key M-8 if-shell '[ "#{window_index}" -gt 8 ]' 'move-window -b -t :8' 'if-shell "[ #{window_index} -lt 8 ]" "move-window -a -t :8"'
+bind-key M-9 if-shell '[ "#{window_index}" -gt 9 ]' 'move-window -b -t :9' 'if-shell "[ #{window_index} -lt 9 ]" "move-window -a -t :9"'
 
 # Statusbar
 set -g status-interval 1
@@ -33,6 +42,7 @@ set -g status-justify right
 set -g status-left ''
 
 # Other settings
+set-option -g detach-on-destroy off
 set -g history-limit 10000
 set -g visual-activity off
 set -g visual-bell off

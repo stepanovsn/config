@@ -18,7 +18,7 @@ Rename session:         ‹tmux rename-session -t <old> <new>›
 =h= Window management
 
 ‹prefix c ›           - Create new window
-‹prefix $ ›           - Kill current window
+‹prefix & ›           - Kill current window
 
 ‹prefix n ›           - Switch to next window
 ‹prefix p ›           - Switch to previous window
@@ -67,13 +67,13 @@ Rename session:         ‹tmux rename-session -t <old> <new>›
 =h= Custom
 
 ‹prefix v ›           - Set session working dir to current pane dir
-
 ‹prefix b ›           - Toggle status bar visibility
-
 ‹prefix k ›           - Kill current session
+‹prefix m ›           - Move window to another session (interactive select)
+‹prefix N ›           - Start a new session from current window
 
-‹Ctrl+Shift+<arrow> › - Move window to the left (right)
-‹prefix j-<number> ›  - Move pane to <number> window
+‹prefix M-<number> ›  - Move window to specified position
+‹prefix j <number> ›  - Move pane to <number> window
 ‹prefix a <number> ›  - Swap the pane by number
 
 ‹M-<arrow> ›          - Go to <arrow> pane

@@ -105,7 +105,7 @@ r.storage_close() {
         return;
     fi
 
-    sudo umount /storage
+    sudo umount -l /storage
     sudo cryptsetup close usb_storage
 }
 

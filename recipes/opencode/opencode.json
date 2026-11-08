@@ -1,0 +1,32 @@
+{
+    "$schema": "https://opencode.ai/config.json",
+    "shell": "/bin/bash",
+    "warming": {
+        "prompt": "Do not perform any work. Reply with exactly: OK",
+        "interval": "3 minutes",
+        "duration": "15 minutes"
+    },
+    "permissions": [
+        { "action": "shell", "resource": "*", "effect": "ask" },
+        { "action": "shell", "resource": "git status *", "effect": "allow" },
+        { "action": "shell", "resource": "git diff *", "effect": "allow" },
+        { "action": "shell", "resource": "git commit *", "effect": "deny" },
+        { "action": "shell", "resource": "git push *", "effect": "deny" },
+        { "action": "shell", "resource": "git reset *", "effect": "deny" }
+    ],
+    "default_agent": "build",
+    "agents": {
+        "build": {
+            "system": "You are a pragmatic senior software engineer. Understand the task before changing code. Inspect relevant files first. Prefer small, maintainable changes that match existing project conventions. Explain important trade-offs briefly. Run appropriate tests and report what you verified. Do not claim tests passed unless you actually ran them."
+        },
+        "reviewer": {
+            "mode": "subagent",
+            "description": "Reviews code for bugs, security issues, and maintainability",
+            "system": "Review the proposed changes critically. Prioritize correctness, security, regressions, and missing tests. Report actionable findings with file and line references. Do not modify files.",
+            "permissions": [
+                { "action": "edit", "resource": "*", "effect": "deny" },
+                { "action": "shell", "resource": "*", "effect": "deny" }
+            ]
+        }
+    }
+}

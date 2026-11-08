@@ -19,6 +19,7 @@ ALL_COMPONENTS=(
     "tmux"
     "nvim"
     "ctags"
+    "opencode"
     "gdb")
 
 step_check_repo

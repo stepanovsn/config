@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# install tidy
 install_base() {
     local packages=(
         "bash-completion"
@@ -20,7 +21,6 @@ install_base() {
         "lshw"
         "minicom"
         "moreutils"
-        "mp3info"
         "mtools"
         "ncdu"
         "net-tools"
@@ -62,6 +62,14 @@ install_base() {
         # or:
         # - pacman -Syyu
 
+        # Update AUR packages:
+        # yay -Syu
+
+        # Check which packages I installed manually:
+        # pacman -Qme
+
+        # @todo: Switch from Happ to v2ray
+
         step_print_temp "Updating keyring.."
         #run_command sudo pacman -Sy --noconfirm archlinux-keyring
         #run_command sudo pacman -Su --noconfirm
@@ -75,8 +83,8 @@ install_base() {
         step_upgrade_pacman ${packages[@]}
 
         step_upgrade_aur yay
-        step_upgrade_aur snapd
-        step_service_activate snapd
+        # step_upgrade_aur snapd
+        # step_service_activate snapd
 
         step_upgrade_yay xkblayout-state
     else

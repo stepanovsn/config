@@ -10,7 +10,6 @@ case "${1,,}" in
     *.deb) dpkg-deb -I "$1";;
     *.doc|*.docx) docx2txt "$1" -;;
     *.html|*.xml) w3m -dump "$1";;
-    *.mp3) mp3info -x "$1";;
     *.pem|*.crt|*.cer) openssl x509 -in "$1" -noout -text -certopt no_pubkey,no_sigdump;;
     *.pdf) pdftotext "$1" -;;
     *.png|*.mov|*.jpg|*.gif|*.jpeg|*.mkv|*.mp4|*.m4v) mediainfo "$1";;

@@ -384,7 +384,6 @@ step_install_components () {
         step_title "${component_name//_/ }"
 
         RECIPE_DIR="${ROOT_DIR}/recipes/${component}"
-        printf "$RECIPE_DIR\n"
         local install_script="${RECIPE_DIR}/install.sh"
         if [ -f ${install_script} ]; then
             source ${install_script}

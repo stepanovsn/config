@@ -44,6 +44,7 @@ install_base() {
     if distro_arch; then
         packages+=(
             "base-devel"
+            "docker"
             "gtest"
             "libheif"
             "openssh"
@@ -58,15 +59,13 @@ install_base() {
 
         # In case of other package problems:
         # - Update /etc/pacman.d/mirrorlist according to https://www.archlinux.org/mirrorlist/
-
-        # or:
         # - pacman -Syyu
 
         # Update AUR packages:
-        # yay -Syu
+        # - Run 'yay -Syu'
 
         # Check which packages I installed manually:
-        # pacman -Qme
+        # - Run 'pacman -Qme'
 
         # @todo: Switch from Happ to v2ray
 
@@ -82,6 +81,11 @@ install_base() {
 
         step_upgrade_pacman ${packages[@]}
 
+        step_service_activate docker
+
+        sudo usermod -aG docker "${USER}"
+        step_print "User '${USER}' added to docker group"
+
         step_upgrade_aur yay
         # step_upgrade_aur snapd
         # step_service_activate snapd
@@ -90,11 +94,14 @@ install_base() {
     else
         packages+=(
             "clang-tidy"
+            "ca-certificates"
             "libgtest-dev"
             "openssh-server"
             "rar"
             "xz-utils"
         )
+
+        # @todo: Install docker
 
         step_print_temp "Updating apt indices.."
         run_command sudo apt update

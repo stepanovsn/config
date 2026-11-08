@@ -43,6 +43,7 @@ set -g status-left ''
 
 # Other settings
 set-option -g detach-on-destroy off
+set -g mouse off
 set -g history-limit 10000
 set -g visual-activity off
 set -g visual-bell off
@@ -61,6 +62,8 @@ if-shell '[[ $(tput colors) = 8 ]]' {
 
 # Use $lang in status right to show current language
 #lang="#{?#(xset -q | grep LED | cut -c63),ru,en}"
+
+set-option -g window-status-current-style default # otherwise it adds underscore for active tab
 
 # Colors
 if-shell '[[ $(tput colors) = 8 ]]' {

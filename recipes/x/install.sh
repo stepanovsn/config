@@ -37,7 +37,7 @@ install_x() {
     # Keyboard layout
     # Alternatively, the keyboard layout can be configured by localectl
     # More info on https://wiki.archlinux.org/title/Xorg/Keyboard_configuration
-    sudo cp "${RECIPE_DIR/00-keyboard.conf" "/etc/X11/xorg.conf.d/"
+    sudo cp "${RECIPE_DIR}/00-keyboard.conf" "/etc/X11/xorg.conf.d/"
     step_print "Keyboard X config file copied."
 
     # Udev rules

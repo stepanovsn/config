@@ -7,11 +7,7 @@ install_gdb() {
         step_upgrade_apt gdb
     fi
 
-    local gdb_dir=$HOME/.gdbinit.d
-    step_reset_dir $gdb_dir
     step_soft_link $RECIPE_DIR/.gdbinit $HOME/.gdbinit
-    step_soft_link $RECIPE_DIR/init $gdb_dir/init
-
     step_done
 }
 

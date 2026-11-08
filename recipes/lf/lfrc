@@ -1,6 +1,5 @@
 # Main settings
-# If hidden files should be shown by default, uncomment this:
-# set hidden
+set hidden
 set incsearch true
 set ignorecase true
 set smartcase true

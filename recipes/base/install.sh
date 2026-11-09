@@ -29,7 +29,7 @@ install_base() {
         "openvpn"
         "pdftk"
         "python3"
-        "python-pip"
+        "python3-pip"
         "tar"
         "termshark"
         "trash-cli"

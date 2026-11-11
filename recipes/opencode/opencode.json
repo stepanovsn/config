@@ -1,6 +1,11 @@
 {
     "$schema": "https://opencode.ai/config.json",
     "shell": "/bin/bash",
+    "share": "disabled",
+    "autoupdate": false,
+    "experimental": {
+        "openTelemetry": false
+    },
     "warming": {
         "prompt": "Do not perform any work. Reply with exactly: OK",
         "interval": "3 minutes",

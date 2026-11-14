@@ -28,6 +28,7 @@ install_base() {
         "openssl"
         "openvpn"
         "pdftk"
+        "podman"
         "python3"
         "python3-pip"
         "tar"

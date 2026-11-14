@@ -1,0 +1,3 @@
+Tasks:
+- Make global theme application
+- Change opencode from docker to podman

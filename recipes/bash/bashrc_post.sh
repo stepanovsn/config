@@ -403,7 +403,7 @@ r.git_activity() {
 }
 
 r.help() {
-    LF_OPEN_MODE="bnote" lf ${REG_CONFIG_DIR}/components/bash/notes
+    LF_OPEN_MODE="bnote" lf ${REG_CONFIG_DIR}/recipes/bash/notes
 }
 
 r.print_alphabet() {
